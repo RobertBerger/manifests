@@ -32,5 +32,12 @@
            name="meta-layers/meta-resy"
            path="sources/meta-resy"/>
 
+
+  <project remote="oe"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-opemembedded"
+           path="sources/meta-openembedded"/>
+
 </manifest>
 
