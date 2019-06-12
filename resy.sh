@@ -13,7 +13,7 @@ popd
 
 pushd sources
 pushd poky
-git branch sources poky
+git branch
 popd
 popd
 

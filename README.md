@@ -2,5 +2,8 @@
 manifests for repo tool
 
 ```
-repo init -u https://github.com/RobertBerger/manifests -m resy.xml
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
+
+chmod +x resy.sh 
+./resy.sh 
 ```
