@@ -12,7 +12,8 @@
   <!-- Base stuff -->
   <!-- my poky fork -->
   <project remote="github"
-           revision="2019-05-13-warrior-2.7+"
+           revision="9001e77e428d86b1d10e0a9ceb9113a76d221678"
+           upstream="2019-05-13-warrior-2.7+"
            name="RobertBerger/poky"
            path="sources/poky"/>
 
