@@ -13,7 +13,7 @@
   <!-- my poky fork -->
   <project remote="github"
            upstream="warrior"
-           revision="2019-05-13-warrior-2.7+"
+           revision="github/2019-05-13-warrior-2.7+"
            name="RobertBerger/poky"
            path="sources/poky"/>
 
