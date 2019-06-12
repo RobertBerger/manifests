@@ -39,5 +39,12 @@
            name="meta-openembedded"
            path="sources/meta-openembedded"/>
 
+  <!-- meta-virtualization -->
+  <project remote="yocto"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-virtualization"
+           path="sources/meta-virtualization"/>
+
 </manifest>
 

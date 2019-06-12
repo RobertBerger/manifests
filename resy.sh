@@ -19,6 +19,9 @@ popd
 pushd meta-openembedded
 git checkout -b warrior
 popd
+pushd meta-virtualization
+git checkout -b warrior
+popd
 
 # popd sources
 popd
@@ -35,6 +38,9 @@ pushd meta-resy
 git branch
 popd
 pushd meta-openembedded
+git branch
+popd
+pushd meta-virtualization
 git branch
 popd
 
