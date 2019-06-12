@@ -25,5 +25,12 @@
            name="meta-layers/meta-multi-v7-ml-bsp"
            path="sources/meta-multi-v7-ml-bsp"/>
 
+  <!-- my resy distro -->
+  <project remote="gitlab"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-layers/meta-resy"
+           path="sources/meta-resy"/>
+
 </manifest>
 
