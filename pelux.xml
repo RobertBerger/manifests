@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <!-- Settings -->
+  <default sync-j="4" revision="master"/>
+
+  <!-- Remotes -->
+  <remote fetch="git://git.openembedded.org" name="oe"/>
+  <remote fetch="git://git.yoctoproject.org" name="yocto"/>
+  <remote fetch="git://github.com"           name="github"/>
+  <remote fetch="git://code.qt.io"           name="code.qt"/>
+
+  <!-- Base stuff -->
+  <project remote="yocto"
+           upstream="thud"
+           revision="cdd4a52578f4f1b79b3fc2c92aa4434b99efd91c"
+           name="poky"
+           path="sources/poky"/>
+
+  <project remote="oe"
+           upstream="thud"
+           revision="9b3b907f30b0d5b92d58c7e68289184fda733d3e"
+           name="meta-openembedded"
+           path="sources/meta-openembedded"/>
+
+  <!-- Pelagicore/Luxoft stuff -->
+  <project remote="github"
+           upstream="master"
+           revision="f8fe04f2b2e4a87e6eb7e6c604119724fc032e95"
+           name="Pelagicore/meta-bistro"
+           path="sources/meta-bistro"/>
+
+  <project remote="github"
+           upstream="master"
+           revision="40769ed753844e7e890441dc00906e34101d981a"
+           name="Pelagicore/meta-pelux"
+           path="sources/meta-pelux"/>
+
+  <project remote="github"
+           upstream="master"
+           revision="b4844275d739f2295a0e0a524cc7b072cc46191d"
+           name="Pelagicore/meta-template"
+           path="sources/meta-template"/>
+
+  <!-- 3rd-party stuff -->
+  <project remote="github"
+           upstream="thud"
+           revision="66af6e7e019b07b48facfd68be3c4ab2094502a4"
+           name="sbabic/meta-swupdate"
+           path="sources/meta-swupdate"/>
+
+  <project remote="yocto"
+           upstream="thud"
+           revision="9e8c0c96b443828a255e7d6ca6291598347672ac"
+           name="meta-virtualization"
+           path="sources/meta-virtualization"/>
+
+  <project remote="github"
+           upstream="master"
+           revision="7110b507322ceb8aa1ff28c7eebf4c0be695d939"
+           name="01org/meta-security-isafw"
+           path="sources/meta-security-isafw"/>
+
+  <!-- GENIVI stuff -->
+  <project remote="github"
+           upstream="master"
+           revision="189f536d4e8e0966035afeb0679b1e1dd240d1b7"
+           name="GENIVI/meta-ivi"
+           path="sources/meta-ivi"/>
+
+  <!-- Qt + Qt Automotive support stuff -->
+  <project remote="code.qt"
+           upstream="5.12"
+           revision="refs/tags/v5.12.1"
+           name="yocto/meta-qt5"
+           path="sources/meta-qt5"/>
+
+  <project remote="code.qt"
+           upstream="thud"
+           revision="78dffecae11a66c6de4efc8dfc7e5baa41c4e5c0"
+           name="yocto/meta-boot2qt"
+           path="sources/meta-boot2qt"/>
+
+  <!-- BSP layers -->
+  <project remote="yocto"
+           upstream="thud"
+           revision="3c45215fe075ddaa892bc87f969f50684a7062b4"
+           name="meta-intel"
+           path="sources/meta-intel"/>
+
+  <project remote="yocto"
+           upstream="thud"
+           revision="c71d79efc5a06a0c896c278c94f5b14413bb4d69"
+           name="meta-raspberrypi"
+           path="sources/meta-raspberrypi"/>
+
+  <project remote="github"
+           upstream="master"
+           revision="71898eb2a1c9fdeede6e53804995433f67e7b18c"
+           name="Pelagicore/meta-arp"
+           path="sources/meta-arp"/>
+
+</manifest>
