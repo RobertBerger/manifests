@@ -1,0 +1,8 @@
+repos:
+
+  - src: poky
+    remotes:
+      - name: origin
+        url: git@github.com/RobertBerger/poky:sources/poky
+    branch: 2019-05-13-warrior-2.7+
+
