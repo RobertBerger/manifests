@@ -19,7 +19,7 @@
            path="sources/poky"/>
 
   <!-- my multi-v7-ml bsp -->
-  <project remote="meta-layers"
+  <project remote="gitlab"
            revision="warrior-v4.19.x"
            upstream="warrior-v4.19.x"
            name="meta-layers/meta-multi-v7-ml-bsp"
