@@ -18,7 +18,7 @@ rm -rf .repo
 rm -rf sources
 rm -rf scripts
 rm -rf build
-rm -rf app-container
+rm -rf app-container-x86-64
 repo init -u https://github.com/RobertBerger/manifests -m resy.xml
 repo sync
 
