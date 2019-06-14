@@ -20,3 +20,7 @@ chmod +x resy.sh
 ./resy.sh 
 ```
 ## adjust a few things
+You might want to adjust the site.conf template for your site:
+```
+sources/meta-resy/template-common/site.conf.sample
+```
