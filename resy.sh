@@ -47,5 +47,8 @@ popd
 # popd sources
 popd
 
+rm -f resy-cooker.sh
+
+
 set +x
 
