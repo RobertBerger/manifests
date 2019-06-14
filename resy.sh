@@ -38,6 +38,11 @@ git checkout -b warrior
 git branch --set-upstream-to=gitlab/warrior warrior
 popd
 
+pushd meta-desire
+git checkout -b warrior
+git branch --set-upstream-to=gitlab/warrior warrior
+popd
+
 pushd meta-openembedded
 git checkout -b warrior
 git branch --set-upstream-to=oe/warrior warrior
@@ -48,6 +53,7 @@ git checkout -b warrior
 git branch --set-upstream-to=yocto/warrior warrior
 popd
 
+
 # popd sources
 popd
 
@@ -56,15 +62,23 @@ pushd sources
 pushd poky
 git branch
 popd
+
 pushd meta-multi-v7-ml-bsp
 git branch
 popd
+
 pushd meta-resy
 git branch
 popd
+
+pushd meta-desire
+git branch
+popd
+
 pushd meta-openembedded
 git branch
 popd
+
 pushd meta-virtualization
 git branch
 popd

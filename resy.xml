@@ -32,6 +32,13 @@
            name="meta-layers/meta-resy"
            path="sources/meta-resy"/>
 
+  <!-- my desire apps + images -->
+  <project remote="gitlab"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-layers/meta-desire"
+           path="sources/meta-desire"/>
+
   <!-- meta-openembedded -->
   <project remote="oe"
            revision="warrior"
