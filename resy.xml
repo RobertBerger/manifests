@@ -46,5 +46,12 @@
            name="meta-virtualization"
            path="sources/meta-virtualization"/>
 
+  <!-- my convenience scripts -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/convenience-scripts"
+           path="scripts/convenience-scripts"/>
+
 </manifest>
 

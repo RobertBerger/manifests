@@ -1,7 +1,23 @@
 #!/bin/bash
+
+echo "This script will kill everything"
+echo "and grab everything from scratch"
+
+read -r -p "Are you sure? [y/N] " response
+case "$response" in
+    [yY][eE][sS]|[yY]) 
+        echo "killing!"
+        ;;
+    *)
+        exit
+        ;;
+esac
+
 set -x
 rm -rf .repo
 rm -rf sources
+rm -rf scripts
+rm -rf build
 repo init -u https://github.com/RobertBerger/manifests -m resy.xml
 repo sync
 
@@ -48,7 +64,11 @@ popd
 popd
 
 rm -f resy-cooker.sh
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-cooker.sh
+chmod +x resy-cooker.sh
 
+echo "use resy-cooker.sh to build"
 
 set +x
+
 
