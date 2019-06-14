@@ -28,9 +28,11 @@ git checkout -b 2019-05-13-warrior-2.7+
 popd
 pushd meta-multi-v7-ml-bsp
 git checkout -b warrior-v4.19.x
+git branch --set-upstream-to=gitlab/warrior-v4.19.x warrior-v4.19.x
 popd
 pushd meta-resy
 git checkout -b warrior
+git branch --set-upstream-to=gitlab/warrior warrior
 popd
 pushd meta-openembedded
 git checkout -b warrior
