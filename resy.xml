@@ -60,5 +60,12 @@
            name="meta-layers/convenience-scripts"
            path="scripts/convenience-scripts"/>
 
+  <!-- app container x86-64  -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-python3-data-collector"
+           path="app-container-x86-64/app-container-python3-data-collector"/>
+
 </manifest>
 
