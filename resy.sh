@@ -25,6 +25,7 @@ pushd sources
 
 pushd poky
 git checkout -b 2019-05-13-warrior-2.7+
+git branch --set-upstream-to=github/2019-05-13-warrior-2.7+ 2019-05-13-warrior-2.7+
 popd
 pushd meta-multi-v7-ml-bsp
 git checkout -b warrior-v4.19.x
