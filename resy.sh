@@ -58,6 +58,24 @@ popd
 # popd sources
 popd
 
+pushd scripts
+
+pushd convenience-scripts
+git checkout -b master
+popd
+
+# popd scripts
+popd
+
+pushd app-container-x86-64
+
+pushd app-container-python3-data-collector
+git co master
+popd
+
+# popd app-container-x86-64
+popd
+
 pushd sources
 
 pushd poky
