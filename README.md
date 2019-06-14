@@ -9,8 +9,8 @@ https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#required-p
 
 ## create a dir where you have plenty of space
 ```
-mkdir desire
-cd desire
+mkdir -p ~/projects/desire
+cd ~/projects/desire
 ```
 ## download what's currently on offer
 ```
@@ -19,3 +19,4 @@ wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
 chmod +x resy.sh 
 ./resy.sh 
 ```
+## adjust a few things
