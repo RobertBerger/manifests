@@ -18,7 +18,7 @@ cd build
 
 # choose machine  to init 
 
-  select machine in 'container-x86-64' 'multi-v7-ml'
+  select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7'
   do
     echo "MACHINE: $machine"
     break;
@@ -34,6 +34,15 @@ cd build
   fi
 
   if [ "$machine" == "multi-v7-ml" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+     tree conf
+  fi
+
+  if [ "$machine" == "container-arm-v7" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
