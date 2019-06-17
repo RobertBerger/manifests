@@ -34,6 +34,11 @@ git checkout -b warrior-v4.19.x
 git branch --set-upstream-to=gitlab/warrior-v4.19.x warrior-v4.19.x
 popd
 
+pushd meta-u-boot-wic-bsp
+git checkout -b warrior
+git branch --set-upstream-to=gitlab/warrior warrior
+popd
+
 pushd meta-resy
 git checkout -b warrior
 git branch --set-upstream-to=gitlab/warrior warrior
@@ -86,6 +91,10 @@ pushd meta-multi-v7-ml-bsp
 git branch
 popd
 
+pushd meta-u-boot-wic-bsp
+git branch
+popd
+
 pushd meta-resy
 git branch
 popd
@@ -109,7 +118,7 @@ rm -f resy-cooker.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-cooker.sh
 chmod +x resy-cooker.sh
 
-echo "use resy-cooker.sh to build"
+echo "use resy-cooker.sh to set up build environment"
 
 set +x
 

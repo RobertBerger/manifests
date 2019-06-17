@@ -18,12 +18,19 @@
            name="RobertBerger/poky"
            path="sources/poky"/>
 
-  <!-- my multi-v7-ml bsp -->
+  <!-- my multi-v7-ml bsp kernel is here -->
   <project remote="gitlab"
            revision="warrior-v4.19.x"
            upstream="warrior-v4.19.x"
            name="meta-layers/meta-multi-v7-ml-bsp"
            path="sources/meta-multi-v7-ml-bsp"/>
+
+  <!-- my meta-u-boot-wic-bsp bso u-boot is here -->
+  <project remote="gitlab"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-layers/meta-u-boot-wic-bsp"
+           path="sources/meta-u-boot-wic-bsp"/>
 
   <!-- my resy distro -->
   <project remote="gitlab"

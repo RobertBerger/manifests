@@ -18,36 +18,80 @@ cd build
 
 # choose machine  to init 
 
-  select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7'
+  select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7' \
+                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-virt-wic' 
   do
-    echo "MACHINE: $machine"
+    echo "MACHINE or MACHINE-sw-variant: $machine"
     break;
   done
+
+  # container
 
   if [ "$machine" == "container-x86-64" ]; then
      export TEMPLATECONF="../meta-resy/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
-     cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
-     tree conf
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
   fi
 
-  if [ "$machine" == "multi-v7-ml" ]; then
-     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
-     echo "TEMPLATECONF: ${TEMPLATECONF}"
-     echo "source ../sources/poky/oe-init-build-env ${machine}"
-     source ../sources/poky/oe-init-build-env ${machine}
-     cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
-     tree conf
-  fi
+  # container
 
   if [ "$machine" == "container-arm-v7" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
-     cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
-     tree conf
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel - no u-boot, no sd card image
+
+  if [ "$machine" == "multi-v7-ml" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs, std kernel from multi-v7-ml, sd card image e.g. core-image-minimal
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs for docker, virt kernel from multi-v7-ml, sd card image e.g. core-image-minimal-virt-docker-ce
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
   fi
 
