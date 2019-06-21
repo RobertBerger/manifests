@@ -19,7 +19,8 @@ cd build
 # choose machine  to init 
 
   select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7' \
-                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-virt-wic' 
+                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-virt-wic' \
+                    'karo-imx6ul-txul-wic'
   do
     echo "MACHINE or MACHINE-sw-variant: $machine"
     break;
@@ -95,3 +96,16 @@ cd build
      fi
   fi
 
+  # rootfs, std kernel 4.14.x - patched for karo-imx6ul-txul, sd card image e.g. core-image-minimal
+  
+  if [ "$machine" == "karo-imx6ul-txul-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-karo-imx6ul-txul"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
