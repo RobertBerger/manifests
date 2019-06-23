@@ -25,13 +25,20 @@
            name="meta-layers/meta-multi-v7-ml-bsp"
            path="sources/meta-multi-v7-ml-bsp"/>
 
-  <!-- my meta-u-boot-wic-bsp bso u-boot is here -->
+  <!-- my meta-u-boot-wic-bsp bsp u-boot is here -->
   <project remote="gitlab"
            revision="warrior"
            upstream="warrior"
            name="meta-layers/meta-u-boot-wic-bsp"
            path="sources/meta-u-boot-wic-bsp"/>
 
+  <!-- my meta-u-boot-karo-wic-bsp bsp u-boot is here -->
+  <project remote="gitlab"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-layers/meta-u-boot-karo-wic-bsp"
+           path="sources/meta-u-boot-karo-wic-bsp"/>
+  
   <!-- my resy distro -->
   <project remote="gitlab"
            revision="warrior"

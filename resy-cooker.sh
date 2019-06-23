@@ -99,7 +99,7 @@ cd build
   # rootfs, std kernel 4.14.x - patched for karo-imx6ul-txul, sd card image e.g. core-image-minimal
   
   if [ "$machine" == "karo-imx6ul-txul-wic" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-karo-imx6ul-txul"
+     export TEMPLATECONF="../meta-u-boot-karo-wic-bsp/template-karo-imx6ul-txul"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
