@@ -26,6 +26,15 @@ cd build
     break;
   done
 
+  # check if hostname specific site.conf exists
+  if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME} ]; then 
+     SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}"
+  else
+     SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample"
+  fi
+ 
+  echo "SITE_CONF=${SITE_CONF}"
+
   # container
 
   if [ "$machine" == "container-x86-64" ]; then
@@ -35,7 +44,7 @@ cd build
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
   fi
@@ -49,7 +58,7 @@ cd build
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
   fi
@@ -63,7 +72,7 @@ cd build
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
   fi
@@ -77,7 +86,7 @@ cd build
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
   fi
@@ -91,7 +100,7 @@ cd build
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
   fi
@@ -105,7 +114,7 @@ cd build
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-resy/template-common/site.conf.sample conf/site.conf
+        cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
   fi
