@@ -118,6 +118,8 @@ rm -f resy-cooker.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-cooker.sh
 chmod +x resy-cooker.sh
 
+set +x
+
 echo "new resy.sh:"
 echo "rm -f resy.sh && wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh && chmod +x resy.sh"
 echo "use resy-cooker.sh to set up build environment"
