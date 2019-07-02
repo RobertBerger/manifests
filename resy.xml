@@ -74,7 +74,26 @@
            name="meta-layers/convenience-scripts"
            path="scripts/convenience-scripts"/>
 
-  <!-- app container x86-64  -->
+  <!-- app containers x86-64  -->
+
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-redis"
+           path="app-container-x86-64/app-container-redis"/>
+
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-mosquitto"
+           path="app-container-x86-64/app-container-mosquitto"/>
+
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-python3-nmap-srv"
+           path="app-container-x86-64/app-container-python3-nmap-srv"/>
+
   <project remote="gitlab"
            revision="master"
            upstream="master"
