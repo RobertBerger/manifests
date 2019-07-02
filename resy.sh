@@ -19,7 +19,7 @@ rm -rf sources
 rm -rf scripts
 rm -rf build
 rm -rf app-container-x86-64
-
+set +x
 
 # choose manifest
 
@@ -44,6 +44,7 @@ rm -rf app-container-x86-64
      export META_U_BOOT_KARO_WIC_BSP_BRANCH="warrior"
   fi
 
+set -x
 repo init -u https://github.com/RobertBerger/manifests -m ${MANIFEST}
 repo sync
 
