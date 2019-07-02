@@ -19,7 +19,32 @@ rm -rf sources
 rm -rf scripts
 rm -rf build
 rm -rf app-container-x86-64
-repo init -u https://github.com/RobertBerger/manifests -m resy.xml
+
+
+# choose manifest
+
+  select manifest in 'bleeding' 'stable'
+  do
+    echo "MANIFEST: $manifest"
+    break;
+  done
+
+
+  if [ "$manifest" == "bleeding" ]; then
+     export MANIFEST="resy-bleeding.xml"
+     export META_RESY_BRANCH="master"
+     export META_DESIRE_BRANCH="master"
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
+  fi
+
+  if [ "$manifest" == "stable" ]; then
+     export MANIFEST="resy.xml"
+     export META_RESY_BRANCH="warrior"
+     export META_DESIRE_BRANCH="warrior"
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="warrior"
+  fi
+
+repo init -u https://github.com/RobertBerger/manifests -m ${MANIFEST}
 repo sync
 
 pushd sources
@@ -39,14 +64,19 @@ git checkout -b warrior
 git branch --set-upstream-to=gitlab/warrior warrior
 popd
 
+pushd meta-u-boot-karo-wic-bsp
+git checkout -b ${META_U_BOOT_KARO_WIC_BSP_BRANCH}
+git branch --set-upstream-to=gitlab/${META_U_BOOT_KARO_WIC_BSP_BRANCH} ${META_U_BOOT_KARO_WIC_BSP_BRANCH}
+popd
+
 pushd meta-resy
-git checkout -b warrior
-git branch --set-upstream-to=gitlab/warrior warrior
+git checkout -b ${META_RESY_BRANCH}
+git branch --set-upstream-to=gitlab/${META_RESY_BRANCH} ${META_RESY_BRANCH}
 popd
 
 pushd meta-desire
-git checkout -b warrior
-git branch --set-upstream-to=gitlab/warrior warrior
+git checkout -b ${META_DESIRE_BRANCH}
+git branch --set-upstream-to=gitlab/${META_DESIRE_BRANCH} ${META_DESIRE_BRANCH}
 popd
 
 pushd meta-openembedded
@@ -92,6 +122,10 @@ git branch
 popd
 
 pushd meta-u-boot-wic-bsp
+git branch
+popd
+
+pushd meta-u-boot-karo-wic-bsp
 git branch
 popd
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <!-- Settings -->
+  <default sync-j="4" revision="master"/>
+
+  <!-- Remotes -->
+  <remote fetch="git://git.openembedded.org"      name="oe"/>
+  <remote fetch="git://git.yoctoproject.org"      name="yocto"/>
+  <remote fetch="git://github.com"                name="github"/>
+  <remote fetch="https://gitlab.com"              name="gitlab"/>
+
+  <!-- Base stuff -->
+  <!-- my poky fork -->
+  <project remote="github"
+           revision="2019-05-13-warrior-2.7+"
+           upstream="2019-05-13-warrior-2.7+"
+           name="RobertBerger/poky"
+           path="sources/poky"/>
+
+  <!-- my multi-v7-ml bsp kernel is here -->
+  <project remote="gitlab"
+           revision="warrior-v4.19.x"
+           upstream="warrior-v4.19.x"
+           name="meta-layers/meta-multi-v7-ml-bsp"
+           path="sources/meta-multi-v7-ml-bsp"/>
+
+  <!-- my meta-u-boot-wic-bsp bsp u-boot is here -->
+  <project remote="gitlab"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-layers/meta-u-boot-wic-bsp"
+           path="sources/meta-u-boot-wic-bsp"/>
+
+  <!-- my meta-u-boot-karo-wic-bsp bsp u-boot is here -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/meta-u-boot-karo-wic-bsp"
+           path="sources/meta-u-boot-karo-wic-bsp"/>
+  
+  <!-- my resy distro -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/meta-resy"
+           path="sources/meta-resy"/>
+
+  <!-- my desire apps + images -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/meta-desire"
+           path="sources/meta-desire"/>
+
+  <!-- meta-openembedded -->
+  <project remote="oe"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-openembedded"
+           path="sources/meta-openembedded"/>
+
+  <!-- meta-virtualization -->
+  <project remote="yocto"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-virtualization"
+           path="sources/meta-virtualization"/>
+
+  <!-- my convenience scripts -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/convenience-scripts"
+           path="scripts/convenience-scripts"/>
+
+  <!-- app container x86-64  -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-python3-data-collector"
+           path="app-container-x86-64/app-container-python3-data-collector"/>
+
+</manifest>
+
