@@ -39,6 +39,13 @@
            name="meta-layers/meta-u-boot-karo-wic-bsp"
            path="sources/meta-u-boot-karo-wic-bsp"/>
   
+  <!-- my meta-karo-bsp bsp u-boot is not here -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/meta-karo-bsp"
+           path="sources/meta-karo-bsp"/>
+
   <!-- my resy distro -->
   <project remote="gitlab"
            revision="master"

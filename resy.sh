@@ -35,6 +35,7 @@ set +x
      export META_RESY_BRANCH="master"
      export META_DESIRE_BRANCH="master"
      export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
+     export META_KARO_BSP_BRANCH="master"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -42,6 +43,7 @@ set +x
      export META_RESY_BRANCH="warrior"
      export META_DESIRE_BRANCH="warrior"
      export META_U_BOOT_KARO_WIC_BSP_BRANCH="warrior"
+     export META_KARO_BSP_BRANCH="warrior"
   fi
 
 set -x
@@ -68,6 +70,11 @@ popd
 pushd meta-u-boot-karo-wic-bsp
 git checkout -b ${META_U_BOOT_KARO_WIC_BSP_BRANCH}
 git branch --set-upstream-to=gitlab/${META_U_BOOT_KARO_WIC_BSP_BRANCH} ${META_U_BOOT_KARO_WIC_BSP_BRANCH}
+popd
+
+pushd meta-karo-bsp
+git checkout -b ${META_KARO_BSP_BRANCH}
+git branch --set-upstream-to=gitlab/${META_KARO_BSP_BRANCH} ${META_KARO_BSP_BRANCH}
 popd
 
 pushd meta-resy
@@ -144,6 +151,10 @@ git branch
 popd
 
 pushd meta-u-boot-karo-wic-bsp
+git branch
+popd
+
+pushd meta-karo-bsp
 git branch
 popd
 

@@ -173,7 +173,7 @@ cd build
   # u-boot is not being built (mkimage is being built from poky)
 
   if [ "$machine" == "karo-imx6ul-txul" ]; then
-     export TEMPLATECONF="../meta-karo-wic-bsp/template-karo-imx6ul-txul"
+     export TEMPLATECONF="../meta-karo-bsp/template-karo-imx6ul-txul"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
