@@ -20,6 +20,7 @@ cd build
 
   select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7' \
                     'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-virt-wic' \
+                    'beagle-bone-black-wic' \
                     'karo-imx6ul-txul-wic'
   do
     echo "MACHINE or MACHINE-sw-variant: $machine"
@@ -95,6 +96,20 @@ cd build
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs, std kernel from multi-v7-ml, sd card image e.g. core-image-minimal
+
+  if [ "$machine" == "beagle-bone-black-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-beagle-bone-black"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
