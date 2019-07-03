@@ -21,13 +21,14 @@ cd build
   select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7' \
                     'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-virt-wic' \
                     'beagle-bone-black-wic' \
-                    'karo-imx6ul-txul-wic'
+                    'am335x-phytec-wega-wic' \
+                    'karo-imx6ul-txul' 'karo-imx6ul-txul-uboot-wic'
   do
     echo "MACHINE or MACHINE-sw-variant: $machine"
     break;
   done
 
-  # check if hostname specific site.conf exists
+  # check if hostname specific site.conf exists and pick it up
   if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME} ]; then 
      SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}"
   else
@@ -36,7 +37,7 @@ cd build
  
   echo "SITE_CONF=${SITE_CONF}"
 
-  # container
+  # x86-64 container e.g. for Python development and testing
 
   if [ "$machine" == "container-x86-64" ]; then
      export TEMPLATECONF="../meta-resy/template-${machine}"
@@ -50,7 +51,7 @@ cd build
      fi
   fi
 
-  # container
+  # arm-v7 container e.g. to run on target/docker
 
   if [ "$machine" == "container-arm-v7" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
@@ -64,7 +65,8 @@ cd build
      fi
   fi
 
-  # rootfs + kernel - no u-boot, no sd card image
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
 
   if [ "$machine" == "multi-v7-ml" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
@@ -78,7 +80,11 @@ cd build
      fi
   fi
 
-  # rootfs, std kernel from multi-v7-ml, sd card image e.g. core-image-minimal
+  # rootfs, 
+  # std kernel from multi-v7-ml, 
+  # fdt, 
+  # sd card image e.g. core-image-minimal
+  # for imx6q-phytec-mira-rdk-nand
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand"
@@ -92,7 +98,11 @@ cd build
      fi
   fi
 
-  # rootfs for docker, virt kernel from multi-v7-ml, sd card image e.g. core-image-minimal-virt-docker-ce
+  # rootfs which can host docker, 
+  # virt kernel from multi-v7-ml, 
+  # fdt
+  # sd card image e.g. core-image-minimal-virt-docker-ce
+  # for imx6q-phytec-mira-rdk-nand
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
@@ -106,7 +116,11 @@ cd build
      fi
   fi
 
-  # rootfs, std kernel from multi-v7-ml, sd card image e.g. core-image-minimal
+  # rootfs,
+  # kernel/fdt 
+  # std kernel from multi-v7-ml, 
+  # sd card image e.g. core-image-minimal
+  # for beagle-bone-black
 
   if [ "$machine" == "beagle-bone-black-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-beagle-bone-black"
@@ -120,9 +134,30 @@ cd build
      fi
   fi
 
+  # rootfs, 
+  # kernel/fdt
+  # std kernel from multi-v7-ml, 
+  # sd card image e.g. core-image-minimal
+  # for am335x-phytec-wega
+
+  if [ "$machine" == "am335x-phytec-wega-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-am335x-phytec-wega"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
   # rootfs, std kernel 4.14.x - patched for karo-imx6ul-txul, sd card image e.g. core-image-minimal
-  
-  if [ "$machine" == "karo-imx6ul-txul-wic" ]; then
+  # artefacts kernel/fdt over tftp and rootfs over nfs are also available
+  # potentially we could build u-boot only, since u-boot resideson NAND flash
+  # and use karo-imx6ul-txul for development
+
+  if [ "$machine" == "karo-imx6ul-txul-uboot-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-karo-wic-bsp/template-karo-imx6ul-txul"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
@@ -133,3 +168,19 @@ cd build
         tree conf
      fi
   fi
+
+  # rootfs, std kernel 4.14.x - patched for karo-imx6ul-txul, tftp/nfs image e.g. core-image-minimal
+  # u-boot is not being built (mkimage is being built from poky)
+
+  if [ "$machine" == "karo-imx6ul-txul" ]; then
+     export TEMPLATECONF="../meta-karo-wic-bsp/template-karo-imx6ul-txul"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+

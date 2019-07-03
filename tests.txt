@@ -1,0 +1,659 @@
+= bleeding =
+
+== layers ==
+
+=== app containers ===
+
++ app-container-redis 
+* master
+
++ app-container-mosquitto
+* master
+
++ app-container-python3-nmap-srv
+* master
+
++ app-container-python3-data-collector
+* master
+
+=== sources ===
+
++ poky
+* 2019-05-13-warrior-2.7+
+
++ meta-multi-v7-ml-bsp
+* warrior-v4.19.x
+
++ meta-u-boot-wic-bsp
+* warrior
+
++ meta-u-boot-karo-wic-bsp
+* master
+
++ meta-karo-wic-bsp
+* master
+
++ meta-resy
+* master
+
++ meta-desire
+* master
+
++ meta-openembedded
+* warrior
+
++ meta-virtualization
+* warrior
+
+== machines/variations ==
+
+=== imx6q-phytec-mira-rdk-nand-wic ===
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "imx6q-phytec-mira-rdk-nand"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta
+meta-poky
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:a7c2f836b60e80d8804d6aa63fc8a0322451791d"
+meta-u-boot-wic-bsp  = "warrior:aa43150cb70d4120a9bbb859279a6259845f9c17"
+meta-resy            = "master:6806a1735c17ecb8cec564ac3076bb24cc2db562"
+
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/imx6q-phytec-mira-rdk-nand-wic/tmp/deploy/images/imx6q-phytec-mira-rdk-nand
+
+generates a .wic image and a .bmap file
+
+==== (unknown) kernel/fdt over tftp, rootfs nfs ====
+
+sudo bmaptool copy --bmap core-image-minimal-imx6q-phytec-mira-rdk-nand.wic.bmap  core-image-minimal-imx6q-phytec-mira-rdk-nand.wic /dev/mmcblk0
+
+PASSED
+
+==== kernel/fdt over tftp, (unknown) rootfs nfs  ====
+
+cp uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin /tftpboot/imx6q-phytec-mira-rdk-nand/
+cp imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb /tftpboot/imx6q-phytec-mira-rdk-nand/
+
+pushd /tftpboot/imx6q-phytec-mira-rdk-nand/
+ln -sf uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin uImage
+ln -sf imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb uImage-imx6q-phytec-mira-rdk-nand.dtb
+ls -lah
+popd
+
+
+root@multi-v7-ml:~# uname -a
+Linux multi-v7-ml 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l armv7l armv7l GNU/Linux
+root@multi-v7-ml:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.254:255.255.255.0:imx6q-phytec-mira-rdk-nand:eth0:off nfsroot=192.168.42.1:/opt/poky/mira-rootfs,v3,tcp noinitrd nohlt panic=1 earlyprintk=ttymxc1,115200n8
+root@multi-v7-ml:~# 
+
+PASSED
+
+==== kernel/fdt over tftp, rootfs nfs ====
+
+sudo mkdir -p /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic
+sudo tar -xvf core-image-minimal-imx6q-phytec-mira-rdk-nand.tar.bz2 -C /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic
+
+pushd /opt/poky
+sudo rm -f mira-rootfs
+sudo ln -sf /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic/ mira-rootfs
+ls -lah
+ls mira-rootfs
+popd
+
+root@imx6q-phytec-mira-rdk-nand:~# uname -a
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.254:255.255.255.0:imx6q-phytec-mira-rdk-nand:eth0:off nfsroot=192.168.42.1:/opt/poky/mira-rootfs,v3,tcp noinitrd nohlt panic=1 earlyprintk=ttymxc1,115200n8
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+PASSED
+
+==== kernel/fdt over tftp, rootfs SD card ====
+
+u-boot:
+
+ext4load mmc 0:1 0x18000000 uEnv.txt
+env import -t 0x18000000 ${filesize}
+run uenvcmd_mmc
+
+root@imx6q-phytec-mira-rdk-nand:~# uname -a
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+PASSED
+
+==== kernel/fdt SD card,   rootfs SD card ====
+
+u-boot
+
+ext4load mmc 0:1 0x18000000 uEnv.txt
+env import -t 0x18000000 ${filesize}
+run uenvcmd_mmc_all
+
+loading from SD card is super slow!!!
+
+=> run uenvcmd_mmc_all
+bootfile: /boot/uImage
+fdtfile: /boot/imx6q-phytec-mira-rdk-nand.dtb
+ext4load mmc 0:1 0x10007fc0 /boot/uImage
+8720960 bytes read in 31209 ms (272.5 KiB/s)
+ext4load mmc 0:1 0x18000000 /boot/imx6q-phytec-mira-rdk-nand.dtb
+40379 bytes read in 129 ms (305.7 KiB/s)
+Booting from mmc - uEnv.txt from ext4...
+bootargs=console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+
+root@imx6q-phytec-mira-rdk-nand:~# uname -a
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+PASSED
+
+=== beagle-bone-black-wic ===
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "beagle-bone-black"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:a7c2f836b60e80d8804d6aa63fc8a0322451791d"
+meta-u-boot-wic-bsp  = "warrior:75d47755762b623a769fbf8ecb96a905210bc5f7"
+meta-resy            = "master:6806a1735c17ecb8cec564ac3076bb24cc2db562"
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/beagle-bone-black-wic/tmp/deploy/images/beagle-bone-black
+
+generates a .wic image and a .bmap file
+
+==== sanity ====
+
+*) boots via emmc - no SD card inside 
+
+root@multi-v7-ml:~# cat /proc/cmdline 
+console=ttyO0,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.1:255.255.255.0:beagle-bone-black:eth0:off nfsroot=192.168.42.1:/opt/poky/bbb-rootfs,v3,tcp noinitrd nohlt panic=1
+
+So without and SD card it looks like it boots over tftp/nfs and only U-Boot is taken from emmc
+
+U-Boot SPL 2018.11-mainline-student-v2018.11-dirty (Feb 05 2019 - 09:42:53 +0100)
+Trying to boot from MMC2
+Loading Environment from FAT... Card did not respond to voltage select!
+
+
+U-Boot 2018.11-mainline-student-v2018.11-dirty (Feb 05 2019 - 09:42:53 +0100)
+
+CPU  : AM335X-GP rev 2.1
+Model: TI AM335x BeagleBone Black
+DRAM:  512 MiB
+NAND:  0 MiB
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+Loading Environment from FAT... MMC: no card present
+No USB device found
+<ethaddr> not set. Validating first E-fuse MAC
+Net:   eth0: ethernet@4a100000
+Hit any key to stop autoboot:  0
+MMC: no card present
+MMC: no card present
+4746 bytes read in 8 ms (579.1 KiB/s)
+Importing environment from mmc0 ...
+bootfile: beagle-bone-black/uImage
+fdtfile: beagle-bone-black/uImage-am335x-boneblack.dtb
+ethernet@4a100000 Waiting for PHY auto negotiation to complete. done
+link up on port 0, speed 100, full duplex
+Using ethernet@4a100000 device
+host 192.168.42.1 is alive
+link up on port 0, speed 100, full duplex
+Using ethernet@4a100000 device
+TFTP from server 192.168.42.1; our IP address is 192.168.42.11
+Filename 'beagle-bone-black/uImage'.
+Load address: 0x80300000
+Loading: #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+         #################################################################
+
+
+
+let's try to write an SD card and make it boot
+
+==== (unknown) kernel/fdt over tftp, rootfs nfs ====
+
+sudo bmaptool copy --bmap core-image-minimal-beagle-bone-black.wic.bmap core-image-minimal-beagle-bone-black.wic /dev/mmcblk0
+bmaptool: info: block map format version 2.0
+bmaptool: info: 25009 blocks of size 4096 (97.7 MiB), mapped 13844 blocks (54.1 MiB or 55.4%)
+bmaptool: info: copying image 'core-image-minimal-beagle-bone-black.wic' to block device '/dev/mmcblk0' using bmap file 'core-image-minimal-beagle-bone-black.wic.bmap'
+bmaptool: info: 100% copied
+bmaptool: info: synchronizing '/dev/mmcblk0'
+bmaptool: info: copying time: 10.3s, copying speed 5.2 MiB/sec
+
+
+Forcing boot from SD card it looks like this:
+
+U-Boot SPL 2018.11 (Jul 03 2019 - 10:19:10 +0000)
+Trying to boot from MMC1
+Loading Environment from FAT... Unable to use mmc 0:1...
+
+U-Boot 2018.11 (Jul 03 2019 - 10:19:10 +0000)
+
+CPU  : AM335X-GP rev 2.1
+Model: TI AM335x BeagleBone Black
+DRAM:  512 MiB
+NAND:  0 MiB
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+Loading Environment from FAT... Unable to use mmc 0:1... No USB device found
+<ethaddr> not set. Validating first E-fuse MAC
+Net:   eth0: ethernet@4a100000
+Hit any key to stop autoboot:  0
+4746 bytes read in 17 ms (272.5 KiB/s)
+Importing environment from mmc0 ...
+bootfile: /boot/uImage
+fdtfile: /boot/am335x-boneblack.dtb
+ext4load mmc 0:1 0x80300000 /boot/uImage
+8720960 bytes read in 6263 ms (1.3 MiB/s)
+ext4load mmc 0:1 0x815f0000 /boot/am335x-boneblack.dtb
+34782 bytes read in 29 ms (1.1 MiB/s)
+Booting from mmc - uEnv.txt from ext4...
+bootargs=console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+## Booting kernel from Legacy Image at 80300000 ...
+   Image Name:   Linux-4.19.13-custom-ml-std
+   Created:      2019-07-03  10:26:22 UTC
+   Image Type:   ARM Linux Kernel Image (no loading done) (uncompressed)
+   Data Size:    8720896 Bytes = 8.3 MiB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 815f0000
+   Booting using the fdt blob at 0x815f0000
+   XIP Kernel Image (no loading done) ... OK
+   Loading Device Tree to 8fff4000, end 8ffff7dd ... OK
+
+
+
+root@beagle-bone-black:~# cat /proc/cmdline 
+console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+
+I think this is the SD card and removing the card shows errors - so I guess I am right
+
+root@beagle-bone-black:~# uname -a
+Linux beagle-bone-black 4.19.13-custom-ml-std #1 SMP Wed Jul 3 10:20:07 UTC 2019 armv7l GNU/Linux
+root@beagle-bone-black:~# cat /proc/cmdline 
+console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@beagle-bone-black:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+Looks like all runs from SD card!
+
+PASSED
+
+==== kernel/fdt over tftp, rootfs SD card ====
+
+see above
+
+Nothing special needs to be done for this, except for forcing boot from SD card
+
+With SD card inside and not forcing from SD card:
+
+all looks good
+
+root@beagle-bone-black:~# uname -a
+Linux beagle-bone-black 4.19.13-custom-ml-std #1 SMP Wed Jul 3 10:20:07 UTC 2019 armv7l GNU/Linux
+root@beagle-bone-black:~# cat /proc/cmdline 
+console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@beagle-bone-black:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+old U-boot seems to read new uEnv.txt:
+
+U-Boot SPL 2018.11-mainline-student-v2018.11-dirty (Feb 05 2019 - 09:42:53 +0100)
+Trying to boot from MMC2
+Loading Environment from FAT... Unable to use mmc 0:1...
+
+U-Boot 2018.11-mainline-student-v2018.11-dirty (Feb 05 2019 - 09:42:53 +0100)
+
+CPU  : AM335X-GP rev 2.1
+Model: TI AM335x BeagleBone Black
+DRAM:  512 MiB
+NAND:  0 MiB
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+Loading Environment from FAT... Unable to use mmc 0:1... No USB device found
+<ethaddr> not set. Validating first E-fuse MAC
+Net:   eth0: ethernet@4a100000
+Hit any key to stop autoboot:  0
+4746 bytes read in 17 ms (272.5 KiB/s)
+Importing environment from mmc0 ...
+bootfile: /boot/uImage
+fdtfile: /boot/am335x-boneblack.dtb
+ext4load mmc 0:1 0x80300000 /boot/uImage
+8720960 bytes read in 6265 ms (1.3 MiB/s)
+ext4load mmc 0:1 0x815f0000 /boot/am335x-boneblack.dtb
+34782 bytes read in 29 ms (1.1 MiB/s)
+Booting from mmc - uEnv.txt from ext4...
+bootargs=console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+
+PASSED
+
+=== am335x-phytec-wega-wic ===
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "am335x-phytec-wega"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta
+meta-poky
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:a7c2f836b60e80d8804d6aa63fc8a0322451791d"
+meta-u-boot-wic-bsp  = "warrior:5051cc0e00df26af0119a44e2297ddb2ba1883f9"
+meta-resy            = "master:6806a1735c17ecb8cec564ac3076bb24cc2db562"
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/am335x-phytec-wega-wic/tmp/deploy/images/am335x-phytec-wega
+
+generates a .wic image and a .bmap file
+
+==== sanity ====
+
+boots some SD card mender image (systemd,..)
+
+==== (unknown) kernel/fdt over tftp, rootfs nfs ====
+
+sudo bmaptool copy --bmap core-image-minimal-am335x-phytec-wega.wic.bmap  core-image-minimal-am335x-phytec-wega.wic /dev/mmcblk0
+
+bmaptool: info: block map format version 2.0
+bmaptool: info: 25009 blocks of size 4096 (97.7 MiB), mapped 13767 blocks (53.8 MiB or 55.0%)
+bmaptool: info: copying image 'core-image-minimal-am335x-phytec-wega.wic' to block device '/dev/mmcblk0' using bmap file 'core-image-minimal-am335x-phytec-wega.wic.bmap'
+bmaptool: info: 100% copied
+bmaptool: info: synchronizing '/dev/mmcblk0'
+bmaptool: info: copying time: 10.2s, copying speed 5.3 MiB/sec
+
+PASSED
+
+
+==== kernel/fdt SD card,   rootfs SD card ====
+
+U-Boot SPL 2018.11 (Jul 03 2019 - 12:51:03 +0000)
+Trying to boot from MMC1
+SPL: Please implement spl_start_uboot() for your board
+SPL: Direct Linux boot not active!
+
+
+U-Boot 2018.11 (Jul 03 2019 - 12:51:03 +0000)
+
+CPU  : AM335X-GP rev 2.1
+I2C:   ready
+DRAM:  256 MiB
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+Net:   <ethaddr> not set. Reading from E-fuse
+cpsw, usb_ether
+Error: usb_ether address not set.
+
+Hit any key to stop autoboot:  0
+switch to partitions #0, OK
+mmc0 is current device
+Scanning mmc 0:1...
+switch to partitions #0, OK
+mmc0 is current device
+SD/MMC found on device 0
+** File not found boot.scr **
+4459 bytes read in 23 ms (188.5 KiB/s)
+Loaded env from uEnv.txt
+Importing environment from mmc ...
+Running uenvcmd ...
+bootfile: /boot/uImage
+fdtfile: /boot/am335x-wega-rdk.dtb
+ext4load mmc 0:1 0x80300000 /boot/uImage
+8720960 bytes read in 6250 ms (1.3 MiB/s)
+ext4load mmc 0:1 0x815f0000 /boot/am335x-wega-rdk.dtb
+34781 bytes read in 36 ms (943.4 KiB/s)
+Booting from mmc - uEnv.txt from ext4...
+bootargs=console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+
+...
+
+root@am335x-phytec-wega:~# uname -a
+Linux am335x-phytec-wega 4.19.13-custom-ml-std #1 SMP Wed Jul 3 12:51:56 UTC 2019 armv7l GNU/Linux
+root@am335x-phytec-wega:~# cat /proc/cmdline
+console=ttyO0,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@am335x-phytec-wega:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+PASSED
+
+
+=== karo-imx6ul-txul-wic ===
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "karo-imx6ul-txul"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:a7c2f836b60e80d8804d6aa63fc8a0322451791d"
+meta-karo-wic-bsp    = "warrior:f9b4e02730a5e712ee9085e2480f9a3b8b00f56d"
+meta-resy            = "master:6806a1735c17ecb8cec564ac3076bb24cc2db562"
+
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/karo-imx6ul-txul-wic/tmp/deploy/images/karo-imx6ul-txul
+
+==== sanity ====
+
+seems to boot out of the box some emmc image, which is there
+
+
+==== (unknown) kernel/fdt over tftp, (unknown) rootfs nfs ====
+
+I have a uEnv.txt on my board in the emmc:
+
+ext2load mmc 0:2 82000000 uEnv.txt
+env import -t 82000000 ${filesize}
+run uenvcmd
+
+TX6UL U-Boot > run uenvcmd
+BOOTP broadcast 1   
+BOOTP broadcast 2   
+BOOTP broadcast 3   
+DHCP client bound to address 192.168.42.252 (1007 ms)
+serverip: 192.168.42.1
+bootfile: karo-imx6ul-txul/uImage
+fdtfile: karo-imx6ul-txul/uImage-imx6ul-txul-5011-mainboard.dtb
+Using FEC0 device   
+host 192.168.42.1 is alive
+Using FEC0 device
+TFTP from server 192.168.42.1; our IP address is 192.168.42.252
+Filename 'karo-imx6ul-txul/uImage'.
+
+
+root@multi-v7-ml:~# uname -a          
+Linux multi-v7-ml 4.14.71-stable-student-00001-gc64dc682ac8a #1 SMP Fri Mar 8 15:28:10 CET 2019 armv7l armv7l armv7l GNU/Linux
+root@multi-v7-ml:~# cat /proc/cmdline 
+console=ttymxc,115200n8 ip=dhcp root=/dev/nfs nfsroot=192.168.42.1:/opt/poky/karo-tx6ul-rootfs,nolock,v3,tcp noinitrd nohlt panic=1 ip=dhcp root=/dev/nfs nfsroot=192.168.42.1:/opt/poky/karo-tx6ul-rootfs,nolock,v3,tcp noinitrd nohlt panic=1
+root@multi-v7-ml:~# cat /etc/issue
+Poky (Yocto Project Reference Distro) 2.6.1 \n \l
+
+OK so far:
+
+==== kernel/fdt over tftp, (unknown) rootfs nfs  ====
+
+cp uImage--4.14.71-custom-ml-std+git0+1244bbb3e9-r0.5-karo-imx6ul-txul-20190703142713.bin /tftpboot/karo-imx6ul-txul/
+cp imx6ul-txul-5011-mainboard--4.14.71-custom-ml-std+git0+1244bbb3e9-r0.5-karo-imx6ul-txul-20190703142713.dtb /tftpboot/karo-imx6ul-txul/
+
+pushd /tftpboot/karo-imx6ul-txul/
+ln -sf uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin uImage
+ln -sf imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb uImage-imx6q-phytec-mira-rdk-nand.dtb
+ls -lah
+popd
+
+root@multi-v7-ml:~# uname -a
+Linux multi-v7-ml 4.14.71-custom-ml-std #1 SMP Wed Jul 3 14:27:44 UTC 2019 armv7l armv7l armv7l GNU/Linux
+root@multi-v7-ml:~# cat /proc/cmdline  
+console=ttymxc,115200n8 ip=dhcp root=/dev/nfs nfsroot=192.168.42.1:/opt/poky/karo-tx6ul-rootfs,nolock,v3,tcp noinitrd nohlt panic=1
+
+PASSED
+
+==== kernel/fdt over tftp, rootfs nfs  ====
+
+sudo mkdir -p /opt/poky/2.7-exp/core-image-minimal-karo-imx6ul-txul-wic
+sudo tar -xvf core-image-minimal-karo-imx6ul-txul.tar.bz2 -C /opt/poky/2.7-exp/core-image-minimal-karo-imx6ul-txul-wic
+
+pushd /opt/poky
+sudo rm -f karo-tx6ul-rootfs
+sudo ln -sf /opt/poky/2.7-exp/core-image-minimal-karo-imx6ul-txul-wic karo-tx6ul-rootfs
+ls -lah
+ls mira-rootfs
+popd
+
+ext2load mmc 0:2 82000000 uEnv.txt
+env import -t 82000000 ${filesize}
+run uenvcmd
+
+root@karo-imx6ul-txul:~# uname -a
+Linux karo-imx6ul-txul 4.14.71-custom-ml-std #1 SMP Wed Jul 3 14:27:44 UTC 2019 armv7l GNU/Linux
+root@karo-imx6ul-txul:~# cat /proc/cmdline 
+console=ttymxc,115200n8 ip=dhcp root=/dev/nfs nfsroot=192.168.42.1:/opt/poky/karo-tx6ul-rootfs,nolock,v3,tcp noinitrd nohlt panic=1
+root@karo-imx6ul-txul:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+=== meta-u-boot-karo-wic-bsp ===
+
+builds - I didn't try
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/imx6q-phytec-mira-rdk-nand-wic/tmp/deploy/images/imx6q-phytec-mira-rdk-nand
+
+generates a .wic image and a .bmap file
+
+==== (unknown) kernel/fdt over tftp, rootfs nfs ====
+
+sudo bmaptool copy --bmap core-image-minimal-imx6q-phytec-mira-rdk-nand.wic.bmap  core-image-minimal-imx6q-phytec-mira-rdk-nand.wic /dev/mmcblk0
+
+PASSED
+
+==== kernel/fdt over tftp, (unknown) rootfs nfs  ====
+
+cp uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin /tftpboot/imx6q-phytec-mira-rdk-nand/
+cp imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb /tftpboot/imx6q-phytec-mira-rdk-nand/
+
+pushd /tftpboot/imx6q-phytec-mira-rdk-nand/
+ln -sf uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin uImage
+ln -sf imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb uImage-imx6q-phytec-mira-rdk-nand.dtb
+ls -lah
+popd
+
+
+root@multi-v7-ml:~# uname -a
+Linux multi-v7-ml 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l armv7l armv7l GNU/Linux
+root@multi-v7-ml:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.254:255.255.255.0:imx6q-phytec-mira-rdk-nand:eth0:off nfsroot=192.168.42.1:/opt/poky/mira-rootfs,v3,tcp noinitrd nohlt panic=1 earlyprintk=ttymxc1,115200n8
+root@multi-v7-ml:~# 
+
+PASSED
+
+==== kernel/fdt over tftp, rootfs nfs ====
+
+sudo mkdir -p /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic
+sudo tar -xvf core-image-minimal-imx6q-phytec-mira-rdk-nand.tar.bz2 -C /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic
+
+pushd /opt/poky
+sudo rm -f mira-rootfs
+sudo ln -sf /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic/ mira-rootfs
+ls -lah
+ls mira-rootfs
+popd
+
+root@imx6q-phytec-mira-rdk-nand:~# uname -a
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.254:255.255.255.0:imx6q-phytec-mira-rdk-nand:eth0:off nfsroot=192.168.42.1:/opt/poky/mira-rootfs,v3,tcp noinitrd nohlt panic=1 earlyprintk=ttymxc1,115200n8
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+PASSED
+
+==== kernel/fdt over tftp, rootfs SD card ====
+
+u-boot:
+
+ext4load mmc 0:1 0x18000000 uEnv.txt
+env import -t 0x18000000 ${filesize}
+run uenvcmd_mmc
+
+root@imx6q-phytec-mira-rdk-nand:~# uname -a
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+PASSED
+
+==== kernel/fdt SD card,   rootfs SD card ====
+
+u-boot
+
+ext4load mmc 0:1 0x18000000 uEnv.txt
+env import -t 0x18000000 ${filesize}
+run uenvcmd_mmc_all
+
+loading from SD card is super slow!!!
+
+=> run uenvcmd_mmc_all
+bootfile: /boot/uImage
+fdtfile: /boot/imx6q-phytec-mira-rdk-nand.dtb
+ext4load mmc 0:1 0x10007fc0 /boot/uImage
+8720960 bytes read in 31209 ms (272.5 KiB/s)
+ext4load mmc 0:1 0x18000000 /boot/imx6q-phytec-mira-rdk-nand.dtb
+40379 bytes read in 129 ms (305.7 KiB/s)
+Booting from mmc - uEnv.txt from ext4...
+bootargs=console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+
+root@imx6q-phytec-mira-rdk-nand:~# uname -a
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
+console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+PASSED
