@@ -32,6 +32,13 @@
            name="meta-layers/meta-u-boot-wic-bsp"
            path="sources/meta-u-boot-wic-bsp"/>
 
+  <!-- my meta-u-boot-mender-bsp bsp u-boot is here -->
+  <project remote="gitlab"
+           revision="warrior"
+           upstream="warrior"
+           name="meta-layers/meta-u-boot-mender-bsp"
+           path="sources/meta-u-boot-mender-bsp"/>
+
   <!-- my meta-u-boot-karo-wic-bsp bsp u-boot is here -->
   <project remote="gitlab"
            revision="warrior"
