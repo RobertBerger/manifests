@@ -74,6 +74,20 @@
            name="meta-virtualization"
            path="sources/meta-virtualization"/>
 
+  <!-- meta-sca -->
+  <project remote="github"
+           revision="master"
+           upstream="master"
+           name="priv-kweihmann/meta-sca"
+           path="sources/meta-sca"/>
+
+  <!-- meta-sca -->
+  <project remote="github"
+           revision="master"
+           upstream="master"
+           name="kraj/meta-clang"
+           path="sources/meta-clang"/>
+
   <!-- my convenience scripts -->
   <project remote="gitlab"
            revision="master"
