@@ -97,6 +97,15 @@ git checkout -b warrior
 git branch --set-upstream-to=yocto/warrior warrior
 popd
 
+pushd meta-sca
+git checkout -b master
+git branch --set-upstream-to=github/master master
+popd
+
+pushd meta-clang
+git checkout -b master
+git branch --set-upstream-to=github/master master
+popd
 
 # popd sources
 popd
@@ -173,6 +182,15 @@ popd
 pushd meta-virtualization
 git branch
 popd
+
+pushd meta-sca
+git branch
+popd
+
+pushd meta-clang
+git branch
+popd
+
 
 # popd sources
 popd
