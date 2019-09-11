@@ -82,7 +82,7 @@
            path="sources/meta-multi-v7-ml-bsp"/>
 
   <!-- meta-mender -->
-  <project remote="gitlab"
+  <project remote="github"
            revision="2019-09-10-thud-as-warrior"
            upstream="2019-09-10-thud-as-warrior"
            name="RobertBerger/meta-mender"
