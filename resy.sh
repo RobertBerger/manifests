@@ -134,6 +134,12 @@ git checkout -b 2019-09-10-warrior
 git branch --set-upstream-to=github/2019-09-10-warrior 2019-09-10-warrior
 popd
 
+pushd meta-bfe
+git checkout -b master
+git branch --set-upstream-to=gitlab/master master
+popd
+
+
 # popd sources
 popd
 
@@ -235,6 +241,10 @@ git branch
 popd
 
 pushd meta-buildutils
+git branch
+popd
+
+pushd meta-bfe
 git branch
 popd
 

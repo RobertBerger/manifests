@@ -123,6 +123,13 @@
            name="RobertBerger/meta-buildutils"
            path="sources/meta-buildutils"/>
 
+  <!-- meta-bfe -->
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="meta-layers/meta-bfe"
+           path="sources/meta-bfe"/>
+
   <!-- my convenience scripts -->
   <project remote="gitlab"
            revision="master"
