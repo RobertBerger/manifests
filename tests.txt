@@ -548,112 +548,789 @@ Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
 
 builds - I didn't try
 
+=== imx6q-phytec-mira-rdk-nand-mender ===
 
+bitbake core-image-minimal
+NOTE: Started PRServer with DBfile: /tmp/yocto-autobuilder/yocto-autobuilder/yocto-worker/poky/build/imx6q-phytec-mira-rdk-nand-mender/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 37546, PID: 15876
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_BOOTSECTOR_OFFSET" is not a recognized MENDER_ variable. Typo?######################################## | ETA:  0:00:00
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_FILE" is not a recognized MENDER_ variable. Typo?
+WARNING: "MENDER_IMAGE_BOOT_FILES_REMOVE" is not a recognized MENDER_ variable. Typo?
+Parsing recipes: 100% |#########################################################################################################################| Time: 0:00:50
+Parsing of 841 .bb files complete (0 cached, 841 parsed). 1376 targets, 62 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
 
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "imx6q-phytec-mira-rdk-nand"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta-u-boot-mender-bsp = "HEAD:4643338d8e10d80c2bef6152319e97396eba736c"
+meta
+meta-poky
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:80dc10ec48dbf1fc9ae72cade4d9b4cdb2561db9"
+meta-mender-core     = "thud:352cd81fe4dd6e44ba0819da1d8e189109e805e6"
+my-mender-layer      = "master:95fd9e22fc23a0e35ab14e8e2fd0b9c0f441eff0"
+meta-resy            = "master:f47e9691d68e7ba2858e9268bfff098d576f0979"
 
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/imx6q-phytec-mira-rdk-nand-mender/tmp/deploy/images/imx6q-phytec-mira-rdk-nand
 
+generates an .sdimg and a .bmap file (and a .mender file)
 
+==== sanity ====
 
-
-
-
-
-
-
-
-
-
-
-cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/imx6q-phytec-mira-rdk-nand-wic/tmp/deploy/images/imx6q-phytec-mira-rdk-nand
-
-generates a .wic image and a .bmap file
-
-==== (unknown) kernel/fdt over tftp, rootfs nfs ====
-
-sudo bmaptool copy --bmap core-image-minimal-imx6q-phytec-mira-rdk-nand.wic.bmap  core-image-minimal-imx6q-phytec-mira-rdk-nand.wic /dev/mmcblk0
-
-PASSED
-
-==== kernel/fdt over tftp, (unknown) rootfs nfs  ====
-
-cp uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin /tftpboot/imx6q-phytec-mira-rdk-nand/
-cp imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb /tftpboot/imx6q-phytec-mira-rdk-nand/
-
-pushd /tftpboot/imx6q-phytec-mira-rdk-nand/
-ln -sf uImage--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.bin uImage
-ln -sf imx6q-phytec-mira-rdk-nand--4.19.13-custom-ml-std+git0+c04c050f5b-r0.2-imx6q-phytec-mira-rdk-nand-20190617082910.dtb uImage-imx6q-phytec-mira-rdk-nand.dtb
-ls -lah
-popd
-
-
-root@multi-v7-ml:~# uname -a
-Linux multi-v7-ml 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l armv7l armv7l GNU/Linux
-root@multi-v7-ml:~# cat /proc/cmdline 
-console=ttymxc1,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.254:255.255.255.0:imx6q-phytec-mira-rdk-nand:eth0:off nfsroot=192.168.42.1:/opt/poky/mira-rootfs,v3,tcp noinitrd nohlt panic=1 earlyprintk=ttymxc1,115200n8
-root@multi-v7-ml:~# 
-
-PASSED
-
-==== kernel/fdt over tftp, rootfs nfs ====
-
-sudo mkdir -p /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic
-sudo tar -xvf core-image-minimal-imx6q-phytec-mira-rdk-nand.tar.bz2 -C /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic
-
-pushd /opt/poky
-sudo rm -f mira-rootfs
-sudo ln -sf /opt/poky/2.7-exp/core-image-minimal-imx6q-phytec-mira-rdk-nand-wic/ mira-rootfs
-ls -lah
-ls mira-rootfs
-popd
-
-root@imx6q-phytec-mira-rdk-nand:~# uname -a
-Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
-root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
-console=ttymxc1,115200n8 ip=192.168.42.11:192.168.42.1:192.168.42.254:255.255.255.0:imx6q-phytec-mira-rdk-nand:eth0:off nfsroot=192.168.42.1:/opt/poky/mira-rootfs,v3,tcp noinitrd nohlt panic=1 earlyprintk=ttymxc1,115200n8
-root@imx6q-phytec-mira-rdk-nand:~# 
-
-PASSED
-
-==== kernel/fdt over tftp, rootfs SD card ====
-
-u-boot:
-
-ext4load mmc 0:1 0x18000000 uEnv.txt
-env import -t 0x18000000 ${filesize}
-run uenvcmd_mmc
-
-root@imx6q-phytec-mira-rdk-nand:~# uname -a
-Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
-root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
-console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
-root@imx6q-phytec-mira-rdk-nand:~# 
-
-PASSED
+boots something
 
 ==== kernel/fdt SD card,   rootfs SD card ====
 
-u-boot
+sudo bmaptool copy --bmap core-image-minimal-imx6q-phytec-mira-rdk-nand.sdimg.bmap  core-image-minimal-imx6q-phytec-mira-rdk-nand.sdimg /dev/mmcblk0
 
-ext4load mmc 0:1 0x18000000 uEnv.txt
-env import -t 0x18000000 ${filesize}
-run uenvcmd_mmc_all
+bmaptool: info: block map format version 2.0
+bmaptool: info: 260096 blocks of size 4096 (1016.0 MiB), mapped 37123 blocks (145.0 MiB or 14.3%)
+bmaptool: info: copying image 'core-image-minimal-imx6q-phytec-mira-rdk-nand.sdimg' to block device '/dev/mmcblk0' using bmap file 'core-image-minimal-imx6q-phytec-mira-rdk-nand.sdimg.bmap'
+bmaptool: info: 100% copied
+bmaptool: info: synchronizing '/dev/mmcblk0'
+bmaptool: info: copying time: 28.2s, copying speed 5.1 MiB/sec
 
-loading from SD card is super slow!!!
+u-boot takes ages to read from SD card!!!
 
-=> run uenvcmd_mmc_all
-bootfile: /boot/uImage
-fdtfile: /boot/imx6q-phytec-mira-rdk-nand.dtb
-ext4load mmc 0:1 0x10007fc0 /boot/uImage
-8720960 bytes read in 31209 ms (272.5 KiB/s)
-ext4load mmc 0:1 0x18000000 /boot/imx6q-phytec-mira-rdk-nand.dtb
-40379 bytes read in 129 ms (305.7 KiB/s)
-Booting from mmc - uEnv.txt from ext4...
-bootargs=console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+some systemd init comes up
 
 root@imx6q-phytec-mira-rdk-nand:~# uname -a
-Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Mon Jun 17 09:02:02 UTC 2019 armv7l GNU/Linux
+Linux imx6q-phytec-mira-rdk-nand 4.19.13-custom-ml-std #1 SMP Fri Jul 5 11:48:18 UTC 2019 armv7l GNU/Linux
 root@imx6q-phytec-mira-rdk-nand:~# cat /proc/cmdline 
-console=ttymxc1,115200n8 root=/dev/mmcblk0p1 rw rootfstype=ext4 rootwait noinitrd nohlt panic=1
+root=/dev/mmcblk0p2 console=ttymxc1,115200n8
+root@imx6q-phytec-mira-rdk-nand:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+
+root@imx6q-phytec-mira-rdk-nand:~# mender -version
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+1.7.1
+runtime: go1.12.1
+
+root@imx6q-phytec-mira-rdk-nand:~# mender -debug
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+DEBU[0000] Reading Mender configuration from file /etc/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+DEBU[0000] Merged configuration = main.menderConfig{ClientProtocol:"", ArtifactVerifyKey:"", HttpsClient:struct { Certificate string; Key string; SkipVerify bool }{Certificate:"", Key:"", SkipVerify:false}, RootfsPartA:"/dev/mmcblk0p2", RootfsPartB:"/dev/mmcblk0p3", UpdatePollIntervalSeconds:1800, InventoryPollIntervalSeconds:1800, RetryPollIntervalSeconds:300, StateScriptTimeoutSeconds:0, StateScriptRetryTimeoutSeconds:0, StateScriptRetryIntervalSeconds:0, ServerCertificate:"/etc/mender/server.crt", ServerURL:"https://mender.res.training", UpdateLogPath:"", TenantToken:"dummy", Servers:[]client.MenderServer{client.MenderServer{ServerURL:"https://mender.res.training"}}}  module=config
+DEBU[0000] Have U-Boot variable: mender_check_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_check_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_boot_part=2      module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_boot_part:2]  module=bootenv
+DEBU[0000] Setting active partition from mount candidate: /dev/mmcblk0p2  module=partitions
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+ERRO[0000] Must give one of -rootfs, -commit, -bootstrap or -daemon arguments  module=main
 root@imx6q-phytec-mira-rdk-nand:~# 
 
+root@imx6q-phytec-mira-rdk-nand:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+imx6q-phytec-mira-rdk-nand-multi-v7-rel-1
+
+looks promising
+
 PASSED
+
+==== let's try with server ====
+
+$bh-ub18-mender-1_start
+Domain ub18-mender started
+
+ssh student@192.168.42.70
+
+cd ~/projects/mender-server/production
+
+$./run up -d
+menderproduction_mender-gui_1 is up-to-date
+menderproduction_mender-mongo_1 is up-to-date
+menderproduction_mender-elasticsearch_1 is up-to-date
+Starting menderproduction_minio_1 ... 
+menderproduction_mender-redis_1 is up-to-date
+Starting menderproduction_minio_1
+menderproduction_mender-device-auth_1 is up-to-date
+menderproduction_mender-useradm_1 is up-to-date
+menderproduction_mender-deployments_1 is up-to-date
+menderproduction_mender-inventory_1 is up-to-date
+menderproduction_mender-conductor_1 is up-to-date
+Starting menderproduction_minio_1 ... done
+Starting menderproduction_storage-proxy_1 ... 
+Starting menderproduction_storage-proxy_1 ... done
+
+$./run ps
+                 Name                                Command               State           Ports         
+---------------------------------------------------------------------------------------------------------
+menderproduction_mender-api-gateway_1     /entrypoint.sh                   Up      0.0.0.0:443->443/tcp  
+menderproduction_mender-conductor_1       /srv/start_conductor.sh          Up      8080/tcp              
+menderproduction_mender-deployments_1     /entrypoint.sh --config /e ...   Up      8080/tcp              
+menderproduction_mender-device-auth_1     /usr/bin/deviceauth --conf ...   Up      8080/tcp              
+menderproduction_mender-elasticsearch_1   /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp    
+menderproduction_mender-gui_1             /entrypoint.sh                   Up      80/tcp                
+menderproduction_mender-inventory_1       /usr/bin/inventory --confi ...   Up      8080/tcp              
+menderproduction_mender-mongo_1           docker-entrypoint.sh mongod      Up      27017/tcp             
+menderproduction_mender-redis_1           /redis/entrypoint.sh             Up      6379/tcp              
+menderproduction_mender-useradm_1         /usr/bin/useradm --config  ...   Up      8080/tcp              
+menderproduction_minio_1                  /usr/bin/docker-entrypoint ...   Up      9000/tcp              
+menderproduction_storage-proxy_1          /usr/local/openresty/bin/o ...   Up      0.0.0.0:9000->9000/tcp
+
+https://192.168.42.70/
+or
+https://mender.res.training/
+
+
+docker ps -a
+CONTAINER ID        IMAGE                                      COMMAND                  CREATED             STATUS                    PORTS                    
+NAMES
+810a328c220d        mendersoftware/api-gateway:1.6.0           "/entrypoint.sh"         6 months ago        Up 19 hours               0.0.0.0:443->443/tcp     
+menderproduction_mender-api-gateway_1
+f6d445d49bc7        mendersoftware/mender-conductor:1.2.0      "/srv/start_conducto…"   6 months ago        Up 19 hours               8080/tcp                 
+menderproduction_mender-conductor_1
+43a2280c96be        openresty/openresty:1.13.6.2-0-alpine      "/usr/local/openrest…"   6 months ago        Up 19 hours               0.0.0.0:9000->9000/tcp   
+menderproduction_storage-proxy_1
+eac1d45f1b4e        mendersoftware/inventory:1.5.0             "/usr/bin/inventory …"   6 months ago        Up 19 hours               8080/tcp                 
+menderproduction_mender-inventory_1
+4e80324374b4        mendersoftware/useradm:1.7.0               "/usr/bin/useradm --…"   6 months ago        Up 19 hours               8080/tcp                 menderproduction_mender-useradm_1
+5e0fbdabea88        mendersoftware/deviceauth:1.7.0            "/usr/bin/deviceauth…"   6 months ago        Up 19 hours               8080/tcp                 menderproduction_mender-device-auth_1
+a9b025bd4ea7        mendersoftware/deployments:1.6.0           "/entrypoint.sh --co…"   6 months ago        Up 19 hours               8080/tcp                 menderproduction_mender-deployments_1
+a5eefebc94d2        minio/minio:RELEASE.2018-09-25T21-34-43Z   "/usr/bin/docker-ent…"   6 months ago        Up 19 hours (unhealthy)   9000/tcp                 menderproduction_minio_1
+1393b0663499        mendersoftware/elasticsearch:2.4           "/docker-entrypoint.…"   6 months ago        Up 19 hours               9200/tcp, 9300/tcp       menderproduction_mender-elasticsearch_1
+124aa4ec5fc2        redis:3.2.11-alpine                        "/redis/entrypoint.sh"   6 months ago        Up 19 hours               6379/tcp                 menderproduction_mender-redis_1
+8a56f13b8af3        mongo:3.4                                  "docker-entrypoint.s…"   6 months ago        Up 19 hours               27017/tcp                menderproduction_mender-mongo_1
+6bdf4e1e810d        mendersoftware/gui:1.7.0                   "/entrypoint.sh"         6 months ago        Up 19 hours               80/tcp                   menderproduction_mender-gui_1
+
+
+==== beagle-bone-black-mender ====
+
+btbake core-image-minimal
+NOTE: Started PRServer with DBfile: /tmp/yocto-autobuilder/yocto-autobuilder/yocto-worker/poky/build/beagle-bone-black-mender/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 43594, PID: 24472
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_BOOTSECTOR_OFFSET" is not a recognized MENDER_ variable. Typo?######################################## | ETA:  0:00:00
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_FILE" is not a recognized MENDER_ variable. Typo?
+WARNING: "MENDER_IMAGE_BOOT_FILES_REMOVE" is not a recognized MENDER_ variable. Typo?
+Parsing recipes: 100% |#########################################################################################################################| Time: 0:00:44
+Parsing of 841 .bb files complete (0 cached, 841 parsed). 1376 targets, 62 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "beagle-bone-black"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta-u-boot-mender-bsp = "HEAD:4643338d8e10d80c2bef6152319e97396eba736c"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:80dc10ec48dbf1fc9ae72cade4d9b4cdb2561db9"
+meta-mender-core     = "thud:352cd81fe4dd6e44ba0819da1d8e189109e805e6"
+my-mender-layer      = "master:95fd9e22fc23a0e35ab14e8e2fd0b9c0f441eff0"
+meta-resy            = "master:f47e9691d68e7ba2858e9268bfff098d576f0979"
+
+
+... WARNING: u-boot-1_2018.11-r0 do_provide_mender_defines: Found more than one dtb specified in KERNEL_DEVICETREE. Only one should be specified. Choosing the last one. ...
+
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/beagle-bone-black-mender/tmp/deploy/images/beagle-bone-black
+
+
+generates an .sdimg and a .bmap file (and a .mender file)
+
+==== sanity ====
+
+boots something
+
+==== kernel/fdt SD card,   rootfs SD card ====
+
+sudo bmaptool copy --bmap core-image-minimal-beagle-bone-black.sdimg.bmap  core-image-minimal-beagle-bone-black.sdimg /dev/mmcblk0
+
+bmaptool: info: block map format version 2.0
+bmaptool: info: 260096 blocks of size 4096 (1016.0 MiB), mapped 37185 blocks (145.3 MiB or 14.3%)
+bmaptool: info: copying image 'core-image-minimal-beagle-bone-black.sdimg' to block device '/dev/mmcblk0' using bmap file 'core-image-minimal-beagle-bone-black.sdimg.bmap'
+bmaptool: info: 100% copied
+bmaptool: info: synchronizing '/dev/mmcblk0'
+bmaptool: info: copying time: 28.2s, copying speed 5.2 MiB/sec
+
+
+Boots by default form eMMC
+
+So we need to force boot from SD card!
+
+And some systemd stuff comes up
+
+root@beagle-bone-black:~# uname -a
+Linux beagle-bone-black 4.19.13-custom-ml-std #1 SMP Fri Jul 5 15:52:58 UTC 2019 armv7l GNU/Linux
+root@beagle-bone-black:~# cat /proc/cmdline
+root=/dev/mmcblk0p2 console=ttyO0,115200n8
+root@beagle-bone-black:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+root@beagle-bone-black:~# mender -version
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+1.7.1
+runtime: go1.12.1
+
+root@beagle-bone-black:~# mender -debug
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+DEBU[0000] Reading Mender configuration from file /etc/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+DEBU[0000] Merged configuration = main.menderConfig{ClientProtocol:"", ArtifactVerifyKey:"", HttpsClient:struct { Certificate string; Key string; SkipVerify bool }{Certificate:"", Key:"", SkipVerify:false}, RootfsPartA:"/dev/mmcblk0p2", RootfsPartB:"/dev/mmcblk0p3", UpdatePollIntervalSeconds:1800, InventoryPollIntervalSeconds:1800, RetryPollIntervalSeconds:300, StateScriptTimeoutSeconds:0, StateScriptRetryTimeoutSeconds:0, StateScriptRetryIntervalSeconds:0, ServerCertificate:"/etc/mender/server.crt", ServerURL:"https://mender.res.training", UpdateLogPath:"", TenantToken:"dummy", Servers:[]client.MenderServer{client.MenderServer{ServerURL:"https://mender.res.training"}}}  module=config
+DEBU[0000] Have U-Boot variable: mender_check_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_check_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_boot_part=2      module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_boot_part:2]  module=bootenv
+DEBU[0000] Setting active partition from mount candidate: /dev/mmcblk0p2  module=partitions
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+ERRO[0000] Must give one of -rootfs, -commit, -bootstrap or -daemon arguments  module=main
+
+root@beagle-bone-black:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+beagle-bone-black-multi-v7-rel-1
+
+==== am335x-phytec-wega-mender ====
+
+bitbake core-image-minimal
+NOTE: Started PRServer with DBfile: /tmp/yocto-autobuilder/yocto-autobuilder/yocto-worker/poky/build/am335x-phytec-wega-mender/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 46632, PID: 29419
+WARNING: "MENDER_IMAGE_BOOT_FILES_REMOVE" is not a recognized MENDER_ variable. Typo?########################################################## | ETA:  0:00:00
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_FILE" is not a recognized MENDER_ variable. Typo?
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_BOOTSECTOR_OFFSET" is not a recognized MENDER_ variable. Typo?
+Parsing recipes: 100% |#########################################################################################################################| Time: 0:00:44
+Parsing of 841 .bb files complete (0 cached, 841 parsed). 1376 targets, 62 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "am335x-phytec-wega"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta-u-boot-mender-bsp = "HEAD:4643338d8e10d80c2bef6152319e97396eba736c"
+meta
+meta-poky
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:80dc10ec48dbf1fc9ae72cade4d9b4cdb2561db9"
+meta-mender-core     = "thud:352cd81fe4dd6e44ba0819da1d8e189109e805e6"
+my-mender-layer      = "master:95fd9e22fc23a0e35ab14e8e2fd0b9c0f441eff0"
+meta-resy            = "master:f47e9691d68e7ba2858e9268bfff098d576f0979"
+
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/am335x-phytec-wega-mender/tmp/deploy/images/am335x-phytec-wega
+
+generates an .sdimg and a .bmap file (and a .mender file)
+
+==== sanity ====
+
+boots something
+
+==== kernel/fdt SD card,   rootfs SD card ====
+
+sudo bmaptool copy --bmap core-image-minimal-am335x-phytec-wega.sdimg.bmap core-image-minimal-am335x-phytec-wega.sdimg /dev/mmcblk0
+
+bmaptool: info: block map format version 2.0
+bmaptool: info: 260096 blocks of size 4096 (1016.0 MiB), mapped 37105 blocks (144.9 MiB or 14.3%)
+bmaptool: info: copying image 'core-image-minimal-am335x-phytec-wega.sdimg' to block device '/dev/mmcblk0' using bmap file 'core-image-minimal-am335x-phytec-wega.sdimg.bmap'
+bmaptool: info: 100% copied
+bmaptool: info: synchronizing '/dev/mmcblk0'
+bmaptool: info: copying time: 27.0s, copying speed 5.4 MiB/sec
+
+
+some systemd comes up
+
+root@am335x-phytec-wega:~# uname -a
+Linux am335x-phytec-wega 4.19.13-custom-ml-std #1 SMP Fri Jul 5 16:47:13 UTC 2019 armv7l GNU/Linux
+root@am335x-phytec-wega:~# cat /proc/cmdline 
+root=/dev/mmcblk0p2 console=ttyO0,115200n8
+root@am335x-phytec-wega:~# cat /etc/issue
+Resy (Reliable Embedded Systems Reference Distro) 2.7 \n \l
+
+
+root@am335x-phytec-wega:~# mender -version
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+1.7.1
+runtime: go1.12.1
+
+root@am335x-phytec-wega:~# mender -debug
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+DEBU[0000] Reading Mender configuration from file /etc/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+DEBU[0000] Merged configuration = main.menderConfig{ClientProtocol:"", ArtifactVerifyKey:"", HttpsClient:struct { Certificate string; Key string; SkipVerify bool }{Certificate:"", Key:"", SkipVerify:false}, RootfsPartA:"/dev/mmcblk0p2", RootfsPartB:"/dev/mmcblk0p3", UpdatePollIntervalSeconds:1800, InventoryPollIntervalSeconds:1800, RetryPollIntervalSeconds:300, StateScriptTimeoutSeconds:0, StateScriptRetryTimeoutSeconds:0, StateScriptRetryIntervalSeconds:0, ServerCertificate:"/etc/mender/server.crt", ServerURL:"https://mender.res.training", UpdateLogPath:"", TenantToken:"dummy", Servers:[]client.MenderServer{client.MenderServer{ServerURL:"https://mender.res.training"}}}  module=config
+DEBU[0000] Have U-Boot variable: mender_check_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_check_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_boot_part=2      module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_boot_part:2]  module=bootenv
+DEBU[0000] Setting active partition from mount candidate: /dev/mmcblk0p2  module=partitions
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+ERRO[0000] Must give one of -rootfs, -commit, -bootstrap or -daemon arguments  module=main
+
+root@am335x-phytec-wega:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+am335x-phytec-wega-multi-v7-rel-1
+root@am335x-phytec-wega:~# 
+
+
+=== multi-v7-mender ===
+
+
+bitbake core-image-minimal
+NOTE: Started PRServer with DBfile: /tmp/yocto-autobuilder/yocto-autobuilder/yocto-worker/poky/build/multi-v7-mender/cache/prserv.sqlite3, IP: 127.0.0.1, PORT:
+ 41679, PID: 14341
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_FILE" is not a recognized MENDER_ variable. Typo?##################################################### | ETA:  0:00:00
+WARNING: "MENDER_IMAGE_SECOND_BOOTLOADER_BOOTSECTOR_OFFSET" is not a recognized MENDER_ variable. Typo?
+WARNING: "MENDER_IMAGE_BOOT_FILES_REMOVE" is not a recognized MENDER_ variable. Typo?
+Parsing recipes: 100% |#########################################################################################################################| Time: 0:00:43
+Parsing of 841 .bb files complete (0 cached, 841 parsed). 1376 targets, 62 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+
+Build Configuration:
+BB_VERSION           = "1.42.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "ubuntu-16.04"
+TARGET_SYS           = "arm-resy-linux-gnueabi"
+MACHINE              = "multi-v7"
+DISTRO               = "resy"
+DISTRO_VERSION       = "2.7"
+TUNE_FEATURES        = "arm armv7a vfp neon"
+TARGET_FPU           = "softfp"
+meta-u-boot-mender-bsp = "HEAD:4643338d8e10d80c2bef6152319e97396eba736c"
+meta                 
+meta-poky            
+meta-yocto-bsp       = "2019-05-13-warrior-2.7+:9001e77e428d86b1d10e0a9ceb9113a76d221678"
+meta-multi-v7-ml-bsp = "warrior-v4.19.x:80dc10ec48dbf1fc9ae72cade4d9b4cdb2561db9"
+meta-mender-core     = "thud:352cd81fe4dd6e44ba0819da1d8e189109e805e6"
+my-mender-layer      = "master:95fd9e22fc23a0e35ab14e8e2fd0b9c0f441eff0"
+meta-resy            = "master:f47e9691d68e7ba2858e9268bfff098d576f0979"
+
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/build/multi-v7-mender/tmp/deploy/images/multi-v7
+
+ls core-image-minimal-multi-v7.mender
+
+this is a mender update image (which should work on all above boards)
+
+---- imx6q-phytec-mira-rdk-nand ----
+
+root@imx6q-phytec-mira-rdk-nand:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+imx6q-phytec-mira-rdk-nand-multi-v7-rel-1
+
+auto reboot
+
+root@multi-v7:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p3   module=main
+multi-v7-rel-1
+
+
+---- beagle bone black ---
+
+root@beagle-bone-black:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+beagle-bone-black-multi-v7-rel-1
+
+auto reboot
+
+root@multi-v7:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p3   module=main
+multi-v7-rel-1
+
+---- am335x-phytec-wega ---
+
+
+root@am335x-phytec-wega:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+am335x-phytec-wega-multi-v7-rel-1
+
+auto reboot
+
+root@multi-v7:~# mender -show-artifact
+INFO[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+INFO[0000] Mender running on partition: /dev/mmcblk0p3   module=main
+multi-v7-rel-1
+
+PASSED
+
+
+
+= New Mender Install =
+
+https://docs.mender.io/2.0/administration/production-installation
+
+docker --version
+Docker version 18.06.1-ce, build e68fc7a
+
+docker-compose --version
+docker-compose version 1.17.1, build unknown
+
+sudo apt update
+sudo apt upgrade
+
+docker --version
+Docker version 18.09.7, build 2d0083d
+
+docker-compose --version
+docker-compose version 1.17.1, build unknown
+
+mkdir ~/projects
+
+cd ~/projects
+
+git clone -b 2.0.1 https://github.com/mendersoftware/integration mender-server
+
+cd mender-server
+
+git checkout -b my-production-setup
+
+cp -a template production
+
+cd production
+
+ls -l
+
+total 12
+-rw-rw-r-- 1 student student 6006 Jul  6 10:34 prod.yml
+-rwxrwxr-x 1 student student  205 Jul  6 10:34 run
+
+sed -i -e 's#/template/#/production/#g' prod.yml
+
+git add .
+
+git commit -m 'production: initial template'
+
+./run pull
+
+
+I took the certificates and keys from the 1.7.0 server
+
+git am /tmp/0002-production-adding-generated-keys-and-certificates.patch
+
+docker volume create --name=mender-artifacts
+docker volume create --name=mender-db
+docker volume create --name=mender-elasticsearch-db
+docker volume create --name=mender-redis-db
+docker volume inspect --format '{{.Mountpoint}}' mender-artifacts
+
+/var/snap/docker/common/var-lib-docker/volumes/mender-artifacts/_data
+
+I modified production/prod.yml pretty much like with the 1.7.0 server
+
+git am /tmp/0003-production-final-configuration.patch
+
+git log --oneline origin/2.0.x..HEAD
+a86ec0b (HEAD -> my-production-setup) production: final configuration
+dab0916 production: adding generated keys and certificates
+6a9ca4d production: initial template
+
+./run up -d
+Creating network "menderproduction_mender" with the default driver
+Creating menderproduction_mender-redis_1 ... 
+Creating menderproduction_minio_1 ... 
+Creating menderproduction_mender-mongo_1 ... 
+Creating menderproduction_mender-redis_1
+Creating menderproduction_mender-elasticsearch_1 ... 
+Creating menderproduction_mender-gui_1 ... 
+Creating menderproduction_mender-mongo_1
+Creating menderproduction_minio_1
+Creating menderproduction_mender-elasticsearch_1
+Creating menderproduction_mender-redis_1 ... done
+Creating menderproduction_mender-conductor_1 ... 
+Creating menderproduction_mender-mongo_1 ... done
+Creating menderproduction_mender-deployments_1 ... 
+Creating menderproduction_mender-inventory_1 ... 
+Creating menderproduction_mender-useradm_1 ... 
+Creating menderproduction_mender-inventory_1
+Creating menderproduction_mender-deployments_1
+Creating menderproduction_minio_1 ... done
+Creating menderproduction_storage-proxy_1 ... 
+Creating menderproduction_mender-conductor_1 ... done
+Creating menderproduction_mender-device-auth_1 ... 
+Creating menderproduction_mender-device-auth_1 ... done
+Creating menderproduction_mender-api-gateway_1 ... 
+Creating menderproduction_mender-api-gateway_1 ... done
+
+
+
+
+Note we have 
+
+mender.res.training and
+s3.res.training (for the key storage)
+
+at the moment pointing at the same IP address
+
+./run ps
+
+                 Name                                Command               State           Ports
+---------------------------------------------------------------------------------------------------------
+menderproduction_mender-api-gateway_1     /entrypoint.sh                   Up      0.0.0.0:443->443/tcp
+menderproduction_mender-conductor_1       /srv/start_conductor.sh          Up      8080/tcp, 8090/tcp
+menderproduction_mender-deployments_1     /entrypoint.sh --config /e ...   Up      8080/tcp
+menderproduction_mender-device-auth_1     /usr/bin/deviceauth --conf ...   Up      8080/tcp
+menderproduction_mender-elasticsearch_1   /docker-entrypoint.sh elas ...   Up      9200/tcp, 9300/tcp
+menderproduction_mender-gui_1             /entrypoint.sh                   Up      80/tcp
+menderproduction_mender-inventory_1       /usr/bin/inventory --confi ...   Up      8080/tcp
+menderproduction_mender-mongo_1           docker-entrypoint.sh mongod      Up      27017/tcp
+menderproduction_mender-redis_1           /redis/entrypoint.sh             Up      6379/tcp
+menderproduction_mender-useradm_1         /usr/bin/useradm --config  ...   Up      8080/tcp
+menderproduction_minio_1                  /usr/bin/docker-entrypoint ...   Up      9000/tcp
+menderproduction_storage-proxy_1          /usr/local/openresty/bin/o ...   Up      0.0.0.0:9000->9000/tcp
+
+
+docker ps -a
+CONTAINER ID        IMAGE                                      COMMAND                  CREATED              STATUS                        PORTS
+     NAMES
+e7ce7fc07120        mendersoftware/api-gateway:2.0.0           "/entrypoint.sh"         About a minute ago   Up About a minute             0.0.0.0:443->443/tcp     menderproduction_mender-api-gateway_1
+f7bd0ccf6cf9        mendersoftware/deviceauth:2.0.0            "/usr/bin/deviceauth…"   About a minute ago   Up About a minute             8080/tcp
+     menderproduction_mender-device-auth_1
+763d4d054ac3        openresty/openresty:1.13.6.2-0-alpine      "/usr/local/openrest…"   About a minute ago   Up About a minute             0.0.0.0:9000->9000/tcp   menderproduction_storage-proxy_1
+e93a558f30a2        mendersoftware/deployments:1.7.0           "/entrypoint.sh --co…"   About a minute ago   Up About a minute             8080/tcp
+     menderproduction_mender-deployments_1
+bbd3cbf83646        mendersoftware/useradm:1.7.0               "/usr/bin/useradm --…"   About a minute ago   Up About a minute             8080/tcp
+     menderproduction_mender-useradm_1
+8c8400402ac2        mendersoftware/inventory:1.6.0             "/usr/bin/inventory …"   About a minute ago   Up About a minute             8080/tcp
+     menderproduction_mender-inventory_1
+0664d5620cf3        mendersoftware/mender-conductor:1.3.1      "/srv/start_conducto…"   About a minute ago   Up About a minute             8080/tcp, 8090/tcp
+     menderproduction_mender-conductor_1
+5f4f8581558c        minio/minio:RELEASE.2018-09-25T21-34-43Z   "/usr/bin/docker-ent…"   About a minute ago   Up About a minute (healthy)   9000/tcp
+     menderproduction_minio_1
+fb5566e6a08d        mendersoftware/gui:2.0.1                   "/entrypoint.sh"         About a minute ago   Up About a minute             80/tcp
+     menderproduction_mender-gui_1
+cf251f4cb63e        elasticsearch:5-alpine                     "/docker-entrypoint.…"   About a minute ago   Up 5 seconds                  9200/tcp, 9300/tcp
+     menderproduction_mender-elasticsearch_1
+2dc8106d5b08        mongo:3.4                                  "docker-entrypoint.s…"   About a minute ago   Up About a minute             27017/tcp
+     menderproduction_mender-mongo_1
+19c9a3678f33        redis:5-alpine3.8                          "/redis/entrypoint.sh"   About a minute ago   Up About a minute             6379/tcp
+     menderproduction_mender-redis_1
+
+so it's new stuff!!
+
+Let's try
+
+./run exec mender-useradm /usr/bin/useradm create-user --username=mender.server@reliableembeddedsystems.com --password=student@mender
+585c5fbc-a4c2-41da-84ec-ba13737d5b48
+
+kvm snapshot now!
+
+Mender 2.0.1 server seems to work with old client
+
+with this "self healing" problem: 
+
+https://hub.mender.io/t/warrior-support/668/14
+
+container logs:
+
+./run logs --tail 10 mender-deployments
+
+./run logs --tail 10000 mender-elasticsearch
+
+./run logs --tail 10000 minio
+
+
+== try mender client 2.0.x ==
+
+=== imx6q-phytec-mira-rdk-nand-mender ===
+
+root@imx6q-phytec-mira-rdk-nand:~# mender -version
+2.0.0
+runtime: go1.12.1
+root@imx6q-phytec-mira-rdk-nand:~# mender -debug
+DEBU[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+DEBU[0000] Reading Mender configuration from file /etc/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+DEBU[0000] Merged configuration = &main.menderConfig{menderConfigFromFile:main.menderConfigFromFile{ClientProtocol:"", ArtifactVerifyKey:"", HttpsClient:struct { Certificate string; Key string; SkipVerify bool }{Certificate:"", Key:"", SkipVerify:false}, RootfsPartA:"/dev/mmcblk0p2", RootfsPartB:"/dev/mmcblk0p3", UpdatePollIntervalSeconds:1800, InventoryPollIntervalSeconds:1800, RetryPollIntervalSeconds:300, StateScriptTimeoutSeconds:0, StateScriptRetryTimeoutSeconds:0, StateScriptRetryIntervalSeconds:0, ModuleTimeoutSeconds:0, ServerCertificate:"/etc/mender/server.crt", ServerURL:"https://mender.res.training", UpdateLogPath:"", TenantToken:"dummy", Servers:[]client.MenderServer{client.MenderServer{ServerURL:"https://mender.res.training"}}}, ModulesPath:"/usr/share/mender/modules/v3", ModulesWorkPath:"/var/lib/mender/modules/v3", ArtifactInfoFile:"/etc/mender/artifact_info", ArtifactScriptsPath:"/var/lib/mender/scripts", RootfsScriptsPath:"/etc/mender/scripts"}  module=config
+DEBU[0000] Have U-Boot variable: mender_check_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_check_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_boot_part=2      module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_boot_part:2]  module=bootenv
+DEBU[0000] Setting active partition from mount candidate: /dev/mmcblk0p2  module=partitions
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+ERRO[0000] Must give one of -install, -commit, -rollback, -daemon, -bootstrap, -version or -show-artifact arguments  module=main
+root@imx6q-phytec-mira-rdk-nand:~# mender -show-artifact
+imx6q-phytec-mira-rdk-nand-multi-v7-rel-1
+root@imx6q-phytec-mira-rdk-nand:~# 
+
+=== beagle-bone-black-mender ===
+
+root@beagle-bone-black:~# mender -version
+2.0.0
+runtime: go1.12.1
+root@beagle-bone-black:~# mender -debug
+DEBU[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+DEBU[0000] Reading Mender configuration from file /etc/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+DEBU[0000] Merged configuration = &main.menderConfig{menderConfigFromFile:main.menderConfigFromFile{ClientProtocol:"", ArtifactVerifyKey:"", HttpsClient:struct { Certificate string; Key string; SkipVerify bool }{Certificate:"", Key:"", SkipVerify:false}, RootfsPartA:"/dev/mmcblk0p2", RootfsPartB:"/dev/mmcblk0p3", UpdatePollIntervalSeconds:1800, InventoryPollIntervalSeconds:1800, RetryPollIntervalSeconds:300, StateScriptTimeoutSeconds:0, StateScriptRetryTimeoutSeconds:0, StateScriptRetryIntervalSeconds:0, ModuleTimeoutSeconds:0, ServerCertificate:"/etc/mender/server.crt", ServerURL:"https://mender.res.training", UpdateLogPath:"", TenantToken:"dummy", Servers:[]client.MenderServer{client.MenderServer{ServerURL:"https://mender.res.training"}}}, ModulesPath:"/usr/share/mender/modules/v3", ModulesWorkPath:"/var/lib/mender/modules/v3", ArtifactInfoFile:"/etc/mender/artifact_info", ArtifactScriptsPath:"/var/lib/mender/scripts", RootfsScriptsPath:"/etc/mender/scripts"}  module=config
+DEBU[0000] Have U-Boot variable: mender_check_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_check_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_boot_part=2      module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_boot_part:2]  module=bootenv
+DEBU[0000] Setting active partition from mount candidate: /dev/mmcblk0p2  module=partitions
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+ERRO[0000] Must give one of -install, -commit, -rollback, -daemon, -bootstrap, -version or -show-artifact arguments  module=main
+root@beagle-bone-black:~# mender -show-artifact
+beagle-bone-black-multi-v7-rel-1
+
+=== am335x-phytec-wega-mender ===
+
+root@am335x-phytec-wega:~# mender -version
+2.0.0
+runtime: go1.12.1
+root@am335x-phytec-wega:~# mender -debug
+DEBU[0000] Configuration file does not exist: /var/lib/mender/mender.conf  module=config
+DEBU[0000] Reading Mender configuration from file /etc/mender/mender.conf  module=config
+INFO[0000] Loaded configuration file: /etc/mender/mender.conf  module=config
+DEBU[0000] Merged configuration = &main.menderConfig{menderConfigFromFile:main.menderConfigFromFile{ClientProtocol:"", ArtifactVerifyKey:"", HttpsClient:struct { Certificate string; Key string; SkipVerify bool }{Certificate:"", Key:"", SkipVerify:false}, RootfsPartA:"/dev/mmcblk0p2", RootfsPartB:"/dev/mmcblk0p3", UpdatePollIntervalSeconds:1800, InventoryPollIntervalSeconds:1800, RetryPollIntervalSeconds:300, StateScriptTimeoutSeconds:0, StateScriptRetryTimeoutSeconds:0, StateScriptRetryIntervalSeconds:0, ModuleTimeoutSeconds:0, ServerCertificate:"/etc/mender/server.crt", ServerURL:"https://mender.res.training", UpdateLogPath:"", TenantToken:"dummy", Servers:[]cli[   57.138003] random: crng init done
+[   57.145557] random: 6 urandom warning(s) missed due to ratelimiting
+ent.MenderServer{client.MenderServer{ServerURL:"https://mender.res.training"}}}, ModulesPath:"/usr/share/mender/modules/v3", ModulesWorkPath:"/var/lib/mender/modules/v3", ArtifactInfoFile:"/etc/mender/artifact_info", ArtifactScriptsPath:"/var/lib/mender/scripts", RootfsScriptsPath:"/etc/mender/scripts"}  module=config
+DEBU[0000] Have U-Boot variable: mender_check_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_check_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_saveenv_canary=1  module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_saveenv_canary:1]  module=bootenv
+DEBU[0000] Have U-Boot variable: mender_boot_part=2      module=bootenv
+DEBU[0000] List of U-Boot variables:map[mender_boot_part:2]  module=bootenv
+DEBU[0000] Setting active partition from mount candidate: /dev/mmcblk0p2  module=partitions
+INFO[0000] Mender running on partition: /dev/mmcblk0p2   module=main
+ERRO[0000] Must give one of -install, -commit, -rollback, -daemon, -bootstrap, -version or -show-artifact arguments  module=main
+root@am335x-phytec-wega:~# mender -show-artifact
+am335x-phytec-wega-multi-v7-rel-1
+
+---
+
+on imx6q-phytec-mira-rdk-nand:
+
+root@multi-v7:/# fw_printenv mender_dtb_name
+mender_dtb_name=imx6q-phytec-mira-rdk-nand.dtb
+
+root@multi-v7:~# mender -version
+2.0.0
+runtime: go1.12.1
+root@multi-v7:~# mender -show-artifact
+multi-v7-rel-1
+root@multi-v7:~# 
+
+---
+
+on am335x-boneblack:
+
+root@multi-v7:~# fw_printenv mender_dtb_name
+mender_dtb_name=am335x-boneblack.dtb
+root@multi-v7:~# mender -version
+2.0.0
+runtime: go1.12.1
+root@multi-v7:~# mender -show-artifact
+multi-v7-rel-1
+root@multi-v7:~# 
+
+---
+
+on am335x-wega-rdk:
+
+root@multi-v7:~# fw_printenv mender_dtb_name
+mender_dtb_name=am335x-wega-rdk.dtb
+root@multi-v7:~# mender -version
+2.0.0
+runtime: go1.12.1
+root@multi-v7:~# mender -show-artifact
+multi-v7-rel-1
+root@multi-v7:~# 
+
+---
+
+signing of images
+
+answer:
+
+Yes you need generate a separate key pair for artifact signing, as described here (step 1),
+
+https://docs.mender.io/2.0/artifacts/signing-and-verification#generating-keys
+
+These keys are not related to server att all, you put the public key on device and use the private key to sign them. As is it described here (step 2),
+
+https://docs.mender.io/2.0/artifacts/yocto-project/building-for-production#artifact-signing-and-verification-keys
+
+Not sure what you mean with “Mender integration for signing images”.
+
+Mender Artifacts support signatures and the Mender client is able to verify signatures so it is all natively supported, which I hope answers your question :grin:
+
+On my mobile so a bit shorter answers :slight_smile:
+
+
+Step 1) https://docs.mender.io/2.0/artifacts/signing-and-verification#generating-keys
+
+mkdir keys-for-signing && cd keys-for-signing
+# Generating a private RSA key can be done by executing the command below:
+openssl genpkey -algorithm RSA -out private.key -pkeyopt rsa_keygen_bits:3072
+openssl rsa -in private.key -out private.key
+To extract a public key from the private key use following command:
+openssl rsa -in private.key -out public.key -pubout
+cp public.key artifact-verify-key.pem
+
+Step 2) https://docs.mender.io/2.0/artifacts/yocto-project/building-for-production#artifact-signing-and-verification-keys
+
+cp artifact-verify-key.pem /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/sources/my-mender-layer/recipes-mender/mender/files
+
+cd /opt/yocto-autobuilder-volume/yocto-autobuilder/yocto-worker/poky/sources/my-mender-layer/recipes-mender/mender/
+
+recipes-mender/
+└── mender
+    ├── files
+    │   ├── artifact-verify-key.pem
+    │   └── server.crt
+    └── mender_%.bbappend
+
+cat mender_%.bbappend:
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI_append = " file://server.crt"
+SRC_URI_append = " file://artifact-verify-key.pem"
+
+bitbake mender -c cleansstate
+bitbake mender
+bitbake core-image-minimal
+
+wget https://d1b0l86ne08fsf.cloudfront.net/mender-artifact/3.0.1/mender-artifact
+chmod +x mender-artifact        
+./mender-artifact validate core-image-minimal-multi-v7.mender -k ${worker}/poky/sources/my-mender-layer/recipes-mender/mender/files/artifact-verify-key.pem 
+
+
+

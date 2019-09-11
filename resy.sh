@@ -75,7 +75,7 @@ git branch --set-upstream-to=gitlab/${META_U_BOOT_KARO_WIC_BSP_BRANCH} ${META_U_
 popd
 
 pushd meta-u-boot-mender-bsp
-git checkout -b ${META_U_BOOT_MENDERBSP_BRANCH}
+git checkout -b ${META_U_BOOT_MENDER_BSP_BRANCH}
 git branch --set-upstream-to=gitlab/${META_U_BOOT_MENDER_BSP_BRANCH} ${META_U_BOOT_MENDER_BSP_BRANCH}
 popd
 

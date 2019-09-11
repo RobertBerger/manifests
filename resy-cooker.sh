@@ -18,10 +18,13 @@ cd build
 
 # choose machine  to init 
 
-  select machine in 'container-x86-64' 'multi-v7-ml' 'container-arm-v7' \
-                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-virt-wic' \
-                    'beagle-bone-black-wic' \
-                    'am335x-phytec-wega-wic' \
+  select machine in 'container-x86-64' 'container-arm-v7' \
+                    'multi-v7-ml' \
+                    'multi-v7-mender' \
+                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-mender' \
+                    'imx6q-phytec-mira-rdk-nand-virt-wic' 'imx6q-phytec-mira-rdk-nand-virt-mender' \
+                    'beagle-bone-black-wic' 'beagle-bone-black-mender' \
+                    'am335x-phytec-wega-wic' 'am335x-phytec-wega-mender' \
                     'karo-imx6ul-txul' 'karo-imx6ul-txul-uboot-wic'
   do
     echo "MACHINE or MACHINE-sw-variant: $machine"
@@ -80,6 +83,20 @@ cd build
      fi
   fi
 
+  # multi-v7 mender update image for various boards
+
+  if [ "$machine" == "multi-v7-mender" ]; then
+     export TEMPLATECONF="../meta-u-boot-mender-bsp/template-multi-v7"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
   # rootfs, 
   # std kernel from multi-v7-ml, 
   # fdt, 
@@ -107,6 +124,45 @@ cd build
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
+     # --> let's try to merge in sca stuff
+     mv -f ../sources/poky/${TEMPLATECONF}/local.conf.sample  ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ../sources/meta-resy/template-common/sca.conf.sample > ../sources/poky/${TEMPLATECONF}/local.conf.sample
+     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample
+     # <-- let's try to merge in sca stuff
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        # let's restore the original without sca
+        mv -f ../../sources/poky/${TEMPLATECONF}/local.conf.sample.ori ../../sources/poky/${TEMPLATECONF}/local.conf.sample
+        tree conf
+     fi
+  fi
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-mender" ]; then
+     export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     # --> let's try to merge in sca stuff 
+     mv -f ../sources/poky/${TEMPLATECONF}/local.conf.sample  ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ../sources/meta-resy/template-common/sca.conf.sample > ../sources/poky/${TEMPLATECONF}/local.conf.sample
+     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample
+     # <-- let's try to merge in sca stuff
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        # let's restore the original without sca
+        mv -f ../../sources/poky/${TEMPLATECONF}/local.conf.sample.ori ../../sources/poky/${TEMPLATECONF}/local.conf.sample
+        tree conf
+     fi
+  fi
+
+  # mender sd card image
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-mender" ]; then
+     export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
@@ -115,6 +171,7 @@ cd build
         tree conf
      fi
   fi
+
 
   # rootfs,
   # kernel/fdt 
@@ -134,6 +191,20 @@ cd build
      fi
   fi
 
+
+  # mender sd card image
+  if [ "$machine" == "beagle-bone-black-mender" ]; then
+     export TEMPLATECONF="../meta-u-boot-mender-bsp/template-beagle-bone-black"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
   # rootfs, 
   # kernel/fdt
   # std kernel from multi-v7-ml, 
@@ -142,6 +213,20 @@ cd build
 
   if [ "$machine" == "am335x-phytec-wega-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-am335x-phytec-wega"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # mender sd card image
+
+  if [ "$machine" == "am335x-phytec-wega-mender" ]; then
+     export TEMPLATECONF="../meta-u-boot-mender-bsp/template-am335x-phytec-wega"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
