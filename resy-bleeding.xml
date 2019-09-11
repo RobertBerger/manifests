@@ -68,7 +68,7 @@
            path="sources/meta-resy"/>
 
   <!-- meta-openembedded -->
-  <project remote="gitlab"
+  <project remote="github"
            revision="2019-09-10-warrior"
            upstream="2019-09-10-warrior"
            name="RobertBerger/meta-openembedded"
