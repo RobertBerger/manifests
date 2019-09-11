@@ -150,22 +150,22 @@ pushd app-container-x86-64
 
 
 pushd app-container-redis
-git co master
+git checkout master
 git branch
 popd
 
 pushd app-container-mosquitto
-git co master
+git checkout master
 git branch
 popd 
 
 pushd app-container-python3-nmap-srv
-git co master
+git checkout master
 git branch
 popd
 
 pushd app-container-python3-data-collector
-git co master
+git checkout master
 git branch
 popd
 
