@@ -255,6 +255,10 @@ rm -f resy-cooker.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-cooker.sh
 chmod +x resy-cooker.sh
 
+rm -f resy-poky-container.sh
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-poky-container.sh
+chmod +x resy-poky-container.sh
+
 set +x
 
 echo "new resy.sh:"
