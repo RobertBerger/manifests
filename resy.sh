@@ -42,11 +42,11 @@ set +x
 
   if [ "$manifest" == "stable" ]; then
      export MANIFEST="resy.xml"
-     export META_RESY_BRANCH="warrior"
-     export META_DESIRE_BRANCH="warrior"
-     export META_U_BOOT_KARO_WIC_BSP_BRANCH="warrior"
-     export META_U_BOOT_MENDER_BSP_BRANCH="warrior"
-     export META_KARO_BSP_BRANCH="warrior"
+     export META_RESY_BRANCH="zeus"
+     export META_DESIRE_BRANCH="zeus"
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="zeus"
+     export META_U_BOOT_MENDER_BSP_BRANCH="zeus"
+     export META_KARO_BSP_BRANCH="zeus"
   fi
 
 set -x
@@ -56,8 +56,8 @@ repo sync
 pushd sources
 
 pushd poky
-git checkout -b 2019-05-13-warrior-2.7+
-git branch --set-upstream-to=github/2019-05-13-warrior-2.7+ 2019-05-13-warrior-2.7+
+git checkout -b 2019-11-19-zeus-3.0+
+git branch --set-upstream-to=github/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
 popd
 
 pushd my-mender-layer
@@ -66,13 +66,13 @@ git branch --set-upstream-to=github/master master
 popd
 
 pushd meta-virtualization
-git checkout -b 2019-09-09-warrior-2.7+
-git branch --set-upstream-to=yocto/2019-09-09-warrior-2.7+ 2019-09-09-warrior-2.7+
+git checkout -b 2019-11-19-zeus-3.0+
+git branch --set-upstream-to=yocto/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
 popd
 
 pushd meta-u-boot-wic-bsp
-git checkout -b warrior
-git branch --set-upstream-to=gitlab/warrior warrior
+git checkout -b zeus
+git branch --set-upstream-to=gitlab/zeus zeus
 popd
 
 pushd meta-u-boot-mender-bsp
@@ -86,8 +86,8 @@ git branch --set-upstream-to=gitlab/${META_U_BOOT_KARO_WIC_BSP_BRANCH} ${META_U_
 popd
 
 pushd meta-sca
-git checkout -b 2019-09-10-sca-v1.16-warrior-2.7
-git branch --set-upstream-to=github/2019-09-10-sca-v1.16-warrior-2.7 2019-09-10-sca-v1.16-warrior-2.7
+git checkout -b 2019-11-19-master-zeus-3.0+
+git branch --set-upstream-to=github/2019-11-19-master-zeus-3.0+ 2019-11-19-master-zeus-3.0+
 popd
 
 pushd meta-resy
@@ -96,18 +96,18 @@ git branch --set-upstream-to=gitlab/${META_RESY_BRANCH} ${META_RESY_BRANCH}
 popd
 
 pushd meta-openembedded
-git checkout -b warrior
-git branch --set-upstream-to=github/warrior warrior
+git checkout -b 2019-11-19-zeus-3.0+
+git branch --set-upstream-to=github/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
 popd
 
 pushd meta-multi-v7-ml-bsp
-git checkout -b warrior-v4.19.x
-git branch --set-upstream-to=gitlab/warrior-v4.19.x warrior-v4.19.x
+git checkout -b zeus-v4.19.x
+git branch --set-upstream-to=gitlab/zeus-v4.19.x zeus-v4.19.x
 popd
 
 pushd meta-mender
-git checkout -b 2019-09-10-thud-as-warrior
-git branch --set-upstream-to=github/2019-09-10-thud-as-warrior 2019-09-10-thud-as-warrior
+git checkout -b 2019-11-19-thud-as-zeus
+git branch --set-upstream-to=github/2019-11-19-thud-as-zeus 2019-11-19-thud-as-zeus
 popd
 
 pushd meta-karo-bsp
@@ -121,8 +121,8 @@ git branch --set-upstream-to=gitlab/${META_DESIRE_BRANCH} ${META_DESIRE_BRANCH}
 popd
 
 pushd meta-clang
-git checkout -b 2019-09-10-warrior
-git branch --set-upstream-to=github/2019-09-10-warrior 2019-09-10-warrior
+git checkout -b 2019-11-19-zeus
+git branch --set-upstream-to=github/2019-11-19-zeus 2019-11-19-zeus
 popd
 
 pushd keys-for-signing
@@ -131,8 +131,8 @@ git branch --set-upstream-to=github/master master
 popd
 
 pushd meta-buildutils
-git checkout -b 2019-09-10-warrior
-git branch --set-upstream-to=github/2019-09-10-warrior 2019-09-10-warrior
+git checkout -b 2019-11-19-zeus
+git branch --set-upstream-to=github/2019-11-19-zeus 2019-11-19-zeus
 popd
 
 pushd meta-bfe
