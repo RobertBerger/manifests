@@ -137,6 +137,20 @@
            name="meta-layers/convenience-scripts"
            path="scripts/convenience-scripts"/>
 
+  <!-- crops containers -->
+
+  <project remote="github"
+           revision="master"
+           upstream="master"
+           name="RobertBerger/yocto-dockerfiles"
+           path="crops-container-x86-64/yocto-dockerfiles"/>
+
+  <project remote="github"
+           revision="master"
+           upstream="master"
+           name="RobertBerger/poky-container"
+           path="crops-container-x86-64/poky-container"/>
+
   <!-- app containers x86-64  -->
 
   <project remote="gitlab"
