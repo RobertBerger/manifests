@@ -55,8 +55,8 @@
   
   <!-- meta-sca -->
   <project remote="github"
-           revision="2019-11-19-zeus"
-           upstream="2019-11-19-zeus"
+           revision="2019-11-21-master-zeus"
+           upstream="2019-11-21-master-zeus"
            name="RobertBerger/meta-sca"
            path="sources/meta-sca"/>
 
