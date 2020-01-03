@@ -151,6 +151,14 @@
            name="RobertBerger/poky-container"
            path="crops-container-x86-64/poky-container"/>
 
+  <!-- oci containers -->
+
+  <project remote="github"
+           revision="master"
+           upstream="master"
+           name="RobertBerger/skopeo-container"
+           path="oci-container-x86-64/skopeo-container"/>
+
   <!-- app containers x86-64  -->
 
   <project remote="gitlab"

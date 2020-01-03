@@ -20,6 +20,7 @@ rm -rf scripts
 rm -rf build
 rm -rf app-container-x86-64
 rm -rf crops-container-x86-64
+rm -rf oci-container-x86-64
 set +x
 
 # choose manifest
@@ -167,6 +168,17 @@ git branch
 popd
 
 # popd crops-container-x86-64
+popd
+
+
+pushd oci-container-x86-64
+
+pushd skopeo-container
+git checkout -b master
+git branch
+popd
+
+# popd oci-container-x86-64
 popd
 
 pushd app-container-x86-64
