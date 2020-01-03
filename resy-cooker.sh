@@ -106,11 +106,6 @@ cd build
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-wic" ]; then
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
-     # --> let's try to merge in sca stuff
-     mv -f ../sources/poky/${TEMPLATECONF}/local.conf.sample  ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ../sources/meta-resy/template-common/sca.conf.sample > ../sources/poky/${TEMPLATECONF}/local.conf.sample
-     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample
-     # <-- let's try to merge in sca stuff
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
