@@ -68,8 +68,8 @@ git branch --set-upstream-to=github/master master
 popd
 
 pushd meta-virtualization
-git checkout -b 2019-11-19-zeus-3.0+
-git branch --set-upstream-to=github/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
+git checkout -b 2020-01-03-zeus-3.0+
+git branch --set-upstream-to=github/2020-01-03-zeus-3.0+ 2020-01-03-zeus-3.0+
 popd
 
 pushd meta-u-boot-wic-bsp
