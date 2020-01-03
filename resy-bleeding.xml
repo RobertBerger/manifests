@@ -215,5 +215,12 @@
            name="app-container/app-container-python3-mqttbrokerclient-oci"
            path="app-container-x86-64/app-container-python3-mqttbrokerclient-oci"/>
 
+
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-python3-nmap-srv-oci"
+           path="app-container-x86-64/app-container-python3-nmap-srv-oci"/>
+
 </manifest>
 
