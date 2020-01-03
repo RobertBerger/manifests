@@ -201,13 +201,11 @@
            name="app-container/app-container-python3-data-collector-oci"
            path="app-container-x86-64/app-container-python3-data-collector-oci"/>
 
-
   <project remote="gitlab"
            revision="master"
            upstream="master"
            name="app-container/app-container-python3-mastermind-oci"
            path="app-container-x86-64/app-container-python3-mastermind-oci"/>
-
 
   <project remote="gitlab"
            revision="master"
@@ -215,12 +213,17 @@
            name="app-container/app-container-python3-mqttbrokerclient-oci"
            path="app-container-x86-64/app-container-python3-mqttbrokerclient-oci"/>
 
-
   <project remote="gitlab"
            revision="master"
            upstream="master"
            name="app-container/app-container-python3-nmap-srv-oci"
            path="app-container-x86-64/app-container-python3-nmap-srv-oci"/>
+
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-redis-oci"
+           path="app-container-x86-64/app-container-redis-oci"/>
 
 </manifest>
 
