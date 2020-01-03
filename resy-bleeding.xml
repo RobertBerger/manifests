@@ -104,8 +104,8 @@
   
   <!-- meta-clang -->
   <project remote="github"
-           revision="2019-11-19-zeus"
-           upstream="2019-11-19-zeus"
+           revision="2020-01-03-zeus"
+           upstream="2020-01-03-zeus"
            name="RobertBerger/meta-clang"
            path="sources/meta-clang"/>
 
