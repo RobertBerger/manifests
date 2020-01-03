@@ -183,5 +183,11 @@
            name="app-container/app-container-image-lighttpd-oci"
            path="app-container-x86-64/app-container-image-lighttpd-oci"/>
 
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-mosquitto-oci"
+           path="app-container-x86-64/app-container-mosquitto-oci"/>
+
 </manifest>
 

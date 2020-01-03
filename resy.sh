@@ -196,6 +196,11 @@ git checkout master
 git branch
 popd
 
+pushd app-container-mosquitto-oci
+git checkout master
+git branch
+popd
+
 # popd app-container-x86-64
 popd
 
