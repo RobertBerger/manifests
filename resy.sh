@@ -98,8 +98,8 @@ git branch --set-upstream-to=gitlab/${META_RESY_BRANCH} ${META_RESY_BRANCH}
 popd
 
 pushd meta-openembedded
-git checkout -b 2019-11-19-zeus-3.0+
-git branch --set-upstream-to=github/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
+git checkout -b 2020-01-03-zeus-3.0+
+git branch --set-upstream-to=github/2020-01-03-zeus-3.0+ 2020-01-03-zeus-3.0+
 popd
 
 pushd meta-multi-v7-ml-bsp

@@ -69,8 +69,8 @@
 
   <!-- meta-openembedded -->
   <project remote="github"
-           revision="2019-11-19-zeus-3.0+"
-           upstream="2019-11-19-zeus-3.0+"
+           revision="2020-01-03-zeus-3.0+"
+           upstream="2020-01-03-zeus-3.0+"
            name="RobertBerger/meta-openembedded"
            path="sources/meta-openembedded"/>
 
