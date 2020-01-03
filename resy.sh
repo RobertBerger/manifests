@@ -191,6 +191,11 @@ git checkout master
 git branch
 popd
 
+pushd app-container-image-lighttpd-oci
+git checkout master
+git branch
+popd
+
 # popd app-container-x86-64
 popd
 
