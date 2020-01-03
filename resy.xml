@@ -13,8 +13,8 @@
   <!-- Base stuff -->
   <!-- my poky fork -->
   <project remote="github"
-           revision="2019-11-19-zeus-3.0+"
-           upstream="2019-11-19-zeus-3.0+"
+           revision="2020-01-03-zeus-3.0.1+"
+           upstream="2020-01-03-zeus-3.0.1+"
            name="RobertBerger/poky"
            path="sources/poky"/>
 
