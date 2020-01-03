@@ -88,8 +88,8 @@ git branch --set-upstream-to=gitlab/${META_U_BOOT_KARO_WIC_BSP_BRANCH} ${META_U_
 popd
 
 pushd meta-sca
-git checkout -b 2019-11-19-master-zeus-3.0+
-git branch --set-upstream-to=github/2019-11-19-master-zeus-3.0+ 2019-11-19-master-zeus-3.0+
+git checkout -b 2020-01-03-zeus
+git branch --set-upstream-to=github/2020-01-03-zeus 2020-01-03-zeus
 popd
 
 pushd meta-resy
