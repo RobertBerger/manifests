@@ -274,6 +274,11 @@ rm -f resy-poky-container.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-poky-container.sh
 chmod +x resy-poky-container.sh
 
+
+rm -f oci-copy-to-docker.sh
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/oci-copy-to-docker.sh
+chmod +x oci-copy-to-docker.sh
+
 set +x
 
 echo "new resy.sh:"
