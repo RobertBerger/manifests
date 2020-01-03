@@ -24,6 +24,7 @@ set +x
 
 # choose manifest
 
+  echo "use bleeding for now"
   select manifest in 'bleeding' 'stable'
   do
     echo "MANIFEST: $manifest"
