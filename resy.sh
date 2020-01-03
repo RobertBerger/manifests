@@ -216,6 +216,12 @@ git checkout master
 git branch
 popd
 
+pushd app-container-python3-mqttbrokerclient-oci
+git checkout master
+git branch
+popd
+
+
 # popd app-container-x86-64
 popd
 

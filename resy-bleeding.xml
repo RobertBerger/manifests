@@ -209,6 +209,11 @@
            path="app-container-x86-64/app-container-python3-mastermind-oci"/>
 
 
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-python3-mqttbrokerclient-oci"
+           path="app-container-x86-64/app-container-python3-mqttbrokerclient-oci"/>
 
 </manifest>
 
