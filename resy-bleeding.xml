@@ -201,5 +201,14 @@
            name="app-container/app-container-python3-data-collector-oci"
            path="app-container-x86-64/app-container-python3-data-collector-oci"/>
 
+
+  <project remote="gitlab"
+           revision="master"
+           upstream="master"
+           name="app-container/app-container-python3-mastermind-oci"
+           path="app-container-x86-64/app-container-python3-mastermind-oci"/>
+
+
+
 </manifest>
 
