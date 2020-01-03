@@ -133,8 +133,8 @@ git branch --set-upstream-to=github/master master
 popd
 
 pushd meta-buildutils
-git checkout -b 2019-11-19-zeus
-git branch --set-upstream-to=github/2019-11-19-zeus 2019-11-19-zeus
+git checkout -b 2020-01-03-zeus
+git branch --set-upstream-to=github/2020-01-03-zeus 2020-01-03-zeus
 popd
 
 pushd meta-bfe
