@@ -68,7 +68,7 @@ popd
 
 pushd meta-virtualization
 git checkout -b 2019-11-19-zeus-3.0+
-git branch --set-upstream-to=meta-virtualization/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
+git branch --set-upstream-to=github/2019-11-19-zeus-3.0+ 2019-11-19-zeus-3.0+
 popd
 
 pushd meta-u-boot-wic-bsp
