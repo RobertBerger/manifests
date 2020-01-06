@@ -158,12 +158,12 @@ popd
 pushd crops-container-x86-64
 
 pushd yocto-dockerfiles
-git checkout -b master
+git checkout -b 2019-11-19-master-local
 git branch
 popd
 
 pushd poky-container
-git checkout -b master
+git checkout -b 2019-11-19-master-local
 git branch
 popd
 

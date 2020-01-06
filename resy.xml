@@ -140,14 +140,14 @@
   <!-- crops containers -->
 
   <project remote="github"
-           revision="master"
-           upstream="master"
+           revision="2019-11-19-master-local"
+           upstream="2019-11-19-master-local"
            name="RobertBerger/yocto-dockerfiles"
            path="crops-container-x86-64/yocto-dockerfiles"/>
 
   <project remote="github"
-           revision="master"
-           upstream="master"
+           revision="2019-11-19-master-local"
+           upstream="2019-11-19-master-local"
            name="RobertBerger/poky-container"
            path="crops-container-x86-64/poky-container"/>
 
