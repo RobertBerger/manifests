@@ -1,6 +1,13 @@
 # manifests
 manifests for repo tool
 
+## install docker
+```
+sudo apt install docker.io
+sudo usermod -aG docker ${USER}
+sudo reboot
+```
+
 ## install git and the google repo tool
 ```
 sudo apt install git repo
@@ -24,4 +31,15 @@ wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
 chmod +x resy.sh 
 ./resy.sh 
 ```
+
+## poky build container
 ```
+./resy-poky-container.sh
+```
+
+inside the container
+
+```
+
+```
+
