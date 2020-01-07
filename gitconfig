@@ -1,0 +1,88 @@
+[user]
+        name = student
+        email = student@ReliableEmbeddedSystems.com
+[format]
+	signoff = true
+[color]
+        status = auto
+        branch = auto
+        ui = true
+[diff]
+        color = auto
+[pager]
+        color = true
+[status]
+        color = auto
+[color "branch"]
+        current = blue reverse
+        local = blue
+        remote = green
+[color "diff"]
+        meta = blue bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+        whitespace = red reverse
+[color "status"]
+        added = red
+        changed = green
+        untracked = cyan
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+[core]
+;    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+        pager = less -r
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    d = diff --color-words
+    df = diff
+    df1 = diff @{1}..
+    df-last1 = diff HEAD^
+    df-last2 = diff HEAD^^
+    lg = log -p
+    ; nice log
+    lg1 = log --graph --pretty=oneline --abbrev-commit --decorate
+    lgrev = log --reverse --no-merges --stat @{1}..
+    ; git rm to all files which have been removed from disc
+    rma = "!sh -c 'git ls-files --deleted -z | xargs -0 git rm' -"
+    ; 'add all' stages all new+changed+deleted files
+    aa = !git ls-files -z -d | xargs -0 -r git rm && git ls-files -z -m -o --exclude-standard | xargs -0 -r git add
+    ; 'add grep' stages all new+changed that match $1
+    ag = "!sh -c 'git ls-files -z -m -o --exclude-standard | grep -z $1 | xargs -0 -r git add' -"
+    ; 'checkout grep' checkouts any files that match $1
+    cg = "!sh -c 'git ls-files -z -m | grep -z $1 | xargs -0 -r git checkout' -"
+    ; 'diff grep' diffs any files that match $1
+    dg = "!sh -c 'git ls-files -z -m | grep -z $1 | xargs -0 -r git diff' -"
+    ; 'patch grep' diff --cached any files that match $1
+    pg = "!sh -c 'git ls-files -z -c | grep -z $1 | xargs -0 -r git diff --cached' -"
+    ; 'remove grep' remove any files that match $1
+    rmg = "!sh -c 'git ls-files -z -d | grep -z $1 | xargs -0 -r git rm' -"
+    # 'reset grep' reset any files that match $1
+    rsg = "!sh -c 'git diff --cached --name-only | grep $1 | xargs -r git reset HEAD -- ' -"
+    #master against remote master
+    df-remote = "diff master origin/master"
+    #patches from a specific user $1
+    # e.g. git pu Robert Berger
+    # git log --author='<AUTHOR>' --format="%H" --reverse | sed 's/$/^!/g' | nl -w 1 -s ' ' | xargs -I{} sh -c "git format-patch --start-number {}"
+    #pu = "! git log --author="$1" --format="%H" --reverse | sed 's/$/^!/g' | nl -w 1 -s ' ' | xargs -I{} sh -c "git format-patch --start-number {}"
+[core]
+	editor = vim
+
+#[sendemail]
+#    chainreplyto = false
+#    smtpserver = smtp.gmail.com
+#    smtpserverport = 587
+#    smtpencryption = tls
+#    smtpuser = git.rber@gmail.com
+#    confirm = auto
+
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+        #smtpUser = rber.git@gmail.com
+        smtpUser = oecore.mailinglist@gmail.com
+	smtpServerPort = 587
