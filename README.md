@@ -40,6 +40,6 @@ chmod +x resy.sh
 inside the container
 
 ```
-
+source resy-cooker.sh
 ```
 
