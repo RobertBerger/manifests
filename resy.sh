@@ -167,6 +167,11 @@ git checkout -b 2019-11-19-master-local
 git branch
 popd
 
+pushd extsdk-container
+git checkout -b 2020-01-06-master-local
+git branch
+popd
+
 # popd crops-container-x86-64
 popd
 
@@ -327,6 +332,9 @@ rm -f resy-poky-container.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-poky-container.sh
 chmod +x resy-poky-container.sh
 
+rm -f resy-sdk-container.sh
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container.sh
+chmod +x resy-sdk-container.sh
 
 rm -f oci-copy-to-docker.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/oci-copy-to-docker.sh
