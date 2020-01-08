@@ -344,7 +344,8 @@ set +x
 
 echo "new resy.sh:"
 echo "rm -f resy.sh && wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh && chmod +x resy.sh"
-echo "use resy-cooker.sh to set up build environment"
+echo "use resy-poky-container.sh to start poky build container"
+echo "use resy-cooker.sh inside poky container to set up cooker and bitbake"
 
 set +x
 
