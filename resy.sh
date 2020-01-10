@@ -332,6 +332,10 @@ rm -f resy-poky-container.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-poky-container.sh
 chmod +x resy-poky-container.sh
 
+rm -f resy-sdk-container-installer.sh
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container-installer.sh
+chmod +x resy-sdk-container-installer.sh
+
 rm -f resy-sdk-container.sh
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container.sh
 chmod +x resy-sdk-container.sh
