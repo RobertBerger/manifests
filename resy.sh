@@ -37,8 +37,10 @@ set +x
      export MANIFEST="resy-bleeding.xml"
      export META_RESY_BRANCH="master"
      export META_DESIRE_BRANCH="master"
-     export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
+     export META_MULTI_V7_ML_BSP_BRANCH="master"
+     export META_U_BOOT_WIC_BSP_BRANCH="master"
      export META_U_BOOT_MENDER_BSP_BRANCH="master"
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
      export META_KARO_BSP_BRANCH="master"
   fi
 
@@ -46,8 +48,11 @@ set +x
      export MANIFEST="resy.xml"
      export META_RESY_BRANCH="zeus"
      export META_DESIRE_BRANCH="zeus"
+     export META_MULTI_V7_ML_BSP_BRANCH="zeus-5.4.x"
+     export META_MULTI_V7_ML_BSP_BRANCH="zeus-5.4.x"
+     export META_U_BOOT_WIC_BSP_BRANCH="zeus-5.4.x"
+     export META_U_BOOT_MENDER_BSP_BRANCH="zeus-v5.4.x"
      export META_U_BOOT_KARO_WIC_BSP_BRANCH="zeus"
-     export META_U_BOOT_MENDER_BSP_BRANCH="zeus"
      export META_KARO_BSP_BRANCH="zeus"
   fi
 
@@ -73,8 +78,8 @@ git branch --set-upstream-to=github/2020-01-03-zeus-3.0+ 2020-01-03-zeus-3.0+
 popd
 
 pushd meta-u-boot-wic-bsp
-git checkout -b zeus
-git branch --set-upstream-to=gitlab/zeus zeus
+git checkout -b ${META_U_BOOT_WIC_BSP_BRANCH}
+git branch --set-upstream-to=gitlab/${META_U_BOOT_WIC_BSP_BRANCH} ${META_U_BOOT_WIC_BSP_BRANCH}
 popd
 
 pushd meta-u-boot-mender-bsp
@@ -103,8 +108,8 @@ git branch --set-upstream-to=github/2020-01-03-zeus-3.0+ 2020-01-03-zeus-3.0+
 popd
 
 pushd meta-multi-v7-ml-bsp
-git checkout -b zeus-v4.19.x
-git branch --set-upstream-to=gitlab/zeus-v4.19.x zeus-v4.19.x
+git checkout -b ${META_MULTI_V7_ML_BSP_BRANCH}
+git branch --set-upstream-to=gitlab/${META_MULTI_V7_ML_BSP_BRANCH} ${META_MULTI_V7_ML_BSP_BRANCH}
 popd
 
 pushd meta-mender
