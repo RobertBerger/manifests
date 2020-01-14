@@ -106,13 +106,13 @@ cd build
   # used for development
   # DISTRO = resy
   # default kernel config: debug
-  # poky-training
+  # poky -> poky-training
 
   if [ "$machine" == "multi-v7-ml-debug-training" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}-training"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
-     echo "source ../sources/poky/oe-init-build-env ${machine}"
-     source ../sources/poky/oe-init-build-env ${machine}
+     echo "source ../sources/poky-training/oe-init-build-env ${machine}"
+     source ../sources/poky-training/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
