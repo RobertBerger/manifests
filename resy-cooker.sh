@@ -109,7 +109,7 @@ cd build
   # poky -> poky-training
 
   if [ "$machine" == "multi-v7-ml-debug-training" ]; then
-     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}-training"
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-training/oe-init-build-env ${machine}"
      source ../sources/poky-training/oe-init-build-env ${machine}
