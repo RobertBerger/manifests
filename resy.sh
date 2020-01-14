@@ -66,6 +66,11 @@ git checkout -b 2020-01-03-zeus-3.0.1+
 git branch --set-upstream-to=github/2020-01-03-zeus-3.0.1+ 2020-01-03-zeus-3.0.1+
 popd
 
+pushd poky-training
+git checkout -b 2020-01-03-zeus-3.0.1+
+git branch --set-upstream-to=github/2020-01-03-zeus-3.0.1+ 2020-01-03-zeus-3.0.1+
+popd
+
 pushd my-mender-layer
 git checkout -b master
 git branch --set-upstream-to=github/master master

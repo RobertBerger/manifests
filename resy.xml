@@ -18,7 +18,14 @@
            name="RobertBerger/poky"
            path="sources/poky"/>
 
-  <!-- my-mender-layer (encrypted) -->
+  <!-- my poky fork for training -->
+  <project remote="github"
+           revision="2020-01-03-zeus-3.0.1+"
+           upstream="2020-01-03-zeus-3.0.1+"
+           name="RobertBerger/poky"
+           path="sources/poky-training"/>
+
+<!-- my-mender-layer (encrypted) -->
   <project remote="github"
            revision="master"
            upstream="master"
