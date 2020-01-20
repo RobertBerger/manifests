@@ -23,6 +23,7 @@ cd build
   select machine in 'container-x86-64' 'container-arm-v7' \
                     'multi-v7-ml' 'multi-v7-ml-debug' 'multi-v7-ml-virt' \
                     'multi-v7-ml-debug-training' 'multi-v7-ml-debug-training-libs' \
+                    'multi-v7-ml-debug-training-pkgs' 'multi-v7-ml-debug-training-lic' \
                     'multi-v7-mender' \
                     'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-mender' \
                     'imx6q-phytec-mira-rdk-nand-virt-wic' 'imx6q-phytec-mira-rdk-nand-virt-mender' \
@@ -132,6 +133,45 @@ cd build
   if [ "$machine" == "multi-v7-ml-debug-training-libs" ]; then
      # we use the same template as for standard training
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-multi-v7-ml-debug-training"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-training/oe-init-build-env ${machine}"
+     source ../sources/poky-training/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: debug
+  # poky -> poky-training
+
+  if [ "$machine" == "multi-v7-ml-debug-training-pkgs" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-multi-v7-ml-debug-training"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-training/oe-init-build-env ${machine}"
+     source ../sources/poky-training/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: debug
+  # poky -> poky-training
+  # special template
+
+  if [ "$machine" == "multi-v7-ml-debug-training-lic" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-training/oe-init-build-env ${machine}"
      source ../sources/poky-training/oe-init-build-env ${machine}
