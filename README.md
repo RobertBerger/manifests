@@ -32,6 +32,10 @@ chmod +x resy.sh
 ./resy.sh 
 ```
 
+## (convenient) symlink on host
+
+sudo ln -sf ~/projects/resy-playground /workdir
+
 ## poky build container
 ```
 ./resy-poky-container.sh
