@@ -151,6 +151,10 @@ git checkout -b master
 git branch --set-upstream-to=gitlab/master master
 popd
 
+pushd meta-java
+git checkout -b 2020-02-13-master-next-as-zeus-3.0+
+git branch --set-upstream-to=github/2020-02-13-master-next-as-zeus-3.0+ 2020-02-13-master-next-as-zeus-3.0+
+popd
 
 # popd sources
 popd

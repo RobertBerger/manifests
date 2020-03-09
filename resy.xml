@@ -25,7 +25,7 @@
            name="RobertBerger/poky"
            path="sources/poky-training"/>
 
-<!-- my-mender-layer (encrypted) -->
+  <!-- my-mender-layer (encrypted) -->
   <project remote="github"
            revision="master"
            upstream="master"
@@ -38,6 +38,13 @@
            upstream="2020-01-03-zeus-3.0+"
            name="RobertBerger/meta-virtualization"
            path="sources/meta-virtualization"/>
+
+  <!-- meta-java -->
+  <project remote="github"
+           revision="2020-02-13-master-next-as-zeus-3.0+"
+           upstream="2020-02-13-master-next-as-zeus-3.0+"
+           name="RobertBerger/meta-java"
+           path="sources/meta-java"/>
 
   <!-- my meta-u-boot-wic-bsp bsp u-boot is here -->
   <project remote="gitlab"
