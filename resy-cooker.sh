@@ -21,7 +21,7 @@ cd build
 # choose machine  to init 
 
   select machine in 'container-x86-64' 'container-arm-v7' \
-                    'container-x86-64-java' 'container-x86-64-java-master' \
+                    'container-x86-64-java' \
                     'multi-v7-ml' 'multi-v7-ml-debug' 'multi-v7-ml-virt' \
                     'multi-v7-ml-debug-training' 'multi-v7-ml-debug-training-libs' \
                     'multi-v7-ml-debug-training-pkgs' 'multi-v7-ml-debug-training-lic' \
@@ -75,7 +75,8 @@ cd build
   fi
 
   # x86-64 container e.g. for Java development and testing
-  # poky master branch
+  # poky master branch 
+  # currently not used above in selection
 
   if [ "$machine" == "container-x86-64-java-master" ]; then
      export TEMPLATECONF="../meta-resy/template-container-x86-64-java"
