@@ -3,15 +3,20 @@
 echo "This script will kill everything"
 echo "and grab everything from scratch"
 
-read -r -p "Are you sure? [y/N] " response
-case "$response" in
-    [yY][eE][sS]|[yY]) 
-        echo "killing!"
-        ;;
-    *)
-        exit
-        ;;
-esac
+if [[ $WORKSPACE = *jenkins* ]]; then
+  echo "WORKSPACE '$WORKSPACE' contains jenkins"
+  echo "would normally wait here, but now I just go on"
+else
+  read -r -p "Are you sure? [y/N] " response
+  case "$response" in
+      [yY][eE][sS]|[yY]) 
+          echo "killing!"
+          ;;
+      *)
+          exit
+          ;;
+  esac
+fi
 
 set -x
 rm -rf .repo
