@@ -30,13 +30,19 @@ set +x
 
 # choose manifest
 
+if [[ $WORKSPACE = *jenkins* ]]; then
+  echo "WORKSPACE '$WORKSPACE' contains jenkins"
+  echo "we would choose stable/bleeding here"
+  echo "we choose bleeding"
+  export manifest="bleeding"
+else
   echo "use bleeding for now"
   select manifest in 'bleeding' 'stable'
   do
     echo "MANIFEST: $manifest"
     break;
   done
-
+fi
 
   if [ "$manifest" == "bleeding" ]; then
      export MANIFEST="resy-bleeding.xml"
