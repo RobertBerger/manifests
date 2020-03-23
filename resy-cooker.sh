@@ -458,7 +458,7 @@ if [ "$#" -eq "1" ]; then
        for var in "$@"
        do
         echo "+ bitbake $var"
-        #bitbake $var
+        bitbake $var
        done
   else # BUILD_ALL != yes
      echo "to ./resy-poky-container.sh:"
@@ -473,5 +473,5 @@ fi # only machine passed along
 
 if [ "$#" -eq "2" ]; then
    echo "+ bitbake $2"
-   #bitbake $2
+   bitbake $2
 fi
