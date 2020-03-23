@@ -12,6 +12,8 @@
 #
 # We need a symlink from /workspace to our jenkins ${WORKSPACE}
 
+HERE=$(pwd)
+
 if [ ! -L /workdir ] ; then
    echo "+ symlink /workdir does not exist"
    echo "+ sudo ln -sf ${WORKSPACE} /workdir"
@@ -29,6 +31,8 @@ else
 fi
 
 
+cd /workdir
+
 # run the resy stuff (get layers)
 echo "+ rm -f resy.sh*"
 rm -f resy.sh* 
@@ -39,4 +43,4 @@ chmod +x resy.sh
 echo "+ ./resy.sh"
 ./resy.sh
 
-
+cd ${HERE}
