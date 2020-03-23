@@ -30,7 +30,13 @@ fi
 
 
 # run the resy stuff (get layers)
-#rm -f resy.sh* 
-#wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
-#chmod +x resy.sh
-#./resy.sh
+echo "+ rm -f resy.sh*"
+rm -f resy.sh* 
+echo "+ wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh"
+wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
+echo "+ chmod +x resy.sh"
+chmod +x resy.sh
+echo "+ ./resy.sh"
+./resy.sh
+
+
