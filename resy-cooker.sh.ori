@@ -1,10 +1,6 @@
 #!/bin/bash
 
-# only if this script is sourced it will be able to bitbake from the shell
-
-#echo "\$#: $#"
-
-#read r
+# only if this script is sourced it will be able to bitbake
 
 pushd /workdir
 
@@ -22,72 +18,24 @@ fi
 
 cd build
 
-declare -A MYMAP
-# MYMAP[TARGET]="TARGET_NUM TARGET_ETH_RLY_IP TARGET_SLEEP"
-#MYMAP[bb-red]="1 ${REMOTE_POWER_ONE} 5"
-MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
-MYMAP[container-arm-v7]="bla mumu hirni"
-
-available_targets () {
-    echo "available targets:"
-    for K in "${!MYMAP[@]}"; do echo $K; done | sort -n -k3
-}
-
-usage () {
-    echo "usage:"
-    echo "source /workdir/resy-cooker.sh MACHINE or MACHINE-sw-variant"
-    echo "source /workdir/resy-cooker.sh container-x86-64"
-    available_targets
-}
-
-# --> usage
-if [ "$#" -lt "1" ]; then
-     usage 
-     #exit 0
-fi
-# <-- usage
-
-
-if [ ! ${MYMAP[${1}]+_} ]; then
-  echo "--> $1 not found <--" 
-  usage
-  #exit 0
-fi
-
 # choose machine  to init 
 
-#  select machine in 'container-x86-64' 'container-arm-v7' \
-#                    'multi-v7-ml' 'multi-v7-ml-debug' 'multi-v7-ml-virt' \
-#                    'multi-v7-ml-debug-training' 'multi-v7-ml-debug-training-libs' \
-#                    'multi-v7-ml-debug-training-pkgs' 'multi-v7-ml-debug-training-lic' \
-#                    'multi-v7-mender' \
-#                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-mender' \
-#                    'imx6q-phytec-mira-rdk-nand-virt-wic' 'imx6q-phytec-mira-rdk-nand-virt-mender' \
-#                    'beagle-bone-black-wic' 'beagle-bone-black-mender' \
-#                    'am335x-phytec-wega-wic' 'am335x-phytec-wega-mender' \
-#                    'karo-imx6ul-txul' 'karo-imx6ul-txul-uboot-wic'
-#  do
-#    echo "MACHINE or MACHINE-sw-variant: $machine"
-#    break;
-#  done
-
-
-if [ "$#" -gt "0" ]; then
-# here we have a MACHINE or MACHINE-sw-variant defined
-
-machine="$1"
-echo "MACHINE or MACHINE-sw-variant: $machine"
-
-if [ ! ${MYMAP[${1}]+_} ]; then
-  echo "--> $1 not found <--" 
-  usage
-  #exit 0
-fi
-
-
-#set ${MYMAP["${1}"]}
-
-#read r
+  select machine in 'container-x86-64' 'container-arm-v7' \
+                    'container-x86-64-java' \
+                    'multi-v7-ml' 'multi-v7-ml-debug' 'multi-v7-ml-virt' \
+                    'multi-v7-ml-debug-training' 'multi-v7-ml-debug-training-libs' \
+                    'multi-v7-ml-debug-training-pkgs' 'multi-v7-ml-debug-training-lic' \
+                    'multi-v7-ml-java' \
+                    'multi-v7-mender' \
+                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-mender' \
+                    'imx6q-phytec-mira-rdk-nand-virt-wic' 'imx6q-phytec-mira-rdk-nand-virt-mender' \
+                    'beagle-bone-black-wic' 'beagle-bone-black-mender' \
+                    'am335x-phytec-wega-wic' 'am335x-phytec-wega-mender' \
+                    'karo-imx6ul-txul' 'karo-imx6ul-txul-uboot-wic'
+  do
+    echo "MACHINE or MACHINE-sw-variant: $machine"
+    break;
+  done
 
   # check if hostname specific site.conf exists and pick it up
   if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME} ]; then 
@@ -110,8 +58,36 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
-     #set ${MYMAP["${1}"]}
-     
+  fi
+
+  # x86-64 container e.g. for Java development and testing
+
+  if [ "$machine" == "container-x86-64-java" ]; then
+     export TEMPLATECONF="../meta-resy/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # x86-64 container e.g. for Java development and testing
+  # poky master branch 
+  # currently not used above in selection
+
+  if [ "$machine" == "container-x86-64-java-master" ]; then
+     export TEMPLATECONF="../meta-resy/template-container-x86-64-java"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
   fi
 
   # arm-v7 container e.g. to run on target/docker
@@ -125,9 +101,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
         tree conf
-     fi 
-     set ${MYMAP["${1}"]}
-     #echo $# arguments
+     fi
   fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
@@ -146,6 +120,25 @@ fi
         tree conf
      fi
   fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: std
+  # OpenJDK
+
+  if [ "$machine" == "multi-v7-ml-java" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
@@ -444,34 +437,3 @@ fi
   fi
 
 popd # from /workdir
-fi
-
-echo "--> \$#: $#"
-
-if [ "$#" -eq "1" ]; then
-# we pass the MACHINE, but not what to bake
-  if [ "$BUILD_ALL" == "yes" ]; then
-  # we want to build all images defined here above
-     echo "BUILD_ALL = yes"
-     # here we switch to the array contents
-     set ${MYMAP["${1}"]}
-       for var in "$@"
-       do
-        echo "+ bitbake $var"
-        #bitbake $var
-       done
-  else # BUILD_ALL != yes
-     echo "to ./resy-poky-container.sh:"
-     echo " -- non-interactive mode -- "
-     echo " add the image you want to build to the command line ./resy-poky-container.sh <MACHINE> <image>"
-     echo " -- interactive mode --"
-     echo "   enter it with - ./resy-poky-container.sh <no param> "
-     echo "   bitbake <image>"
-     echo "   source /workdir/resy-cooker.sh <MACHINE>"
-  fi # BUILD_ALL =  yes
-fi # only machine passed along
-
-if [ "$#" -eq "2" ]; then
-   echo "+ bitbake $2"
-   #bitbake $2
-fi
