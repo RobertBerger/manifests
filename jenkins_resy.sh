@@ -1,7 +1,7 @@
 # That's what we could all form Jenkins:
 #
 # rm -f jenkins_resy.sh*
-# wget https://raw.githubusercontent.com/RobertBerger/manifests/master/jenkins_resy.sh
+# wget --no-cache https://raw.githubusercontent.com/RobertBerger/manifests/master/jenkins_resy.sh
 # chmod +x jenkins_resy.sh
 # ./jenkins_resy.sh
 #
@@ -32,8 +32,8 @@ fi
 # run the resy stuff (get layers)
 echo "+ rm -f resy.sh*"
 rm -f resy.sh* 
-echo "+ wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh"
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
+echo "+ wget --no-cache https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh"
+wget --no-cache https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
 echo "+ chmod +x resy.sh"
 chmod +x resy.sh
 echo "+ ./resy.sh"
