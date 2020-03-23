@@ -1,7 +1,16 @@
 #!/bin/bash
 
-CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
-#CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
+# this enables building all the images 
+# for a specific MACHINE as defined in resy-cooker.sh
+# set to "yes" if you want this to happen in non-interactive mode
+BUILD_ALL_VAR="no"
+
+# with jenkins we want non-gui mode, without it we want gui mode
+if [[ $WORKSPACE = *jenkins* ]]; then
+  CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+else
+  CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
+fi
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-6"
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-8"
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-9"
@@ -14,21 +23,23 @@ CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
 #
 # see: https://stackoverflow.com/questions/48235040/run-x-application-in-a-docker-container-reliably-on-a-server-connected-via-ssh-w
 
-#XSOCK=/tmp/.X11-unix
-#XAUTH=/tmp/.docker.xauth
-#xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | sudo xauth -f $XAUTH nmerge -
-#sudo chmod 777 $XAUTH
-#X11PORT=`echo $DISPLAY | sed 's/^[^:]*:\([^\.]\+\).*/\1/'`
-#TCPPORT=`expr 6000 + $X11PORT`
-#DISPLAY=`echo $DISPLAY | sed 's/^[^:]*\(.*\)/172.17.0.1\1/'`
+if [[ ! $WORKSPACE = *jenkins* ]]; then
+XSOCK=/tmp/.X11-unix
+XAUTH=/tmp/.docker.xauth
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | sudo xauth -f $XAUTH nmerge -
+sudo chmod 777 $XAUTH
+X11PORT=`echo $DISPLAY | sed 's/^[^:]*:\([^\.]\+\).*/\1/'`
+TCPPORT=`expr 6000 + $X11PORT`
+DISPLAY=`echo $DISPLAY | sed 's/^[^:]*\(.*\)/172.17.0.1\1/'`
 
 # local GUI:
 #GUI="-v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY"
 
 # GUI via ssh forwarding (--net host required?)
 #GUI="-e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH --net host"
-#GUI="-e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH"
+GUI="-e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH"
 # <-- GUI X-forwarding
+fi # not jenkins
 
 #echo "In the container:"
 #echo "source resy-cooker.sh"
@@ -47,6 +58,9 @@ if [ "$#" -eq "0" ]; then
   set -x
   docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
 else
+  set +x
+  echo " -- non interactive mode --"
+  set -x
 #if [ "$#" -eq "1" ]; then
 #  echo " -- interactive mode + MACHINE --"
 #  docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1
@@ -59,6 +73,13 @@ else
 
 #### build non interactive
 #docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
-docker run --name poky_container --rm -t --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
-fi
+
+  if [[ $WORKSPACE = *jenkins* ]]; then
+     # with jenkins interactive mode is not possible
+     INTERACIVE=""
+  else
+     INTERACTIVE="-i"
+  fi
+  docker run --name poky_container --rm ${INTERACTIVE} -t --add-host mirror:${MIRROR_IP} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
+fi # non interactve mode
 set +x
