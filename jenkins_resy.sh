@@ -11,17 +11,23 @@
 #   The absolute path of the directory assigned to the build as a workspace.
 #
 # We need a symlink from /workspace to our jenkins ${WORKSPACE}
-ls -lah /workspace
-echo ${WORKSPACE}
-if [ "$(readlink -- "/workspace")" = ${WORKSPACE} ]; then
+
+if [ ! -L /workdir ] ; then
+   echo "+ symlink /workdir does not exist"
+   echo "+ sudo ln -sf ${WORKSPACE} /workdir"
+   sudo ln -sf ${WORKSPACE} /workdir
+fi
+
+if [ "$(readlink -- "/workdir")" = ${WORKSPACE} ]; then
    echo "all good!"
-   echo "we have a symlink /workspace pointing to ${WORKSPACE}"
+   echo "we have a symlink /workdir pointing to ${WORKSPACE}"
 else
    echo "not good!"
-   echo "+ ls -lah /workspace"
-   ls -lah /workspace
+   echo "+ ls -lah /workdir"
+   ls -lah /workdir
    echo "WORKSPACE: ${WORKSPACE}"
 fi
+
 
 # run the resy stuff (get layers)
 #rm -f resy.sh* 
