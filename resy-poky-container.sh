@@ -52,7 +52,7 @@ docker pull ${CONTAINER}
 if [ "$#" -eq "0" ]; then
   set +x
   echo " -- interactive mode --"
-  echo "source resy-cooker.sh in container"
+  echo "source /workdir/resy-cooker.sh in container"
   echo "+ press <ENTER> to go on"
   read r
   set -x

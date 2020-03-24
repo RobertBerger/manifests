@@ -10,7 +10,7 @@ pushd /workdir
 
 if [[ $_ == $0 ]]; then
    echo "you need to source me:"
-   echo "source $(basename ${0})"
+   echo "source /workdir/$(basename ${0})"
    exit
 fi
 
@@ -26,7 +26,8 @@ declare -A MYMAP
 # MYMAP[TARGET]="TARGET_NUM TARGET_ETH_RLY_IP TARGET_SLEEP"
 #MYMAP[bb-red]="1 ${REMOTE_POWER_ONE} 5"
 MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
-MYMAP[container-arm-v7]="app-container-image-redis-oci"
+MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
+MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 
 available_targets () {
     echo "available targets:"
@@ -110,8 +111,6 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
-     #set ${MYMAP["${1}"]}
-     
   fi
 
   # arm-v7 container e.g. to run on target/docker
@@ -126,8 +125,6 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi 
-     set ${MYMAP["${1}"]}
-     #echo $# arguments
   fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
@@ -457,7 +454,7 @@ if [ "$#" -eq "1" ]; then
      set ${MYMAP["${1}"]}
        for var in "$@"
        do
-        echo "+ bitbake $var"
+        echo "+ (1) bitbake $var"
         bitbake $var
        done
   else # BUILD_ALL != yes
@@ -472,6 +469,17 @@ if [ "$#" -eq "1" ]; then
 fi # only machine passed along
 
 if [ "$#" -eq "2" ]; then
-   echo "+ bitbake $2"
+   echo "+ (2) bitbake $2"
    bitbake $2
+fi
+
+if [ "$#" -gt "2" ]; then
+# we assume we came here from something like
+# ./resy-poky-container.sh multi-v7-ml 'core-image-sato-sdk -c populate_sdk'
+  FIRST_ARG="$1"
+  shift
+  REST_ARGS="$@"
+
+  echo "+ (3) bitbake $@"
+  bitbake $@
 fi
