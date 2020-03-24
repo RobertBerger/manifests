@@ -80,6 +80,27 @@ MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 MYMAP[multi-v7-ml-debug]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml-debug
 
+# --> multi-v7-ml-debug-training
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training core-image-minimal
+# ./resy-poky-container.sh multi-v7-ml-debug-training core-image-sato-sdk
+# ./resy-poky-container.sh multi-v7-ml-debug-training 'core-image-sato-sdk -c populate_sdk'
+# ./resy-poky-container.sh multi-v7-ml-debug-training 'core-image-sato-sdk -c populate_sdk_ext'
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug-training]="core-image-minimal core-image-sato-sdk"
+# <-- multi-v7-ml-debug-training
+
+# --> multi-v7-ml-debug-training-libs
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training-libs core-image-minimal
+MYMAP[multi-v7-ml-debug-training-libs]="core-image-minimal"
+# <-- multi-v7-ml-debug-training-libs
+
 available_targets () {
     echo "available targets:"
     for K in "${!MYMAP[@]}"; do echo $K; done | sort -n -k3
