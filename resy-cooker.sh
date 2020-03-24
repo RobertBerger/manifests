@@ -22,12 +22,45 @@ fi
 
 cd build
 
+# For jenkins I do the setup of meta-data as without it, via resy.sh
+
 declare -A MYMAP
 # MYMAP[TARGET]="TARGET_NUM TARGET_ETH_RLY_IP TARGET_SLEEP"
-#MYMAP[bb-red]="1 ${REMOTE_POWER_ONE} 5"
+# --> container-x86-64
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh container-x86-64 app-container-image-redis-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-mosquitto-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-nmap-srv-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-data-collector-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-mqttbrokerclient-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-mastermind-oci
+# pwd
+# cd ${HERE}
 MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
+# <-- container-x86-64
+# --> container-arm-v7
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh container-arm-v7 app-container-image-redis-oci
+# ./resy-poky-container.sh container-arm-v7 app-container-image-mosquitto-oci
+# ./resy-poky-container.sh container-arm-v7 app-container-image-python3-nmap-srv-oci
+# ./resy-poky-container.sh container-arm-v7 app-container-image-python3-data-collector-oci
+# ./resy-poky-container.sh container-arm-v7 app-container-image-python3-mqttbrokerclient-oci
+# ./resy-poky-container.sh container-arm-v7 app-container-image-python3-mastermind-oci
+# pwd
+# cd ${HERE}
 MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
+# <-- container-arm-v7
+# --> multi-v7-ml
+# jenkins:
 MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
+# <-- multi-v7-ml
+
+
+
 
 available_targets () {
     echo "available targets:"
