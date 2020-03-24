@@ -67,7 +67,18 @@ MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosqu
 MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml
 
-
+# --> multi-v7-ml-debug
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug core-image-minimal
+# ./resy-poky-container.sh multi-v7-ml-debug core-image-sato-sdk
+# ./resy-poky-container.sh multi-v7-ml-debug 'core-image-sato-sdk -c populate_sdk'
+# ./resy-poky-container.sh multi-v7-ml-debug 'core-image-sato-sdk -c populate_sdk_ext'
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug]="core-image-minimal core-image-sato-sdk"
+# <-- multi-v7-ml-debug
 
 available_targets () {
     echo "available targets:"
