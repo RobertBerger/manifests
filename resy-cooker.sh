@@ -98,8 +98,30 @@ MYMAP[multi-v7-ml-debug-training]="core-image-minimal core-image-sato-sdk"
 # HERE=$(pwd)
 # cd /workdir
 # ./resy-poky-container.sh multi-v7-ml-debug-training-libs core-image-minimal
+# pwd
+# cd ${HERE}
 MYMAP[multi-v7-ml-debug-training-libs]="core-image-minimal"
 # <-- multi-v7-ml-debug-training-libs
+
+# --> multi-v7-ml-debug-training-pkgs
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training-pkgs core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug-training-pkgs]="core-image-minimal"
+# <-- multi-v7-ml-debug-training-pkgs
+
+# --> multi-v7-ml-debug-training-lic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training-lic core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug-training-lic]="core-image-minimal"
+# <-- multi-v7-ml-debug-training-lic
 
 available_targets () {
     echo "available targets:"
