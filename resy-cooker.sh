@@ -26,7 +26,7 @@ declare -A MYMAP
 # MYMAP[TARGET]="TARGET_NUM TARGET_ETH_RLY_IP TARGET_SLEEP"
 #MYMAP[bb-red]="1 ${REMOTE_POWER_ONE} 5"
 MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
-MYMAP[container-arm-v7]="bla mumu hirni"
+MYMAP[container-arm-v7]="app-container-image-redis-oci"
 
 available_targets () {
     echo "available targets:"
