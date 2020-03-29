@@ -231,6 +231,27 @@ MYMAP[am335x-phytec-wega-wic]="core-image-minimal"
 MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 # <-- am335x-phytec-wega-mender
 
+# --> karo-imx6ul-txul-uboot-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh karo-imx6ul-txul-uboot-wic core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[karo-imx6ul-txul-uboot-wic]="core-image-minimal"
+# <-- karo-imx6ul-txul-uboot-wic
+
+# --> karo-imx6ul-txul
+# @@@ does not build at the moment, gcc-9 and old u-boot needs fixing
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh karo-imx6ul-txul core-image-minimal
+# pwd
+# cd ${HERE}
+# MYMAP[karo-imx6ul-txul]="core-image-minimal"
+# <-- karo-imx6ul-txul
+
 available_targets () {
     echo "available targets:"
     for K in "${!MYMAP[@]}"; do echo $K; done | sort -n -k3
@@ -612,7 +633,7 @@ fi
 
   # rootfs, std kernel 4.14.x - patched for karo-imx6ul-txul, sd card image e.g. core-image-minimal
   # artefacts kernel/fdt over tftp and rootfs over nfs are also available
-  # potentially we could build u-boot only, since u-boot resideson NAND flash
+  # potentially we could build u-boot only, since u-boot resides on NAND flash
   # and use karo-imx6ul-txul for development
 
   if [ "$machine" == "karo-imx6ul-txul-uboot-wic" ]; then
