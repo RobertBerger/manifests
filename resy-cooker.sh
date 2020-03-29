@@ -25,7 +25,9 @@ cd build
 # For jenkins I do the setup of meta-data as without it, via resy.sh
 
 declare -A MYMAP
-# MYMAP[TARGET]="TARGET_NUM TARGET_ETH_RLY_IP TARGET_SLEEP"
+
+# MYMAP[MACHINE or MACHINE-sw-variant]="<image>"
+
 # --> container-x86-64
 # jenkins:
 # HERE=$(pwd)
@@ -40,6 +42,7 @@ declare -A MYMAP
 # cd ${HERE}
 MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
 # <-- container-x86-64
+
 # --> container-arm-v7
 # jenkins:
 # HERE=$(pwd)
@@ -122,6 +125,111 @@ MYMAP[multi-v7-ml-debug-training-pkgs]="core-image-minimal"
 # cd ${HERE}
 MYMAP[multi-v7-ml-debug-training-lic]="core-image-minimal"
 # <-- multi-v7-ml-debug-training-lic
+
+
+
+# --> multi-v7-ml-virt
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-virt core-image-minimal
+# ./resy-poky-container.sh multi-v7-ml-virt core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-virt]="core-image-minimal core-image-minimal-virt-docker-ce"
+# <-- multi-v7-ml-virt
+
+# --> multi-v7-mender
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-mender core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-mender]="core-image-minimal"
+# <-- multi-v7-mender
+
+# --> imx6q-phytec-mira-rdk-nand-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-wic core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-wic]="core-image-minimal"
+# <-- imx6q-phytec-mira-rdk-nand-wic
+
+# --> imx6q-phytec-mira-rdk-nand-virt-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-wic core-image-minimal
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-wic core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic]="core-image-minimal core-image-minimal-virt-docker-ce"
+# <-- imx6q-phytec-mira-rdk-nand-virt-wic
+
+# --> imx6q-phytec-mira-rdk-nand-virt-mender
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-mender core-image-minimal
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-mender core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-mender]="core-image-minimal core-image-minimal-virt-docker-ce"
+# <-- imx6q-phytec-mira-rdk-nand-virt-mender
+
+# --> imx6q-phytec-mira-rdk-nand-mender
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-mender core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-mender]="core-image-minimal"
+# <-- imx6q-phytec-mira-rdk-nand-mender
+
+# --> beagle-bone-black-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beagle-bone-black-wic core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[beagle-bone-black-wic]="core-image-minimal"
+# <-- beagle-bone-black-wic
+
+# --> beagle-bone-black-mender
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beagle-bone-black-mender core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[beagle-bone-black-mender]="core-image-minimal"
+# <-- beagle-bone-black-mender
+
+# --> am335x-phytec-wega-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh am335x-phytec-wega-wic core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[am335x-phytec-wega-wic]="core-image-minimal"
+# <-- am335x-phytec-wega-wic
+
+# --> am335x-phytec-wega-mender
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh am335x-phytec-wega-mender core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
+# <-- am335x-phytec-wega-mender
 
 available_targets () {
     echo "available targets:"
