@@ -14,7 +14,8 @@ if [[ $_ == $0 ]]; then
    exit
 fi
 
-HERE=$(pwd)
+# do not user HERE here ;)
+#HERE=$(pwd)
 
 if [ ! -d build ]; then
    mkdir build
@@ -231,26 +232,26 @@ MYMAP[am335x-phytec-wega-wic]="core-image-minimal"
 MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 # <-- am335x-phytec-wega-mender
 
-# --> karo-imx6ul-txul-uboot-wic
-# jenkins:
-# HERE=$(pwd)
-# cd /workdir
-# ./resy-poky-container.sh karo-imx6ul-txul-uboot-wic core-image-minimal
-# pwd
-# cd ${HERE}
-MYMAP[karo-imx6ul-txul-uboot-wic]="core-image-minimal"
-# <-- karo-imx6ul-txul-uboot-wic
-
 # --> karo-imx6ul-txul
-# @@@ does not build at the moment, gcc-9 and old u-boot needs fixing
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
 # ./resy-poky-container.sh karo-imx6ul-txul core-image-minimal
 # pwd
 # cd ${HERE}
-# MYMAP[karo-imx6ul-txul]="core-image-minimal"
+MYMAP[karo-imx6ul-txul]="core-image-minimal"
 # <-- karo-imx6ul-txul
+
+# --> karo-imx6ul-txul-uboot-wic
+# @@@ This is currently broken and hopefully soon deprecated
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh karo-imx6ul-txul-uboot-wic core-image-minimal
+# pwd
+# cd ${HERE}
+# MYMAP[karo-imx6ul-txul-uboot-wic]="core-image-minimal"
+# <-- karo-imx6ul-txul-uboot-wic
 
 available_targets () {
     echo "available targets:"
@@ -519,28 +520,42 @@ fi
      export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      # --> let's try to merge in sca stuff
-     mv -f ../sources/poky/${TEMPLATECONF}/local.conf.sample  ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ../sources/meta-resy/template-common/sca.conf.sample > ../sources/poky/${TEMPLATECONF}/local.conf.sample
-     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample
+     if [ ! -d ../build/${machine}/conf ]; then
+       echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
+       mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     else
+       echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
+     fi
      # <-- let's try to merge in sca stuff
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
-        # let's restore the original without sca
-        mv -f ../../sources/poky/${TEMPLATECONF}/local.conf.sample.ori ../../sources/poky/${TEMPLATECONF}/local.conf.sample
         tree conf
      fi
+     # --> more SCA stuff 
+     if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+        # let's restore the original without sca
+        mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     fi
+     # <-- more SCA stuff
   fi
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
-     # --> let's try to merge in sca stuff 
-     mv -f ../sources/poky/${TEMPLATECONF}/local.conf.sample  ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ../sources/meta-resy/template-common/sca.conf.sample > ../sources/poky/${TEMPLATECONF}/local.conf.sample
-     cat ../sources/poky/${TEMPLATECONF}/local.conf.sample
+     # --> let's try to merge in sca stuff
+    if [ ! -d ../build/${machine}/conf ]; then
+       echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
+       mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     else
+       echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
+     fi
      # <-- let's try to merge in sca stuff
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
@@ -548,9 +563,14 @@ fi
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
         # let's restore the original without sca
-        mv -f ../../sources/poky/${TEMPLATECONF}/local.conf.sample.ori ../../sources/poky/${TEMPLATECONF}/local.conf.sample
         tree conf
      fi
+     # --> more SCA stuff 
+     if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+        # let's restore the original without sca
+        mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     fi
+     # <-- more SCA stuff
   fi
 
   # mender sd card image
