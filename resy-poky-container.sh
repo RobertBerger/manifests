@@ -5,6 +5,15 @@
 # set to "yes" if you want this to happen in non-interactive mode
 BUILD_ALL_VAR="no"
 
+# --> check for ip address and subnet
+WIREDIF="$(ip -o -4 route show to default | grep en | awk '{print $5}')"
+BUILDHOST="$(ip -4 addr show ${WIREDIF} | grep -oP "(?<=inet ).*(?=/)")"
+echo "BUILDHOST: ${BUILDHOST}"
+SUBNET=`echo  ${BUILDHOST} | cut -d"." -f1-3`
+echo "SUBNET: ${SUBNET}"
+read r
+# <-- check for ip address and subnet
+
 # with jenkins we want non-gui mode, without it we want gui mode
 if [[ $WORKSPACE = *jenkins* ]]; then
   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
