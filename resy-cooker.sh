@@ -44,6 +44,14 @@ declare -A MYMAP
 MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
 # <-- container-x86-64
 
+# --> container-x86-64-java
+MYMAP[container-x86-64-java]="app-container-image-java"
+# <-- container-x86-64-java
+
+# --> container-x86-64-tensorflow
+MYMAP[container-x86-64-tensorflow]="app-container-image-tensorflow"
+# <-- container-x86-64-tensorflow
+
 # --> container-arm-v7
 # jenkins:
 # HERE=$(pwd)
@@ -326,6 +334,35 @@ fi
   # x86-64 container e.g. for Python development and testing
 
   if [ "$machine" == "container-x86-64" ]; then
+     export TEMPLATECONF="../meta-resy/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # x86-64 java container e.g. for Java development and testing
+
+  if [ "$machine" == "container-x86-64-java" ]; then
+     export TEMPLATECONF="../meta-resy/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # x86-64 tensorflow container e.g. for tensorflow development and testing
+
+  if [ "$machine" == "container-x86-64-tensorflow" ]; then
      export TEMPLATECONF="../meta-resy/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"

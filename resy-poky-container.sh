@@ -4,22 +4,43 @@
 # for a specific MACHINE as defined in resy-cooker.sh
 # set to "yes" if you want this to happen in non-interactive mode
 BUILD_ALL_VAR="no"
+USE_GUI="no"
+USE_MIRROR="no"
 
 # --> check for ip address and subnet
-WIREDIF="$(ip -o -4 route show to default | grep en | awk '{print $5}')"
-BUILDHOST="$(ip -4 addr show ${WIREDIF} | grep -oP "(?<=inet ).*(?=/)")"
-echo "BUILDHOST: ${BUILDHOST}"
-SUBNET=`echo  ${BUILDHOST} | cut -d"." -f1-3`
-echo "SUBNET: ${SUBNET}"
-read r
+#WIREDIF="$(ip -o -4 route show to default | grep en | awk '{print $5}')"
+#
+#if [ -z "$WIREDIF" ]
+#then
+#      echo "\$WIREDIF is empty"
+#      WIREDIF="$(ip -o -4 route show to default | grep eth | awk '{print $5}')"
+#else
+#      echo "\$WIREDIF is $WIREDIF"
+#fi
+#
+#BUILDHOST="$(ip -4 addr show ${WIREDIF} | grep -oP "(?<=inet ).*(?=/)")"
+#echo "BUILDHOST: ${BUILDHOST}"
+#SUBNET=`echo  ${BUILDHOST} | cut -d"." -f1-3`
+#echo "SUBNET: ${SUBNET}"
+#read r
 # <-- check for ip address and subnet
 
 # with jenkins we want non-gui mode, without it we want gui mode
 if [[ $WORKSPACE = *jenkins* ]]; then
-  CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+  #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+  USE_GUI="no"
 else
   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
 fi
+
+if [[ $USE_GUI = no ]]; then
+   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+fi
+
+#echo "CONTAINER= $CONTAINER"
+
+#read r
+
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-6"
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-8"
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-9"
@@ -32,7 +53,7 @@ fi
 #
 # see: https://stackoverflow.com/questions/48235040/run-x-application-in-a-docker-container-reliably-on-a-server-connected-via-ssh-w
 
-if [[ ! $WORKSPACE = *jenkins* ]]; then
+if [[ $USE_GUI = *yes* ]]; then
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | sudo xauth -f $XAUTH nmerge -
@@ -48,13 +69,18 @@ DISPLAY=`echo $DISPLAY | sed 's/^[^:]*\(.*\)/172.17.0.1\1/'`
 #GUI="-e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH --net host"
 GUI="-e DISPLAY=$DISPLAY -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH"
 # <-- GUI X-forwarding
-fi # not jenkins
+fi # use gui
 
 #echo "In the container:"
 #echo "source resy-cooker.sh"
 #echo "Press <ENTER> to go on"
 #read r
-MIRROR_IP=$(getent ahostsv4 mirror | awk '{print $1}' | head -1)
+
+if [[ $USE_MIRROR = *yes* ]]; then
+   MIRROR_IP=$(getent ahostsv4 mirror | awk '{print $1}' | head -1)
+   MIRROR_CMD="--add-host mirror:${MIRROR_IP}"
+fi # use mirror
+
 set -x
 docker pull ${CONTAINER}
 
@@ -65,7 +91,7 @@ if [ "$#" -eq "0" ]; then
   echo "+ press <ENTER> to go on"
   read r
   set -x
-  docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
+  docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
 else
   set +x
   echo " -- non interactive mode --"
@@ -89,6 +115,6 @@ else
   else
      INTERACTIVE="-i"
   fi
-  docker run --name poky_container --rm ${INTERACTIVE} -t --add-host mirror:${MIRROR_IP} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
 fi # non interactve mode
 set +x
