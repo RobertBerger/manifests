@@ -124,7 +124,7 @@ declare -A MYMAP
 #MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
 #MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
 #MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
-MYMAP[manifests]="${GITHUB}/RobertBerger/maifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 
 #if [ -d ${SOURCES} ]; then
 #   rm -rf ${SOURCES}
