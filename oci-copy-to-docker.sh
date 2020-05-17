@@ -17,19 +17,24 @@ if [ $# -lt 3 ];
 then
     echo "+ $0: Too few arguments!"
     echo "+ use something like:"
-    echo "+ $0 <image name> <container name> <tag>"
+    echo "+ $0 <image name> <container name> <tag> <image container name>"
     echo "+ $0 app-container-image-python3-mastermind-oci app-container-python3-mastermind-oci latest"
     echo "+ $0 app-container-image-python3-mqttbrokerclient-oci app-container-python3-mqttbrokerclient-oci latest"
     echo "+ $0 app-container-image-python3-data-collector-oci app-container-python3-data-collector-oci latest"
     echo "+ $0 app-container-image-python3-nmap-srv-oci app-container-python3-nmap-srv-oci latest"
     echo "+ $0 app-container-image-mosquitto-oci app-container-mosquitto-oci latest"
     echo "+ $0 app-container-image-redis-oci app-container-redis-oci latest"
+    echo "+ $0 app-container-image-tensorflow-oci app-container-tensorflow-oci latest container-x86-64-tensorflow"
+    echo "+ $0 app-container-image-java-oci app-container-java-oci latest container-x86-64-java"
+    echo "+ $0 app-container-image-java-examples-oci app-container-java-examples-oci latest container-x86-64-java"
+    echo "+ $0 app-container-image-tensorflow-examples-oci app-container-tensorflow-examples-oci latest container-x86-64-tensorflow"
     exit
 fi
 
 IMAGE="$1"
 CONTAINER="$2"
 TAG="$3"
+IMAGE_CONTAINER_NAME="$4"
 
 echo "image name: ${IMAGE}"
 echo "container name: ${CONTAINER}"
@@ -42,7 +47,7 @@ echo "docker://docker.io/${DOCKER_USER}/${CONTAINER}"
 echo "press <ENTER>"
 read r
 
-cd /workdir/build/container-x86-64/tmp/deploy/images/container-x86-64/
+cd /workdir/build/${IMAGE_CONTAINER_NAME}/tmp/deploy/images/container-x86-64/
 # clean up
 rm -rf unzip && mkdir unzip && cd unzip
 

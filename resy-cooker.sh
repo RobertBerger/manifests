@@ -349,6 +349,18 @@ fi
   # x86-64 java container e.g. for Java development and testing
 
   if [ "$machine" == "container-x86-64-java" ]; then
+
+     # --> currently only host gcc-9 seems to work here
+     # check if hostname specific site.conf exists and pick it up
+     if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 ]; then
+        SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 "
+     else
+        SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample_gcc-9"
+     fi
+
+     echo "SITE_CONF=${SITE_CONF}"
+     # <-- currently only host gcc-9 seems to work here
+
      export TEMPLATECONF="../meta-resy/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
