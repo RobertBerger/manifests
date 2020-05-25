@@ -140,6 +140,7 @@ MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RES
 # <-- oci
 
 # --> app-container-x86-64
+#MYMAP[app-container-tensorflow]="${GITLAB}/app-container/app-container-tensorflow.git ${APP_CONTAINER_X86_64}/app-container-tensorflow master"
 #MYMAP[app-container-tensorflow-oci]="${GITLAB}/app-container/app-container-tensorflow-oci.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-oci master"
 #MYMAP[app-container-java-oci]="${GITLAB}/app-container/app-container-java-oci.git ${APP_CONTAINER_X86_64}/app-container-java-oci master"
 #MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-java-examples-oci.git ${APP_CONTAINER_X86_64}/app-container-java-examples-oci master"
@@ -192,10 +193,14 @@ ln -sf sources/manifests/resy-poky-container.sh resy-poky-container.sh
 ln -sf sources/manifests/resy-cooker.sh resy-cooker.sh
 ln -sf sources/manifests/killall_bitbake.sh killall_bitbake.sh
 ln -sf sources/manifests/oci-copy-to-docker.sh oci-copy-to-docker.sh
+ln -sf sources/manifests/build-and-shutdown.sh build-and-shutdown.sh
 
 
 ln -sf sources/manifests/resy.sh resy.sh
 set +x
+
+
+echo "symlinks ready"
 
 read r
 

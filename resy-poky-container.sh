@@ -43,7 +43,7 @@ fi
 
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-6"
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-8"
-#CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-9"
+CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-9"
 
 # --> GUI X-forwarding
 # !!! For GUI to work in you host Linux you need to set
