@@ -124,45 +124,45 @@ fi
 #repo sync
 
 declare -A MYMAP
-#MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts ${SCRIPTS}/convenience-scripts master"
-#MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
-#MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_BRANCH}"
+MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
+MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_BRANCH}"
 # my-mender-layer (encrypted)
-#MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
-#MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
+MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
+MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
 # my meta-u-boot-wic-bsp bsp u-boot is here
-#MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
+MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
 # my meta-u-boot-mender-bsp bsp u-boot is here
-#MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git ${SOURCES}/meta-u-boot-mender-bsp ${META_U_BOOT_MENDER_BSP_BRANCH}"
-#MYMAP[meta-u-boot-karo-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-karo-wic-bsp.git ${SOURCES}/meta-u-boot-karo-wic-bsp ${META_U_BOOT_KARO_WIC_BSP_BRANCH}"
-#MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca  ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
+MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git ${SOURCES}/meta-u-boot-mender-bsp ${META_U_BOOT_MENDER_BSP_BRANCH}"
+MYMAP[meta-u-boot-karo-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-karo-wic-bsp.git ${SOURCES}/meta-u-boot-karo-wic-bsp ${META_U_BOOT_KARO_WIC_BSP_BRANCH}"
+MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca  ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
 # my resy distro 
-#MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
-#MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
-#MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
-#MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
-#MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
-#MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
-#MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
-#MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
-#MYMAP[meta-python-2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
-#MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
-#MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
+MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
+MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
+MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
+MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
+MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
+MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
+MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
+MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
+MYMAP[meta-python-2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
+MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
+MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
 
 
 
 # --> oci
-#MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container master"
+MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container master"
 # <-- oci
 
 # --> app-container-x86-64
-#MYMAP[app-container-tensorflow]="${GITLAB}/app-container/app-container-tensorflow.git ${APP_CONTAINER_X86_64}/app-container-tensorflow master"
-#MYMAP[app-container-tensorflow-oci]="${GITLAB}/app-container/app-container-tensorflow-oci.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-oci master"
-#MYMAP[app-container-java-oci]="${GITLAB}/app-container/app-container-java-oci.git ${APP_CONTAINER_X86_64}/app-container-java-oci master"
-#MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-java-examples-oci.git ${APP_CONTAINER_X86_64}/app-container-java-examples-oci master"
-#MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
+MYMAP[app-container-tensorflow]="${GITLAB}/app-container/app-container-tensorflow.git ${APP_CONTAINER_X86_64}/app-container-tensorflow master"
+MYMAP[app-container-tensorflow-oci]="${GITLAB}/app-container/app-container-tensorflow-oci.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-oci master"
+MYMAP[app-container-java-oci]="${GITLAB}/app-container/app-container-java-oci.git ${APP_CONTAINER_X86_64}/app-container-java-oci master"
+MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-java-examples-oci.git ${APP_CONTAINER_X86_64}/app-container-java-examples-oci master"
+MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
 # <-- app-container-x86-64
 
 #if [ -d ${SOURCES} ]; then
