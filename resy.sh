@@ -75,7 +75,7 @@ fi
      export META_SCA_BRANCH="dunfell"
      export META_OPENEMBEDDED_BRANCH="2020-04-30-dunfell-3.1"
      export META_JAVA_BRANCH="2020-05-08-dunfell"
-     export META_TENSORFLOW_BRANCH="master-as-dunfell"
+     export META_TENSORFLOW_BRANCH="2020-05-10-master-as-dunfell"
      export MANIFESTS_BRANCH="dunfell"
      export META_PYTHON2_BRANCH="dunfell"
   fi
@@ -94,7 +94,7 @@ fi
      export META_SCA_BRANCH="2020-01-03-zeus"
      export META_OPENEMBEDDED_BRANCH="2020-01-03-zeus-3.0+"
      export META_JAVA_BRANCH="2020-02-13-master-next-as-zeus-3.0+"
-     export META_TENSORFLOW_BRANCH="master-as-zeus"
+     export META_TENSORFLOW_BRANCH="2020-05-10-master-as-zeus"
      export MANIFESTS_BRANCH="master"
      export META_PYTHON2_BRANCH="zeus"
   fi
@@ -113,7 +113,7 @@ fi
      export META_SCA_BRANCH="2020-01-03-zeus"
      export META_OPENEMBEDDED_BRANCH="2020-01-03-zeus-3.0+"
      export META_JAVA_BRANCH="2020-02-13-master-next-as-zeus-3.0+"
-     export META_TENSORFLOW_BRANCH="master-as-zeus"
+     export META_TENSORFLOW_BRANCH="2020-05-10-master-as-zeus"
      export MAIFESTS_BRANCH="master"
      export META_PYTHON2_BRANCH="zeus"
   fi
