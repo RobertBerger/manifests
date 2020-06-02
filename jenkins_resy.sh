@@ -1,4 +1,4 @@
-# That's what we could all form Jenkins:
+# That's what we could call from Jenkins:
 #
 # rm -f jenkins_resy.sh*
 # wget --no-cache https://raw.githubusercontent.com/RobertBerger/manifests/master/jenkins_resy.sh
