@@ -4,8 +4,9 @@
 # for a specific MACHINE as defined in resy-cooker.sh
 # set to "yes" if you want this to happen in non-interactive mode
 BUILD_ALL_VAR="no"
-USE_GUI="no"
+USE_GUI="yes"
 USE_MIRROR="no"
+DOCKER_PULL="yes"
 
 # --> check for ip address and subnet
 #WIREDIF="$(ip -o -4 route show to default | grep en | awk '{print $5}')"
@@ -27,14 +28,16 @@ USE_MIRROR="no"
 
 # with jenkins we want non-gui mode, without it we want gui mode
 if [[ $WORKSPACE = *jenkins* ]]; then
-  #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
-  USE_GUI="no"
+   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+   USE_GUI="no"
 else
-  CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
+   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
+   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gui-gcc-9"
 fi
 
 if [[ $USE_GUI = no ]]; then
-   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gcc-9"
 fi
 
 #echo "CONTAINER= $CONTAINER"
@@ -45,6 +48,8 @@ fi
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-8"
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-9"
 
+#CONTAINER="reslocal/poky-container:ubuntu-16.04"
+
 # --> GUI X-forwarding
 # !!! For GUI to work in you host Linux you need to set
 #
@@ -54,10 +59,28 @@ fi
 # see: https://stackoverflow.com/questions/48235040/run-x-application-in-a-docker-container-reliably-on-a-server-connected-via-ssh-w
 
 if [[ $USE_GUI = *yes* ]]; then
+
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
+
+if [ -z "$DISPLAY" ]; then
+   echo "+ problem (1) using gui - no DISPLAY variable set"
+   echo "fix this, or choose USE_GUI=\"no\""
+   exit 1
+fi
+
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | sudo xauth -f $XAUTH nmerge -
+if [ $? -ne 0 ]; then
+   echo "+ problem (2) using gui"
+   exit 1
+fi
+
 sudo chmod 777 $XAUTH
+if [ $? -ne 0 ]; then
+   echo "+ problem (3) using gui"
+   exit 1
+fi
+
 X11PORT=`echo $DISPLAY | sed 's/^[^:]*:\([^\.]\+\).*/\1/'`
 TCPPORT=`expr 6000 + $X11PORT`
 DISPLAY=`echo $DISPLAY | sed 's/^[^:]*\(.*\)/172.17.0.1\1/'`
@@ -82,7 +105,9 @@ if [[ $USE_MIRROR = *yes* ]]; then
 fi # use mirror
 
 set -x
+if [[ $DOCKERPULL = *yes* ]]; then
 docker pull ${CONTAINER}
+fi
 
 if [ "$#" -eq "0" ]; then
   set +x
@@ -91,7 +116,11 @@ if [ "$#" -eq "0" ]; then
   echo "+ press <ENTER> to go on"
   read r
   set -x
+  if [[ $WORKSPACE = *jenkins* ]]; then
+  docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && echo "Docker ERRORS found" && exit 1
+  else
   docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
+  fi
 else
   set +x
   echo " -- non interactive mode --"
@@ -112,9 +141,16 @@ else
   if [[ $WORKSPACE = *jenkins* ]]; then
      # with jenkins interactive mode is not possible
      INTERACIVE=""
+     export BUILDDIR="/workdir/build/$1"
+     /workdir/killall_bitbake.sh
   else
      INTERACTIVE="-i"
   fi
+
+  if [[ $WORKSPACE = *jenkins* ]]; then
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && echo "Docker ERRORS found" && exit 1
+  else
   docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
+  fi
 fi # non interactve mode
 set +x
