@@ -2,8 +2,10 @@
 
 SOURCES="/workdir/sources"
 SCRIPTS="/workdir/scripts"
+JENKINS="/workdir/jenkins"
 OCI_CONTAINER_X86_64="/workdir/oci-container-x86-64"
 APP_CONTAINER_X86_64="/workdir/app-container-x86-64"
+CROPS_CONTAINER_X86_64="/workdir/crops-container-x86-64"
 GITHUB="git://github.com"
 GITLAB="https://gitlab.com"
 
@@ -150,12 +152,18 @@ MYMAP[meta-python-2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python
 MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
-
+MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-03-22-master-local"
 
 
 # --> oci
 MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container master"
 # <-- oci
+
+# --> crops
+MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-01-06-master-local"
+MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2019-11-19-master-local"
+MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2019-11-19-master-local"
+# <-- crops
 
 # --> app-container-x86-64
 MYMAP[app-container-tensorflow]="${GITLAB}/app-container/app-container-tensorflow.git ${APP_CONTAINER_X86_64}/app-container-tensorflow master"
@@ -292,6 +300,11 @@ fi
 if [ ! -L build-and-shutdown.sh ]; then
    ln -sf sources/manifests/build-and-shutdown.sh build-and-shutdown.sh
 fi
+#if [ ! -L jenkins-resy.sh ]; then
+#   ln -sf sources/manifests/jenkins-resy.sh jenkins-resy.sh
+#fi
+
+
 
 if [ ! -L resy.sh ]; then
    ln -sf sources/manifests/resy.sh resy.sh
