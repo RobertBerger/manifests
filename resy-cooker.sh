@@ -354,16 +354,16 @@ fi
   # x86-64 java container e.g. for Java development and testing
 
   if [ "$machine" == "container-x86-64-java" ]; then
-
+     # I moved to ubuntu 18 and gcc-9 by default - let's see
      # --> currently only host gcc-9 seems to work here
      # check if hostname specific site.conf exists and pick it up
-     if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 ]; then
-        SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 "
-     else
-        SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample_gcc-9"
-     fi
-
-     echo "SITE_CONF=${SITE_CONF}"
+     #if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 ]; then
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 "
+     #else
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample_gcc-9"
+     #fi
+     #
+     #echo "SITE_CONF=${SITE_CONF}"
      # <-- currently only host gcc-9 seems to work here
 
      export TEMPLATECONF="../meta-resy/template-${machine}"
@@ -757,6 +757,9 @@ fi
 
 echo "--> \$#: $#"
 
+# needed for killall_bitbake.sh
+export BUILDDIR="/workdir/build/${machine}"
+
 if [ "$#" -eq "1" ]; then
 # we pass the MACHINE, but not what to bake
   if [ "$BUILD_ALL" == "yes" ]; then
@@ -766,10 +769,17 @@ if [ "$#" -eq "1" ]; then
      set ${MYMAP["${1}"]}
        for var in "$@"
        do
-        echo "+ (1) bitbake $var"
-        bitbake $var
+        /workdir/killall_bitbake.sh
+        if [[ $WORKSPACE = *jenkins* ]]; then
+           echo "+ (1) bitbake $var ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
+           bitbake $var ;[ $? -ne 0 ] && echo "ERRORS found" && exit 1
+        else
+           echo "+ (1) bitbake $var"
+           bitbake $var
+        fi
        done
   else # BUILD_ALL != yes
+     /workdir/killall_bitbake.sh
      echo "to ./resy-poky-container.sh:"
      echo " -- non-interactive mode -- "
      echo " add the image you want to build to the command line ./resy-poky-container.sh <MACHINE> <image>"
@@ -781,8 +791,14 @@ if [ "$#" -eq "1" ]; then
 fi # only machine passed along
 
 if [ "$#" -eq "2" ]; then
-   echo "+ (2) bitbake $2"
-   bitbake $2
+   /workdir/killall_bitbake.sh
+   if [[ $WORKSPACE = *jenkins* ]]; then
+      echo "+ (2) bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
+      bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS found" && exit 1
+   else
+      echo "+ (2) bitbake $2"
+      bitbake $2
+   fi
 fi
 
 if [ "$#" -gt "2" ]; then
@@ -792,6 +808,12 @@ if [ "$#" -gt "2" ]; then
   shift
   REST_ARGS="$@"
 
-  echo "+ (3) bitbake $@"
-  bitbake $@
+  /workdir/killall_bitbake.sh
+  if [[ $WORKSPACE = *jenkins* ]]; then
+     echo "+ (3) bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
+     bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1
+  else
+     echo "+ (3) bitbake $@"
+     bitbake $@
+  fi
 fi
