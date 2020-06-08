@@ -4,7 +4,7 @@
 # for a specific MACHINE as defined in resy-cooker.sh
 # set to "yes" if you want this to happen in non-interactive mode
 BUILD_ALL_VAR="no"
-USE_GUI="yes"
+USE_GUI="no"
 USE_MIRROR="no"
 DOCKER_PULL="yes"
 
@@ -115,9 +115,9 @@ if [ "$#" -eq "0" ]; then
   echo "source /workdir/resy-cooker.sh in container"
   echo "+ press <ENTER> to go on"
   read r
-  set -x
+  set +x
   if [[ $WORKSPACE = *jenkins* ]]; then
-  docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && echo "Docker ERRORS found" && exit 1
+  docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
   else
   docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
   fi
@@ -147,8 +147,10 @@ else
      INTERACTIVE="-i"
   fi
 
+  set +x
+
   if [[ $WORKSPACE = *jenkins* ]]; then
-  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && echo "Docker ERRORS found" && exit 1
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && printf "\e[31m+ Docker ERRORS found (2)\e[0m\n" && exit 1
   else
   docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
   fi

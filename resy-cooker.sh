@@ -771,8 +771,9 @@ if [ "$#" -eq "1" ]; then
        do
         /workdir/killall_bitbake.sh
         if [[ $WORKSPACE = *jenkins* ]]; then
-           echo "+ (1) bitbake $var ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
-           bitbake $var ;[ $? -ne 0 ] && echo "ERRORS found" && exit 1
+           #echo "+ (1) bitbake $var ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
+           echo "+ (1) bitbake $var"
+           bitbake $var ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $var ERRORS found (1)\e[0m\n" && exit 1
         else
            echo "+ (1) bitbake $var"
            bitbake $var
@@ -793,11 +794,19 @@ fi # only machine passed along
 if [ "$#" -eq "2" ]; then
    /workdir/killall_bitbake.sh
    if [[ $WORKSPACE = *jenkins* ]]; then
-      echo "+ (2) bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
-      bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS found" && exit 1
+      #echo "+ (2) bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
+      echo "+ (2) bitbake $2"
+      #bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS found" && exit 1
+      bitbake $2 ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $2 ERRORS found (2)\e[0m\n" && exit 1
    else
       echo "+ (2) bitbake $2"
       bitbake $2
+      # WORKSPACE can be empty although we run from jenkins here
+      if [ $? -ne 0 ]; then
+         #echo "WORKSPACE: $WORKSPACE"
+         printf "\e[31m+ bitbake $2 ERRORS found (2) WORKSPACE: $WORKSPACE - empty\e[0m\n"
+         exit 1
+      fi
    fi
 fi
 
@@ -810,8 +819,10 @@ if [ "$#" -gt "2" ]; then
 
   /workdir/killall_bitbake.sh
   if [[ $WORKSPACE = *jenkins* ]]; then
-     echo "+ (3) bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
-     bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1
+     #echo "+ (3) bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
+     echo "+ (3) bitbake $@"
+     #bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1
+     bitbake $@ ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $@ ERRORS found (3)\e[0m\n" && exit 1
   else
      echo "+ (3) bitbake $@"
      bitbake $@
