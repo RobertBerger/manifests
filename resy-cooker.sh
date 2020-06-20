@@ -56,6 +56,9 @@ MYMAP[container-x86-64-tensorflow]="app-container-image-tensorflow"
 MYMAP[container-x86-64-golang]="app-container-image-go"
 # <-- container-x86-64-golang
 
+# --> container-x86-64-tig
+MYMAP[container-x86-64-tig]="image-influxdb-prebuilt image-influxdb-from-source app-container-image-influxdb-prebuilt app-container-image-influxdb-prebuilt-oci"
+# <-- container-x86-64-tig
 
 # --> container-arm-v7
 # jenkins:
@@ -395,6 +398,20 @@ fi
   # x86-64 golang container e.g. for golang development and testing
 
   if [ "$machine" == "container-x86-64-golang" ]; then
+     export TEMPLATECONF="../meta-resy/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # x86-64 tig container e.g. for tig development and testing
+
+  if [ "$machine" == "container-x86-64-tig" ]; then
      export TEMPLATECONF="../meta-resy/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
