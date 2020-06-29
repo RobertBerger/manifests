@@ -28,6 +28,7 @@ then
     echo "+ $0 app-container-image-java-oci app-container-java-oci latest container-x86-64-java"
     echo "+ $0 app-container-image-java-examples-oci app-container-java-examples-oci latest container-x86-64-java"
     echo "+ $0 app-container-image-tensorflow-examples-oci app-container-tensorflow-examples-oci latest container-x86-64-tensorflow"
+    echo "+ $0 app-container-image-influxdb-prebuilt-oci app-container-influxdb-prebuilt-oci latest container-x86-64-golang"
     exit
 fi
 
@@ -41,19 +42,32 @@ echo "container name: ${CONTAINER}"
 echo "tag: ${TAG}" 
 echo "docker user: ${DOCKER_USER}"
 echo "docker password: ${DOCKER_PW}"
+echo "image container name: ${IMAGE_CONTAINER_NAME}"
 
 echo "if there is a repository on docker hub called:"
 echo "docker://docker.io/${DOCKER_USER}/${CONTAINER}"
 echo "press <ENTER>"
 read r
 
+set -x 
 cd /workdir/build/${IMAGE_CONTAINER_NAME}/tmp/deploy/images/container-x86-64/
+set +x
+
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo "can not cd into"
+    /workdir/build/${IMAGE_CONTAINER_NAME}/tmp/deploy/images/container-x86-64/
+    echo "press <ENTER>"
+    read r
+    exit $retVal
+fi
+
+set -x
 # clean up
 rm -rf unzip && mkdir unzip && cd unzip
 
 # untar the OCI stuff
 
-set -x
 ls -la ../${IMAGE}*.tar
 
 tar xvf ../${IMAGE}*.tar
