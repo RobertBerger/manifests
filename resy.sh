@@ -67,7 +67,7 @@ fi
   if [ "$manifest" == "experimental" ]; then
      #export MANIFEST="resy-experimental.xml"
      export META_RESY_BRANCH="dunfell"
-     export META_POKY_BRANCH="2020-05-26-dunfell-3.1+"
+     export META_POKY_BRANCH="2020-06-29-dunfell-3.1.1+"
      export META_VIRTUALIZATION_BRANCH="2020-04-30-dunfell-3.1"
      export META_DESIRE_BRANCH="master"
      export META_MULTI_V7_ML_BSP_BRANCH="dunfell"
@@ -142,7 +142,7 @@ fi
 declare -A MYMAP
 #MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 #MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRIPTS}/convenience-scripts master"
-#MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
+MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
 #MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_BRANCH}"
 # my-mender-layer (encrypted)
 #MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
@@ -174,7 +174,7 @@ declare -A MYMAP
 #MYMAP[meta-mender]="${GITHUB}/RobertBerger/meta-mender ${SOURCES}/meta-mender ${META_MENDER_BRANCH}" 
 #MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BRANCH}"
 #MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_BFE_BRANCH}"
-MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
+#MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
 
 
 #MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
@@ -196,7 +196,8 @@ MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
 #MYMAP[app-container-java-oci]="${GITLAB}/app-container/app-container-java-oci.git ${APP_CONTAINER_X86_64}/app-container-java-oci master"
 #MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-java-examples-oci.git ${APP_CONTAINER_X86_64}/app-container-java-examples-oci master"
 #MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
-
+#MYMAP[app-container-influxdb-prebuilt]="${GITLAB}/app-container/app-container-influxdb-prebuilt.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt master"
+#MYMAP[app-container-influxdb-prebuilt-oci]="${GITLAB}/app-container/app-container-influxdb-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt-oci master"
 # <-- app-container-x86-64
 
 #if [ -d ${SOURCES} ]; then
@@ -231,7 +232,7 @@ do
     if [ "$LOCAL_BRANCH" == "$BRANCH_WE_WANT" ]; then
        echo "branch is already what we want: ${LOCAL_BRANCH}"
     else
-       echo -e "\e[31mbranch mismatchl\e[39m"
+       echo -e "\e[31mbranch mismatch\e[39m"
        echo "+ git checkout $3"
        git checkout $3
     fi    
