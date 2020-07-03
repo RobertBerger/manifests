@@ -140,64 +140,64 @@ fi
 #repo sync
 
 declare -A MYMAP
-#MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
-#MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRIPTS}/convenience-scripts master"
+MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRIPTS}/convenience-scripts master"
 MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
-#MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_BRANCH}"
+MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_BRANCH}"
 # my-mender-layer (encrypted)
-#MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
-#MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
-#MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
-#MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials dunfell"
+MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
+MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
+MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
+MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials dunfell"
 # my meta-u-boot-wic-bsp bsp u-boot is here
-#MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
+MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
 # my meta-u-boot-mender-bsp bsp u-boot is here
-#MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git ${SOURCES}/meta-u-boot-mender-bsp ${META_U_BOOT_MENDER_BSP_BRANCH}"
-#MYMAP[meta-u-boot-karo-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-karo-wic-bsp.git ${SOURCES}/meta-u-boot-karo-wic-bsp ${META_U_BOOT_KARO_WIC_BSP_BRANCH}"
-#MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca  ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
+MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git ${SOURCES}/meta-u-boot-mender-bsp ${META_U_BOOT_MENDER_BSP_BRANCH}"
+MYMAP[meta-u-boot-karo-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-karo-wic-bsp.git ${SOURCES}/meta-u-boot-karo-wic-bsp ${META_U_BOOT_KARO_WIC_BSP_BRANCH}"
+MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca  ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
 # my resy distro 
-#MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
-#MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
-#MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
-#MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
-#MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
-#MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
-#MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
-#MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
-#MYMAP[meta-python-2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
-#MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
-#MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
+MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
+MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
+MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
+MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
+MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
+MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
+MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
+MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
+MYMAP[meta-python-2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
+MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
+MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
 
-#MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang 2020-06-05-master-as-dunfell"
-#MYMAP[meta-buildutils]="${GITHUB}/RobertBerger/meta-buildutils ${SOURCES}/meta-buildutils 2020-06-05-master-as-dunfell"
-#MYMAP[meta-mender]="${GITHUB}/RobertBerger/meta-mender ${SOURCES}/meta-mender ${META_MENDER_BRANCH}" 
-#MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BRANCH}"
-#MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_BFE_BRANCH}"
-#MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
+MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang 2020-06-05-master-as-dunfell"
+MYMAP[meta-buildutils]="${GITHUB}/RobertBerger/meta-buildutils ${SOURCES}/meta-buildutils 2020-06-05-master-as-dunfell"
+MYMAP[meta-mender]="${GITHUB}/RobertBerger/meta-mender ${SOURCES}/meta-mender ${META_MENDER_BRANCH}" 
+MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BRANCH}"
+MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_BFE_BRANCH}"
+MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
 
 
-#MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
+MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
 
 
 # --> oci
-#MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container master"
+MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container master"
 # <-- oci
 
 # --> crops
-#MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-01-06-master-local"
-#MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2020-05-30-master-local-gcc-9-gui-ub18"
-#MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2019-11-19-master-local"
+MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-01-06-master-local"
+MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2020-05-30-master-local-gcc-9-gui-ub18"
+MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2019-11-19-master-local"
 # <-- crops
 
 # --> app-container-x86-64
-#MYMAP[app-container-tensorflow]="${GITLAB}/app-container/app-container-tensorflow.git ${APP_CONTAINER_X86_64}/app-container-tensorflow master"
-#MYMAP[app-container-tensorflow-oci]="${GITLAB}/app-container/app-container-tensorflow-oci.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-oci master"
-#MYMAP[app-container-java-oci]="${GITLAB}/app-container/app-container-java-oci.git ${APP_CONTAINER_X86_64}/app-container-java-oci master"
-#MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-java-examples-oci.git ${APP_CONTAINER_X86_64}/app-container-java-examples-oci master"
-#MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
-#MYMAP[app-container-influxdb-prebuilt]="${GITLAB}/app-container/app-container-influxdb-prebuilt.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt master"
-#MYMAP[app-container-influxdb-prebuilt-oci]="${GITLAB}/app-container/app-container-influxdb-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt-oci master"
+MYMAP[app-container-tensorflow]="${GITLAB}/app-container/app-container-tensorflow.git ${APP_CONTAINER_X86_64}/app-container-tensorflow master"
+MYMAP[app-container-tensorflow-oci]="${GITLAB}/app-container/app-container-tensorflow-oci.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-oci master"
+MYMAP[app-container-java-oci]="${GITLAB}/app-container/app-container-java-oci.git ${APP_CONTAINER_X86_64}/app-container-java-oci master"
+MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-java-examples-oci.git ${APP_CONTAINER_X86_64}/app-container-java-examples-oci master"
+MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
+MYMAP[app-container-influxdb-prebuilt]="${GITLAB}/app-container/app-container-influxdb-prebuilt.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt master"
+MYMAP[app-container-influxdb-prebuilt-oci]="${GITLAB}/app-container/app-container-influxdb-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt-oci master"
 # <-- app-container-x86-64
 
 #if [ -d ${SOURCES} ]; then
@@ -341,7 +341,7 @@ set +x
 
 echo "symlinks ready"
 
-read r
+#read r
 
 #pushd poky
 #git checkout -b 2020-01-03-zeus-3.0.1+
@@ -398,40 +398,40 @@ read r
 #git branch --set-upstream-to=gitlab/${META_MULTI_V7_ML_BSP_BRANCH} ${META_MULTI_V7_ML_BSP_BRANCH}
 #popd
 
-pushd meta-mender
-git checkout -b 2019-11-19-thud-as-zeus
-git branch --set-upstream-to=github/2019-11-19-thud-as-zeus 2019-11-19-thud-as-zeus
-popd
+#pushd meta-mender
+#git checkout -b 2019-11-19-thud-as-zeus
+#git branch --set-upstream-to=github/2019-11-19-thud-as-zeus 2019-11-19-thud-as-zeus
+#popd
 
-pushd meta-karo-bsp
-git checkout -b ${META_KARO_BSP_BRANCH}
-git branch --set-upstream-to=gitlab/${META_KARO_BSP_BRANCH} ${META_KARO_BSP_BRANCH}
-popd
+#pushd meta-karo-bsp
+#git checkout -b ${META_KARO_BSP_BRANCH}
+#git branch --set-upstream-to=gitlab/${META_KARO_BSP_BRANCH} ${META_KARO_BSP_BRANCH}
+#popd
 
-pushd meta-desire
-git checkout -b ${META_DESIRE_BRANCH}
-git branch --set-upstream-to=gitlab/${META_DESIRE_BRANCH} ${META_DESIRE_BRANCH}
-popd
+#pushd meta-desire
+#git checkout -b ${META_DESIRE_BRANCH}
+#git branch --set-upstream-to=gitlab/${META_DESIRE_BRANCH} ${META_DESIRE_BRANCH}
+#popd
 
-pushd meta-clang
-git checkout -b 2020-01-03-zeus
-git branch --set-upstream-to=github/2020-01-03-zeus 2020-01-03-zeus
-popd
+#pushd meta-clang
+#git checkout -b 2020-01-03-zeus
+#git branch --set-upstream-to=github/2020-01-03-zeus 2020-01-03-zeus
+#popd
 
-pushd keys-for-signing
-git checkout -b master
-git branch --set-upstream-to=github/master master
-popd
+#pushd keys-for-signing
+#git checkout -b master
+#git branch --set-upstream-to=github/master master
+#popd
 
-pushd meta-buildutils
-git checkout -b 2020-01-03-zeus
-git branch --set-upstream-to=github/2020-01-03-zeus 2020-01-03-zeus
-popd
+#pushd meta-buildutils
+#git checkout -b 2020-01-03-zeus
+#git branch --set-upstream-to=github/2020-01-03-zeus 2020-01-03-zeus
+#popd
 
-pushd meta-bfe
-git checkout -b master
-git branch --set-upstream-to=gitlab/master master
-popd
+#pushd meta-bfe
+#git checkout -b master
+#git branch --set-upstream-to=gitlab/master master
+#popd
 
 #pushd meta-java
 #git checkout -b 2020-02-13-master-next-as-zeus-3.0+
@@ -439,213 +439,213 @@ popd
 #popd
 
 # popd sources
-popd
+#popd
 
-pushd scripts
+#pushd scripts
 
-pushd convenience-scripts
-git checkout -b master
-popd
+#pushd convenience-scripts
+#git checkout -b master
+#popd
 
 # popd scripts
-popd
+#popd
 
-pushd crops-container-x86-64
+#pushd crops-container-x86-64
 
-pushd yocto-dockerfiles
-git checkout -b 2019-11-19-master-local
-git branch
-popd
+#pushd yocto-dockerfiles
+#git checkout -b 2019-11-19-master-local
+#git branch
+#popd
 
-pushd poky-container
-git checkout -b 2019-11-19-master-local
-git branch
-popd
+#pushd poky-container
+#git checkout -b 2019-11-19-master-local
+#git branch
+#popd
 
-pushd extsdk-container
-git checkout -b 2020-01-06-master-local
-git branch
-popd
+#pushd extsdk-container
+#git checkout -b 2020-01-06-master-local
+#git branch
+#popd
 
 # popd crops-container-x86-64
-popd
+#popd
 
 
-pushd oci-container-x86-64
+#pushd oci-container-x86-64
 
-pushd skopeo-container
-git checkout -b master
-git branch
-popd
+#pushd skopeo-container
+#git checkout -b master
+#git branch
+#popd
 
 # popd oci-container-x86-64
-popd
+#popd
 
-pushd app-container-x86-64
+#pushd app-container-x86-64
 
-pushd app-container-redis
-git checkout master
-git branch
-popd
+#pushd app-container-redis
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-mosquitto
-git checkout master
-git branch
-popd 
+#pushd app-container-mosquitto
+#git checkout master
+#git branch
+#popd 
 
-pushd app-container-python3-nmap-srv
-git checkout master
-git branch
-popd
+#pushd app-container-python3-nmap-srv
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-python3-data-collector
-git checkout master
-git branch
-popd
+#pushd app-container-python3-data-collector
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-image-lighttpd-oci
-git checkout master
-git branch
-popd
+#pushd app-container-image-lighttpd-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-mosquitto-oci
-git checkout master
-git branch
-popd
+#pushd app-container-mosquitto-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-oci
-git checkout master
-git branch
-popd
+#pushd app-container-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-python3-data-collector-oci
-git checkout master
-git branch
-popd
+#pushd app-container-python3-data-collector-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-python3-mastermind-oci
-git checkout master
-git branch
-popd
+#pushd app-container-python3-mastermind-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-python3-mqttbrokerclient-oci
-git checkout master
-git branch
-popd
+#pushd app-container-python3-mqttbrokerclient-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-python3-nmap-srv-oci
-git checkout master
-git branch
-popd
+#pushd app-container-python3-nmap-srv-oci
+#git checkout master
+#git branch
+#popd
 
-pushd app-container-redis-oci
-git checkout master
-git branch
-popd
+#pushd app-container-redis-oci
+#git checkout master
+#git branch
+#popd
 
 # popd app-container-x86-64
-popd
+#popd
 
-pushd sources
+#pushd sources
 
-pushd poky
-git branch
-popd
+#pushd poky
+#git branch
+#popd
 
-pushd my-mender-layer
-git branch
-popd
+#pushd my-mender-layer
+#git branch
+#popd
 
-pushd meta-virtualization
-git branch
-popd
+#pushd meta-virtualization
+#git branch
+#popd
 
-pushd meta-u-boot-wic-bsp
-git branch
-popd
+#pushd meta-u-boot-wic-bsp
+#git branch
+#popd
 
-pushd meta-u-boot-mender-bsp
-git branch
-popd
+#pushd meta-u-boot-mender-bsp
+#git branch
+#popd
 
-pushd meta-u-boot-karo-wic-bsp
-git branch
-popd
+#pushd meta-u-boot-karo-wic-bsp
+#git branch
+#popd
 
-pushd meta-sca
-git branch
-popd
+#pushd meta-sca
+#git branch
+#popd
 
-pushd meta-resy
-git branch
-popd
+#pushd meta-resy
+#git branch
+#popd
 
-pushd meta-openembedded
-git branch
-popd
+#pushd meta-openembedded
+#git branch
+#popd
 
-pushd meta-multi-v7-ml-bsp
-git branch
-popd
+#pushd meta-multi-v7-ml-bsp
+#git branch
+#popd
 
-pushd meta-mender
-git branch
-popd
+#pushd meta-mender
+#git branch
+#popd
 
-pushd meta-karo-bsp
-git branch
-popd
+#pushd meta-karo-bsp
+#git branch
+#popd
 
-pushd meta-desire
-git branch
-popd
+#pushd meta-desire
+#git branch
+#popd
 
-pushd meta-clang
-git branch
-popd
+#pushd meta-clang
+#git branch
+#popd
 
-pushd keys-for-signing
-git branch
-popd
+#pushd keys-for-signing
+#git branch
+#popd
 
-pushd meta-buildutils
-git branch
-popd
+#pushd meta-buildutils
+#git branch
+#popd
 
-pushd meta-bfe
-git branch
-popd
+#pushd meta-bfe
+#git branch
+#popd
 
 # popd sources
-popd
+#popd
 
-rm -f resy-cooker.sh
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-cooker.sh
-chmod +x resy-cooker.sh
+#rm -f resy-cooker.sh
+#wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-cooker.sh
+#chmod +x resy-cooker.sh
 
-rm -f resy-poky-container.sh
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-poky-container.sh
-chmod +x resy-poky-container.sh
+#rm -f resy-poky-container.sh
+#wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-poky-container.sh
+#chmod +x resy-poky-container.sh
 
-rm -f resy-sdk-container-installer.sh
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container-installer.sh
-chmod +x resy-sdk-container-installer.sh
+#rm -f resy-sdk-container-installer.sh
+#wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container-installer.sh
+#chmod +x resy-sdk-container-installer.sh
 
-rm -f resy-sdk-container.sh
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container.sh
-chmod +x resy-sdk-container.sh
+#rm -f resy-sdk-container.sh
+#wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy-sdk-container.sh
+#chmod +x resy-sdk-container.sh
 
-rm -f oci-copy-to-docker.sh
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/oci-copy-to-docker.sh
-chmod +x oci-copy-to-docker.sh
+#rm -f oci-copy-to-docker.sh
+#wget https://raw.githubusercontent.com/RobertBerger/manifests/master/oci-copy-to-docker.sh
+#chmod +x oci-copy-to-docker.sh
 
-set +x
+#set +x
 
-echo "new resy.sh:"
-echo "rm -f resy.sh.* && wget --no-cache https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh && chmod +x resy.sh"
-echo "use resy-poky-container.sh to start poky build container"
-echo "use resy-cooker.sh inside poky container to set up cooker and bitbake"
+#echo "new resy.sh:"
+#echo "rm -f resy.sh.* && wget --no-cache https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh && chmod +x resy.sh"
+#echo "use resy-poky-container.sh to start poky build container"
+#echo "use resy-cooker.sh inside poky container to set up cooker and bitbake"
 
-set +x
+#set +x
 
 
