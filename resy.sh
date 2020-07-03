@@ -304,12 +304,12 @@ fi # dir does not exist
   echo "<-- $K"
 done
 
-read r
+#read r
 
 # popd SOURCES
 #popd
 
-read r
+#read r
 
 set -x
 if [ ! -L resy-poky-container.sh ]; then

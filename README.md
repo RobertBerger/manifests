@@ -48,6 +48,8 @@ chmod +x resy.sh
 ./resy.sh 
 ```
 
+pick e.g. `experimental`
+
 ## poky build container
 ```
 ./resy-poky-container.sh
