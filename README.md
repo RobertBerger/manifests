@@ -1,5 +1,6 @@
 # manifests
-manifests for repo tool
+this is still called manifests, but I removed the `repo` tool.
+the manifests can be found in `resy.sh` now.
 
 ## install docker
 ```
@@ -8,10 +9,14 @@ sudo usermod -aG docker ${USER}
 sudo reboot
 ```
 
-## install git and the google repo tool
+## install git
 ```
-sudo apt install git repo
+sudo apt install git
+```
 
+### git config
+
+```
 pushd ~
 wget https://raw.githubusercontent.com/RobertBerger/manifests/master/gitconfig
 mv gitconfig .gitconfig
@@ -24,26 +29,31 @@ mkdir -p ~/projects/resy-playground
 cd ~/projects/resy-playground
 ```
 
+## (convenient) symlink on host
+```
+sudo ln -sf ~/projects/resy-playground /workdir
+```
+you might need to fix some permissions
+
 ## download what's currently on offer
 ```
-wget https://raw.githubusercontent.com/RobertBerger/manifests/master/resy.sh
+mkdir -p /workdir/sources
+pushd /workdir/sources
+git clone https://github.com/RobertBerger/manifests.git -b dunfell
+popd
 
-chmod +x resy.sh 
+cd /workdir
+ln -sf sources/manifests/resy.sh resy.sh
+chmod +x resy.sh
 ./resy.sh 
 ```
-
-## (convenient) symlink on host
-
-sudo ln -sf ~/projects/resy-playground /workdir
 
 ## poky build container
 ```
 ./resy-poky-container.sh
 ```
 
-inside the container
-
+## inside the container
 ```
 source resy-cooker.sh
 ```
-
