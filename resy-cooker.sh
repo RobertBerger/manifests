@@ -74,6 +74,7 @@ MYMAP[container-x86-64-tig]="image-influxdb-prebuilt image-influxdb-from-source 
 # cd ${HERE}
 MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
 # <-- container-arm-v7
+
 # --> multi-v7-ml
 # jenkins:
 # HERE=$(pwd)
@@ -165,6 +166,16 @@ MYMAP[multi-v7-ml-virt]="core-image-minimal core-image-minimal-virt-docker-ce"
 # cd ${HERE}
 MYMAP[multi-v7-mender]="core-image-minimal"
 # <-- multi-v7-mender
+
+# --> multi-v7-ml-xenomai
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-xenomai core-image-minimal-xenomai
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-xenomai]="core-image-minimal-xenomai"
+# <-- multi-v7-ml-xenomai
 
 # --> imx6q-phytec-mira-rdk-nand-wic
 # jenkins:
@@ -444,6 +455,23 @@ fi
 
   if [ "$machine" == "multi-v7-ml" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: xenomai
+
+  if [ "$machine" == "multi-v7-ml-xenomai" ]; then
+     export TEMPLATECONF="../meta-xenomai/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}

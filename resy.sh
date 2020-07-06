@@ -85,6 +85,7 @@ fi
      export META_KARO_BRANCH="dunfell"
      export META_PYTHON2_BRANCH="dunfell"
      export META_BFE_BRANCH="dunfell"
+     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
@@ -109,6 +110,7 @@ fi
      # not needed, since we still have python2 support
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
+     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -133,6 +135,7 @@ fi
      # not needed since we still have python2 support
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
+     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
   fi
 
 #set -x
@@ -168,15 +171,15 @@ MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2
 MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
-
 MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang 2020-06-05-master-as-dunfell"
 MYMAP[meta-buildutils]="${GITHUB}/RobertBerger/meta-buildutils ${SOURCES}/meta-buildutils 2020-06-05-master-as-dunfell"
 MYMAP[meta-mender]="${GITHUB}/RobertBerger/meta-mender ${SOURCES}/meta-mender ${META_MENDER_BRANCH}" 
 MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BRANCH}"
 MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_BFE_BRANCH}"
 MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
+MYMAP[meta-xenomai]="${GITLAB}/meta-layers/meta-xenomai.git ${SOURCES}/meta-xenomai ${META_XENOMAI_BRANCH}"
 
-
+# jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
 
 
