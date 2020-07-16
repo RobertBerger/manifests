@@ -201,6 +201,7 @@ MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-ja
 MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
 MYMAP[app-container-influxdb-prebuilt]="${GITLAB}/app-container/app-container-influxdb-prebuilt.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt master"
 MYMAP[app-container-influxdb-prebuilt-oci]="${GITLAB}/app-container/app-container-influxdb-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt-oci master"
+MYMAP[app-container-image-lighttpd-oci]="${GITLAB}/app-container/app-container-image-lighttpd-oci.git ${APP_CONTAINER_X86_64}/app-container-image-lighttpd-oci master"
 # <-- app-container-x86-64
 
 #if [ -d ${SOURCES} ]; then
