@@ -172,10 +172,21 @@ MYMAP[multi-v7-mender]="core-image-minimal"
 # HERE=$(pwd)
 # cd /workdir
 # ./resy-poky-container.sh multi-v7-ml-xenomai core-image-minimal-xenomai
+# ./resy-poky-container.sh multi-v7-ml-xenomai core-image-minimal-xenomai-plus
 # pwd
 # cd ${HERE}
-MYMAP[multi-v7-ml-xenomai]="core-image-minimal-xenomai"
+MYMAP[multi-v7-ml-xenomai]="core-image-minimal-xenomai core-image-minimal-xenomai-plus"
 # <-- multi-v7-ml-xenomai
+
+# --> multi-v7-ml-prt
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-xenomai core-image-minimal-prt
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-prt]="core-image-minimal-prt"
+# <-- multi-v7-ml-prt
 
 # --> imx6q-phytec-mira-rdk-nand-wic
 # jenkins:
@@ -481,6 +492,24 @@ fi
         tree conf
      fi
   fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: prt
+
+  if [ "$machine" == "multi-v7-ml-prt" ]; then
+     export TEMPLATECONF="../meta-prt/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
