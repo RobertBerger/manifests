@@ -8,6 +8,8 @@ USE_GUI="no"
 USE_MIRROR="no"
 DOCKER_PULL="yes"
 
+#docker login
+
 # --> check for ip address and subnet
 #WIREDIF="$(ip -o -4 route show to default | grep en | awk '{print $5}')"
 #
@@ -31,13 +33,17 @@ if [[ $WORKSPACE = *jenkins* ]]; then
    #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
    USE_GUI="no"
 else
-   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
-   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gui-gcc-9"
+   ##CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
+   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gui-gcc-9"
+   #CONTAINER="reslocal/poky-container:ubuntu-18.04"
+   CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
 fi
 
 if [[ $USE_GUI = no ]]; then
-   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
-   CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gcc-9"
+   ##CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gcc-9"
+   #CONTAINER="reslocal/poky-container:ubuntu-18.04"
+   CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
 fi
 
 #echo "CONTAINER= $CONTAINER"
@@ -104,21 +110,23 @@ if [[ $USE_MIRROR = *yes* ]]; then
    MIRROR_CMD="--add-host mirror:${MIRROR_IP}"
 fi # use mirror
 
+set +x
+if [[ $DOCKER_PULL = *yes* ]]; then
 set -x
-if [[ $DOCKERPULL = *yes* ]]; then
 docker pull ${CONTAINER}
+set +x
 fi
 
+set +x
 if [ "$#" -eq "0" ]; then
-  set +x
   echo " -- interactive mode --"
   echo "source /workdir/resy-cooker.sh in container"
   echo "+ press <ENTER> to go on"
   read r
-  set +x
   if [[ $WORKSPACE = *jenkins* ]]; then
   docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
   else
+  set -x
   docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
   fi
 else
