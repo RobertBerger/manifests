@@ -86,6 +86,8 @@ fi
      export META_PYTHON2_BRANCH="dunfell"
      export META_BFE_BRANCH="dunfell"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
+     export SKOPEO_BRANCH="skopeo-v1.1.0"
+     export TERRIER_BRANCH="2020-07-24"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
@@ -111,6 +113,8 @@ fi
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
+     export SKOPEO_BRANCH="skopeo-v1.1.0"
+     export TERRIER_BRANCH="2020-07-24"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -136,6 +140,8 @@ fi
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
+     export SKOPEO_BRANCH="skopeo-v1.1.0"
+     export TERRIER_BRANCH="2020-07-24"
   fi
 
 #set -x
@@ -162,6 +168,7 @@ MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca  ${SOURCES}/meta-sca ${META_SCA
 MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
 MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
 MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
+MYMAP[meta-multi-v7-ml-linux-yocto-custom-virt]="${GITLAB}/meta-layers/meta-multi-v7-ml-linux-yocto-custom-virt.git ${SOURCES}/meta-multi-v7-ml-linux-yocto-custom-virt ${META_MULTI_V7_ML_BSP_BRANCH}"
 MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
 MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
 MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
@@ -184,12 +191,13 @@ MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-
 
 
 # --> oci
-MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container master"
+MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container ${SKOPEO_BRANCH}"
+MYMAP[terrier-container]="${GITHUB}/RobertBerger/terrier-container ${OCI_CONTAINER_X86_64}/terrier-container ${TERRIER_BRANCH}"
 # <-- oci
 
 # --> crops
 MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-01-06-master-local"
-MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2020-05-30-master-local-gcc-9-gui-ub18"
+MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2020-07-26-master-local-gcc-9-gui-ub18"
 MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2019-11-19-master-local"
 # <-- crops
 
@@ -327,6 +335,9 @@ if [ ! -L killall_bitbake.sh ]; then
 fi
 if [ ! -L oci-copy-to-docker.sh ]; then
    ln -sf sources/manifests/oci-copy-to-docker.sh oci-copy-to-docker.sh
+fi
+if [ ! -L oci-copy-to-docker.sh ]; then
+   ln -sf sources/manifests/oci-remove-remote-docker-tag.sh oci-remove-remote-docker-tag.sh
 fi
 if [ ! -L build-and-shutdown.sh ]; then
    ln -sf sources/manifests/build-and-shutdown.sh build-and-shutdown.sh
