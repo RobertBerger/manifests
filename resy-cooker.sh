@@ -209,6 +209,16 @@ MYMAP[imx6q-phytec-mira-rdk-nand-wic]="core-image-minimal"
 MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic]="core-image-minimal core-image-minimal-virt-docker-ce"
 # <-- imx6q-phytec-mira-rdk-nand-virt-wic
 
+# --> imx6q-phytec-mira-rdk-nand-virt-wic-mc
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-wic-mc mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-mc
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic-mc]="mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-mc"
+# <-- imx6q-phytec-mira-rdk-nand-virt-wic-mc
+
 # --> imx6q-phytec-mira-rdk-nand-virt-mender
 # jenkins:
 # HERE=$(pwd)
@@ -653,8 +663,8 @@ fi
      fi
   fi
 
-  # rootfs which can host docker, 
-  # virt kernel from multi-v7-ml, 
+  # rootfs which can host docker,
+  # virt kernel from multi-v7-ml,
   # fdt
   # sd card image e.g. core-image-minimal-virt-docker-ce
   # for imx6q-phytec-mira-rdk-nand
@@ -679,6 +689,42 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
+     # --> more SCA stuff
+     if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+        # let's restore the original without sca
+        mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     fi
+     # <-- more SCA stuff
+  fi
+
+  # rootfs which can host docker,
+  # virt kernel from multi-v7-ml,
+  # fdt
+  # sd card image e.g. core-image-minimal-virt-docker-ce
+  # for imx6q-phytec-mira-rdk-nand wic image
+  # but here also multiconfig - attempt to build rootfs with docker plus
+  # application container
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-wic-mc" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand-virt-mc"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     # --> let's try to merge in sca stuff
+     #if [ ! -d ../build/${machine}/conf ]; then
+     #  echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
+     #  mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #else
+     #  echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
+     #fi
+     # <-- let's try to merge in sca stuff
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
      # --> more SCA stuff 
      if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
         # let's restore the original without sca
@@ -686,6 +732,8 @@ fi
      fi
      # <-- more SCA stuff
   fi
+
+
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
