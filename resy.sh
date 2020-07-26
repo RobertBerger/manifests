@@ -5,6 +5,8 @@ SCRIPTS="/workdir/scripts"
 JENKINS="/workdir/jenkins"
 OCI_CONTAINER_X86_64="/workdir/oci-container-x86-64"
 APP_CONTAINER_X86_64="/workdir/app-container-x86-64"
+APP_CONTAINER_ARM_V7="/workdir/app-container-arm-v7"
+APP_CONTAINER_MULTI_ARCH="/workdir/app-container-multi-arch"
 CROPS_CONTAINER_X86_64="/workdir/crops-container-x86-64"
 GITHUB="git://github.com"
 GITLAB="https://gitlab.com"
@@ -209,8 +211,18 @@ MYMAP[app-container-java-examples-oci]="${GITLAB}/app-container/app-container-ja
 MYMAP[app-container-go]="${GITLAB}/app-container/app-container-go.git ${APP_CONTAINER_X86_64}/app-container-go master"
 MYMAP[app-container-influxdb-prebuilt]="${GITLAB}/app-container/app-container-influxdb-prebuilt.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt master"
 MYMAP[app-container-influxdb-prebuilt-oci]="${GITLAB}/app-container/app-container-influxdb-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-influxdb-prebuilt-oci master"
-MYMAP[app-container-lighttpd-oci]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_X86_64}/app-container-lighttpd-oci master"
 # <-- app-container-x86-64
+
+# --> app-containers
+# Note: same repo - 3 differernt branches
+MYMAP[app-container-lighttpd-oci-x86-64]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_X86_64}/app-container-lighttpd-oci x86-64"
+MYMAP[app-container-lighttpd-oci-arm-v7]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_ARM_V7}/app-container-lighttpd-oci arm-v7"
+MYMAP[app-container-lighttpd-oci-multi-arch]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_MULTI_ARCH}/oci-lighttpd multi-arch"
+
+# app-container-lighttpd (docker) are just some experiments - does not work
+MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_X86_64}/app-container-lighttpd x86-64"
+MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
+# <-- app-containers
 
 #if [ -d ${SOURCES} ]; then
 #   rm -rf ${SOURCES}
