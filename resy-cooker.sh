@@ -182,7 +182,7 @@ MYMAP[multi-v7-ml-xenomai]="core-image-minimal-xenomai core-image-minimal-xenoma
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh multi-v7-ml-xenomai core-image-minimal-prt
+# ./resy-poky-container.sh multi-v7-ml-prt core-image-minimal-prt
 # pwd
 # cd ${HERE}
 MYMAP[multi-v7-ml-prt]="core-image-minimal-prt"

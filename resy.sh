@@ -88,6 +88,7 @@ fi
      export META_PYTHON2_BRANCH="dunfell"
      export META_BFE_BRANCH="dunfell"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
+     export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
   fi
@@ -115,6 +116,7 @@ fi
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
+     export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
   fi
@@ -142,6 +144,7 @@ fi
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
+     export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
   fi
@@ -187,6 +190,7 @@ MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-ka
 MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_BFE_BRANCH}"
 MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
 MYMAP[meta-xenomai]="${GITLAB}/meta-layers/meta-xenomai.git ${SOURCES}/meta-xenomai ${META_XENOMAI_BRANCH}"
+MYMAP[meta-prt]="${GITLAB}/meta-layers/meta-prt.git ${SOURCES}/meta-prt ${META_PRT_BRANCH}"
 
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
