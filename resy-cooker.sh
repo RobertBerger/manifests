@@ -285,9 +285,10 @@ MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 # HERE=$(pwd)
 # cd /workdir
 # ./resy-poky-container.sh karo-imx6ul-txul core-image-minimal
+# ./resy-poky-container.sh karo-imx6ul-txul core-image-minimal-bfe
 # pwd
 # cd ${HERE}
-MYMAP[karo-imx6ul-txul]="core-image-minimal"
+MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 # <-- karo-imx6ul-txul
 
 # --> karo-imx6ul-txul-uboot-wic
@@ -846,18 +847,19 @@ fi
   # artefacts kernel/fdt over tftp and rootfs over nfs are also available
   # potentially we could build u-boot only, since u-boot resides on NAND flash
   # and use karo-imx6ul-txul for development
+  # broken/deprecated at the moment???
 
-  if [ "$machine" == "karo-imx6ul-txul-uboot-wic" ]; then
-     export TEMPLATECONF="../meta-u-boot-karo-wic-bsp/template-karo-imx6ul-txul"
-     echo "TEMPLATECONF: ${TEMPLATECONF}"
-     echo "source ../sources/poky/oe-init-build-env ${machine}"
-     source ../sources/poky/oe-init-build-env ${machine}
-     # only copy site.conf if it's not already there
-     if [ ! -f conf/site.conf ]; then
-        cp ${SITE_CONF} conf/site.conf
-        tree conf
-     fi
-  fi
+  #if [ "$machine" == "karo-imx6ul-txul-uboot-wic" ]; then
+  #   export TEMPLATECONF="../meta-u-boot-karo-wic-bsp/template-karo-imx6ul-txul"
+  #   echo "TEMPLATECONF: ${TEMPLATECONF}"
+  #   echo "source ../sources/poky/oe-init-build-env ${machine}"
+  #   source ../sources/poky/oe-init-build-env ${machine}
+  #   # only copy site.conf if it's not already there
+  #   if [ ! -f conf/site.conf ]; then
+  #      cp ${SITE_CONF} conf/site.conf
+  #      tree conf
+  #   fi
+  #fi
 
   # rootfs, std kernel 4.14.x - patched for karo-imx6ul-txul, tftp/nfs image e.g. core-image-minimal
   # u-boot is not being built (mkimage is being built from poky)
