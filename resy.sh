@@ -76,7 +76,7 @@ fi
      export META_U_BOOT_WIC_BSP_BRANCH="dunfell"
      export META_U_BOOT_MENDER_BSP_BRANCH="dunfell"
      export META_U_BOOT_KARO_WIC_BSP_BRANCH="dunfell"
-     export META_KARO_BSP_BRANCH="dunfell"
+     export META_KARO_BSP_BRANCH="dunfell-5.4.x"
      export META_SCA_BRANCH="2020-06-05-dunfell"
      export META_OPENEMBEDDED_BRANCH="2020-04-30-dunfell-3.1"
      export META_JAVA_BRANCH="2020-05-08-dunfell"
