@@ -84,7 +84,6 @@ fi
      export MANIFESTS_BRANCH="dunfell"
      export META_PYTHON2_BRANCH="dunfell"
      export META_MENDER_BRANCH="2020-06-05-thud-as-dunfell"
-     export META_KARO_BRANCH="dunfell"
      export META_PYTHON2_BRANCH="dunfell"
      export META_BFE_BRANCH="dunfell"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
@@ -111,7 +110,6 @@ fi
      export MANIFESTS_BRANCH="master"
      export META_PYTHON2_BRANCH="zeus"
      export META_MENDER_BRANCH="2019-11-19-thud-as-zeus"
-     export META_KARO_BRANCH="zeus"
      # not needed, since we still have python2 support
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
@@ -139,7 +137,6 @@ fi
      export MAIFESTS_BRANCH="master"
      export META_PYTHON2_BRANCH="zeus"
      export META_MENDER_BRANCH="2019-11-19-thud-as-zeus"
-     export META_KARO_BRANCH="zeus"
      # not needed since we still have python2 support
      export META_PYTHON2_BRANCH="zeus"
      export META_BFE_BRANCH="master"
@@ -187,7 +184,7 @@ MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-s
 MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang 2020-06-05-master-as-dunfell"
 MYMAP[meta-buildutils]="${GITHUB}/RobertBerger/meta-buildutils ${SOURCES}/meta-buildutils 2020-06-05-master-as-dunfell"
 MYMAP[meta-mender]="${GITHUB}/RobertBerger/meta-mender ${SOURCES}/meta-mender ${META_MENDER_BRANCH}" 
-MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BRANCH}"
+MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BSP_BRANCH}"
 MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_BFE_BRANCH}"
 MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
 MYMAP[meta-xenomai]="${GITLAB}/meta-layers/meta-xenomai.git ${SOURCES}/meta-xenomai ${META_XENOMAI_BRANCH}"
