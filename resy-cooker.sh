@@ -75,6 +75,10 @@ MYMAP[container-x86-64-tig]="image-influxdb-prebuilt image-influxdb-from-source 
 MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
 # <-- container-arm-v7
 
+# --> container-arm-v7-tig
+MYMAP[container-arm-v7-tig]="influxdb"
+# <-- container-arm-v7-tig
+
 # --> multi-v7-ml
 # jenkins:
 # HERE=$(pwd)
@@ -468,6 +472,21 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi 
+  fi
+
+
+  # arm-v7 container e.g. for tig development and testing
+
+  if [ "$machine" == "container-arm-v7-tig" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
   fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
