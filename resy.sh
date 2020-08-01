@@ -222,6 +222,11 @@ MYMAP[app-container-lighttpd-oci-x86-64]="${GITLAB}/app-container/app-container-
 MYMAP[app-container-lighttpd-oci-arm-v7]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_ARM_V7}/app-container-lighttpd-oci arm-v7"
 MYMAP[app-container-lighttpd-oci-multi-arch]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_MULTI_ARCH}/oci-lighttpd multi-arch"
 
+# Note: same repo - 3 differernt branches
+MYMAP[app-container-telegraf-prebuilt-oci-x86-64]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-telegraf-prebuilt-oci x86-64"
+MYMAP[app-container-telegraf-prebuilt-oci-arm-v7]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_ARM_V7}/app-container-telegraf-prebuilt-oci arm-v7"
+MYMAP[app-container-telegraf-prebuilt-oci-multi-arch]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_MULTI_ARCH}/oci-telegraf-prebuilt multi-arch"
+
 # app-container-lighttpd (docker) are just some experiments - does not work
 MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_X86_64}/app-container-lighttpd x86-64"
 MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
