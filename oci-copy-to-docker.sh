@@ -73,7 +73,14 @@ set -x
 
 # check first, we clean up below if needed
 HERE_AGAIN=$(pwd)
+rm -rf unzip && mkdir unzip
 cd unzip
+
+# untar the OCI stuff
+ls -la ../${IMAGE}*.tar
+
+tar xvf ../${IMAGE}*.tar
+
 OCI="$(ls | grep rootfs-oci)"
 
 #echo "+ vi ${OCI}/index.json"
@@ -81,7 +88,7 @@ OCI="$(ls | grep rootfs-oci)"
 #read r
 #vi ${OCI}/index.json
 
-set -x
+set +x
 # hack to fix wrong entry in index.json for armv7
 #sed -i 's/\\"variant\\"/"variant"/g' ${OCI}/index.json
 #skopeo --debug copy --dest-creds ${DOCKER_USER}:${DOCKER_PW} oci:${OCI}:latest docker://${DOCKER_USER}/${CONTAINER}
@@ -112,13 +119,16 @@ set +x
    echo "and what's on docker hub:" 
    echo "    docker://${DOCKER_USER}/${CONTAINER}:${TAG}" 
    echo "seem to be idential - no need to upload again"
+   echo "press <ENTER> to go on"
+   read r
    exit 0
 fi
-set -x
 # if they are not identical, we need to upload a new one
 
 echo "looks like something is different now - might be only meta-data"
+echo "press <ENTER> to go on"
 read r
+set -x
 
 # clean up
 cd ${HERE_AGAIN}

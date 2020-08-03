@@ -148,8 +148,6 @@ MYMAP[multi-v7-ml-debug-training-pkgs]="core-image-minimal"
 MYMAP[multi-v7-ml-debug-training-lic]="core-image-minimal"
 # <-- multi-v7-ml-debug-training-lic
 
-
-
 # --> multi-v7-ml-virt
 # jenkins:
 # HERE=$(pwd)
@@ -253,6 +251,19 @@ MYMAP[imx6q-phytec-mira-rdk-nand-mender]="core-image-minimal"
 # cd ${HERE}
 MYMAP[beagle-bone-black-wic]="core-image-minimal"
 # <-- beagle-bone-black-wic
+
+
+# --> beagle-bone-black-virt-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beagle-bone-black-virt-wic core-image-minimal
+# ./resy-poky-container.sh beagle-bone-black-virt-wic core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[beagle-bone-black-virt-wic]="core-image-minimal core-image-minimal-virt-docker-ce"
+# <-- beagle-bone-black-virt-wic
+
 
 # --> beagle-bone-black-mender
 # jenkins:
@@ -714,6 +725,41 @@ fi
         # let's restore the original without sca
         mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
      fi
+     # <-- more SCA stuff
+  fi
+
+  # rootfs which can host docker,
+  # virt kernel from multi-v7-ml,
+  # fdt
+  # sd card image e.g. core-image-minimal-virt-docker-ce
+  # for beagle-bone-black
+  # removed sca
+
+  if [ "$machine" == "beagle-bone-black-virt-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-beagle-bone-black-virt"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     # --> let's try to merge in sca stuff
+     if [ ! -d ../build/${machine}/conf ]; then
+       echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
+       #mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+       #cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+       #cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     else
+       echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
+     fi
+     # <-- let's try to merge in sca stuff
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+     # --> more SCA stuff
+     #if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     #   # let's restore the original without sca
+     #   mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #fi
      # <-- more SCA stuff
   fi
 
