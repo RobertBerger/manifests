@@ -252,6 +252,15 @@ MYMAP[imx6q-phytec-mira-rdk-nand-mender]="core-image-minimal"
 MYMAP[beagle-bone-black-wic]="core-image-minimal"
 # <-- beagle-bone-black-wic
 
+# --> beagle-bone-green-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beagle-bone-green-wic core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[beagle-bone-green-wic]="core-image-minimal"
+# <-- beagle-bone-green-wic
 
 # --> beagle-bone-black-virt-wic
 # jenkins:
@@ -866,6 +875,24 @@ fi
   # mender sd card image
   if [ "$machine" == "beagle-bone-black-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-beagle-bone-black"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt 
+  # std kernel from multi-v7-ml, 
+  # sd card image e.g. core-image-minimal
+  # for beagle-bone-green
+
+  if [ "$machine" == "beagle-bone-green-wic" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-beagle-bone-green"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
