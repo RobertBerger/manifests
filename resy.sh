@@ -69,7 +69,8 @@ fi
   if [ "$manifest" == "experimental" ]; then
      #export MANIFEST="resy-experimental.xml"
      export META_RESY_BRANCH="dunfell"
-     export META_POKY_BRANCH="2020-06-29-dunfell-3.1.1+"
+     export META_POKY_BRANCH="2020-06-29-dunfell-3.1.1++"
+     export META_POKY_TRAINING_BRANCH="2020-06-29-dunfell-3.1.1+"
      export META_VIRTUALIZATION_BRANCH="2020-04-30-dunfell-3.1"
      export META_DESIRE_BRANCH="master"
      export META_MULTI_V7_ML_BSP_BRANCH="dunfell"
@@ -90,12 +91,14 @@ fi
      export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
+     export META_RASPBERRYPI_BRANCH="dunfell"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
      #export MANIFEST="resy-bleeding.xml"
      export META_RESY_BRANCH="master"
      export META_POKY_BRANCH="master"
+     export META_POKY_TRAINING_BRANCH="2020-06-29-dunfell-3.1.1+"
      export META_VIRTUALIZATION_BRANCH="2020-01-03-zeus-3.0+"
      export META_DESIRE_BRANCH="master"
      export META_MULTI_V7_ML_BSP_BRANCH="master"
@@ -117,12 +120,14 @@ fi
      export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
+     export META_RASPBERRYPI_BRANCH="dunfell"
   fi
 
   if [ "$manifest" == "stable" ]; then
      #export MANIFEST="resy.xml"
      export META_RESY_BRANCH="zeus"
      export META_POKY_BRANCH="2020-01-03-zeus-3.0.1+"
+     export META_POKY_TRAINING_BRANCH="2020-06-29-dunfell-3.1.1+"
      export META_VIRTUALIZATION_BRANCH="2020-01-03-zeus-3.0+"
      export META_DESIRE_BRANCH="zeus"
      export META_MULTI_V7_ML_BSP_BRANCH="zeus-v5.4.x"
@@ -144,6 +149,7 @@ fi
      export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
+     export META_RASPBERRYPI_BRANCH="dunfell"
   fi
 
 #set -x
@@ -154,7 +160,7 @@ declare -A MYMAP
 MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRIPTS}/convenience-scripts master"
 MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
-MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_BRANCH}"
+MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_TRAINING_BRANCH}"
 # my-mender-layer (encrypted)
 MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
 MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
@@ -189,6 +195,8 @@ MYMAP[meta-bfe]="${GITLAB}/meta-layers/meta-bfe.git ${SOURCES}/meta-bfe ${META_B
 MYMAP[meta-tig]="${GITLAB}/meta-layers/meta-tig.git ${SOURCES}/meta-tig master"
 MYMAP[meta-xenomai]="${GITLAB}/meta-layers/meta-xenomai.git ${SOURCES}/meta-xenomai ${META_XENOMAI_BRANCH}"
 MYMAP[meta-prt]="${GITLAB}/meta-layers/meta-prt.git ${SOURCES}/meta-prt ${META_PRT_BRANCH}"
+
+MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta-taspberrypi ${META_RASPBERRYPI_BRANCH}"
 
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"

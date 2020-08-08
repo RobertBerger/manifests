@@ -315,6 +315,9 @@ MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 # <-- karo-imx6ul-txul
 
+MYMAP[raspberrypi-4-64-raspi-kernel-wic]="core-image-base"
+MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
+
 # --> karo-imx6ul-txul-uboot-wic
 # @@@ This is currently broken and hopefully soon deprecated
 # jenkins:
@@ -394,7 +397,7 @@ fi
      SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample"
   fi
  
-  echo "SITE_CONF=${SITE_CONF}"
+  echo "initial SITE_CONF=${SITE_CONF}"
 
   # x86-64 container e.g. for Python development and testing
 
@@ -684,6 +687,47 @@ fi
         tree conf
      fi
   fi
+
+  # rootfs over nfs or SD card
+  # raspi kernel
+  # raspi fdt
+  # sd card image e.g. core-image-base
+  # for raspberrypi-4-64 
+
+  if [ "$machine" == "raspberrypi-4-64-raspi-kernel-wic" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-raspberrypi-ml-bsp/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs over nfs or SD card
+  # mainline/stable kernel
+  # raspi fdt ?
+  # sd card image e.g. core-image-base
+  # for raspberrypi-4-64 
+
+  if [ "$machine" == "raspberrypi-4-64-ml-kernel-wic" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-raspberrypi-ml-bsp/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs, 
   # std kernel from multi-v7-ml, 
