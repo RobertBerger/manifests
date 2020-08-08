@@ -92,6 +92,7 @@ fi
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
      export META_RASPBERRYPI_BRANCH="dunfell"
+     export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
@@ -121,6 +122,7 @@ fi
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
      export META_RASPBERRYPI_BRANCH="dunfell"
+     export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -150,6 +152,7 @@ fi
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
      export META_RASPBERRYPI_BRANCH="dunfell"
+     export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
   fi
 
 #set -x
@@ -197,6 +200,7 @@ MYMAP[meta-xenomai]="${GITLAB}/meta-layers/meta-xenomai.git ${SOURCES}/meta-xeno
 MYMAP[meta-prt]="${GITLAB}/meta-layers/meta-prt.git ${SOURCES}/meta-prt ${META_PRT_BRANCH}"
 
 MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta-raspberrypi ${META_RASPBERRYPI_BRANCH}"
+MYMAP[meta-raspberrypi-ml-bsp]="${GITLAB}/meta-layers/meta-raspberrypi-ml-bsp.git ${SOURCES}/meta-raspberrypi-ml-bsp ${META_RASPBERRYPI_ML_BSP_BRANCH}"
 
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
