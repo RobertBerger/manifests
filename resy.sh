@@ -93,6 +93,8 @@ fi
      export TERRIER_BRANCH="2020-07-24"
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
+     export META_FREESCALE_BRANCH="dunfell"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
@@ -123,6 +125,8 @@ fi
      export TERRIER_BRANCH="2020-07-24"
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
+     export META_FREESCALE_BRANCH="dunfell"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -153,8 +157,9 @@ fi
      export TERRIER_BRANCH="2020-07-24"
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
+     export META_FREESCALE_BRANCH="dunfell"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
   fi
-
 #set -x
 #repo init -u https://github.com/RobertBerger/manifests -m ${MANIFEST}
 #repo sync
@@ -187,7 +192,8 @@ MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-t
 MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
 MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
 MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
-MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp v4.19.35_1.1.0-phy"
+MYMAP[meta-freescale]="${GITHUB}/Freescale/meta-freescale ${SOURCES}/meta-freescale ${META_FREESCALE_BRANCH}"
+MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp ${META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH}"
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
 MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang 2020-06-05-master-as-dunfell"

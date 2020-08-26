@@ -318,6 +318,8 @@ MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 MYMAP[raspberrypi-4-64-raspi-kernel-wic]="core-image-base"
 MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
 
+MYMAP[phyboard-polis-imx8mm-wic]="core-image-base"
+
 # --> karo-imx6ul-txul-uboot-wic
 # @@@ This is currently broken and hopefully soon deprecated
 # jenkins:
@@ -684,6 +686,26 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs over nfs or SD card
+  # upstream kernel
+  # hacked fdt
+  # sd card image e.g. core-image-base
+  # for phyboard-polis-imx8mm
+
+  if [ "$machine" == "phyboard-polis-imx8mm-wic" ]; then
+     export TEMPLATECONF="../meta-phyboard-polis-imx8mm-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-phyboard-polis-imx8mm-bsp/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
