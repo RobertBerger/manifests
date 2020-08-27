@@ -28,10 +28,21 @@ else
           rm -rf sources
           rm -rf scripts
           sudo rm -rf build
+          rm -rf app-container-arm-v7
+          rm -rf app-container-multi-arch
           rm -rf app-container-x86-64
           rm -rf crops-container-x86-64
           rm -rf oci-container-x86-64
+          rm -rf jenkins
+          ls /workdir
           set +x
+          if [[ $WORKSPACE = *jenkins* ]]; then
+             echo "WORKSPACE '$WORKSPACE' contains jenkins"
+             echo "would normally wait here, but now I just go on"
+          else
+             echo "press <ENTER> to go on"
+             read r
+          fi
           ;;
       *)
           #exit
