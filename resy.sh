@@ -27,7 +27,7 @@ else
 	  rm -rf .repo
           rm -rf sources
           rm -rf scripts
-          rm -rf build
+          sudo rm -rf build
           rm -rf app-container-x86-64
           rm -rf crops-container-x86-64
           rm -rf oci-container-x86-64
