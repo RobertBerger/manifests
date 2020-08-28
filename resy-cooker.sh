@@ -315,10 +315,35 @@ MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 # <-- karo-imx6ul-txul
 
+# --> raspberrypi-4-64-raspi-kernel-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi-4-64-raspi-kernel-wic core-image-base
+# pwd
+# cd ${HERE}
 MYMAP[raspberrypi-4-64-raspi-kernel-wic]="core-image-base"
-MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
+# <-- raspberrypi-4-64-raspi-kernel-wic
 
+# --> raspberrypi-4-64-ml-kernel-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi-4-64-ml-kernel-wic core-image-base
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
+# <-- raspberrypi-4-64-ml-kernel-wic
+
+# --> phyboard-polis-imx8mm-wic
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh phyboard-polis-imx8mm-wic core-image-base
+# pwd
+# cd ${HERE}
 MYMAP[phyboard-polis-imx8mm-wic]="core-image-base"
+# <-- phyboard-polis-imx8mm-wic
 
 # --> karo-imx6ul-txul-uboot-wic
 # @@@ This is currently broken and hopefully soon deprecated
