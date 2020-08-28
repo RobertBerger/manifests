@@ -94,7 +94,7 @@ fi
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
-     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.x-upstream"
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
   fi
 
