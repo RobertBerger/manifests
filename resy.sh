@@ -95,6 +95,7 @@ fi
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
@@ -125,6 +126,7 @@ fi
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -157,6 +159,7 @@ fi
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
 declare -A MYMAP
@@ -205,7 +208,7 @@ MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta
 MYMAP[meta-raspberrypi-ml-bsp]="${GITLAB}/meta-layers/meta-raspberrypi-ml-bsp.git ${SOURCES}/meta-raspberrypi-ml-bsp ${META_RASPBERRYPI_ML_BSP_BRANCH}"
 
 # jenkins
-MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker 2020-06-08-jenkins-2.222.4"
+MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
 
 
 # --> oci
