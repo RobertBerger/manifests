@@ -95,6 +95,7 @@ fi
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.x-upstream"
+     export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
   fi
 
@@ -127,6 +128,7 @@ fi
      # used before dunfell on origial meta-freescale
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
@@ -160,6 +162,7 @@ fi
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
@@ -186,6 +189,9 @@ MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RES
 MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
 MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
 MYMAP[meta-multi-v7-ml-linux-yocto-custom-virt]="${GITLAB}/meta-layers/meta-multi-v7-ml-linux-yocto-custom-virt.git ${SOURCES}/meta-multi-v7-ml-linux-yocto-custom-virt ${META_MULTI_V7_ML_BSP_BRANCH}"
+
+MYMAP[meta-systemd-nfsroot]="${GITLAB}/meta-layers/meta-systemd-nfsroot.git ${SOURCES}/meta-systemd-nfsroot ${META_SYSTEMD_NFSROOT_BRANCH}"
+
 MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
 MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
 MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
