@@ -14,7 +14,7 @@ if [[ $_ == $0 ]]; then
    exit
 fi
 
-# do not user HERE here ;)
+# do not use HERE here ;)
 #HERE=$(pwd)
 
 if [ ! -d build ]; then
@@ -370,35 +370,19 @@ usage () {
 
 # --> usage
 if [ "$#" -lt "1" ]; then
+     echo "--> USAGE 1 <--"
      usage 
      #exit 0
-fi
+#fi
 # <-- usage
 
 
-if [ ! ${MYMAP[${1}]+_} ]; then
+elif [ ! ${MYMAP[${1}]+_} ]; then
   echo "--> $1 not found <--" 
+  echo "--> USAGE 2 <--"
   usage
   #exit 0
 fi
-
-# choose machine  to init 
-
-#  select machine in 'container-x86-64' 'container-arm-v7' \
-#                    'multi-v7-ml' 'multi-v7-ml-debug' 'multi-v7-ml-virt' \
-#                    'multi-v7-ml-debug-training' 'multi-v7-ml-debug-training-libs' \
-#                    'multi-v7-ml-debug-training-pkgs' 'multi-v7-ml-debug-training-lic' \
-#                    'multi-v7-mender' \
-#                    'imx6q-phytec-mira-rdk-nand-wic' 'imx6q-phytec-mira-rdk-nand-mender' \
-#                    'imx6q-phytec-mira-rdk-nand-virt-wic' 'imx6q-phytec-mira-rdk-nand-virt-mender' \
-#                    'beagle-bone-black-wic' 'beagle-bone-black-mender' \
-#                    'am335x-phytec-wega-wic' 'am335x-phytec-wega-mender' \
-#                    'karo-imx6ul-txul' 'karo-imx6ul-txul-uboot-wic'
-#  do
-#    echo "MACHINE or MACHINE-sw-variant: $machine"
-#    break;
-#  done
-
 
 if [ "$#" -gt "0" ]; then
 # here we have a MACHINE or MACHINE-sw-variant defined
@@ -408,6 +392,7 @@ echo "MACHINE or MACHINE-sw-variant: $machine"
 
 if [ ! ${MYMAP[${1}]+_} ]; then
   echo "--> $1 not found <--" 
+  echo "--> USAGE 3 <--"
   usage
   #exit 0
 fi
