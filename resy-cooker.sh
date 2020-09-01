@@ -14,7 +14,7 @@ if [[ $_ == $0 ]]; then
    exit
 fi
 
-# do not use HERE here ;)
+# do not user HERE here ;)
 #HERE=$(pwd)
 
 if [ ! -d build ]; then
@@ -344,6 +344,18 @@ MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
 # cd ${HERE}
 MYMAP[phyboard-polis-imx8mm-wic]="core-image-base"
 # <-- phyboard-polis-imx8mm-wic
+
+
+# --> phyboard-polis-imx8mm-wic-virt
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh phyboard-polis-imx8mm-wic core-image-base
+# pwd
+# cd ${HERE}
+MYMAP[phyboard-polis-imx8mm-wic-virt]="core-image-base core-image-minimal-virt-docker-ce"
+# <-- phyboard-polis-imx8mm-wic-virt
+
 
 # --> karo-imx6ul-txul-uboot-wic
 # @@@ This is currently broken and hopefully soon deprecated
@@ -719,6 +731,29 @@ fi
         tree conf
      fi
   fi
+
+
+  # rootfs over nfs or SD card
+  # upstream kernel
+  # hacked fdt
+  # sd card image e.g. core-image-base
+  # for phyboard-polis-imx8mm
+
+  if [ "$machine" == "phyboard-polis-imx8mm-wic-virt" ]; then
+     export TEMPLATECONF="../meta-phyboard-polis-imx8mm-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-phyboard-polis-imx8mm-bsp/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
 
   # rootfs over nfs or SD card
   # raspi kernel
