@@ -34,6 +34,7 @@ then
     echo "+ $0 app-container-image-lighttpd-oci-container-x86-64 oci-lighttpd latest-x86-64 container-x86-64 container-x86-64"
     echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 container-arm-v7-tig container-arm-v7"
     echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-x86-64 oci-telegraf-prebuilt latest-x86-64 container-x86-64-tig container-x86-64"
+    echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7 container-arm-v7-phoronix container-arm-v7"
     exit
 fi
 

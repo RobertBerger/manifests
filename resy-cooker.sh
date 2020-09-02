@@ -76,8 +76,13 @@ MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosqu
 # <-- container-arm-v7
 
 # --> container-arm-v7-tig
+# @@@ TODO
 MYMAP[container-arm-v7-tig]="influxdb"
 # <-- container-arm-v7-tig
+
+# --> container-arm-v7-phoronix
+MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix"
+# <-- container-arm-v7-phoronix
 
 # --> multi-v7-ml
 # jenkins:
@@ -535,6 +540,21 @@ fi
         tree conf
      fi
   fi
+
+  # arm-v7 container e.g. for phoronix development and testing
+
+  if [ "$machine" == "container-arm-v7-phoronix" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
