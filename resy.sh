@@ -97,6 +97,7 @@ fi
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.x-upstream"
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
+     export META_QT5_EXAMPLES_BRANCH="dunfell"
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
   fi
 
@@ -131,6 +132,7 @@ fi
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
+     export META_QT5_EXAMPLES_BRANCH="dunfell"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
@@ -166,6 +168,7 @@ fi
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
+     export META_QT5_EXAMPLES_BRANCH="dunfell"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
@@ -202,6 +205,7 @@ MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.
 MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
 MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
 MYMAP[meta-qt5]="${GITHUB}/RobertBerger/meta-qt5 ${SOURCES}/meta-qt5 ${META_QT5_BRANCH}"
+MYMAP[meta-qt5-examples]="${GITLAB}/meta-layers/meta-qt5-examples.git ${SOURCES}/meta-qt5-examples ${META_QT5_EXAMPLES_BRANCH}"
 MYMAP[meta-freescale]="${GITHUB}/RobertBerger/meta-freescale ${SOURCES}/meta-freescale ${META_FREESCALE_BRANCH}"
 MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp ${META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH}"
 
@@ -229,7 +233,9 @@ MYMAP[terrier-container]="${GITHUB}/RobertBerger/terrier-container ${OCI_CONTAIN
 # <-- oci
 
 # --> crops
-MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-01-06-master-local"
+# deprecated:
+MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-09-17-master-local"
+MYMAP[sdk-container]="${GITHUB}/RobertBerger/sdk-container ${CROPS_CONTAINER_X86_64}/sdk-container 2020-10-03-master-local-gcc-9-ub18"
 MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2020-07-26-master-local-gcc-9-gui-ub18"
 MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2019-11-19-master-local"
 # <-- crops
@@ -370,6 +376,9 @@ done
 set -x
 if [ ! -L resy-poky-container.sh ]; then
    ln -sf sources/manifests/resy-poky-container.sh resy-poky-container.sh
+fi
+if [ ! -L resy-sdk-container.sh ]; then
+   ln -sf sources/manifests/resy-sdk-container.sh resy-sdk-container.sh
 fi
 if [ ! -L resy-cooker.sh ]; then
    ln -sf sources/manifests/resy-cooker.sh resy-cooker.sh
