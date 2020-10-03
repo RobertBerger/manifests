@@ -84,6 +84,7 @@ MYMAP[container-arm-v7-tig]="influxdb"
 MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix"
 # <-- container-arm-v7-phoronix
 
+
 # --> multi-v7-ml
 # jenkins:
 # HERE=$(pwd)
@@ -96,6 +97,20 @@ MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix"
 # cd ${HERE}
 MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml
+
+# --> multi-v7-ml-qt5
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml core-image-minimal-qt5
+# ./resy-poky-container.sh multi-v7-ml 'core-image-minimal-qt5 -c populate_sdk'
+# ./resy-poky-container.sh multi-v7-ml core-image-minimal-base-qt5
+# ./resy-poky-container.sh multi-v7-ml 'core-image-minimal-base-qt5 -c populate_sdk'
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-qt5]="core-image-minimal-qt5 core-image-minimal-base-qt5"
+# <-- multi-v7-ml-qt5
+
 
 # --> multi-v7-ml-debug
 # jenkins:
@@ -562,6 +577,23 @@ fi
   # default kernel config: std
 
   if [ "$machine" == "multi-v7-ml" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: std
+
+  if [ "$machine" == "multi-v7-ml-qt5" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
