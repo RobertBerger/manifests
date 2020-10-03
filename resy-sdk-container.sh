@@ -1,5 +1,6 @@
 #!/bin/bash
-SDKDIR="/home/${USER}/projects/sdk"
+CONTAINER="reliableembeddedsystems/sdk-container:ubuntu-18.04-gcc-9"
 set -x
-docker run --rm -it -v /opt:/opt -v ${SDKDIR}:/workdir -v /home/${USER}/projects:/projects -v /home/student:/student reliableembeddedsystems/extsdk-container:ubuntu-16.04
+docker pull ${CONTAINER}
+docker run -e TARGET_UID=$(id -u ${USER}) -e TARGET_GID=$(stat -c "%g" /home/${USER}) -v /opt:/opt -v /workdir:/workdir -v /home/${USER}/projects:/projects -v /home/${USER}:/student -v /tftpboot:/tftpboot --interactive --tty --entrypoint=/usr/bin/entrypoint.sh ${CONTAINER} --login
 set +x
