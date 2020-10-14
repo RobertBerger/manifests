@@ -17,7 +17,7 @@ if [ $# -lt 3 ];
 then
     echo "+ $0: Too few arguments!"
     echo "+ use something like:"
-    echo "+ $0 <image name> <container name> <tag> <image container name> <machine name>"
+    echo "+ $0 <image name> <container name> <tag> <image container name> <machine name> <tmpdir>"
     echo "+ $0 app-container-image-python3-mastermind-oci app-container-python3-mastermind-oci latest"
     echo "+ $0 app-container-image-python3-mqttbrokerclient-oci app-container-python3-mqttbrokerclient-oci latest"
     echo "+ $0 app-container-image-python3-data-collector-oci app-container-python3-data-collector-oci latest"
@@ -30,42 +30,82 @@ then
     echo "+ $0 app-container-image-tensorflow-examples-oci app-container-tensorflow-examples-oci latest container-x86-64-tensorflow"
     echo "+ $0 app-container-image-influxdb-prebuilt-oci app-container-influxdb-prebuilt-oci latest container-x86-64-golang"
     echo "+ $0 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo "+ $0 app-container-image-lighttpd-oci-container-arm-v7 oci-lighttpd latest-arm-v7 container-arm-v7 container-arm-v7"
-    echo "+ $0 app-container-image-lighttpd-oci-container-x86-64 oci-lighttpd latest-x86-64 container-x86-64 container-x86-64"
-    echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 container-arm-v7-tig container-arm-v7"
-    echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-x86-64 oci-telegraf-prebuilt latest-x86-64 container-x86-64-tig container-x86-64"
-    echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7 container-arm-v7-phoronix container-arm-v7"
-    echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7hf container-arm-v7-phoronix container-arm-v7"
+    echo "+ $0 app-container-image-lighttpd-oci-container-arm-v7 oci-lighttpd latest-arm-v7 container-arm-v7 container-arm-v7 tmp"
+    echo "+ $0 app-container-image-lighttpd-oci-container-x86-64 oci-lighttpd latest-x86-64 container-x86-64 container-x86-64 tmp"
+    echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 container-arm-v7-tig container-arm-v7 tmp"
+    echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-x86-64 oci-telegraf-prebuilt latest-x86-64 container-x86-64-tig container-x86-64 tmp"
+    echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 imx6q-phytec-mira-rdk-nand-virt-wic-mc container-arm-v7 tmp-container-arm-v7-resy-container"
+    echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7 container-arm-v7-phoronix container-arm-v7 tmp"
+    echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7hf container-arm-v7-phoronix container-arm-v7 tmp"
     exit
 fi
+
+#####################################################################################################################################################################
+# ./oci-copy-to-docker.sh app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 container-arm-v7-tig container-arm-v7 tmp
+#                         image name
+#                                                                                    container name
+#                                                                                                          tag
+#                                                                                                                        image container name
+#                                                                                                                                              machine name 
+#                                                                                                                                                              tmpdir
+#####################################################################################################################################################################
+# image name: app-container-image-telegraf-prebuilt-oci-container-arm-v7
+# container name: oci-telegraf-prebuilt
+# tag: latest-arm-v7
+# image container name: container-arm-v7-tig
+# machine: container-arm-v7
+
+# if there is a repository on docker hub called:
+# docker://docker.io/reliableembeddedsystems/oci-telegraf-prebuilt
+
+# deploy dir: /workdir/build/container-arm-v7-tig/tmp/deploy/images/container-arm-v7/
+#####################################################################################################################################################################
+
+
+#####################################################################################################################################################################
+# ./oci-copy-to-docker.sh app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 imx6q-phytec-mira-rdk-nand-virt-wic-mc container-arm-v7 tmp-container-arm-v7-resy-container
+#####################################################################################################################################################################
+# image name: app-container-image-telegraf-prebuilt-oci-container-arm-v7
+# container name: oci-telegraf-prebuilt
+# tag: latest-arm-v7
+# image container name: imx6q-phytec-mira-rdk-nand-virt-wic-mc
+# machine: container-arm-v7
+
+# if there is a repository on docker hub called:
+# docker://docker.io/reliableembeddedsystems/oci-telegraf-prebuilt
+
+# deploy dir: /workdir/build/imx6q-phytec-mira-rdk-nand-virt-wic-mc/tmp-container-arm-v7-resy-container/deploy/images/container-arm-v7/
+#####################################################################################################################################################################
 
 IMAGE="$1"
 CONTAINER="$2"
 TAG="$3"
 IMAGE_CONTAINER_NAME="$4"
 MACHINE="$5"
+TMPDIR="$6"
 
 echo "image name: ${IMAGE}"
 echo "container name: ${CONTAINER}"
 echo "tag: ${TAG}" 
-echo "docker user: ${DOCKER_USER}"
-echo "docker password: ${DOCKER_PW}"
-echo "image container name: ${IMAGE_CONTAINER_NAME}"
-echo "machine: ${MACHINE}"
+#echo "docker user: ${DOCKER_USER}"
+#echo "docker password: ${DOCKER_PW}"
+echo "image container name (only used for deploy dir): ${IMAGE_CONTAINER_NAME}"
+echo "machine (only used for deploy dir): ${MACHINE}"
 
 echo "if there is a repository on docker hub called:"
 echo "docker://docker.io/${DOCKER_USER}/${CONTAINER}"
+echo "deploy dir: /workdir/build/${IMAGE_CONTAINER_NAME}/${TMPDIR}/deploy/images/${MACHINE}/"
 echo "press <ENTER>"
 read r
 
 set -x 
-cd /workdir/build/${IMAGE_CONTAINER_NAME}/tmp/deploy/images/${MACHINE}/
+cd /workdir/build/${IMAGE_CONTAINER_NAME}/${TMPDIR}/deploy/images/${MACHINE}/
 set +x
 
 retVal=$?
 if [ $retVal -ne 0 ]; then
     echo "can not cd into"
-    /workdir/build/${IMAGE_CONTAINER_NAME}/tmp/deploy/images/${MACHINE}/
+    /workdir/build/${IMAGE_CONTAINER_NAME}/${TMPDIR}/deploy/images/${MACHINE}/
     echo "press <ENTER>"
     read r
     exit $retVal
