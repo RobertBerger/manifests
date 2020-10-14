@@ -81,9 +81,12 @@ MYMAP[container-arm-v7-tig]="influxdb"
 # <-- container-arm-v7-tig
 
 # --> container-arm-v7-phoronix
-MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix"
+MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix app-container-image-phoronix-oci"
 # <-- container-arm-v7-phoronix
 
+# --> container-raspberrypi-4-64-ml-phoronix
+MYMAP[container-raspberrypi-4-64-ml-phoronix]="app-container-image-phoronix app-container-image-phoronix-oci"
+# <-- container-raspberrypi-4-64-ml-phoronix
 
 # --> multi-v7-ml
 # jenkins:
@@ -355,6 +358,28 @@ MYMAP[raspberrypi-4-64-raspi-kernel-wic]="core-image-base"
 MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
 # <-- raspberrypi-4-64-ml-kernel-wic
 
+# --> raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs core-image-base
+# ./resy-poky-container.sh raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs]="core-image-base core-image-minimal-virt-docker-ce"
+# <-- raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs
+
+# --> raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard core-image-base
+# ./resy-poky-container.sh raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard]="core-image-base core-image-minimal-virt-docker-ce"
+# <-- raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard
+
 # --> phyboard-polis-imx8mm-wic
 # jenkins:
 # HERE=$(pwd)
@@ -364,7 +389,6 @@ MYMAP[raspberrypi-4-64-ml-kernel-wic]="core-image-base"
 # cd ${HERE}
 MYMAP[phyboard-polis-imx8mm-wic]="core-image-base"
 # <-- phyboard-polis-imx8mm-wic
-
 
 # --> phyboard-polis-imx8mm-wic-virt
 # jenkins:
@@ -570,7 +594,22 @@ fi
      fi
   fi
 
+  # raspberrypi-4-64-ml container e.g. for phoronix development and testing
 
+  if [ "$machine" == "container-raspberrypi-4-64-ml-phoronix" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-raspberrypi-ml-bsp/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+ 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
   # DISTRO = resy
@@ -847,6 +886,47 @@ fi
      fi
   fi
 
+  # everthing from SD card
+  # virt kernel
+  # raspi fdt ?
+  # sd card image e.g. core-image-base
+  # for raspberrypi-4-64 
+
+  if [ "$machine" == "raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-raspberrypi-ml-bsp/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # kernel/fdt from tftp
+  # rootfs over nfs
+  # /dev/mmcblk1p3 on /var/lib/docker type btrfs
+  # virt kernel
+  # raspi fdt ?
+  # sd card image e.g. core-image-base
+  # for raspberrypi-4-64 
+
+  if [ "$machine" == "raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-raspberrypi-ml-bsp/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # rootfs, 
   # std kernel from multi-v7-ml, 
