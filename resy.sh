@@ -70,7 +70,7 @@ fi
   if [ "$manifest" == "experimental" ]; then
      export META_RESY_BRANCH="dunfell"
      export META_POKY_BRANCH="2020-08-28-dunfell-3.1.2+"
-     export META_POKY_TRAINING_BRANCH="2020-06-29-dunfell-3.1.1+"
+     export META_POKY_TRAINING_BRANCH="2020-08-28-dunfell-3.1.2+"
      export META_VIRTUALIZATION_BRANCH="2020-04-30-dunfell-3.1"
      export META_DESIRE_BRANCH="master"
      export META_MULTI_V7_ML_BSP_BRANCH="dunfell"
