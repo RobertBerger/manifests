@@ -5,7 +5,7 @@
 # set to "yes" if you want this to happen in non-interactive mode
 BUILD_ALL_VAR="no"
 USE_GUI="no"
-USE_MIRROR="no"
+USE_MIRROR="yes"
 DOCKER_PULL="yes"
 
 #docker login
