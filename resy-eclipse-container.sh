@@ -45,7 +45,7 @@ fi
 
 # run the image
 set -x
-ID=$(docker run -v ${HOME}/projects:/home/student/projects -v /opt/ext-sdk/resy:/opt/ext-sdk/resy -v /opt/ext-sdk-target-sysroot/resy:/opt/ext-sdk-target-sysroot/resy -v /opt/sdk/resy:/opt/sdk/resy -v ${HOME}/eclipse-docker/plugins:/home/genius/.eclipse -v ${HOME}/eclipse-docker/workspace:/home/genius/eclipse-workspace -v ${HOME}/docker-nonvol-scripts:/home/genius/nonvol-scripts -t -i -d -p 22 --privileged ${IMAGE_NAME} /sbin/my_init -- bash -l)
+ID=$(docker run -v ${HOME}/projects:/home/student/projects -v /datastore/opt:/datastore/opt -v /opt/ext-sdk/resy:/opt/ext-sdk/resy -v /opt/ext-sdk-target-sysroot/resy:/opt/ext-sdk-target-sysroot/resy -v /opt/sdk/resy:/opt/sdk/resy -v ${HOME}/eclipse-docker/plugins:/home/genius/.eclipse -v ${HOME}/eclipse-docker/workspace:/home/genius/eclipse-workspace -v ${HOME}/docker-nonvol-scripts:/home/genius/nonvol-scripts -t -i -d -p 22 --privileged ${IMAGE_NAME} /sbin/my_init -- bash -l)
 set +x
 echo "+ ID ${ID}"
 
