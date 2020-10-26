@@ -52,6 +52,10 @@ MYMAP[container-x86-64-java]="app-container-image-java"
 MYMAP[container-x86-64-tensorflow]="app-container-image-tensorflow"
 # <-- container-x86-64-tensorflow
 
+# --> container-x86-64-tensorflow-master
+MYMAP[container-x86-64-tensorflow-master]="app-container-image-tensorflow"
+# <-- container-x86-64-tensorflow-master
+
 # --> container-x86-64-golang
 MYMAP[container-x86-64-golang]="app-container-image-go"
 # <-- container-x86-64-golang
@@ -59,6 +63,10 @@ MYMAP[container-x86-64-golang]="app-container-image-go"
 # --> container-x86-64-tig
 MYMAP[container-x86-64-tig]="image-influxdb-prebuilt image-influxdb-from-source app-container-image-influxdb-prebuilt app-container-image-influxdb-prebuilt-oci"
 # <-- container-x86-64-tig
+
+# --> container-x86-64-tig-master
+MYMAP[container-x86-64-tig-master]="image-influxdb-prebuilt image-influxdb-from-source app-container-image-influxdb-prebuilt app-container-image-influxdb-prebuilt-oci"
+# <-- container-x86-64-tig-master
 
 # --> container-arm-v7
 # jenkins:
@@ -523,6 +531,23 @@ fi
   fi
 
 
+ # x86-64 tensorflow master container e.g. for tensorflow development and testing
+
+  if [ "$machine" == "container-x86-64-tensorflow-master" ]; then
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-resy-master/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
+
+
   # x86-64 golang container e.g. for golang development and testing
 
   if [ "$machine" == "container-x86-64-golang" ]; then
@@ -547,6 +572,22 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # x86-64 tig master container e.g. for tig development and testing
+
+  if [ "$machine" == "container-x86-64-tig-master" ]; then
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-resy-master/template-common/site.conf.sample conf/site.conf
         tree conf
      fi
   fi
