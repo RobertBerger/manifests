@@ -100,6 +100,7 @@ fi
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
+     export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
   fi
 
@@ -135,6 +136,7 @@ fi
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
+     export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
@@ -171,6 +173,7 @@ fi
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
+     export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
   fi
 
@@ -207,7 +210,7 @@ MYMAP[meta-systemd-nfsroot]="${GITLAB}/meta-layers/meta-systemd-nfsroot.git ${SO
 MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
 MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
 MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
-MYMAP[meta-tensorflow-master]="${GIT_YP}/meta-tensorflow ${SOURCES}/meta-tensorflow-master master"
+MYMAP[meta-tensorflow-master]="${GIT_YP}/meta-tensorflow ${SOURCES}/meta-tensorflow-master export ${META_TENSORFLOW_MASTER_BRANCH}"
 MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
 MYMAP[meta-tensorflow-examples-master]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples-master master"
 MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
