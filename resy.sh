@@ -282,11 +282,32 @@ MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-ligh
 MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
 # <-- app-containers
 
+# --> I guess we should update manifests first
+  echo "+ Do you want to replace manifests first?"
+  read -r -p "Are you sure? [y/N] " response
+  case "$response" in
+      [yY][eE][sS]|[yY])
+          echo "+ replacing manifests!"
+	  set ${MYMAP["manifests"]}
+	  echo "+ rm -rf $2"
+          rm -rf $2
+          echo "+ git clone -b $3 $1 $2"
+          git clone -b $3 $1 $2
+          echo "+ rerun resy.sh and pick [N] next time"
+          exit
+          ;;
+      *)
+          #exit
+          echo "+ manifests might be replaced later"
+          echo "+ you might need to run resy.sh again"
+          ;;
+  esac
+# <-- I guess we should update manifests first
+
 for K in "${!MYMAP[@]}"
 do
   echo "--> $K"
   set ${MYMAP["${K}"]}
-
 
   # if dir already exists we need to check if it needs update
   if [ -d $2 ]; then
