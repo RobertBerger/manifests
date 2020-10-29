@@ -210,7 +210,7 @@ MYMAP[meta-systemd-nfsroot]="${GITLAB}/meta-layers/meta-systemd-nfsroot.git ${SO
 MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
 MYMAP[meta-java-examples]="${GITLAB}/meta-layers/meta-java-examples.git ${SOURCES}/meta-java-examples master"
 MYMAP[meta-tensorflow]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow ${META_TENSORFLOW_BRANCH}"
-MYMAP[meta-tensorflow-master]="${GIT_YP}/meta-tensorflow ${SOURCES}/meta-tensorflow-master ${META_TENSORFLOW_MASTER_BRANCH}"
+MYMAP[meta-tensorflow-master]="${GITHUB}/RobertBerger/meta-tensorflow ${SOURCES}/meta-tensorflow-master ${META_TENSORFLOW_MASTER_BRANCH}"
 MYMAP[meta-tensorflow-examples]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples master"
 MYMAP[meta-tensorflow-examples-master]="${GITLAB}/meta-layers/meta-tensorflow-examples.git ${SOURCES}/meta-tensorflow-examples-master master"
 MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SOURCES}/meta-golang-examples master"
@@ -309,6 +309,21 @@ do
   echo "--> $K"
   set ${MYMAP["${K}"]}
 
+  # if dir already exists we need to check if it's the correct remote uri
+  if [ -d $2 ]; then
+    pushd $2
+    REMOTE_URI=$(git remote get-url origin)
+    if [[ $REMOTE_URI = ${1} ]]; then
+       echo -e "\e[32m correct\e[39m REMOTE_URI: ${REMOTE_URI}"
+    else
+       echo -e "\e[31m wrong\e[39m REMOTE_URI: ${REMOTE_URI}"
+       echo "+ should be ${1}"
+       # we can just erase it and will get the right one
+       echo "+ rm -rf $2"
+       rm -rf $2
+    fi
+    popd
+  fi
   # if dir already exists we need to check if it needs update
   if [ -d $2 ]; then
     pushd $2
