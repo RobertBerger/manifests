@@ -169,6 +169,16 @@ MYMAP[multi-v7-ml-debug-training-libs]="core-image-minimal"
 MYMAP[multi-v7-ml-debug-training-pkgs]="core-image-minimal"
 # <-- multi-v7-ml-debug-training-pkgs
 
+# --> multi-v7-ml-pkgs
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-pkgs core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-pkgs]="core-image-minimal"
+# <-- multi-v7-ml-pkgs
+
 # --> multi-v7-ml-debug-training-lic
 # jenkins:
 # HERE=$(pwd)
@@ -791,6 +801,28 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
+  fi
+
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development - ipk: signed packages, signed package feed
+  # DISTRO = resy
+  # default kernel config: std?
+  # poky
+
+  if [ "$machine" == "multi-v7-ml-pkgs" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-multi-v7-ml-pkgs"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky/oe-init-build-env ${machine}"
+     source ../sources/poky/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+     # import the keys
+     ../../sources/meta-multi-v7-ml-bsp/template-multi-v7-ml-pkgs/gpg-stuff/container-import-keys.sh
   fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
