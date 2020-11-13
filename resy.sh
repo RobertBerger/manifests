@@ -101,6 +101,7 @@ fi
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
+     export META_PKG_BRANCH="master"
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
   fi
 
@@ -186,6 +187,8 @@ MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${MET
 # my-mender-layer (encrypted)
 MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
 #MYMAP[keys-for-signing]="${GITHUB}/RobertBerger/keys-for-signing ${SOURCES}/keys-for-signing master"
+MYMAP[keys-for-ipk-signing]="${GITLAB}/robert.berger/keys-for-ipk-signing.git ${SOURCES}/keys-for-ipk-signing master"
+
 MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
 MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
 MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master"
@@ -234,6 +237,8 @@ MYMAP[meta-prt]="${GITLAB}/meta-layers/meta-prt.git ${SOURCES}/meta-prt ${META_P
 
 MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta-raspberrypi ${META_RASPBERRYPI_BRANCH}"
 MYMAP[meta-raspberrypi-ml-bsp]="${GITLAB}/meta-layers/meta-raspberrypi-ml-bsp.git ${SOURCES}/meta-raspberrypi-ml-bsp ${META_RASPBERRYPI_ML_BSP_BRANCH}"
+
+MYMAP[meta-pkg]="${GITLAB}/meta-layers/meta-pkg.git ${SOURCES}/meta-pkg ${META_PKG_BRANCH}"
 
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
