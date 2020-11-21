@@ -48,6 +48,10 @@ MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosqu
 MYMAP[container-x86-64-java]="app-container-image-java"
 # <-- container-x86-64-java
 
+# --> container-x86-64-java-master
+MYMAP[container-x86-64-java-master]="app-container-image-java"
+# <-- container-x86-64-java-master
+
 # --> container-x86-64-tensorflow
 MYMAP[container-x86-64-tensorflow]="app-container-image-tensorflow"
 # <-- container-x86-64-tensorflow
@@ -522,6 +526,35 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # x86-64 java master container e.g. for Java development and testing
+
+  if [ "$machine" == "container-x86-64-java-master" ]; then
+     # I moved to ubuntu 18 and gcc-9 by default - let's see
+     # --> currently only host gcc-9 seems to work here
+     # check if hostname specific site.conf exists and pick it up
+     #if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 ]; then
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 "
+     #else
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample_gcc-9"
+     #fi
+     #
+     #echo "SITE_CONF=${SITE_CONF}"
+     # <-- currently only host gcc-9 seems to work here
+
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-resy-master/template-common/site.conf.sample conf/site.conf
         tree conf
      fi
   fi
