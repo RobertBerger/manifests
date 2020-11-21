@@ -240,6 +240,7 @@ MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta
 MYMAP[meta-raspberrypi-ml-bsp]="${GITLAB}/meta-layers/meta-raspberrypi-ml-bsp.git ${SOURCES}/meta-raspberrypi-ml-bsp ${META_RASPBERRYPI_ML_BSP_BRANCH}"
 
 MYMAP[meta-pkg]="${GITLAB}/meta-layers/meta-pkg.git ${SOURCES}/meta-pkg ${META_PKG_BRANCH}"
+MYMAP[meta-lib]="${GITLAB}/meta-layers/meta-lib.git ${SOURCES}/meta-lib master"
 
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
