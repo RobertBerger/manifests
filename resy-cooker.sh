@@ -113,6 +113,19 @@ MYMAP[container-raspberrypi-4-64-ml-phoronix]="app-container-image-phoronix app-
 MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml
 
+# --> multi-v7-ml-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-master core-image-minimal
+# ./resy-poky-container.sh multi-v7-ml-master core-image-sato-sdk
+# ./resy-poky-container.sh multi-v7-ml-master 'core-image-sato-sdk -c populate_sdk'
+# ./resy-poky-container.sh multi-v7-ml-master 'core-image-sato-sdk -c populate_sdk_ext'
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-master]="core-image-minimal core-image-sato-sdk"
+# <-- multi-v7-ml-master
+
 # --> multi-v7-ml-qt5
 # jenkins:
 # HERE=$(pwd)
@@ -401,6 +414,16 @@ MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs]="core-image-base core-image-
 # cd ${HERE}
 MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard]="core-image-base core-image-minimal-virt-docker-ce"
 # <-- raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard
+
+# --> imx8mmevk-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx8mmevk-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx8mmevk-master]="core-image-minimal"
+# <-- imx8mmevk-master
 
 # --> phyboard-polis-imx8mm-wic
 # jenkins:
@@ -711,6 +734,26 @@ fi
      fi
   fi
 
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: std
+
+  if [ "$machine" == "multi-v7-ml-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
   # DISTRO = resy
@@ -905,6 +948,26 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs over nfs or SD card
+  # upstream kernel - kind of from meta-freescale
+  # hacked fdt - from meta-freescale
+  # sd card image e.g. core-image-minimal
+  # for imx8mmevk master branch
+
+  if [ "$machine" == "imx8mmevk-master" ]; then
+     export TEMPLATECONF="../meta-fsl-common/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-fsl-common/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi

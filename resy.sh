@@ -195,6 +195,7 @@ MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta
 MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials dunfell"
 # my meta-u-boot-wic-bsp bsp u-boot is here
 MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
+MYMAP[meta-u-boot-wic-bsp-master]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp-master master"
 # my meta-u-boot-mender-bsp bsp u-boot is here
 MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git ${SOURCES}/meta-u-boot-mender-bsp ${META_U_BOOT_MENDER_BSP_BRANCH}"
 # meta-u-boot-karo-wic-bsp: deprecated?
@@ -206,6 +207,7 @@ MYMAP[resy-master]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy-mas
 MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/meta-openembedded ${META_OPENEMBEDDED_BRANCH}"
 MYMAP[meta-openembedded-master]="${GIT_OE}/meta-openembedded ${SOURCES}/meta-openembedded-master master"
 MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
+MYMAP[meta-multi-v7-ml-bsp-master]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp-master master"
 MYMAP[meta-multi-v7-ml-linux-yocto-custom-virt]="${GITLAB}/meta-layers/meta-multi-v7-ml-linux-yocto-custom-virt.git ${SOURCES}/meta-multi-v7-ml-linux-yocto-custom-virt ${META_MULTI_V7_ML_BSP_BRANCH}"
 
 MYMAP[meta-systemd-nfsroot]="${GITLAB}/meta-layers/meta-systemd-nfsroot.git ${SOURCES}/meta-systemd-nfsroot ${META_SYSTEMD_NFSROOT_BRANCH}"
