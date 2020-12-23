@@ -258,6 +258,17 @@ MYMAP[multi-v7-ml-prt]="core-image-minimal-prt"
 MYMAP[imx6q-phytec-mira-rdk-nand-wic]="core-image-minimal"
 # <-- imx6q-phytec-mira-rdk-nand-wic
 
+# --> imx6q-phytec-mira-rdk-nand-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-wic-master]="core-image-minimal"
+# <-- imx6q-phytec-mira-rdk-nand-wic-master
+
+
 # --> imx6q-phytec-mira-rdk-nand-virt-wic
 # jenkins:
 # HERE=$(pwd)
@@ -310,6 +321,65 @@ MYMAP[imx6q-phytec-mira-rdk-nand-mender]="core-image-minimal"
 MYMAP[beagle-bone-black-wic]="core-image-minimal"
 # <-- beagle-bone-black-wic
 
+# --> beagle-bone-black-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beagle-bone-black-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[beagle-bone-black-wic-master]="core-image-minimal"
+# <-- beagle-bone-black-wic-master
+
+# --> am335x-pocketbeagle-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh am335x-pocketbeagle-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[am335x-pocketbeagle-wic-master]="core-image-minimal"
+# <-- am335x-pocketbeagle-wic-master
+
+# --> omap3-beagle-xm-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh omap3-beagle-xm-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[omap3-beagle-xm-wic-master]="core-image-minimal"
+# <-- omap3-beagle-xm-wic-master
+
+# --> stm32mp157c-dk2-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh stm32mp157c-dk2-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[stm32mp157c-dk2-wic-master]="core-image-minimal"
+# <-- stm32mp157c-dk2-wic-master
+
+# --> stm32mp157c-dk2-meta-stm32mp1-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh stm32mp157c-dk2-meta-stm32mp1-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+# MYMAP[stm32mp157c-dk2-meta-stm32mp1-wic-master]="core-image-minimal"
+# <-- stm32mp157c-dk2-meta-stm32mp1-wic-master
+
+# --> de0-nano-soc-kit-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh de0-nano-soc-kit-wic-master core-image-minimal
+# cd ${HERE}
+MYMAP[de0-nano-soc-kit-wic-master]="core-image-minimal"
+# <-- de0-nano-soc-kit-wic-master
+
 # --> beagle-bone-green-wic
 # jenkins:
 # HERE=$(pwd)
@@ -319,6 +389,17 @@ MYMAP[beagle-bone-black-wic]="core-image-minimal"
 # cd ${HERE}
 MYMAP[beagle-bone-green-wic]="core-image-minimal"
 # <-- beagle-bone-green-wic
+
+# --> beagle-bone-green-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beagle-bone-green-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[beagle-bone-green-wic-master]="core-image-minimal"
+# <-- beagle-bone-green-wic-master
+
 
 # --> beagle-bone-black-virt-wic
 # jenkins:
@@ -352,6 +433,16 @@ MYMAP[beagle-bone-black-mender]="core-image-minimal"
 MYMAP[am335x-phytec-wega-wic]="core-image-minimal"
 # <-- am335x-phytec-wega-wic
 
+# --> am335x-phytec-wega-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh am335x-phytec-wega-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[am335x-phytec-wega-wic-master]="core-image-minimal"
+# <-- am335x-phytec-wega-wic-master
+
 # --> am335x-phytec-wega-mender
 # jenkins:
 # HERE=$(pwd)
@@ -361,6 +452,26 @@ MYMAP[am335x-phytec-wega-wic]="core-image-minimal"
 # cd ${HERE}
 MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 # <-- am335x-phytec-wega-mender
+
+# --> imx6ul-phytec-segin-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6ul-phytec-segin-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx6ul-phytec-segin-wic-master]="core-image-minimal"
+# <-- imx6ul-phytec-segin-wic-master
+
+# --> imx6sx-udoo-neo-full-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6sx-udoo-neo-full-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx6sx-udoo-neo-full-wic-master]="core-image-minimal"
+# <-- imx6sx-udoo-neo-full-wic-master
 
 # --> karo-imx6ul-txul
 # jenkins:
@@ -573,7 +684,6 @@ fi
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
-     # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
@@ -607,7 +717,6 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
-        # custom site.conf
         cp ../../sources/meta-resy-master/template-common/site.conf.sample conf/site.conf
         tree conf
      fi
@@ -1115,6 +1224,26 @@ fi
      fi
   fi
 
+  # rootfs,
+  # std kernel from multi-v7-ml,
+  # fdt,
+  # sd card image e.g. core-image-minimal
+  # for imx6q-phytec-mira-rdk-nand
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
   # rootfs which can host docker,
   # virt kernel from multi-v7-ml,
   # fdt
@@ -1284,6 +1413,26 @@ fi
   fi
 
 
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for beagle-bone-black
+
+  if [ "$machine" == "beagle-bone-black-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-beagle-bone-black-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-beagle-bone-black-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
   # mender sd card image
   if [ "$machine" == "beagle-bone-black-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-beagle-bone-black"
@@ -1296,6 +1445,108 @@ fi
         tree conf
      fi
   fi
+
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for pocketbeagle
+
+  if [ "$machine" == "am335x-pocketbeagle-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-am335x-pocketbeagle-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-am335x-pocketbeagle-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for beagle-xm
+
+  if [ "$machine" == "omap3-beagle-xm-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-omap3-beagle-xm-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-omap3-beagle-xm-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for stm32mp157c-dk2
+
+  if [ "$machine" == "stm32mp157c-dk2-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-stm32mp157c-dk2-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-stm32mp157c-dk2-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for de0-nano-soc-kit
+
+  if [ "$machine" == "de0-nano-soc-kit-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-de0-nano-soc-kit-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-de0-nano-soc-kit-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for stm32mp157c-dk2 with meta-stm32mp1
+
+  #if [ "$machine" == "stm32mp157c-dk2-meta-stm32mp1-wic-master" ]; then
+  #   export TEMPLATECONF="../meta-stm32mp157c-dk2-addon/template-meta-stm32mp1-master"
+  #   echo "TEMPLATECONF: ${TEMPLATECONF}"
+  #   echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+  #   source ../sources/poky-master/oe-init-build-env ${machine}
+  #   # only copy site.conf if it's not already there
+  #   if [ ! -f conf/site.conf ]; then
+  #      #cp ${SITE_CONF} conf/site.conf
+  #      # custom site.conf
+  #      cp ../../sources/meta-stm32mp157c-dk2-addon/template-meta-stm32mp1-master/site.conf conf/site.conf
+  #      tree conf
+  #   fi
+  #fi
 
   # rootfs,
   # kernel/fdt 
@@ -1315,6 +1566,27 @@ fi
      fi
   fi
 
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for beagle-bone-green
+
+  if [ "$machine" == "beagle-bone-green-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-beagle-bone-green-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-beagle-bone-green-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
   # rootfs, 
   # kernel/fdt
   # std kernel from multi-v7-ml, 
@@ -1333,6 +1605,28 @@ fi
      fi
   fi
 
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for am335x-phytec-wega
+
+  if [ "$machine" == "am335x-phytec-wega-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-am335x-phytec-wega-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-am335x-phytec-wega-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
   # mender sd card image
 
   if [ "$machine" == "am335x-phytec-wega-mender" ]; then
@@ -1343,6 +1637,46 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for imx6ul-phytec-segin
+
+  if [ "$machine" == "imx6ul-phytec-segin-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for imx6sx-udoo-neo-full
+
+  if [ "$machine" == "imx6sx-udoo-neo-full-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6sx-udoo-neo-full-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6sx-udoo-neo-full-master/site.conf conf/site.conf
         tree conf
      fi
   fi
