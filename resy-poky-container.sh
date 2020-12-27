@@ -106,9 +106,9 @@ fi # use gui
 #read r
 
 if [[ $USE_MIRROR = *yes* ]]; then
-   MIRROR_IP=$(getent ahostsv4 mirror | awk '{print $1}' | head -1)
-   MIRROR_CMD="--add-host mirror:${MIRROR_IP}"
-   #MIRROR_CMD="--add-host mirror:192.168.42.1"
+   #MIRROR_IP=$(getent ahostsv4 mirror | awk '{print $1}' | head -1)
+   #MIRROR_CMD="--add-host mirror:${MIRROR_IP}"
+   MIRROR_CMD="--add-host mirror:192.168.42.1"
 fi # use mirror
 
 set +x
