@@ -300,8 +300,8 @@ MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-
 	  set ${MYMAP["manifests"]}
 	  echo "+ rm -rf $2"
           rm -rf $2
-          echo "+ git clone -b $3 $1 $2"
-          git clone -b $3 $1 $2
+          echo "+ git clone -b $3 $1 $2 --single-branch"
+          git clone -b $3 $1 $2 --single-branch
           echo "+ rerun resy.sh and pick [N] next time"
           exit
           ;;
@@ -403,8 +403,8 @@ else # dir exists above
   #   rm -rf $2 
   #fi
 
-  echo "git clone -b $3 $1 $2"
-  git clone -b $3 $1 $2
+  echo "git clone -b $3 $1 $2 --single-branch"
+  git clone -b $3 $1 $2 --single-branch
   retVal=$?
   if [ $retVal -ne 0 ]; then
      echo "Error $retVal"
