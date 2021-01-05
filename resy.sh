@@ -204,7 +204,8 @@ MYMAP[meta-u-boot-wic-bsp-master]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git
 MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git ${SOURCES}/meta-u-boot-mender-bsp ${META_U_BOOT_MENDER_BSP_BRANCH}"
 # meta-u-boot-karo-wic-bsp: deprecated?
 #MYMAP[meta-u-boot-karo-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-karo-wic-bsp.git ${SOURCES}/meta-u-boot-karo-wic-bsp ${META_U_BOOT_KARO_WIC_BSP_BRANCH}"
-MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca  ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
+MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
+MYMAP[meta-sca-master]="${GITHUB}/RobertBerger/meta-sca ${SOURCES}/meta-sca-master master"
 MYMAP[meta-spdxscanner-master]="${GIT_YP}/meta-spdxscanner ${SOURCES}/meta-spdxscanner-master master"
 # my resy distro 
 MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
