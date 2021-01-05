@@ -5,8 +5,15 @@
 # set to "yes" if you want this to happen in non-interactive mode
 BUILD_ALL_VAR="no"
 USE_GUI="no"
-USE_MIRROR="yes"
+USE_MIRROR="no"
 DOCKER_PULL="yes"
+USE_ICECC="no"
+
+if [[ $USE_ICECC = yes ]]; then
+   # iceccd port
+   # EXPOSE 10245 8765/TCP 8765/UDP 8766
+   ICECC="--net=host -p ::10245/tcp -p ::8765/tcp -p ::8766/tcp -p ::8765/udp"
+fi
 
 #docker login
 
@@ -125,10 +132,10 @@ if [ "$#" -eq "0" ]; then
   echo "+ press <ENTER> to go on"
   read r
   if [[ $WORKSPACE = *jenkins* ]]; then
-  docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
+  docker run --name poky_container --rm -it ${MIRROR_CMD} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
   else
   set -x
-  docker run --name poky_container --rm -it ${MIRROR_CMD} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
+  docker run --name poky_container --rm -it ${MIRROR_CMD} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
   fi
 else
   set +x
@@ -159,9 +166,9 @@ else
   set +x
 
   if [[ $WORKSPACE = *jenkins* ]]; then
-  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && printf "\e[31m+ Docker ERRORS found (2)\e[0m\n" && exit 1
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && printf "\e[31m+ Docker ERRORS found (2)\e[0m\n" && exit 1
   else
-  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
   fi
 fi # non interactve mode
 set +x
