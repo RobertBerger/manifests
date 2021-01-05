@@ -3,6 +3,7 @@
 SOURCES="/workdir/sources"
 SCRIPTS="/workdir/scripts"
 JENKINS="/workdir/jenkins"
+FOSSOLOGY="/workdir/fossology"
 OCI_CONTAINER_X86_64="/workdir/oci-container-x86-64"
 APP_CONTAINER_X86_64="/workdir/app-container-x86-64"
 APP_CONTAINER_ARM_V7="/workdir/app-container-arm-v7"
@@ -103,6 +104,7 @@ fi
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export META_PKG_BRANCH="master"
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
+     export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
   if [ "$manifest" == "bleeding" ]; then
@@ -139,6 +141,7 @@ fi
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
+     export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
   if [ "$manifest" == "stable" ]; then
@@ -176,6 +179,7 @@ fi
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
+     export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
 declare -A MYMAP
@@ -248,6 +252,8 @@ MYMAP[meta-lib]="${GITLAB}/meta-layers/meta-lib.git ${SOURCES}/meta-lib master"
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
 
+# fossology
+MYMAP[fossology]="${GITHUB}/RobertBerger/fossology ${FOSSOLOGY}/fossology ${FOSSOLOGY_BRANCH}"
 
 # --> oci
 MYMAP[skopeo-container]="${GITHUB}/RobertBerger/skopeo-container ${OCI_CONTAINER_X86_64}/skopeo-container ${SKOPEO_BRANCH}"
