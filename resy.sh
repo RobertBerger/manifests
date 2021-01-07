@@ -69,31 +69,35 @@ else
     break;
   done
 fi
-
+  # experimental: master as gatesgarth
   if [ "$manifest" == "experimental" ]; then
-     export META_RESY_BRANCH="dunfell"
-     export META_POKY_BRANCH="2020-08-28-dunfell-3.1.2++"
-     export META_POKY_TRAINING_BRANCH="2020-08-28-dunfell-3.1.2+"
-     export META_VIRTUALIZATION_BRANCH="2020-04-30-dunfell-3.1"
+     export META_RESY_BRANCH="gatesgarth"
+     export META_POKY_BRANCH="2021-01-07-master-as-gatesgarth-3.2.66+"
+     export META_POKY_TRAINING_BRANCH="2021-01-07-master-as-gatesgarth-3.2.66+"
+     export META_VIRTUALIZATION_BRANCH="2021-01-07-master-as-gatesgarth-3.2"
      export META_DESIRE_BRANCH="master"
-     export META_MULTI_V7_ML_BSP_BRANCH="dunfell"
-     export META_U_BOOT_WIC_BSP_BRANCH="dunfell"
-     export META_U_BOOT_MENDER_BSP_BRANCH="dunfell"
-     export META_U_BOOT_KARO_WIC_BSP_BRANCH="dunfell"
+     export META_MULTI_V7_ML_BSP_BRANCH="gatesgarth"
+     export META_U_BOOT_WIC_BSP_BRANCH="gatesgarth"
+     # u-boot-mender only dummy here - needs fixing
+     export META_U_BOOT_MENDER_BSP_BRANCH="master"
+     # u-boot-karo-wic-bsp only dummy here - needs fixing
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
+     # meta-karo-bsp only dummy here - needs fixing
      export META_KARO_BSP_BRANCH="dunfell-5.4.x"
-     export META_SCA_BRANCH="2020-06-05-dunfell"
-     export META_OPENEMBEDDED_BRANCH="2020-04-30-dunfell-3.1"
-     export META_JAVA_BRANCH="2020-05-08-dunfell"
-     export META_TENSORFLOW_BRANCH="2020-05-10-master-as-dunfell"
-     export MANIFESTS_BRANCH="dunfell"
-     export META_PYTHON2_BRANCH="dunfell"
+     export META_SCA_BRANCH="2021-01-07-master-as-gatesgarth"
+     export META_OPENEMBEDDED_BRANCH="2021-01-07-master-as-gatesgarth"
+     export META_JAVA_BRANCH="2021-01-07-gatesgarth"
+     export META_TENSORFLOW_BRANCH="2021-01-07-master-as-gatesgarth"
+     export MANIFESTS_BRANCH="master"
+     # meta-mender only dummy here - needs fixing
      export META_MENDER_BRANCH="2020-06-05-thud-as-dunfell"
-     export META_PYTHON2_BRANCH="dunfell"
-     export META_BFE_BRANCH="dunfell"
-     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
-     export META_PRT_BRANCH="dunfell"
-     export SKOPEO_BRANCH="skopeo-v1.1.0"
-     export TERRIER_BRANCH="2020-07-24"
+     # meta-python2 deprecated
+     # export META_PYTHON2_BRANCH="dunfell"
+     export META_BFE_BRANCH="gatesgarth"
+     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128-gatesgarth"
+     export META_PRT_BRANCH="gatesgarth"
+
+     # --> those need fixing
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
@@ -103,6 +107,11 @@ fi
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export META_PKG_BRANCH="master"
+     # <-- those need fixing
+
+     export SKOPEO_BRANCH="skopeo-v1.1.0"
+     export TERRIER_BRANCH="2020-07-24"
+
      export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
@@ -144,28 +153,27 @@ fi
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
+  # stable: dunfell
   if [ "$manifest" == "stable" ]; then
-     #export MANIFEST="resy.xml"
-     export META_RESY_BRANCH="zeus"
-     export META_POKY_BRANCH="2020-01-03-zeus-3.0.1+"
-     export META_POKY_TRAINING_BRANCH="2020-06-29-dunfell-3.1.1+"
-     export META_VIRTUALIZATION_BRANCH="2020-01-03-zeus-3.0+"
-     export META_DESIRE_BRANCH="zeus"
-     export META_MULTI_V7_ML_BSP_BRANCH="zeus-v5.4.x"
-     export META_U_BOOT_WIC_BSP_BRANCH="zeus-v5.4.x"
-     export META_U_BOOT_MENDER_BSP_BRANCH="zeus-v5.4.x"
-     export META_U_BOOT_KARO_WIC_BSP_BRANCH="zeus"
-     export META_KARO_BSP_BRANCH="zeus"
-     export META_SCA_BRANCH="2020-01-03-zeus"
-     export META_OPENEMBEDDED_BRANCH="2020-01-03-zeus-3.0+"
-     export META_JAVA_BRANCH="2020-02-13-master-next-as-zeus-3.0+"
-     export META_TENSORFLOW_BRANCH="2020-05-10-master-as-zeus"
-     export MAIFESTS_BRANCH="master"
-     export META_PYTHON2_BRANCH="zeus"
-     export META_MENDER_BRANCH="2019-11-19-thud-as-zeus"
-     # not needed since we still have python2 support
-     export META_PYTHON2_BRANCH="zeus"
-     export META_BFE_BRANCH="master"
+     export META_RESY_BRANCH="dunfell"
+     export META_POKY_BRANCH="2020-08-28-dunfell-3.1.2++"
+     export META_POKY_TRAINING_BRANCH="2020-08-28-dunfell-3.1.2+"
+     export META_VIRTUALIZATION_BRANCH="2020-04-30-dunfell-3.1"
+     export META_DESIRE_BRANCH="master"
+     export META_MULTI_V7_ML_BSP_BRANCH="dunfell"
+     export META_U_BOOT_WIC_BSP_BRANCH="dunfell"
+     export META_U_BOOT_MENDER_BSP_BRANCH="dunfell"
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="dunfell"
+     export META_KARO_BSP_BRANCH="dunfell-5.4.x"
+     export META_SCA_BRANCH="2020-06-05-dunfell"
+     export META_OPENEMBEDDED_BRANCH="2020-04-30-dunfell-3.1"
+     export META_JAVA_BRANCH="2020-05-08-dunfell"
+     export META_TENSORFLOW_BRANCH="2020-05-10-master-as-dunfell"
+     export MANIFESTS_BRANCH="dunfell"
+     export META_PYTHON2_BRANCH="dunfell"
+     export META_MENDER_BRANCH="2020-06-05-thud-as-dunfell"
+     export META_PYTHON2_BRANCH="dunfell"
+     export META_BFE_BRANCH="dunfell"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128"
      export META_PRT_BRANCH="dunfell"
      export SKOPEO_BRANCH="skopeo-v1.1.0"
@@ -173,12 +181,13 @@ fi
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
-     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.8.0-upstream"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.10.x-upstream"
      export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
-     export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
+     export META_PKG_BRANCH="master"
+     export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
@@ -193,7 +202,8 @@ MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-men
 #MYMAP[keys-for-signing]="${GITHUB}/RobertBerger/keys-for-signing ${SOURCES}/keys-for-signing master"
 MYMAP[keys-for-ipk-signing]="${GITLAB}/robert.berger/keys-for-ipk-signing.git ${SOURCES}/keys-for-ipk-signing master"
 
-MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
+# deprecated (hopefully)
+#MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
 MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
 MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master"
 MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials dunfell"
