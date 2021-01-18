@@ -96,7 +96,7 @@ fi
      export META_BFE_BRANCH="gatesgarth"
      export META_XENOMAI_BRANCH="xeno-3.1-4.19.128-gatesgarth"
      export META_PRT_BRANCH="gatesgarth"
- 
+
      # --> those need fixing
      export META_RASPBERRYPI_BRANCH="dunfell"
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
@@ -251,6 +251,7 @@ MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
 MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang ${META_CLANG_BRANCH}"
+MYMAP[meta-clang-master]="${GITHUB}/kraj/meta-clang ${SOURCES}/meta-clang-master master"
 MYMAP[meta-buildutils]="${GITHUB}/RobertBerger/meta-buildutils ${SOURCES}/meta-buildutils ${META_BUILDUTILS_BRANCH}"
 MYMAP[meta-mender]="${GITHUB}/RobertBerger/meta-mender ${SOURCES}/meta-mender ${META_MENDER_BRANCH}"
 MYMAP[meta-karo-bsp]="${GITLAB}/meta-layers/meta-karo-bsp.git ${SOURCES}/meta-karo-bsp ${META_KARO_BSP_BRANCH}"
@@ -280,7 +281,7 @@ MYMAP[terrier-container]="${GITHUB}/RobertBerger/terrier-container ${OCI_CONTAIN
 # --> crops
 # deprecated:
 MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-09-17-master-local"
-MYMAP[sdk-container]="${GITHUB}/RobertBerger/sdk-container ${CROPS_CONTAINER_X86_64}/sdk-container 2020-10-03-master-local-gcc-9-ub18"
+MYMAP[sdk-container]="${GITHUB}/RobertBerger/sdk-container ${CROPS_CONTAINER_X86_64}/sdk-container 2021-01-17-master-local-gcc-9-ub18"
 MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2020-07-26-master-local-gcc-9-gui-ub18"
 MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2019-11-19-master-local"
 # <-- crops
