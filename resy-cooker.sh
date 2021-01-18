@@ -126,6 +126,10 @@ MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 MYMAP[multi-v7-ml-master]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml-master
 
+# --> multi-v7-ml-bpf-master
+MYMAP[multi-v7-ml-bpf-master]="core-image-minimal"
+# <-- multi-v7-ml-bpf-master
+
 # --> multi-v7-ml-qt5
 # jenkins:
 # HERE=$(pwd)
@@ -850,6 +854,25 @@ fi
   # default kernel config: std
 
   if [ "$machine" == "multi-v7-ml-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development, bpf
+  # DISTRO = resy
+  # default kernel config: std
+
+  if [ "$machine" == "multi-v7-ml-bpf-master" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
