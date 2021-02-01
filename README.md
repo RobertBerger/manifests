@@ -39,7 +39,7 @@ you might need to fix some permissions
 ```
 mkdir -p /workdir/sources
 pushd /workdir/sources
-git clone https://github.com/RobertBerger/manifests.git -b dunfell
+git clone https://github.com/RobertBerger/manifests.git
 popd
 
 cd /workdir
