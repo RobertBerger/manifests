@@ -44,6 +44,21 @@ declare -A MYMAP
 MYMAP[container-x86-64]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
 # <-- container-x86-64
 
+# --> container-x86-64-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh container-x86-64 app-container-image-redis-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-mosquitto-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-nmap-srv-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-data-collector-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-mqttbrokerclient-oci
+# ./resy-poky-container.sh container-x86-64 app-container-image-python3-mastermind-oci
+# pwd
+# cd ${HERE}
+MYMAP[container-x86-64-master]="app-container-image-lighttpd app-container-image-lighttpd-container-oci"
+# <-- container-x86-64-master
+
 # --> container-x86-64-java
 MYMAP[container-x86-64-java]="app-container-image-java"
 # <-- container-x86-64-java
@@ -63,6 +78,10 @@ MYMAP[container-x86-64-tensorflow-master]="app-container-image-tensorflow"
 # --> container-x86-64-golang
 MYMAP[container-x86-64-golang]="app-container-image-go"
 # <-- container-x86-64-golang
+
+# --> container-x86-64-golang-master
+MYMAP[container-x86-64-golang-master]="app-container-image-go"
+# <-- container-x86-64-golang-master
 
 # --> container-x86-64-tig
 MYMAP[container-x86-64-tig]="image-influxdb-prebuilt image-influxdb-from-source app-container-image-influxdb-prebuilt app-container-image-influxdb-prebuilt-oci"
@@ -87,6 +106,16 @@ MYMAP[container-x86-64-tig-master]="image-influxdb-prebuilt image-influxdb-from-
 MYMAP[container-arm-v7]="app-container-image-redis-oci app-container-image-mosquitto-oci app-container-image-python3-nmap-srv-oci app-container-image-python3-data-collector-oci app-container-image-python3-mqttbrokerclient-oci app-container-image-python3-mastermind-oci"
 # <-- container-arm-v7
 
+# --> container-arm-v7-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh container-arm-v7-master app-container-image-telegraf-prebuilt-oci-container-arm-v7
+# pwd
+# cd ${HERE}
+MYMAP[container-arm-v7-master]="app-container-image-telegraf-prebuilt-oci-container-arm-v7"
+# <-- container-arm-v7-master
+
 # --> container-arm-v7-tig
 # @@@ TODO
 MYMAP[container-arm-v7-tig]="influxdb"
@@ -99,6 +128,8 @@ MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix app-container-ima
 # --> container-raspberrypi-4-64-ml-phoronix
 MYMAP[container-raspberrypi-4-64-ml-phoronix]="app-container-image-phoronix app-container-image-phoronix-oci"
 # <-- container-raspberrypi-4-64-ml-phoronix
+
+
 
 # --> multi-v7-ml
 # jenkins:
@@ -125,6 +156,27 @@ MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 # cd ${HERE}
 MYMAP[multi-v7-ml-master]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml-master
+
+# --> multi-v7-ml-virt-docker-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-virt-docker-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-virt-docker-master]="core-image-minimal-virt-docker"
+# <-- multi-v7-ml-virt-docker-master
+
+
+# --> multi-v7-ml-virt-podman-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-virt-podman-master core-image-minimal-virt-podman
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-virt-podman-master]="core-image-minimal-virt-podman"
+# <-- multi-v7-ml-virt-podman-master
 
 # --> multi-v7-ml-bpf-master
 MYMAP[multi-v7-ml-bpf-master]="core-image-minimal"
@@ -284,6 +336,17 @@ MYMAP[imx6q-phytec-mira-rdk-nand-wic-master]="core-image-minimal"
 MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic]="core-image-minimal core-image-minimal-virt-docker-ce"
 # <-- imx6q-phytec-mira-rdk-nand-virt-wic
 
+# --> qemux86-64-virt-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh qemux86-64-virt-master core-image-minimal
+# ./resy-poky-container.sh qemux86-64-virt-master core-image-minimal-virt-docker-ce
+# pwd
+# cd ${HERE}
+MYMAP[qemux86-64-virt-master]="core-image-minimal core-image-minimal-virt-docker-ce"
+# <-- qemux86-64-virt-master
+
 # --> imx6q-phytec-mira-rdk-nand-virt-wic-mc
 # jenkins:
 # HERE=$(pwd)
@@ -293,6 +356,18 @@ MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic]="core-image-minimal core-image-minima
 # cd ${HERE}
 MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic-mc]="mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-mc"
 # <-- imx6q-phytec-mira-rdk-nand-virt-wic-mc
+
+# --> imx6q-phytec-mira-rdk-nand-virt-wic-mc-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-wic-mc-master mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-mc
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic-mc-master]="mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-mc"
+# <-- imx6q-phytec-mira-rdk-nand-virt-wic-mc-master
+
+
 
 # --> imx6q-phytec-mira-rdk-nand-virt-mender
 # jenkins:
@@ -359,11 +434,21 @@ MYMAP[omap3-beagle-xm-wic-master]="core-image-minimal"
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh stm32mp157c-dk2-wic-master core-image-minimal
+# ./resy-poky-container.sh stm32mp157c-dk2-wic-master core-image-minimal core-image-minimal-base
 # pwd
 # cd ${HERE}
-MYMAP[stm32mp157c-dk2-wic-master]="core-image-minimal"
+MYMAP[stm32mp157c-dk2-wic-master]="core-image-minimal core-image-minimal-base"
 # <-- stm32mp157c-dk2-wic-master
+
+# --> stm32mp157c-dk2-systemd-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh stm32mp157c-dk2--wic-master core-image-minimal core-image-minimal-base
+# pwd
+# cd ${HERE}
+MYMAP[stm32mp157c-dk2-systemd-wic-master]="core-image-minimal core-image-minimal-base"
+# <-- stm32mp157c-dk2-systemd-wic-master
 
 # --> stm32mp157c-dk2-meta-stm32mp1-wic-master
 # jenkins:
@@ -413,7 +498,6 @@ MYMAP[beagle-bone-green-wic-master]="core-image-minimal"
 # cd ${HERE}
 MYMAP[am335x-regor-rdk-wic-master]="core-image-minimal"
 # <-- am335x-regor-rdk-wic-master
-
 
 # --> beagle-bone-black-virt-wic
 # jenkins:
@@ -471,11 +555,33 @@ MYMAP[am335x-phytec-wega-mender]="core-image-minimal"
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh imx6ul-phytec-segin-wic-master core-image-minimal
+# ./resy-poky-container.sh imx6ul-phytec-segin-wic-master core-image-minimal core-image-minimal-base
 # pwd
 # cd ${HERE}
-MYMAP[imx6ul-phytec-segin-wic-master]="core-image-minimal"
+MYMAP[imx6ul-phytec-segin-wic-master]="core-image-minimal core-image-minimal-base"
 # <-- imx6ul-phytec-segin-wic-master
+
+# --> imx6ul-phytec-segin-systemd-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6ul-phytec-segin-systemd-wic-master core-image-minimal core-image-minimal-base
+# pwd
+# cd ${HERE}
+MYMAP[imx6ul-phytec-segin-systemd-wic-master]="core-image-minimal core-image-minimal-base"
+# <-- imx6ul-phytec-segin-systemd-wic-master
+
+
+# --> imx6ul-phytec-segin-virt-telegraf-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6ul-phytec-segin-virt-telegraf-wic-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[imx6ul-phytec-segin-virt-telegraf-wic-master]="core-image-minimal-virt-docker"
+# <-- imx6ul-phytec-segin-virt-telegraf-wic-master
+
 
 # --> imx6sx-udoo-neo-full-wic-master
 # jenkins:
@@ -637,7 +743,7 @@ fi
  
   echo "initial SITE_CONF=${SITE_CONF}"
 
-  # x86-64 container e.g. for Python development and testing
+  # x86-64 container e.g. for development and testing
 
   if [ "$machine" == "container-x86-64" ]; then
      export TEMPLATECONF="../meta-resy/template-${machine}"
@@ -651,6 +757,20 @@ fi
      fi
   fi
 
+  # x86-64 container master e.g. for development and testing
+
+  if [ "$machine" == "container-x86-64-master" ]; then
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-resy-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # x86-64 java container e.g. for Java development and testing
 
@@ -695,6 +815,35 @@ fi
 
      export TEMPLATECONF="../meta-resy-master/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-resy-master/template-common/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
+
+ # qemux86-64 virt master container e.g. for container testing
+
+  if [ "$machine" == "qemux86-64-virt-master" ]; then
+     # I moved to ubuntu 18 and gcc-9 by default - let's see
+     # --> currently only host gcc-9 seems to work here
+     # check if hostname specific site.conf exists and pick it up
+     #if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 ]; then
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 "
+     #else
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample_gcc-9"
+     #fi
+     #
+     #echo "SITE_CONF=${SITE_CONF}"
+     # <-- currently only host gcc-9 seems to work here
+
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     pwd
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
@@ -751,6 +900,21 @@ fi
      fi
   fi
 
+  # x86-64 golang container master e.g. for golang development and testing
+
+  if [ "$machine" == "container-x86-64-golang-master" ]; then
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+	cp ../../sources/meta-resy-master/template-${machine}/site.conf.sample conf/site.conf
+        tree conf
+     fi
+  fi
+
   # x86-64 tig container e.g. for tig development and testing
 
   if [ "$machine" == "container-x86-64-tig" ]; then
@@ -795,6 +959,22 @@ fi
      fi 
   fi
 
+
+  # arm-v7 container e.g. to run on target/docker
+
+  if [ "$machine" == "container-arm-v7-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        #tree conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-container-arm-v7-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # arm-v7 container e.g. for tig development and testing
 
@@ -876,6 +1056,47 @@ fi
         tree conf
      fi
   fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy-virt
+  # default kernel config: virt
+  # contains docker, docker-compose
+
+  if [ "$machine" == "multi-v7-ml-virt-docker-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy-virt
+  # default kernel config: virt
+  # contains podman, podman-compose
+
+  if [ "$machine" == "multi-v7-ml-virt-podman-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development, bpf
@@ -1383,6 +1604,44 @@ fi
   fi
 
 
+  # rootfs which can host docker,
+  # virt kernel from multi-v7-ml,
+  # fdt
+  # sd card image e.g. core-image-minimal-virt-docker-ce
+  # for imx6q-phytec-mira-rdk-nand wic image
+  # but here also multiconfig - attempt to build rootfs with docker plus
+  # application container
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-wic-mc-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-virt-mc-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     # --> let's try to merge in sca stuff
+     #if [ ! -d ../build/${machine}/conf ]; then
+     #  echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
+     #  mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #else
+     #  echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
+     #fi
+     # <-- let's try to merge in sca stuff
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-virt-mc-master/site.conf conf/site.conf
+        tree conf
+     fi
+     # --> more SCA stuff 
+     #if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     #   # let's restore the original without sca
+     #   mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #fi
+     # <-- more SCA stuff
+  fi
+
+
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
@@ -1545,6 +1804,29 @@ fi
   # kernel/fdt
   # std kernel from multi-v7-ml,
   # sd card image e.g. core-image-minimal
+  # for stm32mp157c-dk2, systemd
+
+  if [ "$machine" == "stm32mp157c-dk2-systemd-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-stm32mp157c-dk2-systemd-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-stm32mp157c-dk2-systemd-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
   # for de0-nano-soc-kit
 
   if [ "$machine" == "de0-nano-soc-kit-wic-master" ]; then
@@ -1619,7 +1901,6 @@ fi
      fi
   fi
 
-
   # rootfs,
   # kernel/fdt
   # std kernel from multi-v7-ml,
@@ -1639,7 +1920,6 @@ fi
         tree conf
      fi
   fi
-
 
   # rootfs, 
   # kernel/fdt
@@ -1695,7 +1975,6 @@ fi
      fi
   fi
 
-  # rootfs,
   # kernel/fdt
   # std kernel from multi-v7-ml,
   # sd card image e.g. core-image-minimal
@@ -1711,6 +1990,46 @@ fi
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
         cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for imx6ul-phytec-segin
+
+  if [ "$machine" == "imx6ul-phytec-segin-systemd-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-systemd-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-systemd-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # rootfs,
+  # kernel/fdt
+  # virt kernel from multi-v7-ml, systemd, docker, telegraf
+  # sd card image e.g. core-image-minimal
+  # for imx6ul-phytec-segin
+
+  if [ "$machine" == "imx6ul-phytec-segin-virt-telegraf-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-virt-telegraf-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6ul-phytec-segin-virt-telegraf-master/site.conf conf/site.conf
         tree conf
      fi
   fi
