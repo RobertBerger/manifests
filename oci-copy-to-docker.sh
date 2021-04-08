@@ -33,6 +33,7 @@ then
     echo "+ $0 app-container-image-lighttpd-oci-container-arm-v7 oci-lighttpd latest-arm-v7 container-arm-v7 container-arm-v7 tmp"
     echo "+ $0 app-container-image-lighttpd-oci-container-x86-64 oci-lighttpd latest-x86-64 container-x86-64 container-x86-64 tmp"
     echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 container-arm-v7-tig container-arm-v7 tmp"
+    echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt 1.17.3 container-arm-v7-master container-arm-v7 tmp"
     echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-x86-64 oci-telegraf-prebuilt latest-x86-64 container-x86-64-tig container-x86-64 tmp"
     echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 imx6q-phytec-mira-rdk-nand-virt-wic-mc container-arm-v7 tmp-container-arm-v7-resy-container"
     echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7 container-arm-v7-phoronix container-arm-v7 tmp"
