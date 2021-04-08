@@ -286,6 +286,7 @@ MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAIN
 MYMAP[sdk-container]="${GITHUB}/RobertBerger/sdk-container ${CROPS_CONTAINER_X86_64}/sdk-container 2021-01-17-master-local-gcc-9-ub18"
 MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2021-05-07-master-local-gcc-9-gui-icecc-ub18"
 MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2020-05-30-master-local-ub18"
+MYMAP[icecc-container]="${GITHUB}/RobertBerger/icecc-container ${CROPS_CONTAINER_X86_64}/icecc-container 2021-04-08"
 # <-- crops
 
 # --> app-container-x86-64
