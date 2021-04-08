@@ -7,8 +7,8 @@ BUILD_ALL_VAR="no"
 USE_GUI="no"
 USE_MIRROR="yes"
 DOCKER_PULL="yes"
-USE_ICECC="no"
-USE_QEMU="yes"
+USE_ICECC="yes"
+USE_QEMU="no"
 
 if [[ $USE_QEMU = yes ]]; then
    sudo modprobe tun
@@ -50,14 +50,16 @@ else
    ##CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
    #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gui-gcc-9"
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
-   CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
+   #CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
+   CONTAINER="reliableembeddedsystems/poky-container:2021-05-07-master-local-gcc-9-gui-icecc-ub18"
 fi
 
 if [[ $USE_GUI = no ]]; then
    ##CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
    #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gcc-9"
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
-   CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
+   #CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
+   CONTAINER="reliableembeddedsystems/poky-container:2021-05-07-master-local-gcc-9-gui-icecc-ub18"
 fi
 
 #echo "CONTAINER= $CONTAINER"
