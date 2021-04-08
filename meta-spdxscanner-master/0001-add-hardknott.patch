@@ -1,0 +1,23 @@
+From 15f0711a0f3eed6e2e5a428558ccd5b67aaf102c Mon Sep 17 00:00:00 2001
+From: "student@e450-5" <student@e450-5.res.training>
+Date: Thu, 8 Apr 2021 14:55:26 +0200
+Subject: [PATCH] add hardknott
+
+Signed-off-by: student@e450-5 <student@e450-5.res.training>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 46a5e5f..6bd1487 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,4 +9,4 @@ BBFILE_COLLECTIONS += "spdxscanner"
+ BBFILE_PATTERN_spdxscanner = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_spdxscanner = "6"
+ 
+-LAYERSERIES_COMPAT_spdxscanner = "dunfell gatesgarth master"
++LAYERSERIES_COMPAT_spdxscanner = "dunfell gatesgarth hardknott master"
+-- 
+2.7.4
+

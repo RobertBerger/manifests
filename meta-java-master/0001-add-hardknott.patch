@@ -1,0 +1,26 @@
+From a2e93af4d9032fcab78df724db78c34c11b3b069 Mon Sep 17 00:00:00 2001
+From: "student@e450-5" <student@e450-5.res.training>
+Date: Thu, 8 Apr 2021 14:50:21 +0200
+Subject: [PATCH] add hardknott
+
+Signed-off-by: student@e450-5 <student@e450-5.res.training>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 6a98adb..7ef116d 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -7,7 +7,7 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
+ BBFILE_COLLECTIONS += "meta-java"
+ BBFILE_PATTERN_meta-java := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-java = "10"
+-LAYERSERIES_COMPAT_meta-java = "dunfell gatesgarth"
++LAYERSERIES_COMPAT_meta-java = "dunfell gatesgarth hardknott"
+ LAYERDEPENDS_meta-java += "openembedded-layer"
+ 
+ LICENSE_PATH += "${LAYERDIR}/licenses"
+-- 
+2.7.4
+
