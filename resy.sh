@@ -102,7 +102,7 @@ fi
      export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
      export META_FREESCALE_BRANCH="2020-08-28-dunfell"
      export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.10.x-upstream"
-     export META_SYSTEMD_NFSROOT_BRANCH="dunfell"
+     export META_SYSTEMD_NFSROOT_BRANCH="master"
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
@@ -212,8 +212,8 @@ MYMAP[keys-for-ipk-signing]="${GITLAB}/robert.berger/keys-for-ipk-signing.git ${
 # deprecated (hopefully)
 #MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
 MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
-MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master"
-MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials dunfell"
+MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master ${SOURCES}/manifests/meta-virtualization-master/patch.sh"
+MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials gatesgarth"
 # my meta-u-boot-wic-bsp bsp u-boot is here
 MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
 MYMAP[meta-u-boot-wic-bsp-master]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp-master master"
@@ -438,6 +438,22 @@ else # dir exists above
      exit $retVal
   fi
 fi # dir does not exist
+
+  # --> patch upstream branch
+  # if e.g. /workdir/sources/manifests/meta-virtualization-master/patch.sh exists
+  if [ -f $4 ]; then
+     echo "trying to apply patch"
+     set -x
+     # go into the git repo which should be patched
+     # e.g. /workdir/sources/meta-virtualization-master
+     pushd $2
+     # apply the patch
+     ${4}
+     # back where we came from
+     popd
+     set +x
+  fi
+  # <-- patch upstream branch
 
   echo "pushd $2"
   pushd $2
