@@ -37,6 +37,7 @@ else
           rm -rf crops-container-x86-64
           rm -rf oci-container-x86-64
           rm -rf jenkins
+          rm -rf fossology
           ls /workdir
           set +x
           if [[ $WORKSPACE = *jenkins* ]]; then
