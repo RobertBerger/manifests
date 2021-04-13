@@ -311,6 +311,11 @@ MYMAP[app-container-telegraf-prebuilt-oci-x86-64]="${GITLAB}/app-container/app-c
 MYMAP[app-container-telegraf-prebuilt-oci-arm-v7]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_ARM_V7}/app-container-telegraf-prebuilt-oci arm-v7"
 MYMAP[app-container-telegraf-prebuilt-oci-multi-arch]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_MULTI_ARCH}/oci-telegraf-prebuilt multi-arch"
 
+# Note: same repo - 3 differernt branches
+MYMAP[app-container-tensorflow-examples-x86-64]="${GITLAB}/app-container/app-container-tensorflow-examples.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-examples x86-64"
+
+
+
 
 MYMAP[oci-phoronix-arm-v7]="${GITLAB}/app-container/oci-phoronix.git ${APP_CONTAINER_ARM_V7}/oci-phoronix arm-v7"
 
@@ -454,6 +459,9 @@ fi # dir does not exist
      ${4}
      # back where we came from
      popd
+     # apply from git
+     git add .
+     git commit -m "patch typically only against upstream master"
      set +x
   fi
   # <-- patch upstream branch
