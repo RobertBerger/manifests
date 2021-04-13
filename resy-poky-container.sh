@@ -19,7 +19,8 @@ fi
 if [[ $USE_ICECC = yes ]]; then
    # iceccd port
    # EXPOSE 10245 8765/TCP 8765/UDP 8766
-   ICECC="--net=host -p ::10245/tcp -p ::8765/tcp -p ::8766/tcp -p ::8765/udp"
+   #ICECC="--net=host -p ::10245/tcp -p ::8765/tcp -p ::8766/tcp -p ::8765/udp"
+   ICECC="--net=host "
 fi
 
 #docker login
