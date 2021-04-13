@@ -224,7 +224,7 @@ MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git 
 #MYMAP[meta-u-boot-karo-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-karo-wic-bsp.git ${SOURCES}/meta-u-boot-karo-wic-bsp ${META_U_BOOT_KARO_WIC_BSP_BRANCH}"
 MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
 MYMAP[meta-sca-master]="${GITHUB}/priv-kweihmann/meta-sca ${SOURCES}/meta-sca-master master"
-MYMAP[meta-spdxscanner-master]="${GIT_YP}/meta-spdxscanner ${SOURCES}/meta-spdxscanner-master master ${SOURCES}/manifests/meta-spdxscanner-master/patch.sh"
+MYMAP[meta-spdxscanner-master]="${GIT_YP}/meta-spdxscanner ${SOURCES}/meta-spdxscanner-master master"
 # my resy distro 
 MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
 MYMAP[resy-master]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy-master master"
@@ -412,17 +412,43 @@ do
         git pull
         #rm -rf ../$2
     elif [ $REMOTE = $BASE ]; then
-        echo "Need to push"
-        echo "Error"
-        echo "Press <ENTER> to go on"
-        read r
-        exit -1
+        echo -e "\e[31mNeed to push\e[39m"
+        echo -e "\e[31mError\e[39m"
+        if [ -f "$4" ]; then
+           echo "Looks like it's a custom patch:"
+           echo "${4}"
+           echo -e "\e[31mtrying:\e[39m"
+           echo -e "\e[32mpushd $2\e[39m"
+           echo -e "\e[32mgit reset --hard HEAD~1\e[39m"
+           echo -e "\e[32mpopd\e[39m"
+           pushd $2
+           git reset --hard HEAD~1
+           popd
+           echo "Press <ENTER> to go on"
+           read r
+        else
+           echo "Press <ENTER> to go on"
+           read r
+           exit -1
+        fi
     else
-        echo "Diverged"
-        echo "Error"
-        echo "Press <ENTER> to go on"
-        read r
-        exit -1
+        echo -e "\e[31mDiverged\e[39m"
+        echo -e "\e[31mError\e[39m"
+        if [ -f "$4" ]; then
+           echo "Looks like it's a custom patch:"
+           echo "${4}"
+           echo -e "\e[31mtrying:\e[39m"
+           echo -e "\e[32mpushd $2\e[39m"
+           echo -e "\e[32mgit reset --hard HEAD~1\e[39m"
+           echo -e "\e[32mpopd\e[39m"
+           pushd $2
+           git reset --hard HEAD~1
+           popd
+        else
+           echo "Press <ENTER> to go on"
+           read r
+           exit -1
+        fi
     fi
     popd
  echo "Press <ENTER> to go on"
@@ -449,19 +475,23 @@ fi # dir does not exist
 
   # --> patch upstream branch
   # if e.g. /workdir/sources/manifests/meta-virtualization-master/patch.sh exists
-  if [ -f $4 ]; then
-     echo "trying to apply patch"
+  if [ -f "$4" ]; then
+     echo -e "\e[32mtrying to apply this patch: $4\e[39m"
+     echo "Press <ENTER> to go on"
+     read r
      set -x
      # go into the git repo which should be patched
      # e.g. /workdir/sources/meta-virtualization-master
      pushd $2
      # apply the patch
      ${4}
+     #pwd
+     # git add/commit
+     git add .
+     git commit -m "patch typically only against upstream master"
      # back where we came from
      popd
      # apply from git
-     git add .
-     git commit -m "patch typically only against upstream master"
      set +x
   fi
   # <-- patch upstream branch
