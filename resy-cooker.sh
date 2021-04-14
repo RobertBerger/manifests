@@ -656,6 +656,17 @@ MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard]="core-image-base core-imag
 MYMAP[imx8mm-lpddr4-evk-master]="core-image-minimal-base"
 # <-- imx8mm-lpddr4-evk-master
 
+# --> imx8mm-lpddr4-evk-ml-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx8mm-lpddr4-evk-ml-master core-image-minimal-base
+# pwd
+# cd ${HERE}
+MYMAP[imx8mm-lpddr4-evk-ml-master]="core-image-minimal-base"
+# <-- imx8mm-lpddr4-evk-ml-master
+
+
 # --> phyboard-polis-imx8mm-wic
 # jenkins:
 # HERE=$(pwd)
@@ -1331,6 +1342,24 @@ fi
         tree conf
      fi
   fi
+
+  # rootfs over nfs or SD card
+  # for imx8mm-lpddr4-evk-ml master branch
+
+  if [ "$machine" == "imx8mm-lpddr4-evk-ml-master" ]; then
+     export TEMPLATECONF="../meta-imx8mm-lpddr4-evk-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-imx8mm-lpddr4-evk-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs over nfs or SD card
   # upstream kernel

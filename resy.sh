@@ -250,6 +250,7 @@ MYMAP[meta-qt5-examples]="${GITLAB}/meta-layers/meta-qt5-examples.git ${SOURCES}
 MYMAP[meta-freescale]="${GITHUB}/RobertBerger/meta-freescale ${SOURCES}/meta-freescale ${META_FREESCALE_BRANCH}"
 MYMAP[meta-freescale-master]="${GIT_YP}/meta-freescale ${SOURCES}/meta-freescale-master master"
 MYMAP[meta-fsl-common-master]="${GITLAB}/meta-layers/meta-fsl-common.git ${SOURCES}/meta-fsl-common-master master"
+MYMAP[meta-imx8mm-lpddr4-evk-ml-bsp-master]="${GITLAB}/meta-layers/meta-imx8mm-lpddr4-evk-ml-bsp.git ${SOURCES}/meta-imx8mm-lpddr4-evk-ml-bsp-master master"
 MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp ${META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH}"
 
 
