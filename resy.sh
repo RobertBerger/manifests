@@ -248,7 +248,10 @@ MYMAP[meta-golang-examples]="${GITLAB}/meta-layers/meta-golang-examples.git ${SO
 MYMAP[meta-qt5]="${GITHUB}/RobertBerger/meta-qt5 ${SOURCES}/meta-qt5 ${META_QT5_BRANCH}"
 MYMAP[meta-qt5-examples]="${GITLAB}/meta-layers/meta-qt5-examples.git ${SOURCES}/meta-qt5-examples ${META_QT5_EXAMPLES_BRANCH}"
 MYMAP[meta-freescale]="${GITHUB}/RobertBerger/meta-freescale ${SOURCES}/meta-freescale ${META_FREESCALE_BRANCH}"
+MYMAP[meta-freescale-master]="${GIT_YP}/meta-freescale ${SOURCES}/meta-freescale-master master"
+MYMAP[meta-fsl-common-master]="${GITLAB}/meta-layers/meta-fsl-common.git ${SOURCES}/meta-fsl-common-master master"
 MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp ${META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH}"
+
 
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 

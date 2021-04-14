@@ -646,15 +646,15 @@ MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs]="core-image-base core-image-
 MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard]="core-image-base core-image-minimal-virt-docker-ce"
 # <-- raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard
 
-# --> imx8mmevk-master
+# --> imx8mm-lpddr4-evk-master
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh imx8mmevk-master core-image-minimal
+# ./resy-poky-container.sh imx8mm-lpddr4-evk-master core-image-minimal-base
 # pwd
 # cd ${HERE}
-MYMAP[imx8mmevk-master]="core-image-minimal"
-# <-- imx8mmevk-master
+MYMAP[imx8mm-lpddr4-evk-master]="core-image-minimal-base"
+# <-- imx8mm-lpddr4-evk-master
 
 # --> phyboard-polis-imx8mm-wic
 # jenkins:
@@ -1316,13 +1316,10 @@ fi
   fi
 
   # rootfs over nfs or SD card
-  # upstream kernel - kind of from meta-freescale
-  # hacked fdt - from meta-freescale
-  # sd card image e.g. core-image-minimal
-  # for imx8mmevk master branch
+  # for imx8mm-lpddr4-evk master branch
 
-  if [ "$machine" == "imx8mmevk-master" ]; then
-     export TEMPLATECONF="../meta-fsl-common/template-${machine}"
+  if [ "$machine" == "imx8mm-lpddr4-evk-master" ]; then
+     export TEMPLATECONF="../meta-fsl-common-master/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -1330,7 +1327,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-fsl-common/template-${machine}/site.conf conf/site.conf
+        cp ../../sources/meta-fsl-common-master/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
