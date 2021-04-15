@@ -121,6 +121,10 @@ MYMAP[container-arm-v7-master]="app-container-image-telegraf-prebuilt-oci-contai
 MYMAP[container-arm-v7-tig]="influxdb"
 # <-- container-arm-v7-tig
 
+# --> container-arm-v7-tensorflow-master
+MYMAP[container-arm-v7-tensorflow-master]="app-container-image-tensorflow"
+# <-- container-arm-v7-tensorflow-master
+
 # --> container-arm-v7-phoronix
 MYMAP[container-arm-v7-phoronix]="app-container-image-phoronix app-container-image-phoronix-oci"
 # <-- container-arm-v7-phoronix
@@ -997,6 +1001,23 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # arm-v7 tensorflow master container e.g. for tensorflow development and testing
+
+  if [ "$machine" == "container-arm-v7-tensorflow-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        pwd
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
