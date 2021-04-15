@@ -670,6 +670,15 @@ MYMAP[imx8mm-lpddr4-evk-master]="core-image-minimal-base"
 MYMAP[imx8mm-lpddr4-evk-ml-master]="core-image-minimal-base"
 # <-- imx8mm-lpddr4-evk-ml-master
 
+# --> imx8mm-lpddr4-evk-ml-virt-docker-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx8mm-lpddr4-evk-ml-virt-docker-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[imx8mm-lpddr4-evk-ml-virt-docker-master]="core-image-minimal-virt-docker"
+# <-- imx8mm-lpddr4-evk-ml-virt-docker-master
 
 # --> phyboard-polis-imx8mm-wic
 # jenkins:
@@ -1381,6 +1390,22 @@ fi
      fi
   fi
 
+  # rootfs over nfs or SD card
+  # for imx8mm-lpddr4-evk-ml-virt-docker-master master branch
+
+  if [ "$machine" == "imx8mm-lpddr4-evk-ml-virt-docker-master" ]; then
+     export TEMPLATECONF="../meta-imx8mm-lpddr4-evk-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-imx8mm-lpddr4-evk-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # rootfs over nfs or SD card
   # upstream kernel
