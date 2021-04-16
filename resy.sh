@@ -7,6 +7,7 @@ FOSSOLOGY="/workdir/fossology"
 OCI_CONTAINER_X86_64="/workdir/oci-container-x86-64"
 APP_CONTAINER_X86_64="/workdir/app-container-x86-64"
 APP_CONTAINER_ARM_V7="/workdir/app-container-arm-v7"
+APP_CONTAINER_AARCH64="/workdir/app-container-aarch64"
 APP_CONTAINER_MULTI_ARCH="/workdir/app-container-multi-arch"
 CROPS_CONTAINER_X86_64="/workdir/crops-container-x86-64"
 GITHUB="git://github.com"
@@ -34,6 +35,7 @@ else
           rm -rf app-container-arm-v7
           rm -rf app-container-multi-arch
           rm -rf app-container-x86-64
+          rm -rf app-container-aarch64
           rm -rf crops-container-x86-64
           rm -rf oci-container-x86-64
           rm -rf jenkins
@@ -305,18 +307,19 @@ MYMAP[app-container-telegraf-prebuilt]="${GITLAB}/app-container/app-container-te
 # <-- app-container-x86-64
 
 # --> app-containers
-# Note: same repo - 3 differernt branches
+# Note: same repo - 3 different branches
 MYMAP[app-container-lighttpd-oci-x86-64]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_X86_64}/app-container-lighttpd-oci x86-64"
 MYMAP[app-container-lighttpd-oci-arm-v7]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_ARM_V7}/app-container-lighttpd-oci arm-v7"
 MYMAP[app-container-lighttpd-oci-multi-arch]="${GITLAB}/app-container/app-container-lighttpd-oci.git ${APP_CONTAINER_MULTI_ARCH}/oci-lighttpd multi-arch"
 
-# Note: same repo - 3 differernt branches
+# Note: same repo - 3 different branches
 MYMAP[app-container-telegraf-prebuilt-oci-x86-64]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_X86_64}/app-container-telegraf-prebuilt-oci x86-64"
 MYMAP[app-container-telegraf-prebuilt-oci-arm-v7]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_ARM_V7}/app-container-telegraf-prebuilt-oci arm-v7"
 MYMAP[app-container-telegraf-prebuilt-oci-multi-arch]="${GITLAB}/app-container/app-container-telegraf-prebuilt-oci.git ${APP_CONTAINER_MULTI_ARCH}/oci-telegraf-prebuilt multi-arch"
 
-# Note: same repo - 3 differernt branches
+# Note: same repo - different branches
 MYMAP[app-container-tensorflow-examples-x86-64]="${GITLAB}/app-container/app-container-tensorflow-examples.git ${APP_CONTAINER_X86_64}/app-container-tensorflow-examples x86-64"
+MYMAP[app-container-tensorflow-examples-aarch64]="${GITLAB}/app-container/app-container-tensorflow-examples.git ${APP_CONTAINER_AARCH64}/app-container-tensorflow-examples imx8mm-lpddr4-evk-ml"
 
 
 
