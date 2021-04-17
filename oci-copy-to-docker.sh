@@ -38,6 +38,7 @@ then
     echo "+ $0 app-container-image-telegraf-prebuilt-oci-container-arm-v7 oci-telegraf-prebuilt latest-arm-v7 imx6q-phytec-mira-rdk-nand-virt-wic-mc container-arm-v7 tmp-container-arm-v7-resy-container"
     echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7 container-arm-v7-phoronix container-arm-v7 tmp"
     echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7hf container-arm-v7-phoronix container-arm-v7 tmp"
+    echo "+ $0 app-container-image-tensorflow-examples-oci-container-imx8mm-lpddr4-evk-ml oci-tensorflow-examples latest-aarch64-armv8a-crc-cortexa53 container-imx8mm-lpddr4-evk-ml-tensorflow-master container-imx8mm-lpddr4-evk-ml tmp"
     exit
 fi
 
