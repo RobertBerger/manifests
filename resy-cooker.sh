@@ -371,7 +371,15 @@ MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic-mc]="mc:imx6q-phytec-mira-rdk-nand-res
 MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic-mc-master]="mc:imx6q-phytec-mira-rdk-nand-resy-virt:core-image-minimal-virt-docker-ce-mc"
 # <-- imx6q-phytec-mira-rdk-nand-virt-wic-mc-master
 
-
+# --> imx6q-phytec-mira-rdk-nand-virt-docker-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-docker-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-docker-master]="core-image-minimal-virt-docker"
+# <-- imx6q-phytec-mira-rdk-nand-virt-docker-master
 
 # --> imx6q-phytec-mira-rdk-nand-virt-mender
 # jenkins:
@@ -1741,7 +1749,25 @@ fi
      # <-- more SCA stuff
   fi
 
+  # rootfs which can host docker
+  # virt kernel from multi-v7-ml,
+  # fdt
+  # sd card image e.g. core-image-minimal-virt-docker
 
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-docker-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+### @@@ todo: podman
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
