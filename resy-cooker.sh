@@ -922,7 +922,7 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
-        cp ../../sources/meta-resy-master/template-common/site.conf.sample conf/site.conf
+        cp ../../sources/meta-resy-master/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
