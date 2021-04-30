@@ -351,6 +351,18 @@ MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic]="core-image-minimal core-image-minima
 MYMAP[qemux86-64-virt-master]="core-image-minimal core-image-minimal-virt-docker-ce"
 # <-- qemux86-64-virt-master
 
+# TODO:
+
+# --> container-x86-64-ex-compact-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh container-x86-64-ex-compact-master app-container-image-lighttpd
+# pwd
+# cd ${HERE}
+MYMAP[container-x86-64-ex-compact-master]="app-container-image-lighttpd"
+# <-- container-x86-64-ex-compact-master
+
 # --> imx6q-phytec-mira-rdk-nand-virt-wic-mc
 # jenkins:
 # HERE=$(pwd)
@@ -987,6 +999,22 @@ fi
      fi
   fi
 
+  # container-x86-64-ex-compact-master
+  # container examples, which should work only with poky
+  # I pulled in stuff from various of my layers
+
+  if [ "$machine" == "container-x86-64-ex-compact-master" ]; then
+     export TEMPLATECONF="../meta-container-ex-compact/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-container-ex-compact/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+  
   # arm-v7 container e.g. to run on target/docker
 
   if [ "$machine" == "container-arm-v7" ]; then
