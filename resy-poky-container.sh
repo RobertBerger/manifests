@@ -136,33 +136,43 @@ set +x
 fi
 
 set +x
+# --> interactive mode
+#     we call resy-cooker manually inside the container
 if [ "$#" -eq "0" ]; then
   echo " -- interactive mode --"
   echo "source /workdir/resy-cooker.sh in container"
   echo "+ press <ENTER> to go on"
   read r
+  # jenkis is here unusual - we might remove it, since we are in interactive mode
   if [[ $WORKSPACE = *jenkins* ]]; then
   docker run --name poky_container --rm -it ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
   else
   set -x
   docker run --name poky_container --rm -it ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
   fi
-else
+fi
+#  <-- interactive mode
+
+# --> semi-automatic mode
+#     e.g. ./resy-poky-container.sh container-x86-64-ex-compact-master
+#     and in the container: bitbake app-container-image-lighttpd
+if [ "$#" -eq "1" ]; then
+  set +x
+  echo " -- interactive mode + MACHINE --"
+  set -x
+  export BUILDDIR="/workdir/build/$1"
+  /workdir/killall_bitbake.sh
+  docker run --name poky_container --rm -i -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir /bin/bash -c "source /workdir/resy-cooker.sh $1 && /bin/bash"
+  set +x
+fi
+# <-- semi-automatic mode
+
+# --> non interactive mode
+#     e.g. ./resy-poky-container.sh container-x86-64-ex-compact-master app-container-image-lighttpd
+if [ "$#" -eq "2" ]; then
   set +x
   echo " -- non interactive mode --"
   set -x
-#if [ "$#" -eq "1" ]; then
-#  echo " -- interactive mode + MACHINE --"
-#  docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1
-#fi
-
-#ocker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1
-
-#### build all 
-#docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} --env BUILD_ALL=yes -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
-
-#### build non interactive
-#docker run --name poky_container --rm -it --add-host mirror:${MIRROR_IP} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
 
   if [[ $WORKSPACE = *jenkins* ]]; then
      # with jenkins interactive mode is not possible
@@ -178,7 +188,9 @@ else
   if [[ $WORKSPACE = *jenkins* ]]; then
   docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && printf "\e[31m+ Docker ERRORS found (2)\e[0m\n" && exit 1
   else
+  # this is not really useful here - we might remove it
   docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
   fi
-fi # non interactve mode
+fi 
+# <-- non interactve mode
 set +x

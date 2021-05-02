@@ -2249,6 +2249,7 @@ echo "--> \$#: $#"
 # needed for killall_bitbake.sh
 export BUILDDIR="/workdir/build/${machine}"
 
+# --> interactive mode
 if [ "$#" -eq "1" ]; then
 # we pass the MACHINE, but not what to bake
   if [ "$BUILD_ALL" == "yes" ]; then
@@ -2279,6 +2280,7 @@ if [ "$#" -eq "1" ]; then
      echo "   source /workdir/resy-cooker.sh <MACHINE>"
   fi # BUILD_ALL =  yes
 fi # only machine passed along
+# <-- interactive mode
 
 if [ "$#" -eq "2" ]; then
    /workdir/killall_bitbake.sh
