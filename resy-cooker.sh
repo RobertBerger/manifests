@@ -353,15 +353,15 @@ MYMAP[qemux86-64-virt-master]="core-image-minimal core-image-minimal-virt-docker
 
 # TODO:
 
-# --> container-x86-64-ex-compact-master
+# --> container-x86-64-ex-compact-docker-only
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh container-x86-64-ex-compact-master app-container-image-lighttpd
+# ./resy-poky-container.sh container-x86-64-ex-compact-docker-only app-container-image-lighttpd
 # pwd
 # cd ${HERE}
-MYMAP[container-x86-64-ex-compact-master]="app-container-image-lighttpd"
-# <-- container-x86-64-ex-compact-master
+MYMAP[container-x86-64-ex-compact-docker-only]="app-container-image-lighttpd"
+# <-- container-x86-64-ex-compact-docker-only
 
 # --> imx6q-phytec-mira-rdk-nand-virt-wic-mc
 # jenkins:
@@ -999,18 +999,18 @@ fi
      fi
   fi
 
-  # container-x86-64-ex-compact-master
+  # container-x86-64-ex-compact-docker-only
   # container examples, which should work only with poky
   # I pulled in stuff from various of my layers
 
-  if [ "$machine" == "container-x86-64-ex-compact-master" ]; then
-     export TEMPLATECONF="../meta-container-ex-compact/template-${machine}"
+  if [ "$machine" == "container-x86-64-ex-compact-docker-only" ]; then
+     export TEMPLATECONF="../meta-container-ex-compact-docker-only/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-container-ex-compact/template-${machine}/site.conf conf/site.conf
+        cp ../../sources/meta-container-ex-compact-docker-only/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi

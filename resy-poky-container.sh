@@ -162,7 +162,7 @@ if [ "$#" -eq "1" ]; then
   set -x
   export BUILDDIR="/workdir/build/$1"
   /workdir/killall_bitbake.sh
-  docker run --name poky_container --rm -i -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir /bin/bash -c "source /workdir/resy-cooker.sh $1 && /bin/bash"
+  docker run --name poky_container --rm -i -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} /bin/bash -c "source /workdir/resy-cooker.sh $1 && /bin/bash" --workdir=/workdir
   set +x
 fi
 # <-- semi-automatic mode
