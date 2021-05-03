@@ -272,6 +272,9 @@ MYMAP[meta-prt]="${GITLAB}/meta-layers/meta-prt.git ${SOURCES}/meta-prt ${META_P
 MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta-raspberrypi ${META_RASPBERRYPI_BRANCH}"
 MYMAP[meta-raspberrypi-ml-bsp]="${GITLAB}/meta-layers/meta-raspberrypi-ml-bsp.git ${SOURCES}/meta-raspberrypi-ml-bsp ${META_RASPBERRYPI_ML_BSP_BRANCH}"
 
+MYMAP[meta-container-ex-compact-docker-only]="${GITLAB}/meta-layers/meta-layers/meta-container-ex-compact.git ${SOURCES}/meta-container-ex-compact-docker-only docker-only"
+MYMAP[meta-container-ex-compact-oci]="${GITLAB}/meta-layers/meta-layers/meta-container-ex-compact.git ${SOURCES}/meta-container-ex-compact-oci oci"
+
 MYMAP[meta-pkg]="${GITLAB}/meta-layers/meta-pkg.git ${SOURCES}/meta-pkg ${META_PKG_BRANCH}"
 MYMAP[meta-lib]="${GITLAB}/meta-layers/meta-lib.git ${SOURCES}/meta-lib master"
 
