@@ -39,6 +39,7 @@ then
     echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7 container-arm-v7-phoronix container-arm-v7 tmp"
     echo "+ $0 app-container-image-phoronix-oci-container-arm-v7 oci-phoronix latest-arm-v7hf container-arm-v7-phoronix container-arm-v7 tmp"
     echo "+ $0 app-container-image-tensorflow-examples-oci-container-imx8mm-lpddr4-evk-ml oci-tensorflow-examples latest-aarch64-armv8a-crc-cortexa53 container-imx8mm-lpddr4-evk-ml-tensorflow-master container-imx8mm-lpddr4-evk-ml tmp"
+    echo "+ $0 app-container-image-lighttpd-oci-container-x86-64 container-ex-compact-oci-lighttpd-x86-64 latest-x86-64 container-x86-64-ex-compact-oci container-x86-64 tmp"
     exit
 fi
 
