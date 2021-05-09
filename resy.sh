@@ -115,7 +115,7 @@ fi
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
 
-     export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
+     export JENKINS_BRANCH="2021-05-07-jenkins-2.277.4"
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
 
      # --> those need to be added below
@@ -159,7 +159,7 @@ fi
      export META_QT5_BRANCH="2020-09-08-dunfell"
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
-     export JENKINS_BRANCH="2020-06-08-jenkins-2.222.4"
+     export JENKINS_BRANCH="2021-05-07-jenkins-2.277.4"
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
@@ -197,7 +197,7 @@ fi
      export META_QT5_EXAMPLES_BRANCH="dunfell"
      export META_TENSORFLOW_MASTER_BRANCH="2020-10-27-master-as-gatesgarth"
      export META_PKG_BRANCH="master"
-     export JENKINS_BRANCH="2020-08-28-jenkins-2.235.5"
+     export JENKINS_BRANCH="2021-05-07-jenkins-2.277.4"
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
   fi
 
