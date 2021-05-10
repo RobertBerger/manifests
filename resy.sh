@@ -72,8 +72,62 @@ else
     break;
   done
 fi
-  # experimental: master as gatesgarth
+
+  # experimental: master as hardknott
   if [ "$manifest" == "experimental" ]; then
+     export META_RESY_BRANCH="hardknott"
+     export META_POKY_BRANCH="2021-05-10-master-as-hardknott-3.3.66"
+     export META_POKY_TRAINING_BRANCH="2021-05-10-master-as-hardknott-3.3.66"
+     export META_VIRTUALIZATION_BRANCH="2021-05-10-master-as-hardknott-3.3"
+     export META_DESIRE_BRANCH="master"
+     export META_MULTI_V7_ML_BSP_BRANCH="hardknott"
+     export META_U_BOOT_WIC_BSP_BRANCH="hardknott"
+     # u-boot-mender only dummy here - needs fixing
+     export META_U_BOOT_MENDER_BSP_BRANCH="master"
+     export META_SCA_BRANCH="2021-05-10-master-as-hardknott"
+     export META_OPENEMBEDDED_BRANCH="2021-05-10-master-as-hardknott"
+     export META_JAVA_BRANCH="2021-05-10-master-as-hardknott"
+     export META_TENSORFLOW_BRANCH="2021-05-10-master-as-hardknott"
+     export MANIFESTS_BRANCH="master"
+
+     ######## --> those need fixing
+     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128-gatesgarth"
+     export META_PRT_BRANCH="gatesgarth"
+
+     # u-boot-karo-wic-bsp only dummy here - needs fixing
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
+     # meta-karo-bsp only dummy here - needs fixing
+     export META_KARO_BSP_BRANCH="dunfell-5.4.x"
+
+     export META_BFE_BRANCH="gatesgarth"
+
+     # meta-mender only dummy here - needs fixing
+     export META_MENDER_BRANCH="2020-06-05-thud-as-dunfell"
+
+     export META_RASPBERRYPI_BRANCH="dunfell"
+     export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
+     export META_FREESCALE_BRANCH="2020-08-28-dunfell"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.10.x-upstream"
+     export META_SYSTEMD_NFSROOT_BRANCH="master"
+     export META_QT5_BRANCH="2020-09-08-dunfell"
+     export META_QT5_EXAMPLES_BRANCH="dunfell"
+     export META_PKG_BRANCH="master"
+     ####### <-- those need fixing
+
+     export SKOPEO_BRANCH="skopeo-v1.1.0"
+     export TERRIER_BRANCH="2020-07-24"
+
+     export JENKINS_BRANCH="2021-05-07-jenkins-2.277.4"
+     export FOSSOLOGY_BRANCH="2021-01-04-fossology"
+
+     # --> those need to be added below
+     export META_BUILDUTILS_BRANCH="2021-05-10-master-as-hardknott"
+     export META_CLANG_BRANCH="2021-05-10-master-as-hardknott"
+     # <-- those need to be added below
+  fi
+
+  # bleeding: master as gatesgarth
+  if [ "$manifest" == "bleeding" ]; then
      export META_RESY_BRANCH="gatesgarth"
      export META_POKY_BRANCH="2021-01-07-master-as-gatesgarth-3.2.66+"
      export META_POKY_TRAINING_BRANCH="2021-01-07-master-as-gatesgarth-3.2.66+"
@@ -122,11 +176,9 @@ fi
      export META_BUILDUTILS_BRANCH="2021-01-07-master-as-gatesgarth"
      export META_CLANG_BRANCH="2021-01-07-master-as-gatesgarth"
      # <-- those need to be added below
-
-
   fi
 
-  if [ "$manifest" == "bleeding" ]; then
+  if [ "$manifest" == "stable" ]; then
      export META_RESY_BRANCH="dunfell"
      export META_POKY_BRANCH="2020-06-29-dunfell-3.1.1++"
      export META_POKY_TRAINING_BRANCH="2020-06-29-dunfell-3.1.1+"
@@ -164,7 +216,7 @@ fi
   fi
 
   # stable: dunfell
-  if [ "$manifest" == "stable" ]; then
+  if [ "$manifest" == "dunfell" ]; then
      export META_RESY_BRANCH="dunfell"
      export META_POKY_BRANCH="2020-08-28-dunfell-3.1.2++"
      export META_POKY_TRAINING_BRANCH="2020-08-28-dunfell-3.1.2+"
