@@ -8,10 +8,10 @@ Signed-off-by: student <student@ReliableEmbeddedSystems.com>
  meta-xilinx-bsp/conf/layer.conf | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-xilinx-bsp/conf/layer.conf b/meta-xilinx-bsp/conf/layer.conf
+diff --git a/conf/layer.conf b/conf/layer.conf
 index e680b51..88450af 100644
---- a/meta-xilinx-bsp/conf/layer.conf
-+++ b/meta-xilinx-bsp/conf/layer.conf
+--- a/conf/layer.conf
++++ b/conf/layer.conf
 @@ -11,7 +11,7 @@ BBFILE_PRIORITY_xilinx = "5"
  
  LAYERDEPENDS_xilinx = "core"
