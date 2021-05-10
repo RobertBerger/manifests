@@ -26,7 +26,6 @@ cd build
 # For jenkins I do the setup of meta-data as without it, via resy.sh
 
 declare -A MYMAP
-
 # MYMAP[MACHINE or MACHINE-sw-variant]="<image>"
 
 # --> container-x86-64
@@ -328,6 +327,15 @@ MYMAP[imx6q-phytec-mira-rdk-nand-wic]="core-image-minimal"
 MYMAP[imx6q-phytec-mira-rdk-nand-wic-master]="core-image-minimal"
 # <-- imx6q-phytec-mira-rdk-nand-wic-master
 
+# --> zynq-zed-wic-master (mine)
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh zynq-zed-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[zynq-zed-wic-master]="core-image-minimal"
+# <-- zynq-zed-wic-master (mine)
 
 # --> imx6q-phytec-mira-rdk-nand-virt-wic
 # jenkins:
@@ -677,6 +685,16 @@ MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-tftp-nfs]="core-image-base core-image-
 # cd ${HERE}
 MYMAP[raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard]="core-image-base core-image-minimal-virt-docker-ce"
 # <-- raspberrypi-4-64-ml-kernel-wic-virt-all-sdcard
+
+# --> zedboard-zynq7-master (meta-xilinx)
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh zedboard-zynq7-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[zedboard-zynq7-master]="core-image-minimal"
+# <-- zedboard-zynq7-master
 
 # --> imx8mm-lpddr4-evk-master
 # jenkins:
@@ -1444,6 +1462,24 @@ fi
   fi
 
   # rootfs over nfs or SD card
+  # for zedboard-zynq7 master branch
+  # this uses meta-xilinx-master!
+
+  if [ "$machine" == "zedboard-zynq7-master" ]; then
+     export TEMPLATECONF="../meta-xilinx-common-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-xilinx-common-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs over nfs or SD card
   # for imx8mm-lpddr4-evk-ml master branch
 
   if [ "$machine" == "imx8mm-lpddr4-evk-ml-master" ]; then
@@ -1654,6 +1690,26 @@ fi
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
         cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # std kernel from multi-v7-ml,
+  # fdt,
+  # sd card image e.g. core-image-minimal
+  # for zynq-zed (mine)
+
+  if [ "$machine" == "zynq-zed-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi

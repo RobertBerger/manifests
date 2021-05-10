@@ -1,0 +1,26 @@
+From 009116e5da4702e3a20db501b0b2cd3ad7734df4 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Mon, 10 May 2021 13:40:07 +0300
+Subject: [PATCH] add hardknott
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta-xilinx-bsp/conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-xilinx-bsp/conf/layer.conf b/meta-xilinx-bsp/conf/layer.conf
+index e680b51..88450af 100644
+--- a/meta-xilinx-bsp/conf/layer.conf
++++ b/meta-xilinx-bsp/conf/layer.conf
+@@ -11,7 +11,7 @@ BBFILE_PRIORITY_xilinx = "5"
+ 
+ LAYERDEPENDS_xilinx = "core"
+ 
+-LAYERSERIES_COMPAT_xilinx = "dunfell gatesgarth"
++LAYERSERIES_COMPAT_xilinx = "dunfell gatesgarth hardknott"
+ 
+ BB_DANGLINGAPPENDS_WARNONLY ?= "1"
+ 
+-- 
+2.25.1
+

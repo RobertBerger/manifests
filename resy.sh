@@ -255,6 +255,8 @@ MYMAP[meta-fsl-common-master]="${GITLAB}/meta-layers/meta-fsl-common.git ${SOURC
 MYMAP[meta-imx8mm-lpddr4-evk-ml-bsp-master]="${GITLAB}/meta-layers/meta-imx8mm-lpddr4-evk-ml-bsp.git ${SOURCES}/meta-imx8mm-lpddr4-evk-ml-bsp-master master"
 MYMAP[meta-phyboard-polis-imx8mm-bsp]="${GITLAB}/meta-layers/meta-phyboard-polis-imx8mm-bsp ${SOURCES}/meta-phyboard-polis-imx8mm-bsp ${META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH}"
 
+MYMAP[meta-xilinx-master]="${GIT_YP}/meta-xilinx ${SOURCES}/meta-xilinx-master master ${SOURCES}/manifests/meta-xilinx-master/patch.sh"
+MYMAP[meta-xilinx-common-master]="${GITLAB}/meta-layers/meta-xilinx-common.git ${SOURCES}/meta-xilinx-common-master master"
 
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
 
