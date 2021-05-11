@@ -268,7 +268,7 @@ MYMAP[keys-for-ipk-signing]="${GITLAB}/robert.berger/keys-for-ipk-signing.git ${
 #MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
 MYMAP[meta-virtualization]="${GITHUB}/RobertBerger/meta-virtualization ${SOURCES}/meta-virtualization ${META_VIRTUALIZATION_BRANCH}"
 MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master ${SOURCES}/manifests/meta-virtualization-master/patch.sh"
-MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials gatesgarth"
+MYMAP[meta-wifi-credentials]="${GITHUB}/RobertBerger/meta-wifi-credentials ${SOURCES}/meta-wifi-credentials hardknott"
 # my meta-u-boot-wic-bsp bsp u-boot is here
 MYMAP[meta-u-boot-wic-bsp]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp ${META_U_BOOT_WIC_BSP_BRANCH}"
 MYMAP[meta-u-boot-wic-bsp-master]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp.git ${SOURCES}/meta-u-boot-wic-bsp-master master"
