@@ -324,6 +324,7 @@ MYMAP[meta-xenomai]="${GITLAB}/meta-layers/meta-xenomai.git ${SOURCES}/meta-xeno
 MYMAP[meta-prt]="${GITLAB}/meta-layers/meta-prt.git ${SOURCES}/meta-prt ${META_PRT_BRANCH}"
 
 MYMAP[meta-raspberrypi]="${GITHUB}/RobertBerger/meta-raspberrypi ${SOURCES}/meta-raspberrypi ${META_RASPBERRYPI_BRANCH}"
+MYMAP[meta-raspberrypi-master]="${GIT_YP}/meta-raspberrypi ${SOURCES}/meta-raspberrypi-master master"
 MYMAP[meta-raspberrypi-ml-bsp]="${GITLAB}/meta-layers/meta-raspberrypi-ml-bsp.git ${SOURCES}/meta-raspberrypi-ml-bsp ${META_RASPBERRYPI_ML_BSP_BRANCH}"
 
 MYMAP[meta-container-ex-compact-docker-only]="${GITLAB}/meta-layers/meta-container-ex-compact.git ${SOURCES}/meta-container-ex-compact-docker-only docker-only"
