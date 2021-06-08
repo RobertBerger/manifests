@@ -53,7 +53,7 @@ else
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
    #CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
    #CONTAINER="reliableembeddedsystems/poky-container:2021-05-07-master-local-gcc-9-gui-icecc-ub18"
-   CONTAINER="reliableembeddedsystems/2021-06-07-gcc-9-gui-icecc-ub18-phyCORE-STM32MP1-PD21.1.0"
+   CONTAINER="reliableembeddedsystems/poky-container:2021-06-07-gcc-9-gui-icecc-ub18-phycore-stm32mp1-pd21.1.0"
 fi
 
 if [[ $USE_GUI = no ]]; then
@@ -62,7 +62,7 @@ if [[ $USE_GUI = no ]]; then
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
    #CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
    #CONTAINER="reliableembeddedsystems/poky-container:2021-05-07-master-local-gcc-9-gui-icecc-ub18"
-   CONTAINER="reliableembeddedsystems/2021-06-07-gcc-9-gui-icecc-ub18-phyCORE-STM32MP1-PD21.1.0"
+   CONTAINER="reliableembeddedsystems/poky-container:2021-06-07-gcc-9-gui-icecc-ub18-phycore-stm32mp1-pd21.1.0"
 fi
 
 #echo "CONTAINER= $CONTAINER"
