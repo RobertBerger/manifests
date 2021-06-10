@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SOURCES="/workdir/sources"
+PHY_STM_RESY_COLLECTION="/workdir/sources/meta-phy-stm-resy-collection"
 SCRIPTS="/workdir/scripts"
 JENKINS="/workdir/jenkins"
 FOSSOLOGY="/workdir/fossology"
@@ -254,7 +255,6 @@ fi
   fi
 
 declare -A MYMAP
-MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRIPTS}/convenience-scripts master"
 MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
 MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master"
@@ -334,6 +334,11 @@ MYMAP[meta-container-ex-compact-oci]="${GITLAB}/meta-layers/meta-container-ex-co
 MYMAP[meta-pkg]="${GITLAB}/meta-layers/meta-pkg.git ${SOURCES}/meta-pkg ${META_PKG_BRANCH}"
 MYMAP[meta-lib]="${GITLAB}/meta-layers/meta-lib.git ${SOURCES}/meta-lib master"
 
+# meta-phy-stm-resy-collection
+MYMAP[meta-phy-bsp-stm-resy]="${GITLAB}/meta-layers/meta-phy-bsp-stm-resy.git ${PHY_STM_RESY_COLLECTION}/meta-phy-bsp-stm-resy master"
+MYMAP[meta-phy-bsp-stm-resy-meta-phytec]="${GITHUB}/RobertBerger/meta-phytec ${PHY_STM_RESY_COLLECTION}/meta-phytec 2021-06-09-pd21.1.0-stm-dunfell-as-hardknott"
+MYMAP[meta-phy-bsp-stm-resy-meta-st-stm32mp]="${GITHUB}/RobertBerger/meta-st-stm32mp ${PHY_STM_RESY_COLLECTION}/meta-st-stm32mp 2021-06-09-pd21.1.0-subset-dunfell-as-hardknott"
+
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
 
@@ -389,6 +394,8 @@ MYMAP[oci-phoronix-arm-v7]="${GITLAB}/app-container/oci-phoronix.git ${APP_CONTA
 MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_X86_64}/app-container-lighttpd x86-64"
 MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
 # <-- app-containers
+
+#MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 
 # --> I guess we should update manifests first
   echo "+ Do you want to replace manifests first?"
