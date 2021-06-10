@@ -510,6 +510,16 @@ MYMAP[stm32mp157c-dk2-systemd-wic-master]="core-image-minimal core-image-minimal
 # MYMAP[stm32mp157c-dk2-meta-stm32mp1-wic-master]="core-image-minimal"
 # <-- stm32mp157c-dk2-meta-stm32mp1-wic-master
 
+# --> sargas-phycore-stm32mp1-2-systemd-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh sargas-phycore-stm32mp1-2-systemd-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[sargas-phycore-stm32mp1-2-systemd-master]="core-image-minimal"
+# <-- sargas-phycore-stm32mp1-2-systemd-master
+
 # --> de0-nano-soc-kit-wic-master
 # jenkins:
 # HERE=$(pwd)
@@ -2145,8 +2155,25 @@ fi
      fi
   fi
 
+  # rootfs,
+  # kernel/fdt
+  # std kernel from???
+  # sd card image e.g. core-image-minimal
+  # for the sargas board with phycore-stm32mp1-2, systemd
 
-
+  if [ "$machine" == "sargas-phycore-stm32mp1-2-systemd-master" ]; then
+     export TEMPLATECONF="../meta-phy-stm-resy-collection/meta-phy-bsp-stm-resy/template-sargas-phycore-stm32mp1-2-systemd-master/"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-phy-stm-resy-collection/meta-phy-bsp-stm-resy/template-sargas-phycore-stm32mp1-2-systemd-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # rootfs,
   # kernel/fdt
