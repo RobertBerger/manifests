@@ -118,7 +118,7 @@ fi
      export SKOPEO_BRANCH="skopeo-v1.1.0"
      export TERRIER_BRANCH="2020-07-24"
 
-     export JENKINS_BRANCH="2021-05-07-jenkins-2.277.4"
+     export JENKINS_BRANCH="2021-06-14-jenkins-2.289.1"
      export FOSSOLOGY_BRANCH="2021-01-04-fossology"
 
      # --> those need to be added below
