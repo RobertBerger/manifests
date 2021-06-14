@@ -395,7 +395,7 @@ MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-ligh
 MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
 # <-- app-containers
 
-#MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 
 # --> I guess we should update manifests first
   echo "+ Do you want to replace manifests first?"
