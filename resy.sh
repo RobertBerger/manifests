@@ -2,6 +2,7 @@
 
 SOURCES="/workdir/sources"
 PHY_STM_RESY_COLLECTION="/workdir/sources/meta-phy-stm-resy-collection"
+ARIES_POLARFIRE_RESY_COLLECTION="/workdir/sources/meta-aries-polarfire-resy-collection"
 SCRIPTS="/workdir/scripts"
 JENKINS="/workdir/jenkins"
 FOSSOLOGY="/workdir/fossology"
@@ -334,10 +335,26 @@ MYMAP[meta-container-ex-compact-oci]="${GITLAB}/meta-layers/meta-container-ex-co
 MYMAP[meta-pkg]="${GITLAB}/meta-layers/meta-pkg.git ${SOURCES}/meta-pkg ${META_PKG_BRANCH}"
 MYMAP[meta-lib]="${GITLAB}/meta-layers/meta-lib.git ${SOURCES}/meta-lib master"
 
-# meta-phy-stm-resy-collection
+# --> meta-phy-stm-resy-collection
 MYMAP[meta-phy-bsp-stm-resy]="${GITLAB}/meta-layers/meta-phy-bsp-stm-resy.git ${PHY_STM_RESY_COLLECTION}/meta-phy-bsp-stm-resy master"
 MYMAP[meta-phy-bsp-stm-resy-meta-phytec]="${GITHUB}/RobertBerger/meta-phytec ${PHY_STM_RESY_COLLECTION}/meta-phytec 2021-06-09-pd21.1.0-stm-dunfell-as-hardknott"
 MYMAP[meta-phy-bsp-stm-resy-meta-st-stm32mp]="${GITHUB}/RobertBerger/meta-st-stm32mp ${PHY_STM_RESY_COLLECTION}/meta-st-stm32mp 2021-06-09-pd21.1.0-subset-dunfell-as-hardknott"
+# <-- meta-phy-stm-resy-collection
+
+# --> meta-aries-polarfire-resy-collection
+# upstream
+MYMAP[meta-riscv]="${GITHUB}/RobertBerger/meta-riscv ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-riscv 2021-06-25-hardknott"
+MYMAP[poky-meta-aries-polarfire-resy-collection]="${GITHUB}/RobertBerger/poky ${ARIES_POLARFIRE_RESY_COLLECTION}/poky 2021-06-25-hardknott"
+
+# upstream hacked
+# aries hacked and res hacked on aires-res branch:
+MYMAP[meta-polarfire-soc-yocto-bsp-aries]="${GITHUB}/RobertBerger/meta-polarfire-soc-yocto-bsp-aries ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-aries 2021-06-25-hardknott-aries-res"
+
+# res
+# in order to work with yocto we need this u-boot version, which is originally in oe-core:
+# we can also add the templateconf here:
+MYMAP[meta-polarfire-soc-yocto-bsp-addon]="${GITLAB}/meta-layers/meta-polarfire-soc-yocto-bsp-addon.git ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-addon master"
+# <-- meta-aries-polarfire-resy-collection
 
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
