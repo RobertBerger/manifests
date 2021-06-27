@@ -258,7 +258,7 @@ fi
 declare -A MYMAP
 MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRIPTS}/convenience-scripts master"
 MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
-MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master"
+MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master ${SOURCES}/manifests/poky-master/patch.sh"
 MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_TRAINING_BRANCH}"
 # my-mender-layer (encrypted)
 MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
