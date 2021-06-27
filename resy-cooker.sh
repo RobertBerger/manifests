@@ -555,11 +555,22 @@ MYMAP[m100pfsevp-polarfire-resy]="core-image-minimal"
 # jenkis:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh m100pfsevp-polarfire-resy core-image-minimal
+# ./resy-poky-container.sh m100pfsevp-polarfire-resy-master core-image-minimal
 # pwd
 # cd ${HERE}
 MYMAP[m100pfsevp-polarfire-resy-master]="core-image-minimal"
 # <-- m100pfsevp-polarfire-resy-master
+
+
+# --> m100pfsevp-polarfire-resy-master-minimal
+# jenkis:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh m100pfsevp-polarfire-resy-master-minimal core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[m100pfsevp-polarfire-resy-master-minimal]="core-image-minimal"
+# <-- m100pfsevp-polarfire-resy-master-minimal
 
 
 # --> de0-nano-soc-kit-wic-master
@@ -2280,6 +2291,7 @@ fi
      fi
   fi
 
+
   # rootfs,
   # kernel/fdt
   # magic kernel from microsemi/aries
@@ -2287,6 +2299,27 @@ fi
   # for the m100pfsevp with a polarfire soc, resy/systemd with poky master
 
   if [ "$machine" == "m100pfsevp-polarfire-resy-master" ]; then
+     export TEMPLATECONF="../meta-aries-polarfire-resy-collection/meta-polarfire-soc-yocto-bsp-addon/template-${machine}/"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-aries-polarfire-resy-collection/meta-polarfire-soc-yocto-bsp-addon/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # rootfs,
+  # kernel/fdt
+  # magic kernel from microsemi/aries
+  # sd card image e.g. core-image-minimal
+  # for the m100pfsevp with a polarfire soc, resy/systemd with poky master
+
+  if [ "$machine" == "m100pfsevp-polarfire-resy-master-minimal" ]; then
      export TEMPLATECONF="../meta-aries-polarfire-resy-collection/meta-polarfire-soc-yocto-bsp-addon/template-${machine}/"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
