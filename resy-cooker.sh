@@ -721,11 +721,32 @@ MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 # jenkins:
 # HERE=$(pwd)
 # cd /workdir
-# ./resy-poky-container.sh raspberrypi4-64-master core-image-base
+# ./resy-poky-container.sh raspberrypi4-64-master core-image-minimal
 # pwd
 # cd ${HERE}
-MYMAP[raspberrypi4-64-master]="core-image-base"
+MYMAP[raspberrypi4-64-master]="core-image-minimal"
 # <-- raspberrypi4-64-master
+
+# --> raspberrypi4-64-virt-docker-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi4-64-virt-docker-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi4-64-virt-docker-master]="core-image-minimal-virt-docker"
+# <-- raspberrypi4-64-virt-docker-master
+
+# --> raspberrypi4-64-virt-k3s-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi4-64-virt-k3s-master core-image-minimal-virt-k3s
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi4-64-virt-k3s-master]="core-image-minimal-virt-k3s"
+# <-- raspberrypi4-64-virt-k3s-master
+
 
 # --> raspberrypi3-64-master
 # jenkins:
@@ -1769,6 +1790,43 @@ fi
      fi
   fi
 
+  # raspberrypi4-64-virt-docker-master
+  # rootfs,
+  # meta-raspberrypi kernel, + config for docker?
+  # fdt,
+  # sd card image e.g. core-image-base
+  # for raspberrypi4-64
+
+  if [ "$machine" == "raspberrypi4-64-virt-docker-master" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-common-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-raspberrypi-common-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # raspberrypi4-64-virt-k3s-master
+  # rootfs,
+  # meta-raspberrypi kernel, + config for k3s?
+  # fdt,
+  # sd card image e.g. core-image-base
+  # for raspberrypi4-64
+
+  if [ "$machine" == "raspberrypi4-64-virt-k3s-master" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-common-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-raspberrypi-common-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # raspberrypi3-64-master
   # rootfs,
