@@ -1,0 +1,26 @@
+From ddea8eed03d7baecb8f17b759abb1f23a3253954 Mon Sep 17 00:00:00 2001
+From: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+Date: Sat, 28 Aug 2021 11:48:13 +0200
+Subject: [PATCH] bootchart2 man does not build
+
+Signed-off-by: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+---
+ meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb b/meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb
+index f6a77b4..71bd174 100644
+--- a/meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb
++++ b/meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb
+@@ -141,7 +141,7 @@ do_install () {
+    sed -i -e '1s,#!.*python.*,#!${USRBINPATH}/env python3,' ${D}${bindir}/pybootchartgui
+ 
+     # The timestamps embedded in compressed man pages is not reproducible
+-    gzip -d ${D}${mandir}/man1/*.gz
++    # gzip -d ${D}${mandir}/man1/*.gz
+ }
+ 
+ PACKAGES =+ "pybootchartgui"
+-- 
+2.7.4
+

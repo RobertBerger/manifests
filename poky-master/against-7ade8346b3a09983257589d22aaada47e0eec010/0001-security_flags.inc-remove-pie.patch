@@ -1,0 +1,28 @@
+From 5195046e161552910314da15fc9662cae38bef41 Mon Sep 17 00:00:00 2001
+From: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+Date: Sat, 28 Aug 2021 11:46:08 +0200
+Subject: [PATCH] security_flags.inc: remove pie
+
+Signed-off-by: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+---
+ meta/conf/distro/include/security_flags.inc | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/meta/conf/distro/include/security_flags.inc b/meta/conf/distro/include/security_flags.inc
+index f996ca9..3b044b7 100644
+--- a/meta/conf/distro/include/security_flags.inc
++++ b/meta/conf/distro/include/security_flags.inc
+@@ -69,3 +69,10 @@ TARGET_CC_ARCH_append_pn-binutils = " ${SELECTED_OPTIMIZATION}"
+ TARGET_CC_ARCH_append_pn-gcc = " ${SELECTED_OPTIMIZATION}"
+ TARGET_CC_ARCH_append_pn-gdb = " ${SELECTED_OPTIMIZATION}"
+ TARGET_CC_ARCH_append_pn-perf = " ${SELECTED_OPTIMIZATION}"
++
++# --> remove pie
++#GCCPIE = ""
++#GLIBCPIE = ""
++#SECURITY_CFLAGS_remove = "${SECURITY_PIE_CFLAGS}"
++#SECURITY_CFLAGS_pn-libgcc = ""
++# <-- remove pie
+-- 
+2.7.4
+
