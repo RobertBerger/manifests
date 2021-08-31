@@ -747,6 +747,15 @@ MYMAP[raspberrypi4-64-virt-docker-master]="core-image-minimal-virt-docker"
 MYMAP[raspberrypi4-64-virt-k3s-master]="core-image-minimal-virt-k3s"
 # <-- raspberrypi4-64-virt-k3s-master
 
+# --> raspberrypi4-64-virt-k3s-master-bosc
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi4-64-virt-k3s-master-bosc core-image-minimal-virt-k3s
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi4-64-virt-k3s-master-bosc]="core-image-minimal-virt-k3s"
+# <-- raspberrypi4-64-virt-k3s-master-bosc
 
 # --> raspberrypi3-64-master
 # jenkins:
@@ -1824,6 +1833,28 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ../../sources/meta-raspberrypi-common-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # raspberrypi4-64-virt-k3s-master-bosc
+  # rootfs,
+  # meta-raspberrypi kernel, + config for k3s?
+  # fdt,
+  # sd card image e.g. core-image-base
+  # for raspberrypi4-64
+
+  if [ "$machine" == "raspberrypi4-64-virt-k3s-master-bosc" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-common-master-bosc/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/meta-raspberrypi-resy-collection-bosc/poky-master-bosc/oe-init-build-env ${machine}"
+     pwd
+     source ../sources/meta-raspberrypi-resy-collection-bosc/poky-master-bosc/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        pwd
+        cp ../../sources/meta-raspberrypi-resy-collection-bosc/meta-raspberrypi-common-master-bosc/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi

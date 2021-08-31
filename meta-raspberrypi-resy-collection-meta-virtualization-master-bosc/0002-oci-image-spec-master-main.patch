@@ -1,0 +1,26 @@
+From f1eaa18bcc832e784ff5b8414acfe0ff582e6674 Mon Sep 17 00:00:00 2001
+From: "student@e450-7" <student@e450-7.res.training>
+Date: Mon, 2 Aug 2021 22:03:56 +0200
+Subject: [PATCH] master -> main
+
+Signed-off-by: student@e450-7 <student@e450-7.res.training>
+---
+ recipes-containers/oci-image-spec/oci-image-spec_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-containers/oci-image-spec/oci-image-spec_git.bb b/recipes-containers/oci-image-spec/oci-image-spec_git.bb
+index 5805740..fba38e8 100644
+--- a/recipes-containers/oci-image-spec/oci-image-spec_git.bb
++++ b/recipes-containers/oci-image-spec/oci-image-spec_git.bb
+@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://src/${PKG_NAME}/LICENSE;md5=27ef03aa2da6e424307f102e8
+ SRCNAME = "image-spec"
+ 
+ PKG_NAME = "github.com/opencontainers/${SRCNAME}"
+-SRC_URI = "git://${PKG_NAME}.git;destsuffix=git/src/${PKG_NAME}"
++SRC_URI = "git://${PKG_NAME}.git;branch=main;destsuffix=git/src/${PKG_NAME}"
+ 
+ SRCREV = "bd4f8fcb0979a663d8b97a1d4d9b030b3d2ca1fa"
+ PV = "v1.0.1+git${SRCPV}"
+-- 
+2.7.4
+

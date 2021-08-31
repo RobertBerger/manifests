@@ -1,0 +1,35 @@
+From 567a981bba15161088b15ce7fbe54395e73af49f Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Date: Wed, 7 Apr 2021 10:25:28 +0300
+Subject: [PATCH] include virtio.scc
+
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+---
+ recipes-kernel/linux/linux-yocto_virtualization.inc | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/recipes-kernel/linux/linux-yocto_virtualization.inc b/recipes-kernel/linux/linux-yocto_virtualization.inc
+index 42a10b3..d33e61c 100644
+--- a/recipes-kernel/linux/linux-yocto_virtualization.inc
++++ b/recipes-kernel/linux/linux-yocto_virtualization.inc
+@@ -15,7 +15,16 @@ KERNEL_MODULE_AUTOLOAD += "${@bb.utils.contains('DISTRO_FEATURES', 'kvm', 'kvm',
+ # aufs kernel support required for xen-image-minimal
+ KERNEL_FEATURES_append += "${@bb.utils.contains('DISTRO_FEATURES', 'aufs', ' features/aufs/aufs-enable.scc', '', d)}"
+ 
+-KERNEL_FEATURES_append = " cfg/virtio.scc"
++
++# if it's a poky distro:
++KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTROOVERRIDES", "poky", "cfg/virtio.scc", "", d)}"
++
++# if it's a resy-virt distro:
++SRC_URI += "${@bb.utils.contains("DISTROOVERRIDES", "resy-virt", "file://features/virtio/virtio.scc", "", d)}"
++
++#KERNEL_FEATURES_append = " cfg/virtio.scc"
++#SRC_URI += "file://features/virtio/virtio.scc"
++
+ 
+ # xen kernel support
+ SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'xen', ' file://xen.scc', '', d)}"
+-- 
+2.25.1
+

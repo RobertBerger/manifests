@@ -3,6 +3,7 @@
 SOURCES="/workdir/sources"
 PHY_STM_RESY_COLLECTION="/workdir/sources/meta-phy-stm-resy-collection"
 ARIES_POLARFIRE_RESY_COLLECTION="/workdir/sources/meta-aries-polarfire-resy-collection"
+RASPBERRYPI_RESY_COLLECTION_BOSC="/workdir/sources/meta-raspberrypi-resy-collection-bosc"
 SCRIPTS="/workdir/scripts"
 JENKINS="/workdir/jenkins"
 FOSSOLOGY="/workdir/fossology"
@@ -358,6 +359,25 @@ MYMAP[meta-polarfire-soc-yocto-bsp-aries]="${GITHUB}/RobertBerger/meta-polarfire
 MYMAP[meta-polarfire-soc-yocto-bsp-addon]="${GITLAB}/meta-layers/meta-polarfire-soc-yocto-bsp-addon.git ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-addon master"
 # <-- meta-aries-polarfire-resy-collection
 
+# --> meta-raspberrypi-resy-collection
+# my own layers:
+# 3rd party layers:
+# bosc - before override syntax change
+# poky-master - no patches, master, specific commit
+MYMAP[meta-raspberrypi-resy-collection-poky-master-bosc]="${GIT_YP}/poky ${RASPBERRYPI_RESY_COLLECTION_BOSC}/poky-master-bosc master none f735627e7c5aeb421338db55f3905d74751d4b71"
+# meta-raspberrypi-master - no patches, master, specific commit
+MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-master-bosc]="${GIT_YP}/meta-raspberrypi ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-master-bosc master none 8dc3a310883ea87cd9900442f46f20bb08e57583"
+# meta-openembedded-master - no patches, master, specific commit
+MYMAP[meta-raspberrypi-resy-collection-meta-openembedded-master-bosc]="${GIT_OE}/meta-openembedded ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-openembedded-master-bosc master none 5a9eef2f531cfb051661c53de34e4c6ba6915138"
+# meta-virtualization-master - patches needed, master, specific commit
+MYMAP[meta-raspberrypi-resy-collection-meta-virtualization-master-bosc]="${GIT_YP}/meta-virtualization ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-virtualization-master-bosc master ${SOURCES}/manifests/meta-raspberrypi-resy-collection-meta-virtualization-master-bosc/patch.sh 5fdf66c1e2ec0c6b08573bf0a6aa9f84d2fc4ae6"
+
+# meta-resy-master - master-bosc
+MYMAP[meta-raspberrypi-resy-collection-meta-resy-master-bosc]="${GITLAB}/meta-layers/meta-resy.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-resy-master-bosc master-bosc"
+MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-common-master-bosc]="${GITLAB}/meta-layers/meta-raspberrypi-common.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-common-master-bosc master-bosc"
+MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-addon-master-bosc]="${GITLAB}/meta-layers/meta-raspberrypi-addon.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-addon-master-bosc master-bosc"
+# <-- meta-raspberrypi-resy-collection
+
 # jenkins
 MYMAP[jenkins-docker]="${GITHUB}/RobertBerger/jenkins-docker ${JENKINS}/jenkins-docker ${JENKINS_BRANCH}"
 
@@ -414,7 +434,16 @@ MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-ligh
 MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
 # <-- app-containers
 
-MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+# I think we did the manifests above with a question
+#MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+
+# e.g.:
+#      MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master ${SOURCES}/manifests/meta-virtualization-master/patch.sh"
+# $1: git repo to clone/pull from
+# $2: local name of git repo
+# $3: branch (to pull from)
+# $4: patch.sh contains patches to be applied - this needs to be a file!!
+# $5: commit id (note we also need $4 for this to work)
 
 # --> I guess we should update manifests first
   echo "+ Do you want to replace manifests first?"
@@ -470,7 +499,13 @@ do
     LOCAL_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
     echo "LOCAL_BRANCH: ${LOCAL_BRANCH}"
 
-    BRANCH_WE_WANT="$3"
+    # if we have a commit id we create a special local branch _LOCAL
+    # so let's compare against this as well
+    if [ ! -z "$5" ]; then
+        BRANCH_WE_WANT="${3}_LOCAL"
+    else
+        BRANCH_WE_WANT="$3"
+    fi
     echo "BRANCH_WE_WANT: ${BRANCH_WE_WANT}"
 
     if [ "$LOCAL_BRANCH" == "$BRANCH_WE_WANT" ]; then
@@ -493,16 +528,17 @@ do
     BASE=$(git merge-base @ "$UPSTREAM")
     echo "BASE: ${BASE}"
 
+  # if we have a special commit we can ignore this block
+  # so only if $5 is empty do it:
+  if [ -z "$5" ]; then
     if [ $LOCAL = $REMOTE ]; then
         echo -e "\e[32mUp-to-date\e[39m"
     elif [ $LOCAL = $BASE ]; then
         echo -e "\e[31mNeed to pull\e[39m"
-        #echo "+ rm -rf ../$2"
         echo "+ git pull"
         echo "Press <ENTER> to go on"
         read r
         git pull
-        #rm -rf ../$2
     elif [ $REMOTE = $BASE ]; then
         echo -e "\e[31mNeed to push\e[39m"
         echo -e "\e[31mError\e[39m"
@@ -542,6 +578,7 @@ do
            exit -1
         fi
     fi
+  fi # ignore the whole block due to specific commit
     popd
  echo "Press <ENTER> to go on"
  read r
@@ -562,6 +599,26 @@ else # dir exists above
      echo "Press <ENTER> to go on"
      read r
      exit $retVal
+  fi
+
+  # looks like here we cloned a specific branch
+  # if we need a specific commit it needs to be $5 for now
+  if [ ! -z "$5" ]; then
+     echo -e "\e[32mLooks like it's a commit id:\e[39m"
+     echo "${5}"
+     echo "Press <ENTER> to go on"
+     read r
+     pushd $2
+     echo "git checkout -b ${3}_LOCAL $5"
+     git checkout -b ${3}_LOCAL $5
+     retVal=$?
+     popd
+     if [ $retVal -ne 0 ]; then
+        echo "Error $retVal"
+        echo "Press <ENTER> to go on"
+        read r
+        exit $retVal
+     fi
   fi
 fi # dir does not exist
 
