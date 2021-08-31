@@ -434,8 +434,8 @@ MYMAP[app-container-lighttpd-x86-64]="${GITLAB}/app-container/app-container-ligh
 MYMAP[app-container-lighttpd-multi-arch]="${GITLAB}/app-container/app-container-lighttpd.git ${APP_CONTAINER_MULTI_ARCH}/docker-lighttpd multi-arch"
 # <-- app-containers
 
-# I think we did the manifests above with a question
-#MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
+# I think we did the manifests above with a question - not always (e.g. when we erase everything)
+MYMAP[manifests]="${GITHUB}/RobertBerger/manifests ${SOURCES}/manifests ${MANIFESTS_BRANCH}"
 
 # e.g.:
 #      MYMAP[meta-virtualization-master]="${GIT_YP}/meta-virtualization ${SOURCES}/meta-virtualization-master master ${SOURCES}/manifests/meta-virtualization-master/patch.sh"
