@@ -9,6 +9,8 @@ USE_MIRROR="yes"
 DOCKER_PULL="yes"
 USE_ICECC="yes"
 USE_QEMU="no"
+#PRIVILEGED="--privileged"
+PRIVILEGED=""
 
 if [[ $USE_QEMU = yes ]]; then
    sudo modprobe tun
@@ -52,7 +54,11 @@ else
    #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gui-gcc-9"
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
    #CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
+   #CONTAINER="reslocal/poky-container:ubuntu-20.04"
+   # stable:
    CONTAINER="reliableembeddedsystems/poky-container:2021-06-09-master-local-gcc-9-gui-icecc-ub18"
+   # new:
+   #CONTAINER="reliableembeddedsystems/poky-container:2021-08-31-master-local-icecc-ub20"
 fi
 
 if [[ $USE_GUI = no ]]; then
@@ -60,7 +66,11 @@ if [[ $USE_GUI = no ]]; then
    #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gcc-9"
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
    #CONTAINER="reliableembeddedsystems/poky-container:2020-07-26-master-local-gcc-9-gui-ub18"
+   #CONTAINER="reslocal/poky-container:ubuntu-20.04"
+   # stable:
    CONTAINER="reliableembeddedsystems/poky-container:2021-06-09-master-local-gcc-9-gui-icecc-ub18"
+   # new:
+   #CONTAINER="reliableembeddedsystems/poky-container:2021-08-31-master-local-icecc-ub20"
 fi
 
 #echo "CONTAINER= $CONTAINER"
@@ -145,10 +155,10 @@ if [ "$#" -eq "0" ]; then
   read r
   # jenkis is here unusual - we might remove it, since we are in interactive mode
   if [[ $WORKSPACE = *jenkins* ]]; then
-  docker run --name poky_container --rm -it ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
+  docker run --name poky_container --rm -it ${PRIVILEGED} ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir; [ $? -ne 0 ] && printf "\e[31m+Docker ERRORS found (1)\e[0m\n" && exit 1
   else
   set -x
-  docker run --name poky_container --rm -it ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
+  docker run --name poky_container --rm -it ${PRIVILEGED} ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir
   fi
 fi
 #  <-- interactive mode
@@ -162,7 +172,7 @@ if [ "$#" -eq "1" ]; then
   set -x
   export BUILDDIR="/workdir/build/$1"
   /workdir/killall_bitbake.sh
-  docker run --name poky_container --rm -i -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} /bin/bash -c "source /workdir/resy-cooker.sh $1 && /bin/bash" --workdir=/workdir
+  docker run --name poky_container --rm -i -t ${PRIVILEGED} ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} /bin/bash -c "source /workdir/resy-cooker.sh $1 && /bin/bash" --workdir=/workdir
   set +x
 fi
 # <-- semi-automatic mode
@@ -186,10 +196,10 @@ if [ "$#" -eq "2" ]; then
   set +x
 
   if [[ $WORKSPACE = *jenkins* ]]; then
-  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && printf "\e[31m+ Docker ERRORS found (2)\e[0m\n" && exit 1
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${PRIVILEGED} ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2 ;[ $? -ne 0 ] && printf "\e[31m+ Docker ERRORS found (2)\e[0m\n" && exit 1
   else
   # this is not really useful here - we might remove it
-  docker run --name poky_container --rm ${INTERACTIVE} -t ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
+  docker run --name poky_container --rm ${INTERACTIVE} -t ${PRIVILEGED} ${MIRROR_CMD} ${QEMU} ${ICECC} ${GUI} --env BUILD_ALL=${BUILD_ALL_VAR} -v ${HOME}/projects:/projects -v /opt:/nfs -v ${PWD}:${PWD} -v ${PWD}:/workdir ${CONTAINER} --workdir=/workdir ./resy-cooker.sh $1 $2
   fi
 fi 
 # <-- non interactve mode
