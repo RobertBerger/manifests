@@ -225,6 +225,20 @@ MYMAP[multi-v7-ml-debug]="core-image-minimal core-image-sato-sdk"
 MYMAP[multi-v7-ml-debug-training]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml-debug-training
 
+# --> multi-v7-ml-debug-training-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training-master core-image-minimal
+# ./resy-poky-container.sh multi-v7-ml-debug-training-master core-image-sato-sdk
+# ./resy-poky-container.sh multi-v7-ml-debug-training-master 'core-image-sato-sdk -c populate_sdk'
+# ./resy-poky-container.sh multi-v7-ml-debug-training-master 'core-image-sato-sdk -c populate_sdk_ext'
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug-training-master]="core-image-minimal core-image-sato-sdk"
+# <-- multi-v7-ml-debug-training-master
+
+
 # --> multi-v7-ml-debug-training-libs
 # jenkins:
 # HERE=$(pwd)
@@ -1452,6 +1466,26 @@ fi
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: debug
+  # poky -> poky-master
+
+  if [ "$machine" == "multi-v7-ml-debug-training-master" ]; then
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi

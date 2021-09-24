@@ -58,7 +58,7 @@ else
    # stable:
    CONTAINER="reliableembeddedsystems/poky-container:2021-06-09-master-local-gcc-9-gui-icecc-ub18"
    # new:
-   #CONTAINER="reliableembeddedsystems/poky-container:2021-08-31-master-local-icecc-ub20"
+   # CONTAINER="reliableembeddedsystems/poky-container:2021-08-31-master-local-icecc-ub20"
 fi
 
 if [[ $USE_GUI = no ]]; then
@@ -70,7 +70,7 @@ if [[ $USE_GUI = no ]]; then
    # stable:
    CONTAINER="reliableembeddedsystems/poky-container:2021-06-09-master-local-gcc-9-gui-icecc-ub18"
    # new:
-   #CONTAINER="reliableembeddedsystems/poky-container:2021-08-31-master-local-icecc-ub20"
+   # CONTAINER="reliableembeddedsystems/poky-container:2021-08-31-master-local-icecc-ub20"
 fi
 
 #echo "CONTAINER= $CONTAINER"
