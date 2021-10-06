@@ -740,6 +740,16 @@ MYMAP[imx6ul-phytec-segin-virt-telegraf-wic-master]="core-image-minimal-virt-doc
 MYMAP[de0-nano-soc-kit-virt-telegraf-wic-master]="core-image-minimal-virt-docker"
 # <-- de0-nano-soc-kit-virt-telegraf-wic-master
 
+# --> imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master]="core-image-minimal-virt-docker"
+# <-- imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master
+
 # --> imx6sx-udoo-neo-full-wic-master
 # jenkins:
 # HERE=$(pwd)
@@ -2757,6 +2767,25 @@ fi
      fi
   fi
 
+  # rootfs,
+  # kernel/fdt
+  # virt kernel from multi-v7-ml, systemd, docker, telegraf
+  # sd card image e.g. core-image-minimal
+  # for imx6q-phytec-mira-rdk-nand
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-virt-telegraf-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-virt-telegraf-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # rootfs,
   # kernel/fdt
