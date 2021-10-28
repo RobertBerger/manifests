@@ -362,6 +362,17 @@ MYMAP[imx6q-phytec-mira-rdk-nand-wic]="core-image-minimal"
 MYMAP[imx6q-phytec-mira-rdk-nand-wic-master]="core-image-minimal"
 # <-- imx6q-phytec-mira-rdk-nand-wic-master
 
+# --> imx6q-phytec-mira-rdk-nand-npm-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-npm-wic-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-npm-wic-master]="core-image-minimal"
+# <-- imx6q-phytec-mira-rdk-nand-npm-wic-master
+
+
 # --> zynq-zed-wic-master (mine)
 # jenkins:
 # HERE=$(pwd)
@@ -443,6 +454,17 @@ MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic-mc-master]="mc:imx6q-phytec-mira-rdk-n
 # cd ${HERE}
 MYMAP[imx6q-phytec-mira-rdk-nand-virt-docker-master]="core-image-minimal-virt-docker"
 # <-- imx6q-phytec-mira-rdk-nand-virt-docker-master
+
+# --> imx6q-phytec-mira-rdk-nand-virt-podman-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-docker-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-virt-podman-master]="core-image-minimal-virt-podman"
+# <-- imx6q-phytec-mira-rdk-nand-virt-podman-master
+
 
 # --> imx6q-phytec-mira-rdk-nand-virt-mender
 # jenkins:
@@ -750,6 +772,16 @@ MYMAP[de0-nano-soc-kit-virt-telegraf-wic-master]="core-image-minimal-virt-docker
 MYMAP[imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master]="core-image-minimal-virt-docker"
 # <-- imx6q-phytec-mira-rdk-nand-virt-telegraf-wic-master
 
+# --> imx6q-phytec-mira-rdk-nand-virt-fmu-wic-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-virt-fmu-wic-master core-image-minimal-virt-docker
+# pwd
+# cd ${HERE}
+# MYMAP[imx6q-phytec-mira-rdk-nand-virt-fmu-wic-master]="core-image-minimal-virt-docker"
+# <-- imx6q-phytec-mira-rdk-nand-virt-fmu-wic-master
+
 # --> imx6sx-udoo-neo-full-wic-master
 # jenkins:
 # HERE=$(pwd)
@@ -780,6 +812,16 @@ MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 # cd ${HERE}
 MYMAP[raspberrypi4-64-master]="core-image-minimal"
 # <-- raspberrypi4-64-master
+
+# --> raspberrypi4-64-updater-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi4-64-updater-master core-image-minimal
+# pwd
+# cd ${HERE}
+#MYMAP[raspberrypi4-64-updater-master]="core-image-minimal"
+# <-- raspberrypi4-64-updater-master
 
 # --> raspberrypi4-64-virt-docker-master
 # jenkins:
@@ -1913,6 +1955,25 @@ fi
      fi
   fi
 
+  # raspberrypi4-64-updater-master
+  # rootfs,
+  # meta-raspberrypi kernel,
+  # fdt,
+  # sd card image e.g. core-image-base
+  # for raspberrypi4-64
+
+#  if [ "$machine" == "raspberrypi4-64-updater-master" ]; then
+#     export TEMPLATECONF="../meta-raspberrypi-common-master/template-${machine}"
+#     echo "TEMPLATECONF: ${TEMPLATECONF}"
+#     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+#     source ../sources/poky-master/oe-init-build-env ${machine}
+#     # only copy site.conf if it's not already there
+#     if [ ! -f conf/site.conf ]; then
+#        cp ../../sources/meta-raspberrypi-common-master/template-${machine}/site.conf conf/site.conf
+#        tree conf
+#     fi
+#  fi
+
   # raspberrypi4-64-virt-docker-master
   # rootfs,
   # meta-raspberrypi kernel, + config for docker?
@@ -2027,6 +2088,26 @@ fi
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
         cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # std kernel from multi-v7-ml,
+  # fdt,
+  # sd card image e.g. core-image-minimal
+  # for imx6q-phytec-mira-rdk-nand
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-npm-wic-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-npm-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-npm-master/site.conf conf/site.conf
         tree conf
      fi
   fi
@@ -2212,7 +2293,23 @@ fi
      fi
   fi
 
-### @@@ todo: podman
+  # rootfs which can host podman
+  # virt kernel from multi-v7-ml,
+  # fdt
+  # sd card image e.g. core-image-minimal-virt-docker
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-podman-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-mender" ]; then
      export TEMPLATECONF="../meta-u-boot-mender-bsp/template-imx6q-phytec-mira-rdk-nand-virt"
@@ -2786,6 +2883,26 @@ fi
         tree conf
      fi
   fi
+
+  # rootfs,
+  # kernel/fdt
+  # virt kernel from multi-v7-ml, systemd, docker, telegraf
+  # sd card image e.g. core-image-minimal
+  # for imx6q-phytec-mira-rdk-nand - full metal update?
+
+#  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-virt-fmu-wic-master" ]; then
+#     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-virt-fmu-master"
+#     echo "TEMPLATECONF: ${TEMPLATECONF}"
+#     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+#     source ../sources/poky-master/oe-init-build-env ${machine}
+#     # only copy site.conf if it's not already there
+#     if [ ! -f conf/site.conf ]; then
+#        #cp ${SITE_CONF} conf/site.conf
+#        # custom site.conf
+#        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-virt-fmu-master/site.conf conf/site.conf
+#        tree conf
+#     fi
+#  fi
 
   # rootfs,
   # kernel/fdt
