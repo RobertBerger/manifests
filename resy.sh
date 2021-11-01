@@ -593,6 +593,13 @@ do
        echo "branch is already what we want: ${LOCAL_BRANCH}"
     else
        echo -e "\e[31mbranch mismatch\e[39m"
+       echo "we might need to remove and clone"
+       echo "1: $1"
+       echo "2: $2"
+       echo "3: $3"
+       echo "4: $4"
+       echo "5: $5"
+       echo "6: $6"
        echo "+ git checkout $3"
        git checkout $3
     fi    
