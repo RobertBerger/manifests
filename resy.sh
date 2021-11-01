@@ -364,7 +364,7 @@ MYMAP[meta-openembedded]="${GITHUB}/RobertBerger/meta-openembedded ${SOURCES}/me
 MYMAP[meta-openembedded-master]="${GIT_OE}/meta-openembedded ${SOURCES}/meta-openembedded-master master"
 MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp ${META_MULTI_V7_ML_BSP_BRANCH}"
 MYMAP[meta-multi-v7-ml-bsp-master]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp-master master"
-MYMAP[meta-multi-v7-ml-linux-yocto-custom-virt]="${GITLAB}/meta-layers/meta-multi-v7-ml-linux-yocto-custom-virt.git ${SOURCES}/meta-multi-v7-ml-linux-yocto-custom-virt ${META_MULTI_V7_ML_BSP_BRANCH}"
+MYMAP[meta-multi-v7-ml-linux-yocto-custom-virt]="${GITLAB}/meta-layers/meta-multi-v7-ml-linux-yocto-custom-virt.git ${SOURCES}/meta-multi-v7-ml-linux-yocto-custom-virt ${BRANCH_GENERIC}"
 
 MYMAP[meta-systemd-nfsroot]="${GITLAB}/meta-layers/meta-systemd-nfsroot.git ${SOURCES}/meta-systemd-nfsroot ${META_SYSTEMD_NFSROOT_BRANCH}"
 
@@ -594,6 +594,7 @@ do
     else
        echo -e "\e[31mbranch mismatch\e[39m"
        echo "because we clone with --single-branch"
+      # echo "pwd: $(pwd)"
       #  echo "1: $1"
       #  echo "2: $2"
       #  echo "3: $3"
@@ -606,7 +607,9 @@ do
        echo "+ "
        echo "+ git clone -b $3 $1 $2 --single-branch"
        echo "Press <ENTER> to go on"
+       cd ..
        git clone -b $3 $1 $2 --single-branch
+       cd $2
        #echo "+ git checkout $3"
        #git checkout $3
     fi    
