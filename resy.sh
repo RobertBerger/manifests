@@ -94,7 +94,6 @@ fi
      # u-boot-mender only dummy here - needs fixing
      export META_U_BOOT_MENDER_BSP_BRANCH="master"
      export META_SCA_BRANCH="2021-05-10-master-as-hardknott"
-     export META_OPENEMBEDDED_BRANCH="2021-05-10-master-as-hardknott"
      export META_JAVA_BRANCH="2021-05-10-master-as-hardknott"
      export META_TENSORFLOW_BRANCH="2021-05-10-master-as-hardknott"
      export MANIFESTS_BRANCH="master"
