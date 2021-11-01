@@ -593,15 +593,22 @@ do
        echo "branch is already what we want: ${LOCAL_BRANCH}"
     else
        echo -e "\e[31mbranch mismatch\e[39m"
-       echo "we might need to remove and clone"
-       echo "1: $1"
-       echo "2: $2"
-       echo "3: $3"
-       echo "4: $4"
-       echo "5: $5"
-       echo "6: $6"
-       echo "+ git checkout $3"
-       git checkout $3
+       echo "because we clone with --single-branch"
+      #  echo "1: $1"
+      #  echo "2: $2"
+      #  echo "3: $3"
+      #  echo "4: $4"
+      #  echo "5: $5"
+      #  echo "6: $6"
+       echo "+ rm -rf $2"
+       echo "Press <ENTER> to go on"
+       rm -rf $2
+       echo "+ "
+       echo "+ git clone -b $3 $1 $2 --single-branch"
+       echo "Press <ENTER> to go on"
+       git clone -b $3 $1 $2 --single-branch
+       #echo "+ git checkout $3"
+       #git checkout $3
     fi    
 
     #echo "+ git remote update"
