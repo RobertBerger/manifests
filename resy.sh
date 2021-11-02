@@ -188,6 +188,7 @@ fi
 
 # stable: master as hardknott
   if [ "$manifest" == "stable" ]; then
+     export BRANCH_GENERIC="hardknott"
      export META_RESY_BRANCH="hardknott"
      export META_POKY_BRANCH="2021-05-10-master-as-hardknott-3.3.66"
      export META_POKY_TRAINING_BRANCH="2021-05-10-master-as-hardknott-3.3.66"
