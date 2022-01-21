@@ -405,6 +405,17 @@ MYMAP[imx6q-phytec-mira-rdk-nand-virt-wic]="core-image-minimal core-image-minima
 MYMAP[qemux86-64-virt-master]="core-image-minimal core-image-minimal-virt-docker-ce"
 # <-- qemux86-64-virt-master
 
+# --> intel-core2-32-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh intel-core2-32-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[intel-core2-32-master]="core-image-minimal"
+# <-- intel-core2-32-master
+
+
 # --> container-x86-64-ex-compact-docker-only
 # jenkins:
 # HERE=$(pwd)
@@ -1153,6 +1164,34 @@ fi
         tree conf
      fi
   fi
+
+  if [ "$machine" == "intel-core2-32-master" ]; then
+     # I moved to ubuntu 18 and gcc-9 by default - let's see
+     # --> currently only host gcc-9 seems to work here
+     # check if hostname specific site.conf exists and pick it up
+     #if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 ]; then
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}_gcc-9 "
+     #else
+     #   SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample_gcc-9"
+     #fi
+     #
+     #echo "SITE_CONF=${SITE_CONF}"
+     # <-- currently only host gcc-9 seems to work here
+
+     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     pwd
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-resy-master/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # x86-64 tensorflow container e.g. for tensorflow development and testing
 
