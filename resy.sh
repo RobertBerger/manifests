@@ -80,11 +80,11 @@ fi
   if [ "$manifest" == "experimental" ]; then
      export BRANCH_GENERIC="honister"
      export META_RESY_BRANCH="${BRANCH_GENERIC}"
-     export META_POKY_BRANCH="2021-11-01-master-as-honister-3.4.66+"
-     export META_POKY_TRAINING_BRANCH="2021-11-01-master-as-honister-3.4.66+"
+     export META_POKY_BRANCH="2022-01-15-master-as-honister-3.4.66+"
+     export META_POKY_TRAINING_BRANCH="2022-01-15-master-as-honister-3.4.66+"
      export META_MULTI_V7_ML_BSP_BRANCH="${BRANCH_GENERIC}"
      export META_U_BOOT_WIC_BSP_BRANCH="${BRANCH_GENERIC}"
-     export META_OPENEMBEDDED_BRANCH="2021-11-01-master-as-honister"
+     export META_OPENEMBEDDED_BRANCH="2022-01-15-master-next-as-honister"
 
      # did above for u-boot-wic-bsp on honister
 
