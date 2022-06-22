@@ -1,0 +1,36 @@
+From a3c821296632c6a8cf74ad2a82d4459897c7c6b4 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.bergerstudent@ReliableEmbeddedSystems.com>
+Date: Wed, 22 Jun 2022 16:30:31 +0300
+Subject: [PATCH] normalize-resolvconf needs to be installed
+
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+---
+ meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb b/meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
+index 94fd2c1a70..dba58ad2d6 100644
+--- a/meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
++++ b/meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
+@@ -25,6 +25,10 @@ UPSTREAM_CHECK_URI = "${DEBIAN_MIRROR}/main/r/resolvconf/"
+ 
+ inherit allarch
+ 
++# The normalize-resolvconf sed script uses /bin/sed on the shebang line.
++# Ignore the file-rdeps test to avoid having to add a runtime dependency on sed.
++INSANE_SKIP:${PN} += "file-rdeps"
++
+ do_compile () {
+ 	:
+ }
+@@ -46,6 +50,7 @@ do_install () {
+ 	chown -R root:root ${D}${sysconfdir}/
+ 	install -m 0755 bin/resolvconf ${D}${base_sbindir}/
+ 	install -m 0755 bin/list-records ${D}${base_libdir}/${BPN}
++	install -m 0755 bin/normalize-resolvconf ${D}${base_libdir}/${BPN}
+ 	install -d ${D}/${sysconfdir}/network/if-up.d
+ 	install -m 0755 debian/resolvconf.000resolvconf.if-up ${D}/${sysconfdir}/network/if-up.d/000resolvconf
+ 	install -d ${D}/${sysconfdir}/network/if-down.d
+-- 
+2.25.1
+
