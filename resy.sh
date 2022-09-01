@@ -437,6 +437,9 @@ MYMAP[meta-polarfire-soc-yocto-bsp-aries]="${GITHUB}/RobertBerger/meta-polarfire
 MYMAP[meta-polarfire-soc-yocto-bsp-addon]="${GITLAB}/meta-layers/meta-polarfire-soc-yocto-bsp-addon.git ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-addon master"
 # <-- meta-aries-polarfire-resy-collection
 
+MYMAP[meta-swupdate-master]="${GITHUB}/sbabic/meta-swupdate ${SOURCES}/meta-swupdate-master master"
+MYMAP[meta-swupdate-boards-master]="${GITHUB}/sbabic/meta-swupdate-boards ${SOURCES}/meta-swupdate-boards-master master"
+
 # --> meta-raspberrypi-resy-collection
 # my own layers:
 # 3rd party layers:
