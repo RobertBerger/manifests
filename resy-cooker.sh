@@ -508,6 +508,17 @@ MYMAP[imx6q-phytec-mira-rdk-nand-mender]="core-image-minimal"
 MYMAP[beaglebone-yocto-master]="core-image-minimal"
 # <-- beaglebone-yocto
 
+# --> beaglebone-yocto-swupdate
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh beaglebone-yocto-swupdate-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[beaglebone-yocto-swupdate-master]="core-image-minimal"
+# <-- beaglebone-yocto-swupdate
+
+
 # --> beagle-bone-black-wic
 # jenkins:
 # HERE=$(pwd)
@@ -2421,9 +2432,8 @@ fi
      fi
   fi
 
-MYMAP[beaglebone-yocto-master]="core-image-minimal"
-
-  # beaglebone-yocto - machine from poky
+  # machine:beaglebone-yocto (from poky)
+  # distro:resy
   # sd card image e.g. core-image-minimal
   # for beagle-bone-black
 
@@ -2441,6 +2451,29 @@ MYMAP[beaglebone-yocto-master]="core-image-minimal"
         tree conf
      fi
   fi
+
+  # machine:beaglebone-yocto (from poky)
+  # distro:resy
+  # swupdate added
+  # sd card image e.g. core-image-minimal
+  # for beagle-bone-black
+
+  if [ "$machine" == "beaglebone-yocto-swupdate-master" ]; then
+     export TEMPLATECONF="../meta-resy-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        pwd
+        cp ../../sources/meta-resy-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
 
   # rootfs,
   # kernel/fdt
