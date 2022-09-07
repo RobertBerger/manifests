@@ -2502,7 +2502,7 @@ fi
   # for beagle-bone-black
 
   if [ "$machine" == "conserver-beagle-bone-black-wic-master" ]; then
-     export TEMPLATECONF="../meta-conserver-master/template-${machine}"
+     export TEMPLATECONF="../meta-conserver-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -2510,7 +2510,8 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-conserver-master/template-${machine}/site.conf conf/site.conf
+        pwd
+        cp ../../sources/meta-conserver-master/conf/templates/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
