@@ -549,6 +549,16 @@ MYMAP[beagle-bone-black-wic-master]="core-image-minimal"
 MYMAP[conserver-beagle-bone-black-wic-master]="core-image-minimal-base-conserver"
 # <-- conserver-beagle-bone-black-wic-master
 
+# --> conserver-beagle-bone-black-wic-swupdate-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh conserver-beagle-bone-black-wic-swupdate-master core-image-minimal-base-conserver
+# pwd
+# cd ${HERE}
+MYMAP[conserver-beagle-bone-black-wic-swupdate-master]="core-image-minimal-base-conserver"
+# <-- conserver-beagle-bone-black-wic-swupate-master
+
 # --> am335x-pocketbeagle-wic-master
 # jenkins:
 # HERE=$(pwd)
@@ -2502,6 +2512,28 @@ fi
   # for beagle-bone-black
 
   if [ "$machine" == "conserver-beagle-bone-black-wic-master" ]; then
+     export TEMPLATECONF="../meta-conserver-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        pwd
+        cp ../../sources/meta-conserver-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml, plus some additional fragments
+  # sd card image e.g. conserver-beagle-bone-black-wic-master
+  # for beagle-bone-black
+  # swupdate
+
+  if [ "$machine" == "conserver-beagle-bone-black-wic-swupdate-master" ]; then
      export TEMPLATECONF="../meta-conserver-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"

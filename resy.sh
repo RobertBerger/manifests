@@ -366,6 +366,8 @@ MYMAP[meta-multi-v7-ml-bsp]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SO
 MYMAP[meta-multi-v7-ml-bsp-master]="${GITLAB}/meta-layers/meta-multi-v7-ml-bsp.git ${SOURCES}/meta-multi-v7-ml-bsp-master master"
 MYMAP[meta-multi-v7-ml-linux-yocto-custom-virt]="${GITLAB}/meta-layers/meta-multi-v7-ml-linux-yocto-custom-virt.git ${SOURCES}/meta-multi-v7-ml-linux-yocto-custom-virt ${BRANCH_GENERIC}"
 
+MYMAP[meta-u-boot-wic-bsp-beagle-bone-black-conserver-master]="${GITLAB}/meta-layers/meta-u-boot-wic-bsp-beagle-bone-black-conserver.git ${SOURCES}/meta-u-boot-wic-bsp-beagle-bone-black-conserver-master master"
+
 MYMAP[meta-systemd-nfsroot]="${GITLAB}/meta-layers/meta-systemd-nfsroot.git ${SOURCES}/meta-systemd-nfsroot ${META_SYSTEMD_NFSROOT_BRANCH}"
 
 MYMAP[meta-java]="${GITHUB}/RobertBerger/meta-java ${SOURCES}/meta-java ${META_JAVA_BRANCH}"
