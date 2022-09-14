@@ -1,0 +1,44 @@
+From 9165ff71891e56e09ecd63dc5ed22554e807b4ed Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Wed, 14 Sep 2022 11:54:33 +0200
+Subject: [PATCH] updated: swupdate.service, swupdate.socket.tmpl
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-support/swupdate/swupdate/swupdate.service     | 2 +-
+ recipes-support/swupdate/swupdate/swupdate.socket.tmpl | 6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/recipes-support/swupdate/swupdate/swupdate.service b/recipes-support/swupdate/swupdate/swupdate.service
+index 7f8e966..71b8788 100644
+--- a/recipes-support/swupdate/swupdate/swupdate.service
++++ b/recipes-support/swupdate/swupdate/swupdate.service
+@@ -4,7 +4,7 @@ Documentation=https://github.com/sbabic/swupdate
+ Documentation=https://sbabic.github.io/swupdate
+ 
+ [Service]
+-Type=notify
++#Type=notify
+ ExecStart=@LIBDIR@/swupdate/swupdate.sh
+ KillMode=mixed
+ 
+diff --git a/recipes-support/swupdate/swupdate/swupdate.socket.tmpl b/recipes-support/swupdate/swupdate/swupdate.socket.tmpl
+index 5dbcbbd..d6636f9 100644
+--- a/recipes-support/swupdate/swupdate/swupdate.socket.tmpl
++++ b/recipes-support/swupdate/swupdate/swupdate.socket.tmpl
+@@ -4,8 +4,10 @@ Documentation=https://github.com/sbabic/swupdate
+ Documentation=https://sbabic.github.io/swupdate
+ 
+ [Socket]
+-ListenStream=@@SWUPDATE_SOCKET_CTRL_PATH@@
+-ListenStream=@@SWUPDATE_SOCKET_PROGRESS_PATH@@
++ListenStream=/tmp/sockinstctrl
++ListenStream=/tmp/swupdateprog
++#ListenStream=@@SWUPDATE_SOCKET_CTRL_PATH@@
++#ListenStream=@@SWUPDATE_SOCKET_PROGRESS_PATH@@
+ 
+ [Install]
+ WantedBy=sockets.target
+-- 
+2.25.1
+

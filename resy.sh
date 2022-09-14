@@ -439,7 +439,7 @@ MYMAP[meta-polarfire-soc-yocto-bsp-aries]="${GITHUB}/RobertBerger/meta-polarfire
 MYMAP[meta-polarfire-soc-yocto-bsp-addon]="${GITLAB}/meta-layers/meta-polarfire-soc-yocto-bsp-addon.git ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-addon master"
 # <-- meta-aries-polarfire-resy-collection
 
-MYMAP[meta-swupdate-master]="${GITHUB}/sbabic/meta-swupdate ${SOURCES}/meta-swupdate-master master"
+MYMAP[meta-swupdate-master]="${GITHUB}/sbabic/meta-swupdate ${SOURCES}/meta-swupdate-master master ${SOURCES}/manifests/meta-swupdate-master/patch.sh"
 MYMAP[meta-swupdate-boards-master]="${GITHUB}/sbabic/meta-swupdate-boards ${SOURCES}/meta-swupdate-boards-master master ${SOURCES}/manifests/meta-swupdate-boards-master/patch.sh"
 MYMAP[meta-swupdate-boards-res-master]="${GITLAB}/meta-layers/meta-swupdate-boards-res ${SOURCES}/meta-swupdate-boards-res-master master"
 MYMAP[meta-yocto-res-bsp-custom-master]="${GITLAB}/meta-layers/meta-yocto-res-bsp-custom.git ${SOURCES}/meta-yocto-res-bsp-custom-master master"
