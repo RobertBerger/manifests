@@ -1455,14 +1455,13 @@ fi
      fi
   fi
 
-
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
   # DISTRO = resy
   # default kernel config: std
 
   if [ "$machine" == "multi-v7-ml-master" ]; then
-     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -1470,7 +1469,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/conf/templates/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
@@ -2149,7 +2148,7 @@ fi
   # for imx6q-phytec-mira-rdk-nand
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-wic-master" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-master"
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/conf/templates/template-imx6q-phytec-mira-rdk-nand-master"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -2157,7 +2156,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6q-phytec-mira-rdk-nand-master/site.conf conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-imx6q-phytec-mira-rdk-nand-master/site.conf conf/site.conf
         tree conf
      fi
   fi
