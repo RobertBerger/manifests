@@ -1668,7 +1668,7 @@ fi
   # poky -> poky-master
 
   if [ "$machine" == "multi-v7-ml-debug-training-master" ]; then
-     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/template-${machine}"
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -1676,7 +1676,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-multi-v7-ml-bsp-master/template-${machine}/site.conf conf/site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/conf/templates/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
