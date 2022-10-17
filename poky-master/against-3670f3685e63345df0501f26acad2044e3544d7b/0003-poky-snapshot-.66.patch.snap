@@ -15,7 +15,7 @@ index 856c88554d..51701f489f 100644
 @@ -1,9 +1,12 @@
  DISTRO = "poky"
  DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
--DISTRO_VERSION = "4.1"
+-DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
 -DISTRO_CODENAME = "langdale"
 +#DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
 +DISTRO_VERSION = "4.1.66"
@@ -29,3 +29,4 @@ index 856c88554d..51701f489f 100644
  MAINTAINER = "Poky <poky@lists.yoctoproject.org>"
 -- 
 2.25.1
+
