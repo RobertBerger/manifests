@@ -1,31 +1,28 @@
-From f60043621d08ca19bc7516e3cb81ad43c6316ac0 Mon Sep 17 00:00:00 2001
+From 367921ba796900da28da1a168ce7b053a405703b Mon Sep 17 00:00:00 2001
 From: student <student@ReliableEmbeddedSystems.com>
-Date: Thu, 13 Oct 2022 17:47:01 +0200
-Subject: [PATCH 2/2] poky: snapshot -> .66
+Date: Mon, 17 Oct 2022 15:01:29 +0200
+Subject: [PATCH] poky-snapshot .66
 
 Signed-off-by: student <student@ReliableEmbeddedSystems.com>
 ---
- meta-poky/conf/distro/poky.conf | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ meta-poky/conf/distro/poky.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
-index 856c88554d..51701f489f 100644
+index 4dc5db4f2e..f533163868 100644
 --- a/meta-poky/conf/distro/poky.conf
 +++ b/meta-poky/conf/distro/poky.conf
-@@ -1,9 +1,12 @@
+@@ -1,8 +1,8 @@
  DISTRO = "poky"
  DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
+ #DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
 -DISTRO_VERSION = "4.1"
 -DISTRO_CODENAME = "langdale"
-+#DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
 +DISTRO_VERSION = "4.1.66"
-+#DISTRO_CODENAME = "langdale"
 +DISTRO_CODENAME = "master-as-langdale"
  SDK_VENDOR = "-pokysdk"
  SDK_VERSION = "${@d.getVar('DISTRO_VERSION').replace('snapshot-${METADATA_REVISION}', 'snapshot')}"
-+
  SDK_VERSION[vardepvalue] = "${SDK_VERSION}"
- 
- MAINTAINER = "Poky <poky@lists.yoctoproject.org>"
 -- 
 2.25.1
+
