@@ -1,0 +1,23 @@
+From 0dfbcc224e085f0b633d5c221eb27871e81382c0 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Date: Tue, 9 Nov 2021 11:16:38 +0000
+Subject: [PATCH 2/2] 0012-bsp-initial-langdale-support
+
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+---
+ scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf b/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
+index 299a0f7..358692c 100644
+--- a/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
++++ b/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
+@@ -9,4 +9,4 @@ BBFILE_COLLECTIONS += "{{=machine}}"
+ BBFILE_PATTERN_{{=machine}} = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_{{=machine}} = "6"
+ 
+-LAYERSERIES_COMPAT_{{=machine}} = "sumo thud warrior zeus dunfell gatesgarth"
++LAYERSERIES_COMPAT_{{=machine}} = "langdale"
+-- 
+2.7.4
+
