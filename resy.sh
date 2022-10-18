@@ -336,7 +336,7 @@ MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRI
 MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
 MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master ${SOURCES}/manifests/poky-master/patch.sh"
 MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_TRAINING_BRANCH}"
-MYMAP[poky-training-master]="${GIT_YP}/poky ${SOURCES}/poky-master master ${SOURCES}/manifests/poky-training-master/patch.sh"
+MYMAP[poky-training-master]="${GIT_YP}/poky ${SOURCES}/poky-training-master master ${SOURCES}/manifests/poky-training-master/patch.sh"
 # my-mender-layer (encrypted)
 MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
 #MYMAP[keys-for-signing]="${GITHUB}/RobertBerger/keys-for-signing ${SOURCES}/keys-for-signing master"
