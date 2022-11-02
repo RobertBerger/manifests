@@ -270,6 +270,18 @@ MYMAP[multi-v7-ml-debug-training-master]="core-image-minimal core-image-sato-sdk
 MYMAP[multi-v7-ml-debug-training-libs]="core-image-minimal"
 # <-- multi-v7-ml-debug-training-libs
 
+
+# --> multi-v7-ml-debug-training-libs-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training-libs-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug-training-libs-master]="core-image-minimal"
+# <-- multi-v7-ml-debug-training-libs-master
+
+
 # --> multi-v7-ml-debug-training-pkgs
 # jenkins:
 # HERE=$(pwd)
@@ -1670,8 +1682,8 @@ fi
   if [ "$machine" == "multi-v7-ml-debug-training-master" ]; then
      export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
-     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
-     source ../sources/poky-master/oe-init-build-env ${machine}
+     echo "source ../sources/poky-training-master/oe-init-build-env ${machine}"
+     source ../sources/poky-training-master/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
@@ -1700,6 +1712,20 @@ fi
      fi
   fi
 
+  # as above, but master
+  if [ "$machine" == "multi-v7-ml-debug-training-libs-master" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/conf/templates/template-multi-v7-ml-debug-training-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-training-master/oe-init-build-env ${machine}"
+     source ../sources/poky-training-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-multi-v7-ml-bsp-master/conf/templates/template-multi-v7-ml-debug-training-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
   # DISTRO = resy
@@ -1718,6 +1744,57 @@ fi
         tree conf
      fi
   fi
+
+
+  if [ "$machine" == "multi-v7-ml-debug-training-pkgs-master" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/conf/templates/template-multi-v7-ml-debug-training-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-training-master/oe-init-build-env ${machine}"
+     source ../sources/poky-training-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/conf/templates/template-multi-v7-ml-debug-training-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
+  # used for development
+  # DISTRO = resy
+  # default kernel config: debug
+  # poky -> poky-training
+  # special template
+
+  if [ "$machine" == "multi-v7-ml-debug-training-lic" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-training/oe-init-build-env ${machine}"
+     source ../sources/poky-training/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ${SITE_CONF} conf/site.conf
+        tree conf
+     fi
+  fi
+
+  if [ "$machine" == "multi-v7-ml-debug-training-lic-master" ]; then
+     # we use the same template as for standard training
+     export TEMPLATECONF="../meta-multi-v7-ml-bsp-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-training-master/oe-init-build-env ${machine}"
+     source ../sources/poky-training-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-multi-v7-ml-bsp-master/conf/templates/template-multi-v7-ml-debug-training-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
 
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
@@ -1741,25 +1818,6 @@ fi
      ../../sources/meta-multi-v7-ml-bsp/template-multi-v7-ml-pkgs/gpg-stuff/container-import-keys.sh
   fi
 
-  # rootfs + kernel + ftd(s) - no u-boot, no sd card image
-  # used for development
-  # DISTRO = resy
-  # default kernel config: debug
-  # poky -> poky-training
-  # special template
-
-  if [ "$machine" == "multi-v7-ml-debug-training-lic" ]; then
-     # we use the same template as for standard training
-     export TEMPLATECONF="../meta-multi-v7-ml-bsp/template-${machine}"
-     echo "TEMPLATECONF: ${TEMPLATECONF}"
-     echo "source ../sources/poky-training/oe-init-build-env ${machine}"
-     source ../sources/poky-training/oe-init-build-env ${machine}
-     # only copy site.conf if it's not already there
-     if [ ! -f conf/site.conf ]; then
-        cp ${SITE_CONF} conf/site.conf
-        tree conf
-     fi
-  fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
