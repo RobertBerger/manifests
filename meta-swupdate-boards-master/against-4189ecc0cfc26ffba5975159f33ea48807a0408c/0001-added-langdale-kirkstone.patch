@@ -1,7 +1,7 @@
-From 082e91e03f4175ef557d504e4abd9114ad3b1810 Mon Sep 17 00:00:00 2001
+From 28434e4b9068e679089a416cd267a8e09a2a5432 Mon Sep 17 00:00:00 2001
 From: student <student@ReliableEmbeddedSystems.com>
-Date: Wed, 7 Sep 2022 10:58:43 +0200
-Subject: [PATCH] added: langdale kirkstone
+Date: Wed, 21 Dec 2022 23:44:18 +0000
+Subject: [PATCH] added langdale support
 
 Signed-off-by: student <student@ReliableEmbeddedSystems.com>
 ---
@@ -9,18 +9,18 @@ Signed-off-by: student <student@ReliableEmbeddedSystems.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/conf/layer.conf b/conf/layer.conf
-index 2c0f812..559da36 100644
+index 9d0f6f3..ed3403d 100644
 --- a/conf/layer.conf
 +++ b/conf/layer.conf
 @@ -11,7 +11,7 @@ BBFILE_PRIORITY_swupdate-boards = "7"
  
  LAYERDEPENDS_swupdate-boards = "swupdate"
  
--LAYERSERIES_COMPAT_swupdate-boards = "honister"
-+LAYERSERIES_COMPAT_swupdate-boards = "honister langdale kirkstone"
+-LAYERSERIES_COMPAT_swupdate-boards = "kirkstone"
++LAYERSERIES_COMPAT_swupdate-boards = "kirkstone langdale"
  
  BBFILES_DYNAMIC += " \
      atmel:${LAYERDIR}/dynamic-layers/atmel/*/*/*.bb \
 -- 
-2.25.1
+2.34.1
 
