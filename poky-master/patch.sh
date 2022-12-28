@@ -3,19 +3,19 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 echo ${SCRIPTPATH}
 set -x
 
-git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0001-added-normalize-resolvconf.patch; then
-     patch -p1 <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0001-added-normalize-resolvconf.patch
-fi
+#git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
+#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0001-added-normalize-resolvconf.patch; then
+#     patch -p1 <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0001-added-normalize-resolvconf.patch
+#fi
 
 git checkout meta/recipes-connectivity/connman/connman/connman
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0002-connman-allow-rootfs-over-nfs.patch; then
-     patch -p1 <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0002-connman-allow-rootfs-over-nfs.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0001-connman-allow-rootfs-over-nfs.patch; then
+     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0001-connman-allow-rootfs-over-nfs.patch
 fi
 
 git checkout meta-poky/conf/distro/poky.conf
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0003-poky-snapshot-.66.patch; then
-     patch -p1 <${SCRIPTPATH}/against-3670f3685e63345df0501f26acad2044e3544d7b/0003-poky-snapshot-.66.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0002-poky-snapshot-.66.patch; then
+     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0002-poky-snapshot-.66.patch
 fi
 
 git diff --stat

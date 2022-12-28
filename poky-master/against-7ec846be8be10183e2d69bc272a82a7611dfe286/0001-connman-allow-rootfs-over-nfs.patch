@@ -1,0 +1,71 @@
+From bff985c31ee8f06859e109b0427c6e27802bf621 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Date: Wed, 28 Dec 2022 13:22:27 +0100
+Subject: [PATCH] connman: allow rootfs over nfs
+
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+---
+ .../connman/connman/connman                   | 46 +++++++++++++++++--
+ 1 file changed, 42 insertions(+), 4 deletions(-)
+
+diff --git a/meta/recipes-connectivity/connman/connman/connman b/meta/recipes-connectivity/connman/connman/connman
+index a021fd4655..d5890b71d0 100644
+--- a/meta/recipes-connectivity/connman/connman/connman
++++ b/meta/recipes-connectivity/connman/connman/connman
+@@ -10,11 +10,49 @@ fi
+ 
+ set -e
+ 
++nfsroot=0
++
++exec 9<&0 < /proc/mounts
++while read dev mtpt fstype rest; do
++        if test $mtpt = "/" ; then
++                case $fstype in
++                    nfs | nfs4)
++                        nfsroot=1
++                        break
++                        ;;
++                    *)
++                        ;;
++                esac
++        fi
++done
++
++
+ do_start() {
+-	if [ -f @DATADIR@/connman/wired-setup ] ; then
+-		. @DATADIR@/connman/wired-setup
+-	fi
+-	$DAEMON
++        if test $nfsroot -eq 1 ; then
++            NET_DEVS=`cat /proc/net/dev | sed -ne 's/^\([a-zA-Z0-9 ]*\):.*$/\1/p'`
++            NET_ADDR=`cat /proc/cmdline | sed -ne 's/^.*ip=\([^ :]*\).*$/\1/p'`
++
++            if [ ! -z "$NET_ADDR" ]; then
++                if [ "$NET_ADDR" = dhcp ]; then
++                    ethn=`ifconfig | grep "^eth" | sed -e "s/\(eth[0-9]\)\(.*\)/\1/"`
++                    if [ ! -z "$ethn" ]; then
++                        EXTRA_PARAM="$EXTRA_PARAM -I $ethn"
++                    fi
++                else
++                    for i in $NET_DEVS; do
++                        ADDR=`ifconfig $i | sed 's/addr://g' | sed -ne 's/^.*inet \([0-9.]*\) .*$/\1/p'`
++                        if [ "$NET_ADDR" = "$ADDR" ]; then
++                            EXTRA_PARAM="$EXTRA_PARAM -I $i"
++                            break
++                        fi
++                    done
++                fi
++            fi
++        fi
++        if [ -f @DATADIR@/connman/wired-setup ] ; then
++                . @DATADIR@/connman/wired-setup
++        fi
++        $DAEMON $EXTRA_PARAM
+ }
+ 
+ do_stop() {
+-- 
+2.17.1
+
