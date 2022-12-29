@@ -18,5 +18,9 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc
      patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
 fi
 
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0004-resolveconf-more-explanations-still-unclear.patch; then
+     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0004-resolveconf-more-explanations-still-unclear.patch
+fi
+
 git diff --stat
 set +x
