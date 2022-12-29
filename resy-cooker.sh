@@ -2188,13 +2188,14 @@ fi
   # for imx6q-phytec-mira-rdk-nand
 
   if [ "$machine" == "imx6q-phytec-mira-rdk-nand-wic" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp/template-imx6q-phytec-mira-rdk-nand"
+     export TEMPLATECONF="../meta-u-boot-wic-bsp/conf/templates/template-imx6q-phytec-mira-rdk-nand"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky/oe-init-build-env ${machine}"
      source ../sources/poky/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ${SITE_CONF} conf/site.conf
+        #cp ${SITE_CONF} conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp/conf/templates/template-imx6q-phytec-mira-rdk-nand/site.conf conf/site.conf
         tree conf
      fi
   fi
