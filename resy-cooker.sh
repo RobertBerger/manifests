@@ -2672,7 +2672,7 @@ fi
   # for stm32mp157c-dk2
 
   if [ "$machine" == "stm32mp157c-dk2-wic-master" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-stm32mp157c-dk2-master"
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/conf/templates/template-stm32mp157c-dk2-master"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -2680,7 +2680,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-u-boot-wic-bsp-master/template-stm32mp157c-dk2-master/site.conf conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-stm32mp157c-dk2-master/site.conf conf/site.conf
         tree conf
      fi
   fi
@@ -2915,7 +2915,7 @@ fi
   # for regor
 
   if [ "$machine" == "am335x-regor-rdk-wic-master" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-am335x-regor-rdk-master"
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/conf/templates/template-am335x-regor-rdk-master"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -2923,7 +2923,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-u-boot-wic-bsp-master/template-am335x-regor-rdk-master/site.conf conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-am335x-regor-rdk-master/site.conf conf/site.conf
         tree conf
      fi
   fi
@@ -2946,7 +2946,6 @@ fi
      fi
   fi
 
-
   # rootfs,
   # kernel/fdt
   # std kernel from multi-v7-ml,
@@ -2954,7 +2953,7 @@ fi
   # for am335x-phytec-wega
 
   if [ "$machine" == "am335x-phytec-wega-wic-master" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-am335x-phytec-wega-master"
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/conf/templates/template-am335x-phytec-wega-master"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -2962,7 +2961,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-u-boot-wic-bsp-master/template-am335x-phytec-wega-master/site.conf conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-am335x-phytec-wega-master/site.conf conf/site.conf
         tree conf
      fi
   fi
