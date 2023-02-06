@@ -3107,7 +3107,7 @@ fi
   # for imx6sx-udoo-neo-full
 
   if [ "$machine" == "imx6sx-udoo-neo-full-wic-master" ]; then
-     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/template-imx6sx-udoo-neo-full-master"
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/conf/templates/template-imx6sx-udoo-neo-full-master"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
@@ -3115,7 +3115,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-u-boot-wic-bsp-master/template-imx6sx-udoo-neo-full-master/site.conf conf/site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-imx6sx-udoo-neo-full-master/site.conf conf/site.conf
         tree conf
      fi
   fi
