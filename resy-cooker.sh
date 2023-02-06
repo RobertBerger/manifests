@@ -723,6 +723,17 @@ MYMAP[beagle-bone-green-wic-master]="core-image-minimal"
 MYMAP[am335x-regor-rdk-wic-master]="core-image-minimal"
 # <-- am335x-regor-rdk-wic-master
 
+# --> am335x-regor-rdk-wic-systemd-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh am335x-regor-rdk-wic-systemd-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[am335x-regor-rdk-wic-systemd-master]="core-image-minimal"
+# <-- am335x-regor-rdk-wic-systemd-master
+
+
 # --> beagle-bone-black-virt-wic
 # jenkins:
 # HERE=$(pwd)
@@ -2927,6 +2938,29 @@ fi
         tree conf
      fi
   fi
+
+
+  # rootfs,
+  # kernel/fdt
+  # std kernel from multi-v7-ml,
+  # sd card image e.g. core-image-minimal
+  # for regor
+  # systemd as init system
+
+  if [ "$machine" == "am335x-regor-rdk-wic-systemd-master" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master/conf/templates/template-am335x-regor-rdk-systemd-master"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-am335x-regor-rdk-systemd-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # rootfs, 
   # kernel/fdt
