@@ -878,6 +878,27 @@ MYMAP[karo-imx6ul-txul]="core-image-minimal core-image-minimal-bfe"
 MYMAP[raspberrypi4-64-master]="core-image-minimal"
 # <-- raspberrypi4-64-master
 
+# --> raspberrypi4-64-yocto-std-kernel-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi4-64-yocto-std-kernel-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi4-64-yocto-std-kernel-master]="core-image-minimal"
+# <-- raspberrypi4-64-yocto-std-kernel-master
+
+# --> raspberrypi4-64-yocto-prt-kernel-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh raspberrypi4-64-yocto-prt-kernel-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[raspberrypi4-64-yocto-prt-kernel-master]="core-image-minimal"
+# <-- raspberrypi4-64-yocto-prt-kernel-master
+
+
 # --> raspberrypi4-64-updater-master
 # jenkins:
 # HERE=$(pwd)
@@ -2086,16 +2107,56 @@ fi
   # for raspberrypi4-64
 
   if [ "$machine" == "raspberrypi4-64-master" ]; then
-     export TEMPLATECONF="../meta-raspberrypi-common-master/template-${machine}"
+     export TEMPLATECONF="../meta-raspberrypi-common-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
      source ../sources/poky-master/oe-init-build-env ${machine}
      # only copy site.conf if it's not already there
      if [ ! -f conf/site.conf ]; then
-        cp ../../sources/meta-raspberrypi-common-master/template-${machine}/site.conf conf/site.conf
+        cp ../../sources/meta-raspberrypi-common-master/conf/templates/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
+
+  # raspberrypi4-64-yocto-std-kernel-master
+  # rootfs,
+  # yocto standard kernel,
+  # fdt,
+  # sd card image e.g. core-image-base
+  # for raspberrypi4-64
+
+  if [ "$machine" == "raspberrypi4-64-yocto-std-kernel-master" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-common-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-raspberrypi-common-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  # raspberrypi4-64-yocto-prt-kernel-master
+  # rootfs,
+  # yocto preemprt-rt patched kernel,
+  # fdt,
+  # sd card image e.g. core-image-base
+  # for raspberrypi4-64
+
+  if [ "$machine" == "raspberrypi4-64-yocto-prt-kernel-master" ]; then
+     export TEMPLATECONF="../meta-raspberrypi-common-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-raspberrypi-common-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
 
   # raspberrypi4-64-updater-master
   # rootfs,
