@@ -1,0 +1,30 @@
+From 8d9eec5de506c53341bde1e369380dc12266bdcf Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Date: Wed, 28 Dec 2022 13:40:16 +0100
+Subject: [PATCH] poky-snapshot .66
+
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+---
+ meta-poky/conf/distro/poky.conf | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
+index dc0e8e76ab..69f05b283d 100644
+--- a/meta-poky/conf/distro/poky.conf
++++ b/meta-poky/conf/distro/poky.conf
+@@ -1,8 +1,10 @@
+ DISTRO = "poky"
+ DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
+ #DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
+-DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
+-DISTRO_CODENAME = "mickledore"
++#DISTRO_VERSION = "4.1+snapshot-${METADATA_REVISION}"
++#DISTRO_CODENAME = "mickledore"
++DISTRO_VERSION = "4.1.66"
++DISTRO_CODENAME = "master-as-mickledore"
+ SDK_VENDOR = "-pokysdk"
+ SDK_VERSION = "${@d.getVar('DISTRO_VERSION').replace('snapshot-${METADATA_REVISION}', 'snapshot')}"
+ SDK_VERSION[vardepvalue] = "${SDK_VERSION}"
+-- 
+2.17.1
+
