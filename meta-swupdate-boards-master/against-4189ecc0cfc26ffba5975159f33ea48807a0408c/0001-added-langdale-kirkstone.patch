@@ -17,7 +17,7 @@ index 9d0f6f3..ed3403d 100644
  LAYERDEPENDS_swupdate-boards = "swupdate"
  
 -LAYERSERIES_COMPAT_swupdate-boards = "kirkstone"
-+LAYERSERIES_COMPAT_swupdate-boards = "kirkstone langdale"
++LAYERSERIES_COMPAT_swupdate-boards = "kirkstone langdale mickledore"
  
  BBFILES_DYNAMIC += " \
      atmel:${LAYERDIR}/dynamic-layers/atmel/*/*/*.bb \
