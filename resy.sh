@@ -7,6 +7,7 @@ RASPBERRYPI_RESY_COLLECTION_BOSC="/workdir/sources/meta-raspberrypi-resy-collect
 SCRIPTS="/workdir/scripts"
 JENKINS="/workdir/jenkins"
 FOSSOLOGY="/workdir/fossology"
+BITBAKE="/workdir/bitbake"
 OCI_CONTAINER_X86_64="/workdir/oci-container-x86-64"
 APP_CONTAINER_X86_64="/workdir/app-container-x86-64"
 APP_CONTAINER_ARM_V7="/workdir/app-container-arm-v7"
@@ -43,6 +44,7 @@ else
           rm -rf oci-container-x86-64
           rm -rf jenkins
           rm -rf fossology
+          rm -rf bitbake
           ls /workdir
           set +x
           if [[ $WORKSPACE = *jenkins* ]]; then
@@ -297,6 +299,9 @@ MYMAP[meta-zephyr-master]="${GIT_YP}/meta-zephyr ${SOURCES}/meta-zephyr-master m
 MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-mender-layer master"
 #MYMAP[keys-for-signing]="${GITHUB}/RobertBerger/keys-for-signing ${SOURCES}/keys-for-signing master"
 MYMAP[keys-for-ipk-signing]="${GITLAB}/robert.berger/keys-for-ipk-signing.git ${SOURCES}/keys-for-ipk-signing master"
+
+# hashsrv-docker
+MYMAP[bitbake]="${GITHUB}/RobertBerger/bitbake-containers ${BITBAKE} master"
 
 # deprecated (hopefully)
 #MYMAP[meta-python2]="${GITHUB}/RobertBerger/meta-python2 ${SOURCES}/meta-python2 ${META_PYTHON2_BRANCH}"
