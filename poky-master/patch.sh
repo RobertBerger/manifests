@@ -4,21 +4,21 @@ echo ${SCRIPTPATH}
 set -x
 
 git checkout meta/recipes-connectivity/connman/connman/connman
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0001-connman-allow-rootfs-over-nfs.patch; then
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-4e8ce11d0d3560fbe31c89a12d48cd7ca45d1b69/0001-connman-allow-rootfs-over-nfs.patch; then
      patch -p1 <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0001-connman-allow-rootfs-over-nfs.patch
 fi
 
 git checkout meta-poky/conf/distro/poky.conf
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0002-poky-snapshot-.66.patch; then
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-4e8ce11d0d3560fbe31c89a12d48cd7ca45d1b69/0002-poky-snapshot-.66.patch; then
      patch -p1 <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0002-poky-snapshot-.66.patch
 fi
 
 git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-4e8ce11d0d3560fbe31c89a12d48cd7ca45d1b69/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
      patch -p1 <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
 fi
 
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0004-resolveconf-more-explanations-still-unclear.patch; then
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-4e8ce11d0d3560fbe31c89a12d48cd7ca45d1b69/0004-resolveconf-more-explanations-still-unclear.patch; then
      patch -p1 <${SCRIPTPATH}/against-fb1853c66ce901d03a45f6dbef549b66bb94279d/0004-resolveconf-more-explanations-still-unclear.patch
 fi
 
