@@ -1086,8 +1086,8 @@ available_targets () {
 
 usage () {
     echo "usage:"
-    echo "source /workdir/resy-cooker.sh MACHINE or MACHINE-sw-variant"
-    echo "source /workdir/resy-cooker.sh container-x86-64"
+    echo "source ${WORKDIR}/resy-cooker.sh MACHINE or MACHINE-sw-variant"
+    echo "source ${WORKDIR}/resy-cooker.sh container-x86-64"
     available_targets
 }
 
@@ -2354,9 +2354,9 @@ fi
      # --> let's try to merge in sca stuff
      if [ ! -d ../build/${machine}/conf ]; then
        echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
-       mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
-       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+       mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample  ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+       cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ${WORKDIR}/sources/meta-resy/template-common/sca.conf.sample > ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
+       cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      else
        echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
      fi
@@ -2369,9 +2369,9 @@ fi
         tree conf
      fi
      # --> more SCA stuff
-     if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     if [ -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
         # let's restore the original without sca
-        mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+        mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      fi
      # <-- more SCA stuff
   fi
@@ -2389,9 +2389,9 @@ fi
      # --> let's try to merge in sca stuff
      if [ ! -d ../build/${machine}/conf ]; then
        echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
-       #mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-       #cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
-       #cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+       #mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample  ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+       #cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ${WORKDIR}/sources/meta-resy/template-common/sca.conf.sample > ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
+       #cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      else
        echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
      fi
@@ -2404,9 +2404,9 @@ fi
         tree conf
      fi
      # --> more SCA stuff
-     #if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     #if [ -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
      #   # let's restore the original without sca
-     #   mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #   mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      #fi
      # <-- more SCA stuff
   fi
@@ -2425,9 +2425,9 @@ fi
      # --> let's try to merge in sca stuff
      #if [ ! -d ../build/${machine}/conf ]; then
      #  echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
-     #  mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
-     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #  mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample  ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+     #  cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ${WORKDIR}/sources/meta-resy/template-common/sca.conf.sample > ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #  cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      #else
      #  echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
      #fi
@@ -2440,9 +2440,9 @@ fi
         tree conf
      fi
      # --> more SCA stuff 
-     if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     if [ -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
         # let's restore the original without sca
-        mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+        mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      fi
      # <-- more SCA stuff
   fi
@@ -2462,9 +2462,9 @@ fi
      # --> let's try to merge in sca stuff
      #if [ ! -d ../build/${machine}/conf ]; then
      #  echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
-     #  mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
-     #  cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #  mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample  ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+     #  cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ${WORKDIR}/sources/meta-resy/template-common/sca.conf.sample > ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #  cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      #else
      #  echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
      #fi
@@ -2478,9 +2478,9 @@ fi
         tree conf
      fi
      # --> more SCA stuff 
-     #if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     #if [ -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
      #   # let's restore the original without sca
-     #   mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+     #   mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      #fi
      # <-- more SCA stuff
   fi
@@ -2527,9 +2527,9 @@ fi
      # --> let's try to merge in sca stuff
     if [ ! -d ../build/${machine}/conf ]; then
        echo "../build/${machine}/ does not exist - creating it via TEMPLATECONF"
-       mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample  /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
-       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  /workdir/sources/meta-resy/template-common/sca.conf.sample > /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
-       cat /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+       mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample  ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori
+       cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori  ${WORKDIR}/sources/meta-resy/template-common/sca.conf.sample > /${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
+       cat ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      else
        echo "../build/${machine}/ already exists - not recreating it via TEMPLATECONF"
      fi
@@ -2543,9 +2543,9 @@ fi
         tree conf
      fi
      # --> more SCA stuff 
-     if [ -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
+     if [ -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ]; then
         # let's restore the original without sca
-        mv -f /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample.ori /workdir/sources/poky/${TEMPLATECONF}/local.conf.sample
+        mv -f ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample.ori ${WORKDIR}/sources/poky/${TEMPLATECONF}/local.conf.sample
      fi
      # <-- more SCA stuff
   fi
@@ -3260,7 +3260,7 @@ fi
 echo "--> \$#: $#"
 
 # needed for killall_bitbake.sh
-export BUILDDIR="/workdir/build/${machine}"
+export BUILDDIR="${WORKDIR}/build/${machine}"
 
 # --> interactive mode
 if [ "$#" -eq "1" ]; then
@@ -3272,7 +3272,7 @@ if [ "$#" -eq "1" ]; then
      set ${MYMAP["${1}"]}
        for var in "$@"
        do
-        /workdir/killall_bitbake.sh
+        ${WORKDIR}/killall_bitbake.sh
         if [[ $WORKSPACE = *jenkins* ]]; then
            #echo "+ (1) bitbake $var ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
            echo "+ (1) bitbake $var"
@@ -3283,20 +3283,20 @@ if [ "$#" -eq "1" ]; then
         fi
        done
   else # BUILD_ALL != yes
-     /workdir/killall_bitbake.sh
+     ${WORKDIR}/killall_bitbake.sh
      echo "to ./resy-poky-container.sh:"
      echo " -- non-interactive mode -- "
      echo " add the image you want to build to the command line ./resy-poky-container.sh <MACHINE> <image>"
      echo " -- interactive mode --"
      echo "   enter it with - ./resy-poky-container.sh <no param> "
      echo "   bitbake <image>"
-     echo "   source /workdir/resy-cooker.sh <MACHINE>"
+     echo "   source ${WORKDIR}/resy-cooker.sh <MACHINE>"
   fi # BUILD_ALL =  yes
 fi # only machine passed along
 # <-- interactive mode
 
 if [ "$#" -eq "2" ]; then
-   /workdir/killall_bitbake.sh
+   ${WORKDIR}/killall_bitbake.sh
    if [[ $WORKSPACE = *jenkins* ]]; then
       #echo "+ (2) bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
       echo "+ (2) bitbake $2"
@@ -3321,7 +3321,7 @@ if [ "$#" -gt "2" ]; then
   shift
   REST_ARGS="$@"
 
-  /workdir/killall_bitbake.sh
+  ${WORKDIR}/killall_bitbake.sh
   if [[ $WORKSPACE = *jenkins* ]]; then
      #echo "+ (3) bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
      echo "+ (3) bitbake $@"
