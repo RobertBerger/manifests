@@ -6,11 +6,17 @@
 
 #read r
 
-pushd /workdir
+if [ -d /workdir ]; then
+   WORKDIR="/workdir"
+fi
+
+echo "WORKDIR: ${WORKDIR}"
+
+pushd ${WORKDIR}
 
 if [[ $_ == $0 ]]; then
    echo "you need to source me:"
-   echo "source /workdir/$(basename ${0})"
+   echo "source ${WORKDIR}/$(basename ${0})"
    exit
 fi
 
