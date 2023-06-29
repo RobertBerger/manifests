@@ -17,7 +17,7 @@ index 917619962c..63b0fc6b32 100644
  SDK_XZ_OPTIONS ?= "${XZ_DEFAULTS} ${SDK_XZ_COMPRESSION_LEVEL}"
  SDK_ZIP_OPTIONS ?= "-y"
 -
-+SDKTAROPTS_ADDON ?= "--clamp-mtime --mtime=@${SOURCE_DATE_EPOCH}"
++SDKTAROPTS_ADDON ?= "--mtime='1970-01-01 00:00:00'"
  
  # To support different sdk type according to SDK_ARCHIVE_TYPE, now support zip and tar.xz
  python () {
