@@ -1,0 +1,31 @@
+From 17729afda46fb58f804a62c61ebb5d53d2532c56 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Fri, 30 Jun 2023 15:12:31 +0200
+Subject: [PATCH] uninative-tarball.xz - reproducibility fix
+
+added --clamp-mtime --mtime to the tar command
+
+see:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=15148
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ meta/classes-recipe/populate_sdk_base.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta/classes-recipe/populate_sdk_base.bbclass b/meta/classes-recipe/populate_sdk_base.bbclass
+index b23ea26d40..24db703534 100644
+--- a/meta/classes-recipe/populate_sdk_base.bbclass
++++ b/meta/classes-recipe/populate_sdk_base.bbclass
+@@ -285,7 +285,7 @@ python check_sdk_sysroots() {
+     dir_walk(SCAN_ROOT)
+ }
+ 
+-SDKTAROPTS = "--owner=root --group=root"
++SDKTAROPTS = "--owner=root --group=root --clamp-mtime --mtime=@${SOURCE_DATE_EPOCH}"
+ 
+ fakeroot archive_sdk() {
+ 	# Package it up
+-- 
+2.17.1
+
