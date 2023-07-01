@@ -1,19 +1,25 @@
 #!/bin/bash
 
-SOURCES="/workdir/sources"
-PHY_STM_RESY_COLLECTION="/workdir/sources/meta-phy-stm-resy-collection"
-ARIES_POLARFIRE_RESY_COLLECTION="/workdir/sources/meta-aries-polarfire-resy-collection"
-RASPBERRYPI_RESY_COLLECTION_BOSC="/workdir/sources/meta-raspberrypi-resy-collection-bosc"
-SCRIPTS="/workdir/scripts"
-JENKINS="/workdir/jenkins"
-FOSSOLOGY="/workdir/fossology"
-BITBAKE="/workdir/bitbake"
-OCI_CONTAINER_X86_64="/workdir/oci-container-x86-64"
-APP_CONTAINER_X86_64="/workdir/app-container-x86-64"
-APP_CONTAINER_ARM_V7="/workdir/app-container-arm-v7"
-APP_CONTAINER_AARCH64="/workdir/app-container-aarch64"
-APP_CONTAINER_MULTI_ARCH="/workdir/app-container-multi-arch"
-CROPS_CONTAINER_X86_64="/workdir/crops-container-x86-64"
+if [ -d /workdir ]; then
+   WORKDIR="/workdir"
+fi
+
+echo "WORKDIR: ${WORKDIR}"
+
+SOURCES="${WORKDIR}/sources"
+PHY_STM_RESY_COLLECTION="${WORKDIR}/sources/meta-phy-stm-resy-collection"
+ARIES_POLARFIRE_RESY_COLLECTION="${WORKDIR}/sources/meta-aries-polarfire-resy-collection"
+RASPBERRYPI_RESY_COLLECTION_BOSC="${WORKDIR}/sources/meta-raspberrypi-resy-collection-bosc"
+SCRIPTS="${WORKDIR}/scripts"
+JENKINS="${WORKDIR}/jenkins"
+FOSSOLOGY="${WORKDIR}/fossology"
+BITBAKE="${WORKDIR}/bitbake"
+OCI_CONTAINER_X86_64="${WORKDIR}/oci-container-x86-64"
+APP_CONTAINER_X86_64="${WORKDIR}/app-container-x86-64"
+APP_CONTAINER_ARM_V7="${WORKDIR}/app-container-arm-v7"
+APP_CONTAINER_AARCH64="${WORKDIR}/app-container-aarch64"
+APP_CONTAINER_MULTI_ARCH="${WORKDIR}/app-container-multi-arch"
+CROPS_CONTAINER_X86_64="${WORKDIR}/crops-container-x86-64"
 GITHUB="https://github.com"
 GITLAB="https://gitlab.com"
 GIT_YP="git://git.yoctoproject.org"
@@ -67,10 +73,10 @@ fi
 if [[ $WORKSPACE = *jenkins* ]]; then
   echo "WORKSPACE '$WORKSPACE' contains jenkins"
   echo "we would choose stable/[experimental] here"
-  echo "we choose bleeding"
-  export manifest="bleeding"
+  echo "we choose experimental"
+  export manifest="experimental"
 else
-  echo "use bleeding for now"
+  echo "use experimental for now"
   select manifest in 'stable' 'experimental'
   do
     echo "MANIFEST: $manifest"
@@ -699,14 +705,14 @@ else # dir exists above
 fi # dir does not exist
 
   # --> patch upstream branch
-  # if e.g. /workdir/sources/manifests/meta-virtualization-master/patch.sh exists
+  # if e.g. ${WORKDIR}/sources/manifests/meta-virtualization-master/patch.sh exists
   if [ -f "$4" ]; then
      echo -e "\e[32mtrying to apply this patch: $4\e[39m"
      echo "Press <ENTER> to go on"
      read r
      set -x
      # go into the git repo which should be patched
-     # e.g. /workdir/sources/meta-virtualization-master
+     # e.g. ${WORKDIR}/sources/meta-virtualization-master
      pushd $2
      # apply the patch
      ${4}
