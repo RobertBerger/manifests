@@ -85,6 +85,21 @@ fi
 
 #echo "CONTAINER= $CONTAINER"
 
+
+# --> remove currently running container
+echo "+ ID_TO_KILL=\$(docker ps -a -q  --filter ancestor=${CONTAINER})"
+ID_TO_KILL=$(docker ps -a -q  --filter ancestor=${CONTAINER})
+
+echo "+ docker ps -a"
+docker ps -a
+echo "+ docker stop ${ID_TO_KILL}"
+docker stop ${ID_TO_KILL}
+echo "+ docker rm -f ${ID_TO_KILL}"
+docker rm -f ${ID_TO_KILL}
+echo "+ docker ps -a"
+docker ps -a
+# <-- remove currently running container
+
 #read r
 
 #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gcc-6"
