@@ -427,6 +427,57 @@ MYMAP[qemux86-64-virt-master]="core-image-minimal core-image-minimal-virt-docker
 MYMAP[intel-core2-32-master]="core-image-minimal"
 # <-- intel-core2-32-master
 
+# --> genericx86-64-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh genericx86-64 core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[genericx86-64-master]="core-image-minimal"
+# <-- genericx86-64-master
+
+# --> genericx86-pcbios-ramdisk-ext4-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh genericx86-pcbios-ramdisk-ext4-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[genericx86-pcbios-ramdisk-ext4-master]="core-image-minimal"
+# <-- genericx86-pcbios-ramdisk-ext4-master
+
+# --> genericx86-pcbios-ramdisk-ext4-systemd-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh genericx86-pcbios-ramdisk-ext4-systemd-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[genericx86-pcbios-ramdisk-ext4-systemd-master]="core-image-minimal"
+# <-- genericx86-pcbios-ramdisk-ext4-systemd-master
+
+# --> genericx86-64-pcbios-ramdisk-ext4-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh genericx86-64-pcbios-ramdisk-ext4-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[genericx86-64-pcbios-ramdisk-ext4-master]="core-image-minimal"
+# <-- genericx86-64-pcbios-ramdisk-ext4-master
+
+# --> genericx86-64-pcbios-ramdisk-ext4-systemd-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh genericx86-64-pcbios-ramdisk-ext4-systemd-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[genericx86-64-pcbios-ramdisk-ext4-systemd-master]="core-image-minimal"
+# <-- genericx86-64-pcbios-ramdisk-ext4-systemd-master
+
+
 
 # --> container-x86-64-ex-compact-docker-only
 # jenkins:
@@ -1267,6 +1318,67 @@ fi
      fi
   fi
 
+  if [ "$machine" == "genericx86-64-master" ]; then
+     export TEMPLATECONF="../meta-resy-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/meta-resy-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  if [ "$machine" == "genericx86-pcbios-ramdisk-ext4-master" ]; then
+     export TEMPLATECONF="../ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  if [ "$machine" == "genericx86-pcbios-ramdisk-ext4-systemd-master" ]; then
+     export TEMPLATECONF="../ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+
+  if [ "$machine" == "genericx86-64-pcbios-ramdisk-ext4-master" ]; then
+     export TEMPLATECONF="../ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  if [ "$machine" == "genericx86-64-pcbios-ramdisk-ext4-systemd-master" ]; then
+     export TEMPLATECONF="../ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        cp ../../sources/ramdisk-experiments-master/meta-ramdisk-bsp-master/conf/templates/template-${machine}/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
 
   # x86-64 tensorflow container e.g. for tensorflow development and testing
 
