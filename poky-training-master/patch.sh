@@ -4,33 +4,33 @@ echo ${SCRIPTPATH}
 set -x
 
 git checkout meta/recipes-connectivity/connman/connman/connman
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0001-connman-allow-rootfs-over-nfs.patch; then
-     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0001-connman-allow-rootfs-over-nfs.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0001-connman-allow-rootfs-over-nfs.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0001-connman-allow-rootfs-over-nfs.patch
 fi
 
 git checkout meta-poky/conf/distro/poky.conf
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0002-poky-snapshot-.66.patch; then
-     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0002-poky-snapshot-.66.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0002-poky-snapshot-.66.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0002-poky-snapshot-.66.patch
 fi
 
 git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
-     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
 fi
 
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0004-resolveconf-more-explanations-still-unclear.patch; then
-     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0004-resolveconf-more-explanations-still-unclear.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0004-resolveconf-more-explanations-still-unclear.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0004-resolveconf-more-explanations-still-unclear.patch
 fi
 
 rm -rf scripts/lib/bsp
 rm -rf scripts/yocto-bsp
 rm -rf scripts/yocto-kernel
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0011-added-kernel-tooling-back-in-bsp-tooling-updated.patch; then
-     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0011-added-kernel-tooling-back-in-bsp-tooling-updated.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0011-added-kernel-tooling-back-in-bsp-tooling-updated.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0011-added-kernel-tooling-back-in-bsp-tooling-updated.patch
 fi
 
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0012-bsp-initial-langdale-support.patch; then
-     patch -p1 <${SCRIPTPATH}/against-7ec846be8be10183e2d69bc272a82a7611dfe286/0012-bsp-initial-langdale-support.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0012-bsp-initial-micklemore-support.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0012-bsp-initial-micklemore-support.patch
 fi
 
 git diff --stat
