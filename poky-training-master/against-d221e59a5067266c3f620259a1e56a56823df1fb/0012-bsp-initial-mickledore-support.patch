@@ -17,7 +17,7 @@ index 299a0f74bb..c203771e12 100644
  BBFILE_PRIORITY_{{=machine}} = "6"
  
 -LAYERSERIES_COMPAT_{{=machine}} = "sumo thud warrior zeus dunfell gatesgarth"
-+LAYERSERIES_COMPAT_{{=machine}} = "langdale micklemore"
++LAYERSERIES_COMPAT_{{=machine}} = "langdale mickledore"
 -- 
 2.17.1
 

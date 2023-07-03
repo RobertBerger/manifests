@@ -29,8 +29,8 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f62025
      patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0011-added-kernel-tooling-back-in-bsp-tooling-updated.patch
 fi
 
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0012-bsp-initial-micklemore-support.patch; then
-     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0012-bsp-initial-micklemore-support.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0012-bsp-initial-mickledore-support.patch; then
+     patch -p1 <${SCRIPTPATH}/against-d221e59a5067266c3f620259a1e56a56823df1fb/0012-bsp-initial-mickledore-support.patch
 fi
 
 git diff --stat
