@@ -1,0 +1,43 @@
+From afebe376727254618258e01f574527a9e2e0fa99 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 27 Jul 2023 09:34:00 +0000
+Subject: [PATCH] optionally pass 'initrd' from .wks(.in) via sourceparams
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ .../lib/wic/plugins/source/bootimg-pcbios.py  | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/scripts/lib/wic/plugins/source/bootimg-pcbios.py b/scripts/lib/wic/plugins/source/bootimg-pcbios.py
+index a207a83530..c31851b56a 100644
+--- a/scripts/lib/wic/plugins/source/bootimg-pcbios.py
++++ b/scripts/lib/wic/plugins/source/bootimg-pcbios.py
+@@ -169,6 +169,25 @@ class BootimgPcbiosPlugin(SourcePlugin):
+         for install_cmd in cmds:
+             exec_cmd(install_cmd)
+ 
++        # this is hardcoded to where the cpio.gz is deployed to
++        deploy_dir_image = get_bitbake_var("DEPLOY_DIR_IMAGE")
++        # this can be passed from the .wks.in file via sourceparams
++        initrd = source_params.get('initrd')
++        # for convenience added together
++        initrd_dir_and_file = os.path.join(deploy_dir_image, initrd)
++
++        # in case we have a separate cpio.gz let's copy it to
++        # the boot partition
++        if os.path.isfile(initrd_dir_and_file):
++            logger.debug("Found %s", initrd_dir_and_file)
++        else:
++            logger.debug("Did not find %s", initrd_dir_and_file)
++
++        new_cmd = ("install -m 444 %s %s" %
++                  (initrd_dir_and_file, hdddir))
++
++        exec_cmd(new_cmd)
++
+         du_cmd = "du -bks %s" % hdddir
+         out = exec_cmd(du_cmd)
+         blocks = int(out.split()[0])
+-- 
+2.34.1
+
