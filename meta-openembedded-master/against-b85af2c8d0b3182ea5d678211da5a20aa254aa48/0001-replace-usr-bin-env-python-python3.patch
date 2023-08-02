@@ -1,0 +1,25 @@
+From c773789e7e815a75d163a09a5b5eb499c1d516dd Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Wed, 2 Aug 2023 15:50:12 +0000
+Subject: [PATCH] replace /usr/bin/env/python -> python3
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb b/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
+index 4e1edc6ce..851acd745 100644
+--- a/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
++++ b/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
+@@ -30,6 +30,7 @@ EXTRA_UFTRACE_OECONF = "ARCH=${@set_target_arch(d)} \
+                         with_elfutils=/use/libelf/from/sysroot"
+ 
+ do_configure() {
++    find . -type f -exec sed -i 's/#!\/usr\/bin\/env python/#!\/usr\/bin\/env python3/g' {} +
+     ${S}/configure ${EXTRA_UFTRACE_OECONF}
+ }
+ 
+-- 
+2.34.1
+
