@@ -1,0 +1,3138 @@
+From aabd1dc4c944c8984397ef8b45add2182f57ee99 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Date: Wed, 16 Aug 2023 09:58:07 +0000
+Subject: [PATCH] uftrace: replace /usr/bin/env python with python3
+
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+---
+ ...lace-usr-bin-env-python-with-python3.patch | 3103 +++++++++++++++++
+ .../uftrace/uftrace_0.13.1.bb                 |    3 +-
+ 2 files changed, 3105 insertions(+), 1 deletion(-)
+ create mode 100644 meta-oe/recipes-devtools/uftrace/uftrace/0001-replace-usr-bin-env-python-with-python3.patch
+
+diff --git a/meta-oe/recipes-devtools/uftrace/uftrace/0001-replace-usr-bin-env-python-with-python3.patch b/meta-oe/recipes-devtools/uftrace/uftrace/0001-replace-usr-bin-env-python-with-python3.patch
+new file mode 100644
+index 000000000..aef14e79d
+--- /dev/null
++++ b/meta-oe/recipes-devtools/uftrace/uftrace/0001-replace-usr-bin-env-python-with-python3.patch
+@@ -0,0 +1,3103 @@
++From 52ba8355a79d2efe622afb22930d1e96f34495a8 Mon Sep 17 00:00:00 2001
++From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
++Date: Wed, 16 Aug 2023 09:42:41 +0000
++Subject: [PATCH] replace usr/bin/env python with python3
++
++Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
++---
++ misc/gen-autoargs.py               | 2 +-
++ tests/runtest.py                   | 2 +-
++ tests/t001_basic.py                | 2 +-
++ tests/t002_argument.py             | 2 +-
++ tests/t003_thread.py               | 2 +-
++ tests/t004_filter_F.py             | 2 +-
++ tests/t005_filter_N.py             | 2 +-
++ tests/t006_filter_FN.py            | 2 +-
++ tests/t007_library.py              | 2 +-
++ tests/t008_daemon.py               | 2 +-
++ tests/t009_fork.py                 | 2 +-
++ tests/t010_forkexec.py             | 2 +-
++ tests/t011_vforkexec.py            | 2 +-
++ tests/t012_demangle.py             | 2 +-
++ tests/t013_signal.py               | 2 +-
++ tests/t014_ucontext.py             | 2 +-
++ tests/t015_longjmp.py              | 2 +-
++ tests/t016_alloca.py               | 2 +-
++ tests/t017_no_libcall.py           | 2 +-
++ tests/t018_filter_regex.py         | 2 +-
++ tests/t019_full_depth.py           | 2 +-
++ tests/t020_filter_depth.py         | 2 +-
++ tests/t021_filter_plt.py           | 2 +-
++ tests/t022_filter_kernel.py        | 2 +-
++ tests/t023_replay_filter.py        | 2 +-
++ tests/t024_report_basic.py         | 2 +-
++ tests/t025_report_s_call.py        | 2 +-
++ tests/t026_filter_trigger.py       | 2 +-
++ tests/t027_replay_filter_d.py      | 2 +-
++ tests/t028_replay_backtrace.py     | 2 +-
++ tests/t029_trigger_only.py         | 2 +-
++ tests/t030_replay_trigger.py       | 2 +-
++ tests/t031_filter_demangle1.py     | 2 +-
++ tests/t032_filter_demangle2.py     | 2 +-
++ tests/t033_filter_demangle3.py     | 2 +-
++ tests/t034_filter_demangle4.py     | 2 +-
++ tests/t035_filter_demangle5.py     | 2 +-
++ tests/t036_replay_filter_N.py      | 2 +-
++ tests/t037_trace_onoff.py          | 2 +-
++ tests/t038_trace_disable.py        | 2 +-
++ tests/t039_trace_onoff_F.py        | 2 +-
++ tests/t040_replay_onoff.py         | 2 +-
++ tests/t041_replay_onoff_N.py       | 2 +-
++ tests/t042_live_disable.py         | 2 +-
++ tests/t043_full_demangle.py        | 2 +-
++ tests/t044_report_avg_total.py     | 2 +-
++ tests/t045_report_avg_self.py      | 2 +-
++ tests/t046_report_task.py          | 2 +-
++ tests/t047_signal2.py              | 2 +-
++ tests/t048_malloc_impl.py          | 2 +-
++ tests/t049_column_view.py          | 2 +-
++ tests/t050_no_pltbind.py           | 2 +-
++ tests/t051_return.py               | 2 +-
++ tests/t052_nested_func.py          | 2 +-
++ tests/t053_filter_time.py          | 2 +-
++ tests/t054_filter_time_F.py        | 2 +-
++ tests/t055_filter_time_N.py        | 2 +-
++ tests/t056_filter_time_T.py        | 2 +-
++ tests/t057_filter_time_D.py        | 2 +-
++ tests/t058_arg_int.py              | 2 +-
++ tests/t059_arg_str.py              | 2 +-
++ tests/t060_arg_fmt.py              | 2 +-
++ tests/t061_arg_plt.py              | 2 +-
++ tests/t062_arg_char.py             | 2 +-
++ tests/t063_retval.py               | 2 +-
++ tests/t064_trigger_trace.py        | 2 +-
++ tests/t065_arg_order.py            | 2 +-
++ tests/t066_no_demangle.py          | 2 +-
++ tests/t067_report_diff.py          | 2 +-
++ tests/t068_filter_time_A.py        | 2 +-
++ tests/t069_graph.py                | 2 +-
++ tests/t070_graph_backtrace.py      | 2 +-
++ tests/t071_graph_depth.py          | 2 +-
++ tests/t072_no_comment.py           | 2 +-
++ tests/t073_lib_filter.py           | 2 +-
++ tests/t074_lib_trigger.py          | 2 +-
++ tests/t075_lib_arg.py              | 2 +-
++ tests/t076_lib_replay_F.py         | 2 +-
++ tests/t077_lib_replay_T.py         | 2 +-
++ tests/t078_max_stack.py            | 2 +-
++ tests/t079_replay_kernel_D.py      | 2 +-
++ tests/t080_replay_kernel_D2.py     | 2 +-
++ tests/t081_kernel_depth.py         | 2 +-
++ tests/t082_arg_many.py             | 2 +-
++ tests/t083_arg_float.py            | 2 +-
++ tests/t084_arg_mixed.py            | 2 +-
++ tests/t085_arg_reg.py              | 2 +-
++ tests/t086_arg_stack.py            | 2 +-
++ tests/t087_arg_variadic.py         | 2 +-
++ tests/t088_graph_session.py        | 2 +-
++ tests/t089_graph_exit.py           | 2 +-
++ tests/t090_report_recursive.py     | 2 +-
++ tests/t091_replay_tid.py           | 2 +-
++ tests/t092_report_tid.py           | 2 +-
++ tests/t093_report_filter.py        | 2 +-
++ tests/t094_report_depth.py         | 2 +-
++ tests/t095_graph_tid.py            | 2 +-
++ tests/t096_graph_filter.py         | 2 +-
++ tests/t097_dump_basic.py           | 2 +-
++ tests/t098_dump_tid.py             | 2 +-
++ tests/t099_dump_filter.py          | 2 +-
++ tests/t100_dump_depth.py           | 2 +-
++ tests/t101_dump_chrome.py          | 2 +-
++ tests/t102_dump_flamegraph.py      | 2 +-
++ tests/t103_dump_kernel.py          | 2 +-
++ tests/t104_graph_kernel.py         | 2 +-
++ tests/t105_replay_time.py          | 2 +-
++ tests/t106_report_time.py          | 2 +-
++ tests/t107_dump_time.py            | 2 +-
++ tests/t108_graph_time.py           | 2 +-
++ tests/t109_replay_time_A.py        | 2 +-
++ tests/t110_replay_time_T.py        | 2 +-
++ tests/t111_kernel_tid.py           | 2 +-
++ tests/t112_replay_skip.py          | 2 +-
++ tests/t113_trigger_time.py         | 2 +-
++ tests/t114_replay_trg_time.py      | 2 +-
++ tests/t115_replay_field.py         | 2 +-
++ tests/t116_field_none.py           | 2 +-
++ tests/t117_time_range.py           | 2 +-
++ tests/t118_thread_tsd.py           | 2 +-
++ tests/t119_malloc_hook.py          | 2 +-
++ tests/t120_malloc_tsd.py           | 2 +-
++ tests/t121_malloc_fork.py          | 2 +-
++ tests/t122_time_range2.py          | 2 +-
++ tests/t123_backtrace.py            | 2 +-
++ tests/t124_exception.py            | 2 +-
++ tests/t125_report_range.py         | 2 +-
++ tests/t126_arg_regex.py            | 2 +-
++ tests/t127_arg_module.py           | 2 +-
++ tests/t128_arg_module2.py          | 2 +-
++ tests/t129_session_tid.py          | 2 +-
++ tests/t130_thread_exec.py          | 2 +-
++ tests/t131_lib_dlopen.py           | 2 +-
++ tests/t132_trigger_kernel.py       | 2 +-
++ tests/t133_long_string.py          | 2 +-
++ tests/t134_pic_pie.py              | 2 +-
++ tests/t135_trigger_time2.py        | 2 +-
++ tests/t136_dynamic.py              | 2 +-
++ tests/t137_kernel_tid_update.py    | 2 +-
++ tests/t138_kernel_dynamic.py       | 2 +-
++ tests/t139_kernel_dynamic2.py      | 2 +-
++ tests/t140_dynamic_xray.py         | 2 +-
++ tests/t141_recv_basic.py           | 2 +-
++ tests/t142_recv_multi.py           | 2 +-
++ tests/t143_recv_kernel.py          | 2 +-
++ tests/t144_longjmp2.py             | 2 +-
++ tests/t145_longjmp3.py             | 2 +-
++ tests/t146_arg_std_string.py       | 2 +-
++ tests/t147_event_sdt.py            | 2 +-
++ tests/t148_event_kernel.py         | 2 +-
++ tests/t149_event_kernel2.py        | 2 +-
++ tests/t150_recv_event.py           | 2 +-
++ tests/t151_recv_runcmd.py          | 2 +-
++ tests/t152_read_proc_statm.py      | 2 +-
++ tests/t153_read_page_fault.py      | 2 +-
++ tests/t155_trigger_finish.py       | 2 +-
++ tests/t156_trigger_finish2.py      | 2 +-
++ tests/t157_script_python.py        | 2 +-
++ tests/t158_report_diff_policy1.py  | 2 +-
++ tests/t159_report_diff_policy2.py  | 2 +-
++ tests/t160_report_diff_policy3.py  | 2 +-
++ tests/t161_pltbind_now.py          | 2 +-
++ tests/t162_pltbind_now_pie.py      | 2 +-
++ tests/t163_event_sched.py          | 2 +-
++ tests/t164_report_sched.py         | 2 +-
++ tests/t165_graph_sched.py          | 2 +-
++ tests/t166_dump_sched.py           | 2 +-
++ tests/t167_recv_sched.py           | 2 +-
++ tests/t168_lib_nested.py           | 2 +-
++ tests/t169_script_args.py          | 2 +-
++ tests/t170_script_filter.py        | 2 +-
++ tests/t171_script_option.py        | 2 +-
++ tests/t172_trigger_filter.py       | 2 +-
++ tests/t173_trigger_args.py         | 2 +-
++ tests/t174_replay_filter_kernel.py | 2 +-
++ tests/t175_filter_time_read.py     | 2 +-
++ tests/t176_arg_fptr.py             | 2 +-
++ tests/t177_report_diff_policy4.py  | 2 +-
++ tests/t178_arg_auto1.py            | 2 +-
++ tests/t179_arg_auto2.py            | 2 +-
++ tests/t180_arg_auto3.py            | 2 +-
++ tests/t181_graph_full.py           | 2 +-
++ tests/t182_thread_exit.py          | 2 +-
++ tests/t183_info_quote.py           | 2 +-
++ tests/t184_arg_enum.py             | 2 +-
++ tests/t185_exception2.py           | 2 +-
++ tests/t186_exception3.py           | 2 +-
++ tests/t187_graph_field.py          | 2 +-
++ tests/t188_graph_field_none.py     | 2 +-
++ tests/t189_replay_field2.py        | 2 +-
++ tests/t190_trigger_autoargs.py     | 2 +-
++ tests/t191_posix_spawn.py          | 2 +-
++ tests/t192_lib_name.py             | 2 +-
++ tests/t193_read_pmu_cycle.py       | 2 +-
++ tests/t194_read_pmu_cache.py       | 2 +-
++ tests/t195_read_pmu_branch.py      | 2 +-
++ tests/t196_chrome_taskname.py      | 2 +-
++ tests/t197_filter_glob.py          | 2 +-
++ tests/t198_lib_arg_float.py        | 2 +-
++ tests/t199_script_info.py          | 2 +-
++ tests/t200_lib_dlopen2.py          | 2 +-
++ tests/t201_arg_dwarf1.py           | 2 +-
++ tests/t202_arg_dwarf2.py           | 2 +-
++ tests/t203_arg_dwarf3.py           | 2 +-
++ tests/t204_arg_dwarf4.py           | 2 +-
++ tests/t205_arg_auto4.py            | 2 +-
++ tests/t206_arg_enum2.py            | 2 +-
++ tests/t207_dump_graphviz.py        | 2 +-
++ tests/t208_watch_cpu.py            | 2 +-
++ tests/t209_filter_caller.py        | 2 +-
++ tests/t210_filter_time_C.py        | 2 +-
++ tests/t211_replay_filter_C.py      | 2 +-
++ tests/t212_noplt_libcall.py        | 2 +-
++ tests/t213_arg_symbol.py           | 2 +-
++ tests/t214_signal_trigger.py       | 2 +-
++ tests/t215_no_libcall_replay.py    | 2 +-
++ tests/t216_no_libcall_report.py    | 2 +-
++ tests/t217_no_libcall_dump.py      | 2 +-
++ tests/t218_no_libcall_graph.py     | 2 +-
++ tests/t219_no_libcall_script.py    | 2 +-
++ tests/t220_trace_script.py         | 2 +-
++ tests/t221_taskname_time.py        | 2 +-
++ tests/t222_external_data.py        | 2 +-
++ tests/t223_dynamic_full.py         | 2 +-
++ tests/t224_dynamic_lib.py          | 2 +-
++ tests/t225_dynamic_size.py         | 2 +-
++ tests/t226_default_opts.py         | 2 +-
++ tests/t227_read_pmu_cycle2.py      | 2 +-
++ tests/t228_read_pmu_cycle3.py      | 2 +-
++ tests/t229_info_task.py            | 2 +-
++ tests/t230_graph_task.py           | 2 +-
++ tests/t231_arg_bound.py            | 2 +-
++ tests/t232_dynamic_unpatch.py      | 2 +-
++ tests/t233_dynamic_unpatch2.py     | 2 +-
++ tests/t234_script_luajit.py        | 2 +-
++ tests/t235_report_srcline.py       | 2 +-
++ tests/t236_replay_srcline.py       | 2 +-
++ tests/t237_report_field1.py        | 2 +-
++ tests/t238_report_field2.py        | 2 +-
++ tests/t239_report_diff_field1.py   | 2 +-
++ tests/t240_report_diff_field2.py   | 2 +-
++ tests/t241_report_diff_field3.py   | 2 +-
++ tests/t242_report_diff_field4.py   | 2 +-
++ tests/t243_report_diff_field5.py   | 2 +-
++ tests/t244_report_task_field.py    | 2 +-
++ tests/t245_report_field_none.py    | 2 +-
++ tests/t246_report_srcline2.py      | 2 +-
++ tests/t247_graph_srcline.py        | 2 +-
++ tests/t248_dynamic_dlopen.py       | 2 +-
++ tests/t249_estimate_return.py      | 2 +-
++ tests/t250_indirect_return.py      | 2 +-
++ tests/t251_exception4.py           | 2 +-
++ tests/t252_filter_H.py             | 2 +-
++ tests/t253_trigger_hide.py         | 2 +-
++ tests/t254_arg_dwarf5.py           | 2 +-
++ tests/t255_arg_dwarf6.py           | 2 +-
++ tests/t256_arg_dwarf7.py           | 2 +-
++ tests/t257_arg_struct_replay.py    | 2 +-
++ tests/t258_arg_struct_dump.py      | 2 +-
++ tests/t259_arg_struct_script.py    | 2 +-
++ tests/t260_arg_struct_luajit.py    | 2 +-
++ tests/t261_info_note.py            | 2 +-
++ tests/t262_replay_with_syms.py     | 2 +-
++ tests/t263_patchable_dynamic.py    | 2 +-
++ tests/t264_patchable_dynamic2.py   | 2 +-
++ tests/t265_patchable_dynamic3.py   | 2 +-
++ tests/t266_patchable_dynamic4.py   | 2 +-
++ tests/t267_patchable_dynamic5.py   | 2 +-
++ tests/t268_record_with_syms.py     | 2 +-
++ tests/t269_arg_no_args_replay.py   | 2 +-
++ tests/t270_arg_no_args_dump.py     | 2 +-
++ tests/t271_script_event.py         | 2 +-
++ tests/t272_dump_mermaid.py         | 2 +-
++ tests/t273_agent_basic.py          | 2 +-
++ tests/t274_filter_loc1.py          | 2 +-
++ tests/t275_filter_loc2.py          | 2 +-
++ tests/t276_filter_loc3.py          | 2 +-
++ tests/t277_time_range3.py          | 2 +-
++ tests/t278_size_filter1.py         | 2 +-
++ tests/t279_size_filter2.py         | 2 +-
++ tests/t280_size_filter3.py         | 2 +-
++ 281 files changed, 281 insertions(+), 281 deletions(-)
++
++diff --git a/misc/gen-autoargs.py b/misc/gen-autoargs.py
++index 2469eff..8d22b1a 100755
++--- a/misc/gen-autoargs.py
+++++ b/misc/gen-autoargs.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ #
++ # Arguments / return type option tables generator for automatic value display
++diff --git a/tests/runtest.py b/tests/runtest.py
++index 2f7f0cc..0db0c18 100755
++--- a/tests/runtest.py
+++++ b/tests/runtest.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import glob
++ import multiprocessing
++diff --git a/tests/t001_basic.py b/tests/t001_basic.py
++index 88aab38..cd98bb0 100644
++--- a/tests/t001_basic.py
+++++ b/tests/t001_basic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t002_argument.py b/tests/t002_argument.py
++index aac8249..94238b0 100644
++--- a/tests/t002_argument.py
+++++ b/tests/t002_argument.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t003_thread.py b/tests/t003_thread.py
++index b1899ce..8adfc73 100644
++--- a/tests/t003_thread.py
+++++ b/tests/t003_thread.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t004_filter_F.py b/tests/t004_filter_F.py
++index c888531..c010bb1 100644
++--- a/tests/t004_filter_F.py
+++++ b/tests/t004_filter_F.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t005_filter_N.py b/tests/t005_filter_N.py
++index 54496e0..3b33817 100644
++--- a/tests/t005_filter_N.py
+++++ b/tests/t005_filter_N.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t006_filter_FN.py b/tests/t006_filter_FN.py
++index 683ef43..37f47bd 100644
++--- a/tests/t006_filter_FN.py
+++++ b/tests/t006_filter_FN.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t007_library.py b/tests/t007_library.py
++index d959820..2026e16 100644
++--- a/tests/t007_library.py
+++++ b/tests/t007_library.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t008_daemon.py b/tests/t008_daemon.py
++index 72b5909..fcc483f 100644
++--- a/tests/t008_daemon.py
+++++ b/tests/t008_daemon.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t009_fork.py b/tests/t009_fork.py
++index 0a5df01..b32dae0 100644
++--- a/tests/t009_fork.py
+++++ b/tests/t009_fork.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t010_forkexec.py b/tests/t010_forkexec.py
++index b7a3923..ca55842 100644
++--- a/tests/t010_forkexec.py
+++++ b/tests/t010_forkexec.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t011_vforkexec.py b/tests/t011_vforkexec.py
++index b53adca..842d6f6 100644
++--- a/tests/t011_vforkexec.py
+++++ b/tests/t011_vforkexec.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t012_demangle.py b/tests/t012_demangle.py
++index 2686c33..b5cf472 100644
++--- a/tests/t012_demangle.py
+++++ b/tests/t012_demangle.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t013_signal.py b/tests/t013_signal.py
++index cab6bab..a2f0217 100644
++--- a/tests/t013_signal.py
+++++ b/tests/t013_signal.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t014_ucontext.py b/tests/t014_ucontext.py
++index 1ee7310..e3eeeec 100644
++--- a/tests/t014_ucontext.py
+++++ b/tests/t014_ucontext.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t015_longjmp.py b/tests/t015_longjmp.py
++index c24acd2..b509d88 100644
++--- a/tests/t015_longjmp.py
+++++ b/tests/t015_longjmp.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t016_alloca.py b/tests/t016_alloca.py
++index 33a13d1..befad00 100644
++--- a/tests/t016_alloca.py
+++++ b/tests/t016_alloca.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t017_no_libcall.py b/tests/t017_no_libcall.py
++index b763894..f447069 100644
++--- a/tests/t017_no_libcall.py
+++++ b/tests/t017_no_libcall.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t018_filter_regex.py b/tests/t018_filter_regex.py
++index 3d53cd3..eed070b 100644
++--- a/tests/t018_filter_regex.py
+++++ b/tests/t018_filter_regex.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t019_full_depth.py b/tests/t019_full_depth.py
++index dbc212a..687fe4f 100644
++--- a/tests/t019_full_depth.py
+++++ b/tests/t019_full_depth.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t020_filter_depth.py b/tests/t020_filter_depth.py
++index 7c93eb9..6302c3c 100644
++--- a/tests/t020_filter_depth.py
+++++ b/tests/t020_filter_depth.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t021_filter_plt.py b/tests/t021_filter_plt.py
++index 8f2c667..6975c2e 100644
++--- a/tests/t021_filter_plt.py
+++++ b/tests/t021_filter_plt.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t022_filter_kernel.py b/tests/t022_filter_kernel.py
++index fd850d4..208ca0f 100644
++--- a/tests/t022_filter_kernel.py
+++++ b/tests/t022_filter_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t023_replay_filter.py b/tests/t023_replay_filter.py
++index f4cf4fd..a7d425b 100644
++--- a/tests/t023_replay_filter.py
+++++ b/tests/t023_replay_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t024_report_basic.py b/tests/t024_report_basic.py
++index f70432e..59cb6ec 100644
++--- a/tests/t024_report_basic.py
+++++ b/tests/t024_report_basic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t025_report_s_call.py b/tests/t025_report_s_call.py
++index fa9858a..b34e668 100644
++--- a/tests/t025_report_s_call.py
+++++ b/tests/t025_report_s_call.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t026_filter_trigger.py b/tests/t026_filter_trigger.py
++index 4885ae4..b74c6ec 100644
++--- a/tests/t026_filter_trigger.py
+++++ b/tests/t026_filter_trigger.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t027_replay_filter_d.py b/tests/t027_replay_filter_d.py
++index 3f3f14e..f61729b 100644
++--- a/tests/t027_replay_filter_d.py
+++++ b/tests/t027_replay_filter_d.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t028_replay_backtrace.py b/tests/t028_replay_backtrace.py
++index 6b0d19a..b138a09 100644
++--- a/tests/t028_replay_backtrace.py
+++++ b/tests/t028_replay_backtrace.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t029_trigger_only.py b/tests/t029_trigger_only.py
++index e41c23f..ef02f4d 100644
++--- a/tests/t029_trigger_only.py
+++++ b/tests/t029_trigger_only.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t030_replay_trigger.py b/tests/t030_replay_trigger.py
++index 34b54d1..0bf87c2 100644
++--- a/tests/t030_replay_trigger.py
+++++ b/tests/t030_replay_trigger.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t031_filter_demangle1.py b/tests/t031_filter_demangle1.py
++index 72909dc..591b11a 100644
++--- a/tests/t031_filter_demangle1.py
+++++ b/tests/t031_filter_demangle1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t032_filter_demangle2.py b/tests/t032_filter_demangle2.py
++index 4fc3df4..714f6e9 100644
++--- a/tests/t032_filter_demangle2.py
+++++ b/tests/t032_filter_demangle2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t033_filter_demangle3.py b/tests/t033_filter_demangle3.py
++index 0d395e1..54f4849 100644
++--- a/tests/t033_filter_demangle3.py
+++++ b/tests/t033_filter_demangle3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t034_filter_demangle4.py b/tests/t034_filter_demangle4.py
++index 5e1bfdb..e2dd5c2 100644
++--- a/tests/t034_filter_demangle4.py
+++++ b/tests/t034_filter_demangle4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t035_filter_demangle5.py b/tests/t035_filter_demangle5.py
++index d0dc53d..90b3a70 100644
++--- a/tests/t035_filter_demangle5.py
+++++ b/tests/t035_filter_demangle5.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t036_replay_filter_N.py b/tests/t036_replay_filter_N.py
++index 715ebae..c50d94b 100644
++--- a/tests/t036_replay_filter_N.py
+++++ b/tests/t036_replay_filter_N.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t037_trace_onoff.py b/tests/t037_trace_onoff.py
++index 818a613..ffbabe8 100644
++--- a/tests/t037_trace_onoff.py
+++++ b/tests/t037_trace_onoff.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t038_trace_disable.py b/tests/t038_trace_disable.py
++index fd75d22..f36f774 100644
++--- a/tests/t038_trace_disable.py
+++++ b/tests/t038_trace_disable.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t039_trace_onoff_F.py b/tests/t039_trace_onoff_F.py
++index 48301f3..10e1dee 100644
++--- a/tests/t039_trace_onoff_F.py
+++++ b/tests/t039_trace_onoff_F.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t040_replay_onoff.py b/tests/t040_replay_onoff.py
++index 572b174..b992ec1 100644
++--- a/tests/t040_replay_onoff.py
+++++ b/tests/t040_replay_onoff.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t041_replay_onoff_N.py b/tests/t041_replay_onoff_N.py
++index 8e572b2..3556f7a 100644
++--- a/tests/t041_replay_onoff_N.py
+++++ b/tests/t041_replay_onoff_N.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t042_live_disable.py b/tests/t042_live_disable.py
++index 7d4fc93..d3e8964 100644
++--- a/tests/t042_live_disable.py
+++++ b/tests/t042_live_disable.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t043_full_demangle.py b/tests/t043_full_demangle.py
++index 3fcdec6..a77081b 100644
++--- a/tests/t043_full_demangle.py
+++++ b/tests/t043_full_demangle.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t044_report_avg_total.py b/tests/t044_report_avg_total.py
++index 09247e2..a5768a7 100644
++--- a/tests/t044_report_avg_total.py
+++++ b/tests/t044_report_avg_total.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t045_report_avg_self.py b/tests/t045_report_avg_self.py
++index a56bdd4..341db4b 100644
++--- a/tests/t045_report_avg_self.py
+++++ b/tests/t045_report_avg_self.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t046_report_task.py b/tests/t046_report_task.py
++index 6d4b1e1..7510cf3 100644
++--- a/tests/t046_report_task.py
+++++ b/tests/t046_report_task.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t047_signal2.py b/tests/t047_signal2.py
++index f5f4b61..54f4aa5 100644
++--- a/tests/t047_signal2.py
+++++ b/tests/t047_signal2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t048_malloc_impl.py b/tests/t048_malloc_impl.py
++index 43be7e4..33d5b34 100644
++--- a/tests/t048_malloc_impl.py
+++++ b/tests/t048_malloc_impl.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t049_column_view.py b/tests/t049_column_view.py
++index f2783a5..712a6b0 100644
++--- a/tests/t049_column_view.py
+++++ b/tests/t049_column_view.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t050_no_pltbind.py b/tests/t050_no_pltbind.py
++index 87d4743..a653169 100644
++--- a/tests/t050_no_pltbind.py
+++++ b/tests/t050_no_pltbind.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t051_return.py b/tests/t051_return.py
++index 1d9483e..e5860f8 100644
++--- a/tests/t051_return.py
+++++ b/tests/t051_return.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t052_nested_func.py b/tests/t052_nested_func.py
++index 9542543..29f2091 100644
++--- a/tests/t052_nested_func.py
+++++ b/tests/t052_nested_func.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t053_filter_time.py b/tests/t053_filter_time.py
++index 219e5be..522a0f4 100644
++--- a/tests/t053_filter_time.py
+++++ b/tests/t053_filter_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t054_filter_time_F.py b/tests/t054_filter_time_F.py
++index ce31104..e555c1e 100644
++--- a/tests/t054_filter_time_F.py
+++++ b/tests/t054_filter_time_F.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t055_filter_time_N.py b/tests/t055_filter_time_N.py
++index 15c742a..0d6a861 100644
++--- a/tests/t055_filter_time_N.py
+++++ b/tests/t055_filter_time_N.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t056_filter_time_T.py b/tests/t056_filter_time_T.py
++index e406347..119fc00 100644
++--- a/tests/t056_filter_time_T.py
+++++ b/tests/t056_filter_time_T.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t057_filter_time_D.py b/tests/t057_filter_time_D.py
++index 0e7d6e4..2c34082 100644
++--- a/tests/t057_filter_time_D.py
+++++ b/tests/t057_filter_time_D.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t058_arg_int.py b/tests/t058_arg_int.py
++index ce26898..31a7fed 100644
++--- a/tests/t058_arg_int.py
+++++ b/tests/t058_arg_int.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t059_arg_str.py b/tests/t059_arg_str.py
++index ae01d81..8680dd4 100644
++--- a/tests/t059_arg_str.py
+++++ b/tests/t059_arg_str.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t060_arg_fmt.py b/tests/t060_arg_fmt.py
++index 5f992cd..1c65df5 100644
++--- a/tests/t060_arg_fmt.py
+++++ b/tests/t060_arg_fmt.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t061_arg_plt.py b/tests/t061_arg_plt.py
++index 762045c..dfdca2d 100644
++--- a/tests/t061_arg_plt.py
+++++ b/tests/t061_arg_plt.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t062_arg_char.py b/tests/t062_arg_char.py
++index 619d172..924e8d5 100644
++--- a/tests/t062_arg_char.py
+++++ b/tests/t062_arg_char.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t063_retval.py b/tests/t063_retval.py
++index 6c1f0df..684bc1e 100644
++--- a/tests/t063_retval.py
+++++ b/tests/t063_retval.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t064_trigger_trace.py b/tests/t064_trigger_trace.py
++index a89f3a0..409dafa 100644
++--- a/tests/t064_trigger_trace.py
+++++ b/tests/t064_trigger_trace.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t065_arg_order.py b/tests/t065_arg_order.py
++index b1b6959..fcb9605 100644
++--- a/tests/t065_arg_order.py
+++++ b/tests/t065_arg_order.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t066_no_demangle.py b/tests/t066_no_demangle.py
++index ace9b21..9faa012 100644
++--- a/tests/t066_no_demangle.py
+++++ b/tests/t066_no_demangle.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t067_report_diff.py b/tests/t067_report_diff.py
++index 4974baa..9140fbb 100644
++--- a/tests/t067_report_diff.py
+++++ b/tests/t067_report_diff.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t068_filter_time_A.py b/tests/t068_filter_time_A.py
++index df911c4..34e17be 100644
++--- a/tests/t068_filter_time_A.py
+++++ b/tests/t068_filter_time_A.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t069_graph.py b/tests/t069_graph.py
++index dd90985..b1696d5 100644
++--- a/tests/t069_graph.py
+++++ b/tests/t069_graph.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t070_graph_backtrace.py b/tests/t070_graph_backtrace.py
++index f494efa..da85d4c 100644
++--- a/tests/t070_graph_backtrace.py
+++++ b/tests/t070_graph_backtrace.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t071_graph_depth.py b/tests/t071_graph_depth.py
++index cb59fe9..e41a7b6 100644
++--- a/tests/t071_graph_depth.py
+++++ b/tests/t071_graph_depth.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t072_no_comment.py b/tests/t072_no_comment.py
++index 252d436..807e62e 100644
++--- a/tests/t072_no_comment.py
+++++ b/tests/t072_no_comment.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t073_lib_filter.py b/tests/t073_lib_filter.py
++index a5ae57b..2d1375a 100644
++--- a/tests/t073_lib_filter.py
+++++ b/tests/t073_lib_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t074_lib_trigger.py b/tests/t074_lib_trigger.py
++index 01ae4fc..c755eb8 100644
++--- a/tests/t074_lib_trigger.py
+++++ b/tests/t074_lib_trigger.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t075_lib_arg.py b/tests/t075_lib_arg.py
++index 3a4cae8..3393401 100644
++--- a/tests/t075_lib_arg.py
+++++ b/tests/t075_lib_arg.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t076_lib_replay_F.py b/tests/t076_lib_replay_F.py
++index 3b3d0b3..7efc153 100644
++--- a/tests/t076_lib_replay_F.py
+++++ b/tests/t076_lib_replay_F.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t077_lib_replay_T.py b/tests/t077_lib_replay_T.py
++index dcacb2e..d2b614e 100644
++--- a/tests/t077_lib_replay_T.py
+++++ b/tests/t077_lib_replay_T.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t078_max_stack.py b/tests/t078_max_stack.py
++index 17d2c08..d9e8ebb 100644
++--- a/tests/t078_max_stack.py
+++++ b/tests/t078_max_stack.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t079_replay_kernel_D.py b/tests/t079_replay_kernel_D.py
++index 9f6c6dd..f4315c6 100644
++--- a/tests/t079_replay_kernel_D.py
+++++ b/tests/t079_replay_kernel_D.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t080_replay_kernel_D2.py b/tests/t080_replay_kernel_D2.py
++index f4f401f..892c916 100644
++--- a/tests/t080_replay_kernel_D2.py
+++++ b/tests/t080_replay_kernel_D2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t081_kernel_depth.py b/tests/t081_kernel_depth.py
++index ffd806e..bf10420 100644
++--- a/tests/t081_kernel_depth.py
+++++ b/tests/t081_kernel_depth.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t082_arg_many.py b/tests/t082_arg_many.py
++index 2ee4cd4..e62085e 100644
++--- a/tests/t082_arg_many.py
+++++ b/tests/t082_arg_many.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t083_arg_float.py b/tests/t083_arg_float.py
++index 1d559f4..a3fa7ee 100644
++--- a/tests/t083_arg_float.py
+++++ b/tests/t083_arg_float.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t084_arg_mixed.py b/tests/t084_arg_mixed.py
++index d78159d..f84fbab 100644
++--- a/tests/t084_arg_mixed.py
+++++ b/tests/t084_arg_mixed.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t085_arg_reg.py b/tests/t085_arg_reg.py
++index e33c539..d642bf7 100644
++--- a/tests/t085_arg_reg.py
+++++ b/tests/t085_arg_reg.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t086_arg_stack.py b/tests/t086_arg_stack.py
++index a5894cc..cd4d6b4 100644
++--- a/tests/t086_arg_stack.py
+++++ b/tests/t086_arg_stack.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t087_arg_variadic.py b/tests/t087_arg_variadic.py
++index c5dfeb2..02dbfd1 100644
++--- a/tests/t087_arg_variadic.py
+++++ b/tests/t087_arg_variadic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t088_graph_session.py b/tests/t088_graph_session.py
++index 3461c0a..c2a1480 100644
++--- a/tests/t088_graph_session.py
+++++ b/tests/t088_graph_session.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t089_graph_exit.py b/tests/t089_graph_exit.py
++index a73ea3c..ae202d4 100644
++--- a/tests/t089_graph_exit.py
+++++ b/tests/t089_graph_exit.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t090_report_recursive.py b/tests/t090_report_recursive.py
++index dddd0e3..f233ef8 100644
++--- a/tests/t090_report_recursive.py
+++++ b/tests/t090_report_recursive.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t091_replay_tid.py b/tests/t091_replay_tid.py
++index 3bc3d74..72fdc81 100644
++--- a/tests/t091_replay_tid.py
+++++ b/tests/t091_replay_tid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ 
++diff --git a/tests/t092_report_tid.py b/tests/t092_report_tid.py
++index 8ea00f9..1c98922 100644
++--- a/tests/t092_report_tid.py
+++++ b/tests/t092_report_tid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ 
++diff --git a/tests/t093_report_filter.py b/tests/t093_report_filter.py
++index 173f678..e88566d 100644
++--- a/tests/t093_report_filter.py
+++++ b/tests/t093_report_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t094_report_depth.py b/tests/t094_report_depth.py
++index 9265fe4..506f1b0 100644
++--- a/tests/t094_report_depth.py
+++++ b/tests/t094_report_depth.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t095_graph_tid.py b/tests/t095_graph_tid.py
++index b268ede..083cca0 100644
++--- a/tests/t095_graph_tid.py
+++++ b/tests/t095_graph_tid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ 
++diff --git a/tests/t096_graph_filter.py b/tests/t096_graph_filter.py
++index 699b84c..2b3d475 100644
++--- a/tests/t096_graph_filter.py
+++++ b/tests/t096_graph_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t097_dump_basic.py b/tests/t097_dump_basic.py
++index dcbc89a..7b857ef 100644
++--- a/tests/t097_dump_basic.py
+++++ b/tests/t097_dump_basic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t098_dump_tid.py b/tests/t098_dump_tid.py
++index 5b9af78..21d6e2e 100644
++--- a/tests/t098_dump_tid.py
+++++ b/tests/t098_dump_tid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ import subprocess as sp
++diff --git a/tests/t099_dump_filter.py b/tests/t099_dump_filter.py
++index d018221..11e4074 100644
++--- a/tests/t099_dump_filter.py
+++++ b/tests/t099_dump_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t100_dump_depth.py b/tests/t100_dump_depth.py
++index b77dfa9..f63f3d8 100644
++--- a/tests/t100_dump_depth.py
+++++ b/tests/t100_dump_depth.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t101_dump_chrome.py b/tests/t101_dump_chrome.py
++index e4254da..f08abc7 100644
++--- a/tests/t101_dump_chrome.py
+++++ b/tests/t101_dump_chrome.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t102_dump_flamegraph.py b/tests/t102_dump_flamegraph.py
++index ff13176..7ec2392 100644
++--- a/tests/t102_dump_flamegraph.py
+++++ b/tests/t102_dump_flamegraph.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t103_dump_kernel.py b/tests/t103_dump_kernel.py
++index 2148969..f74a7a5 100644
++--- a/tests/t103_dump_kernel.py
+++++ b/tests/t103_dump_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t104_graph_kernel.py b/tests/t104_graph_kernel.py
++index 3df975b..5f22d95 100644
++--- a/tests/t104_graph_kernel.py
+++++ b/tests/t104_graph_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t105_replay_time.py b/tests/t105_replay_time.py
++index 03fd42d..4ae793f 100644
++--- a/tests/t105_replay_time.py
+++++ b/tests/t105_replay_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t106_report_time.py b/tests/t106_report_time.py
++index 109ee03..adc8729 100644
++--- a/tests/t106_report_time.py
+++++ b/tests/t106_report_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t107_dump_time.py b/tests/t107_dump_time.py
++index 020a766..9af7a04 100644
++--- a/tests/t107_dump_time.py
+++++ b/tests/t107_dump_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t108_graph_time.py b/tests/t108_graph_time.py
++index 209d72e..24f93e5 100644
++--- a/tests/t108_graph_time.py
+++++ b/tests/t108_graph_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t109_replay_time_A.py b/tests/t109_replay_time_A.py
++index 1cd1464..ee4a8a1 100644
++--- a/tests/t109_replay_time_A.py
+++++ b/tests/t109_replay_time_A.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t110_replay_time_T.py b/tests/t110_replay_time_T.py
++index 8d8f3b0..684888d 100644
++--- a/tests/t110_replay_time_T.py
+++++ b/tests/t110_replay_time_T.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t111_kernel_tid.py b/tests/t111_kernel_tid.py
++index 7aafa0e..aeca09f 100644
++--- a/tests/t111_kernel_tid.py
+++++ b/tests/t111_kernel_tid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t112_replay_skip.py b/tests/t112_replay_skip.py
++index 5aa11c1..d67c1b4 100644
++--- a/tests/t112_replay_skip.py
+++++ b/tests/t112_replay_skip.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t113_trigger_time.py b/tests/t113_trigger_time.py
++index d4874db..b8deeb3 100644
++--- a/tests/t113_trigger_time.py
+++++ b/tests/t113_trigger_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t114_replay_trg_time.py b/tests/t114_replay_trg_time.py
++index e690dc1..d67ec0c 100644
++--- a/tests/t114_replay_trg_time.py
+++++ b/tests/t114_replay_trg_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t115_replay_field.py b/tests/t115_replay_field.py
++index 1faaf26..d915478 100644
++--- a/tests/t115_replay_field.py
+++++ b/tests/t115_replay_field.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t116_field_none.py b/tests/t116_field_none.py
++index 6f1afb2..5e1d326 100644
++--- a/tests/t116_field_none.py
+++++ b/tests/t116_field_none.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t117_time_range.py b/tests/t117_time_range.py
++index efc5724..a49019a 100644
++--- a/tests/t117_time_range.py
+++++ b/tests/t117_time_range.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t118_thread_tsd.py b/tests/t118_thread_tsd.py
++index 4f7b721..767193d 100644
++--- a/tests/t118_thread_tsd.py
+++++ b/tests/t118_thread_tsd.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t119_malloc_hook.py b/tests/t119_malloc_hook.py
++index 1bddf6e..528fea7 100644
++--- a/tests/t119_malloc_hook.py
+++++ b/tests/t119_malloc_hook.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t120_malloc_tsd.py b/tests/t120_malloc_tsd.py
++index ce325aa..ffc68a4 100644
++--- a/tests/t120_malloc_tsd.py
+++++ b/tests/t120_malloc_tsd.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t121_malloc_fork.py b/tests/t121_malloc_fork.py
++index 0a60a33..e79b9ff 100644
++--- a/tests/t121_malloc_fork.py
+++++ b/tests/t121_malloc_fork.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t122_time_range2.py b/tests/t122_time_range2.py
++index 2ac2d55..f40d2a0 100644
++--- a/tests/t122_time_range2.py
+++++ b/tests/t122_time_range2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t123_backtrace.py b/tests/t123_backtrace.py
++index ba7a251..3813c78 100644
++--- a/tests/t123_backtrace.py
+++++ b/tests/t123_backtrace.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t124_exception.py b/tests/t124_exception.py
++index 838a421..1b3b09e 100644
++--- a/tests/t124_exception.py
+++++ b/tests/t124_exception.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t125_report_range.py b/tests/t125_report_range.py
++index b209754..75562ba 100644
++--- a/tests/t125_report_range.py
+++++ b/tests/t125_report_range.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t126_arg_regex.py b/tests/t126_arg_regex.py
++index 9c20a11..16908a0 100644
++--- a/tests/t126_arg_regex.py
+++++ b/tests/t126_arg_regex.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t127_arg_module.py b/tests/t127_arg_module.py
++index f6ce2c3..3307c3a 100644
++--- a/tests/t127_arg_module.py
+++++ b/tests/t127_arg_module.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t128_arg_module2.py b/tests/t128_arg_module2.py
++index 78e705a..9dc9cd7 100644
++--- a/tests/t128_arg_module2.py
+++++ b/tests/t128_arg_module2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t129_session_tid.py b/tests/t129_session_tid.py
++index 15e1ea8..fc695da 100644
++--- a/tests/t129_session_tid.py
+++++ b/tests/t129_session_tid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t130_thread_exec.py b/tests/t130_thread_exec.py
++index 2bc0324..b0dd4d3 100644
++--- a/tests/t130_thread_exec.py
+++++ b/tests/t130_thread_exec.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t131_lib_dlopen.py b/tests/t131_lib_dlopen.py
++index 85e652f..91403b8 100644
++--- a/tests/t131_lib_dlopen.py
+++++ b/tests/t131_lib_dlopen.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t132_trigger_kernel.py b/tests/t132_trigger_kernel.py
++index 12587fe..5946dff 100644
++--- a/tests/t132_trigger_kernel.py
+++++ b/tests/t132_trigger_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t133_long_string.py b/tests/t133_long_string.py
++index b9c2852..05a1b21 100644
++--- a/tests/t133_long_string.py
+++++ b/tests/t133_long_string.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t134_pic_pie.py b/tests/t134_pic_pie.py
++index 9f21b2b..2cc4e51 100644
++--- a/tests/t134_pic_pie.py
+++++ b/tests/t134_pic_pie.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t135_trigger_time2.py b/tests/t135_trigger_time2.py
++index dd0a1ca..5115d79 100644
++--- a/tests/t135_trigger_time2.py
+++++ b/tests/t135_trigger_time2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t136_dynamic.py b/tests/t136_dynamic.py
++index cac070f..009e299 100644
++--- a/tests/t136_dynamic.py
+++++ b/tests/t136_dynamic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t137_kernel_tid_update.py b/tests/t137_kernel_tid_update.py
++index 6c9f3d2..7318920 100644
++--- a/tests/t137_kernel_tid_update.py
+++++ b/tests/t137_kernel_tid_update.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t138_kernel_dynamic.py b/tests/t138_kernel_dynamic.py
++index 5b2f771..2d8853e 100644
++--- a/tests/t138_kernel_dynamic.py
+++++ b/tests/t138_kernel_dynamic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t139_kernel_dynamic2.py b/tests/t139_kernel_dynamic2.py
++index 3b6a62e..9243521 100644
++--- a/tests/t139_kernel_dynamic2.py
+++++ b/tests/t139_kernel_dynamic2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t140_dynamic_xray.py b/tests/t140_dynamic_xray.py
++index bdf53af..92eec33 100644
++--- a/tests/t140_dynamic_xray.py
+++++ b/tests/t140_dynamic_xray.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t141_recv_basic.py b/tests/t141_recv_basic.py
++index e797bd7..ffa293e 100644
++--- a/tests/t141_recv_basic.py
+++++ b/tests/t141_recv_basic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ import subprocess as sp
++diff --git a/tests/t142_recv_multi.py b/tests/t142_recv_multi.py
++index 0ea1cfd..83bad24 100644
++--- a/tests/t142_recv_multi.py
+++++ b/tests/t142_recv_multi.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ import random
++diff --git a/tests/t143_recv_kernel.py b/tests/t143_recv_kernel.py
++index 61fa7be..21cb535 100644
++--- a/tests/t143_recv_kernel.py
+++++ b/tests/t143_recv_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import random
++diff --git a/tests/t144_longjmp2.py b/tests/t144_longjmp2.py
++index b0cee45..925fc46 100644
++--- a/tests/t144_longjmp2.py
+++++ b/tests/t144_longjmp2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t145_longjmp3.py b/tests/t145_longjmp3.py
++index 1b4bdf8..a8a9d35 100644
++--- a/tests/t145_longjmp3.py
+++++ b/tests/t145_longjmp3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t146_arg_std_string.py b/tests/t146_arg_std_string.py
++index 4c69b38..efb1788 100644
++--- a/tests/t146_arg_std_string.py
+++++ b/tests/t146_arg_std_string.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t147_event_sdt.py b/tests/t147_event_sdt.py
++index 0d6d525..2910b8f 100644
++--- a/tests/t147_event_sdt.py
+++++ b/tests/t147_event_sdt.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t148_event_kernel.py b/tests/t148_event_kernel.py
++index 1677adc..34a34f8 100644
++--- a/tests/t148_event_kernel.py
+++++ b/tests/t148_event_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t149_event_kernel2.py b/tests/t149_event_kernel2.py
++index 38d3446..c8024eb 100644
++--- a/tests/t149_event_kernel2.py
+++++ b/tests/t149_event_kernel2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t150_recv_event.py b/tests/t150_recv_event.py
++index 96285f6..b48f5cf 100644
++--- a/tests/t150_recv_event.py
+++++ b/tests/t150_recv_event.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ import subprocess as sp
++diff --git a/tests/t151_recv_runcmd.py b/tests/t151_recv_runcmd.py
++index 4674e54..29497f5 100644
++--- a/tests/t151_recv_runcmd.py
+++++ b/tests/t151_recv_runcmd.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t152_read_proc_statm.py b/tests/t152_read_proc_statm.py
++index fedadc2..752f73e 100644
++--- a/tests/t152_read_proc_statm.py
+++++ b/tests/t152_read_proc_statm.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t153_read_page_fault.py b/tests/t153_read_page_fault.py
++index 840b08b..abf02a5 100644
++--- a/tests/t153_read_page_fault.py
+++++ b/tests/t153_read_page_fault.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t155_trigger_finish.py b/tests/t155_trigger_finish.py
++index f33d269..da02c71 100644
++--- a/tests/t155_trigger_finish.py
+++++ b/tests/t155_trigger_finish.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t156_trigger_finish2.py b/tests/t156_trigger_finish2.py
++index a94875c..bf8596e 100644
++--- a/tests/t156_trigger_finish2.py
+++++ b/tests/t156_trigger_finish2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t157_script_python.py b/tests/t157_script_python.py
++index a825441..77555de 100644
++--- a/tests/t157_script_python.py
+++++ b/tests/t157_script_python.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t158_report_diff_policy1.py b/tests/t158_report_diff_policy1.py
++index aaa8cd7..4b79caa 100644
++--- a/tests/t158_report_diff_policy1.py
+++++ b/tests/t158_report_diff_policy1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t159_report_diff_policy2.py b/tests/t159_report_diff_policy2.py
++index 690f841..65198fc 100644
++--- a/tests/t159_report_diff_policy2.py
+++++ b/tests/t159_report_diff_policy2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t160_report_diff_policy3.py b/tests/t160_report_diff_policy3.py
++index 12a3f9b..3a02129 100644
++--- a/tests/t160_report_diff_policy3.py
+++++ b/tests/t160_report_diff_policy3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t161_pltbind_now.py b/tests/t161_pltbind_now.py
++index 2325603..62a28fc 100644
++--- a/tests/t161_pltbind_now.py
+++++ b/tests/t161_pltbind_now.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t162_pltbind_now_pie.py b/tests/t162_pltbind_now_pie.py
++index ea39745..bf168ac 100644
++--- a/tests/t162_pltbind_now_pie.py
+++++ b/tests/t162_pltbind_now_pie.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t163_event_sched.py b/tests/t163_event_sched.py
++index ffc9aa2..c2bd776 100644
++--- a/tests/t163_event_sched.py
+++++ b/tests/t163_event_sched.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t164_report_sched.py b/tests/t164_report_sched.py
++index 4606227..b9982dc 100644
++--- a/tests/t164_report_sched.py
+++++ b/tests/t164_report_sched.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t165_graph_sched.py b/tests/t165_graph_sched.py
++index 9dddf44..b42c6a7 100644
++--- a/tests/t165_graph_sched.py
+++++ b/tests/t165_graph_sched.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t166_dump_sched.py b/tests/t166_dump_sched.py
++index 584f602..7f0a8d4 100644
++--- a/tests/t166_dump_sched.py
+++++ b/tests/t166_dump_sched.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t167_recv_sched.py b/tests/t167_recv_sched.py
++index adaf34a..ae45861 100644
++--- a/tests/t167_recv_sched.py
+++++ b/tests/t167_recv_sched.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ import subprocess as sp
++diff --git a/tests/t168_lib_nested.py b/tests/t168_lib_nested.py
++index 68d8291..9a4f943 100644
++--- a/tests/t168_lib_nested.py
+++++ b/tests/t168_lib_nested.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t169_script_args.py b/tests/t169_script_args.py
++index 224b319..5ce43b9 100644
++--- a/tests/t169_script_args.py
+++++ b/tests/t169_script_args.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t170_script_filter.py b/tests/t170_script_filter.py
++index ad9c5ca..8dce61c 100644
++--- a/tests/t170_script_filter.py
+++++ b/tests/t170_script_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t171_script_option.py b/tests/t171_script_option.py
++index 8cf91ff..5ac3c8c 100644
++--- a/tests/t171_script_option.py
+++++ b/tests/t171_script_option.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t172_trigger_filter.py b/tests/t172_trigger_filter.py
++index d0d8e87..f473047 100644
++--- a/tests/t172_trigger_filter.py
+++++ b/tests/t172_trigger_filter.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t173_trigger_args.py b/tests/t173_trigger_args.py
++index ceacbc8..23ea6f4 100644
++--- a/tests/t173_trigger_args.py
+++++ b/tests/t173_trigger_args.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t174_replay_filter_kernel.py b/tests/t174_replay_filter_kernel.py
++index 5c09d3a..4771ac8 100644
++--- a/tests/t174_replay_filter_kernel.py
+++++ b/tests/t174_replay_filter_kernel.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t175_filter_time_read.py b/tests/t175_filter_time_read.py
++index 0632099..f518efe 100644
++--- a/tests/t175_filter_time_read.py
+++++ b/tests/t175_filter_time_read.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t176_arg_fptr.py b/tests/t176_arg_fptr.py
++index 68a6191..bc2aaa5 100644
++--- a/tests/t176_arg_fptr.py
+++++ b/tests/t176_arg_fptr.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t177_report_diff_policy4.py b/tests/t177_report_diff_policy4.py
++index 6210023..c553f1e 100644
++--- a/tests/t177_report_diff_policy4.py
+++++ b/tests/t177_report_diff_policy4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t178_arg_auto1.py b/tests/t178_arg_auto1.py
++index 66e73c3..535aa9f 100644
++--- a/tests/t178_arg_auto1.py
+++++ b/tests/t178_arg_auto1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t179_arg_auto2.py b/tests/t179_arg_auto2.py
++index e11b6ce..97e91ed 100644
++--- a/tests/t179_arg_auto2.py
+++++ b/tests/t179_arg_auto2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t180_arg_auto3.py b/tests/t180_arg_auto3.py
++index 188bfd9..2c69483 100644
++--- a/tests/t180_arg_auto3.py
+++++ b/tests/t180_arg_auto3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t181_graph_full.py b/tests/t181_graph_full.py
++index aae5339..d1ff39b 100644
++--- a/tests/t181_graph_full.py
+++++ b/tests/t181_graph_full.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t182_thread_exit.py b/tests/t182_thread_exit.py
++index d18c805..983248f 100644
++--- a/tests/t182_thread_exit.py
+++++ b/tests/t182_thread_exit.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t183_info_quote.py b/tests/t183_info_quote.py
++index 0adadaa..97d0a1f 100644
++--- a/tests/t183_info_quote.py
+++++ b/tests/t183_info_quote.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t184_arg_enum.py b/tests/t184_arg_enum.py
++index 72f3319..51e75f3 100644
++--- a/tests/t184_arg_enum.py
+++++ b/tests/t184_arg_enum.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t185_exception2.py b/tests/t185_exception2.py
++index cafad19..fbbc64e 100644
++--- a/tests/t185_exception2.py
+++++ b/tests/t185_exception2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t186_exception3.py b/tests/t186_exception3.py
++index e37e71c..f57174e 100644
++--- a/tests/t186_exception3.py
+++++ b/tests/t186_exception3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t187_graph_field.py b/tests/t187_graph_field.py
++index f9ff567..af778b0 100644
++--- a/tests/t187_graph_field.py
+++++ b/tests/t187_graph_field.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t188_graph_field_none.py b/tests/t188_graph_field_none.py
++index 76f11b6..cae9340 100644
++--- a/tests/t188_graph_field_none.py
+++++ b/tests/t188_graph_field_none.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t189_replay_field2.py b/tests/t189_replay_field2.py
++index d3194ed..a7c525a 100644
++--- a/tests/t189_replay_field2.py
+++++ b/tests/t189_replay_field2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t190_trigger_autoargs.py b/tests/t190_trigger_autoargs.py
++index 6cd9c1b..3639c3c 100644
++--- a/tests/t190_trigger_autoargs.py
+++++ b/tests/t190_trigger_autoargs.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t191_posix_spawn.py b/tests/t191_posix_spawn.py
++index d71ec9a..944d6de 100644
++--- a/tests/t191_posix_spawn.py
+++++ b/tests/t191_posix_spawn.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t192_lib_name.py b/tests/t192_lib_name.py
++index 0201285..6e131ee 100644
++--- a/tests/t192_lib_name.py
+++++ b/tests/t192_lib_name.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t193_read_pmu_cycle.py b/tests/t193_read_pmu_cycle.py
++index b28a482..36f31cd 100644
++--- a/tests/t193_read_pmu_cycle.py
+++++ b/tests/t193_read_pmu_cycle.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t194_read_pmu_cache.py b/tests/t194_read_pmu_cache.py
++index 8ae8567..e49c413 100644
++--- a/tests/t194_read_pmu_cache.py
+++++ b/tests/t194_read_pmu_cache.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t195_read_pmu_branch.py b/tests/t195_read_pmu_branch.py
++index 9fce58d..948161f 100644
++--- a/tests/t195_read_pmu_branch.py
+++++ b/tests/t195_read_pmu_branch.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t196_chrome_taskname.py b/tests/t196_chrome_taskname.py
++index 9c6a9de..e36d6f5 100644
++--- a/tests/t196_chrome_taskname.py
+++++ b/tests/t196_chrome_taskname.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t197_filter_glob.py b/tests/t197_filter_glob.py
++index e646638..eea3aa7 100644
++--- a/tests/t197_filter_glob.py
+++++ b/tests/t197_filter_glob.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t198_lib_arg_float.py b/tests/t198_lib_arg_float.py
++index 431e88b..681818d 100644
++--- a/tests/t198_lib_arg_float.py
+++++ b/tests/t198_lib_arg_float.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t199_script_info.py b/tests/t199_script_info.py
++index cabd7f3..17153d9 100644
++--- a/tests/t199_script_info.py
+++++ b/tests/t199_script_info.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t200_lib_dlopen2.py b/tests/t200_lib_dlopen2.py
++index f95748a..5a13bb6 100644
++--- a/tests/t200_lib_dlopen2.py
+++++ b/tests/t200_lib_dlopen2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ 
++diff --git a/tests/t201_arg_dwarf1.py b/tests/t201_arg_dwarf1.py
++index 9a8c140..d885a1a 100644
++--- a/tests/t201_arg_dwarf1.py
+++++ b/tests/t201_arg_dwarf1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t202_arg_dwarf2.py b/tests/t202_arg_dwarf2.py
++index 21b469d..5c9986d 100644
++--- a/tests/t202_arg_dwarf2.py
+++++ b/tests/t202_arg_dwarf2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t203_arg_dwarf3.py b/tests/t203_arg_dwarf3.py
++index 61ac3c2..375afae 100644
++--- a/tests/t203_arg_dwarf3.py
+++++ b/tests/t203_arg_dwarf3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t204_arg_dwarf4.py b/tests/t204_arg_dwarf4.py
++index 9e4e9cc..9a6cf89 100644
++--- a/tests/t204_arg_dwarf4.py
+++++ b/tests/t204_arg_dwarf4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t205_arg_auto4.py b/tests/t205_arg_auto4.py
++index df6b3d5..d4d8517 100644
++--- a/tests/t205_arg_auto4.py
+++++ b/tests/t205_arg_auto4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t206_arg_enum2.py b/tests/t206_arg_enum2.py
++index 2f878a2..1239347 100644
++--- a/tests/t206_arg_enum2.py
+++++ b/tests/t206_arg_enum2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t207_dump_graphviz.py b/tests/t207_dump_graphviz.py
++index 470d9e3..8407729 100644
++--- a/tests/t207_dump_graphviz.py
+++++ b/tests/t207_dump_graphviz.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ 
++diff --git a/tests/t208_watch_cpu.py b/tests/t208_watch_cpu.py
++index 8a13808..d1bc8c0 100644
++--- a/tests/t208_watch_cpu.py
+++++ b/tests/t208_watch_cpu.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t209_filter_caller.py b/tests/t209_filter_caller.py
++index ee091e6..072eed9 100644
++--- a/tests/t209_filter_caller.py
+++++ b/tests/t209_filter_caller.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t210_filter_time_C.py b/tests/t210_filter_time_C.py
++index bfbd855..5b369f6 100644
++--- a/tests/t210_filter_time_C.py
+++++ b/tests/t210_filter_time_C.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t211_replay_filter_C.py b/tests/t211_replay_filter_C.py
++index 3ca6755..cb2f172 100644
++--- a/tests/t211_replay_filter_C.py
+++++ b/tests/t211_replay_filter_C.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t212_noplt_libcall.py b/tests/t212_noplt_libcall.py
++index bd2a2f5..ce7c2af 100644
++--- a/tests/t212_noplt_libcall.py
+++++ b/tests/t212_noplt_libcall.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t213_arg_symbol.py b/tests/t213_arg_symbol.py
++index 78e43ef..e88c661 100644
++--- a/tests/t213_arg_symbol.py
+++++ b/tests/t213_arg_symbol.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t214_signal_trigger.py b/tests/t214_signal_trigger.py
++index c070f68..894d202 100644
++--- a/tests/t214_signal_trigger.py
+++++ b/tests/t214_signal_trigger.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t215_no_libcall_replay.py b/tests/t215_no_libcall_replay.py
++index 32bb328..c5dd078 100644
++--- a/tests/t215_no_libcall_replay.py
+++++ b/tests/t215_no_libcall_replay.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t216_no_libcall_report.py b/tests/t216_no_libcall_report.py
++index 794e785..6b11c6b 100644
++--- a/tests/t216_no_libcall_report.py
+++++ b/tests/t216_no_libcall_report.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t217_no_libcall_dump.py b/tests/t217_no_libcall_dump.py
++index cc0e472..0af556e 100644
++--- a/tests/t217_no_libcall_dump.py
+++++ b/tests/t217_no_libcall_dump.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t218_no_libcall_graph.py b/tests/t218_no_libcall_graph.py
++index 106b42a..80d8603 100644
++--- a/tests/t218_no_libcall_graph.py
+++++ b/tests/t218_no_libcall_graph.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t219_no_libcall_script.py b/tests/t219_no_libcall_script.py
++index db05048..d1d0dc1 100644
++--- a/tests/t219_no_libcall_script.py
+++++ b/tests/t219_no_libcall_script.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t220_trace_script.py b/tests/t220_trace_script.py
++index 73acf67..9a96e4d 100644
++--- a/tests/t220_trace_script.py
+++++ b/tests/t220_trace_script.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import stat
++diff --git a/tests/t221_taskname_time.py b/tests/t221_taskname_time.py
++index 634a3dc..ff1fdd1 100644
++--- a/tests/t221_taskname_time.py
+++++ b/tests/t221_taskname_time.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t222_external_data.py b/tests/t222_external_data.py
++index e78b0f9..d9f67cb 100644
++--- a/tests/t222_external_data.py
+++++ b/tests/t222_external_data.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os.path
++ import subprocess as sp
++diff --git a/tests/t223_dynamic_full.py b/tests/t223_dynamic_full.py
++index e1a1c9c..d588f29 100644
++--- a/tests/t223_dynamic_full.py
+++++ b/tests/t223_dynamic_full.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t224_dynamic_lib.py b/tests/t224_dynamic_lib.py
++index 537e423..66636dd 100644
++--- a/tests/t224_dynamic_lib.py
+++++ b/tests/t224_dynamic_lib.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t225_dynamic_size.py b/tests/t225_dynamic_size.py
++index fda6a1d..c7526ce 100644
++--- a/tests/t225_dynamic_size.py
+++++ b/tests/t225_dynamic_size.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t226_default_opts.py b/tests/t226_default_opts.py
++index 0d1502f..8111e2b 100644
++--- a/tests/t226_default_opts.py
+++++ b/tests/t226_default_opts.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t227_read_pmu_cycle2.py b/tests/t227_read_pmu_cycle2.py
++index 8303322..59193b0 100644
++--- a/tests/t227_read_pmu_cycle2.py
+++++ b/tests/t227_read_pmu_cycle2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t228_read_pmu_cycle3.py b/tests/t228_read_pmu_cycle3.py
++index dc16a11..4f6d403 100644
++--- a/tests/t228_read_pmu_cycle3.py
+++++ b/tests/t228_read_pmu_cycle3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t229_info_task.py b/tests/t229_info_task.py
++index 3978d53..109feed 100644
++--- a/tests/t229_info_task.py
+++++ b/tests/t229_info_task.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t230_graph_task.py b/tests/t230_graph_task.py
++index a6f6ded..f898d71 100644
++--- a/tests/t230_graph_task.py
+++++ b/tests/t230_graph_task.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import re
++ 
++diff --git a/tests/t231_arg_bound.py b/tests/t231_arg_bound.py
++index 01e9499..fd0f30a 100644
++--- a/tests/t231_arg_bound.py
+++++ b/tests/t231_arg_bound.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t232_dynamic_unpatch.py b/tests/t232_dynamic_unpatch.py
++index dc75514..e9f231c 100644
++--- a/tests/t232_dynamic_unpatch.py
+++++ b/tests/t232_dynamic_unpatch.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t233_dynamic_unpatch2.py b/tests/t233_dynamic_unpatch2.py
++index 84f8cf7..a2ac617 100644
++--- a/tests/t233_dynamic_unpatch2.py
+++++ b/tests/t233_dynamic_unpatch2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t234_script_luajit.py b/tests/t234_script_luajit.py
++index 5c8d1c6..adeeff2 100644
++--- a/tests/t234_script_luajit.py
+++++ b/tests/t234_script_luajit.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t235_report_srcline.py b/tests/t235_report_srcline.py
++index c7309c0..6ade437 100644
++--- a/tests/t235_report_srcline.py
+++++ b/tests/t235_report_srcline.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t236_replay_srcline.py b/tests/t236_replay_srcline.py
++index e2bb921..4b966f8 100644
++--- a/tests/t236_replay_srcline.py
+++++ b/tests/t236_replay_srcline.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t237_report_field1.py b/tests/t237_report_field1.py
++index 409fc6a..8f7f6c9 100644
++--- a/tests/t237_report_field1.py
+++++ b/tests/t237_report_field1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t238_report_field2.py b/tests/t238_report_field2.py
++index 51a54ef..2855de0 100644
++--- a/tests/t238_report_field2.py
+++++ b/tests/t238_report_field2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t239_report_diff_field1.py b/tests/t239_report_diff_field1.py
++index d1d2724..1a5ff36 100644
++--- a/tests/t239_report_diff_field1.py
+++++ b/tests/t239_report_diff_field1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t240_report_diff_field2.py b/tests/t240_report_diff_field2.py
++index f7d49bf..dd658bf 100644
++--- a/tests/t240_report_diff_field2.py
+++++ b/tests/t240_report_diff_field2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t241_report_diff_field3.py b/tests/t241_report_diff_field3.py
++index 1025140..1f3caf2 100644
++--- a/tests/t241_report_diff_field3.py
+++++ b/tests/t241_report_diff_field3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t242_report_diff_field4.py b/tests/t242_report_diff_field4.py
++index 998ff55..9570d27 100644
++--- a/tests/t242_report_diff_field4.py
+++++ b/tests/t242_report_diff_field4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t243_report_diff_field5.py b/tests/t243_report_diff_field5.py
++index 12bf64e..4af13f9 100644
++--- a/tests/t243_report_diff_field5.py
+++++ b/tests/t243_report_diff_field5.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t244_report_task_field.py b/tests/t244_report_task_field.py
++index 4af300d..53070cb 100644
++--- a/tests/t244_report_task_field.py
+++++ b/tests/t244_report_task_field.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t245_report_field_none.py b/tests/t245_report_field_none.py
++index a5cd2e4..c207d2f 100644
++--- a/tests/t245_report_field_none.py
+++++ b/tests/t245_report_field_none.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t246_report_srcline2.py b/tests/t246_report_srcline2.py
++index ca355c0..ccd53b2 100644
++--- a/tests/t246_report_srcline2.py
+++++ b/tests/t246_report_srcline2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t247_graph_srcline.py b/tests/t247_graph_srcline.py
++index 5274af8..aab1170 100644
++--- a/tests/t247_graph_srcline.py
+++++ b/tests/t247_graph_srcline.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t248_dynamic_dlopen.py b/tests/t248_dynamic_dlopen.py
++index 9a4bd49..348b016 100644
++--- a/tests/t248_dynamic_dlopen.py
+++++ b/tests/t248_dynamic_dlopen.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t249_estimate_return.py b/tests/t249_estimate_return.py
++index 56eded8..71be0c2 100644
++--- a/tests/t249_estimate_return.py
+++++ b/tests/t249_estimate_return.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t250_indirect_return.py b/tests/t250_indirect_return.py
++index 9848e54..f96125c 100644
++--- a/tests/t250_indirect_return.py
+++++ b/tests/t250_indirect_return.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t251_exception4.py b/tests/t251_exception4.py
++index 0b1d773..0d7f2d1 100644
++--- a/tests/t251_exception4.py
+++++ b/tests/t251_exception4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t252_filter_H.py b/tests/t252_filter_H.py
++index 14b8f5e..0331db3 100644
++--- a/tests/t252_filter_H.py
+++++ b/tests/t252_filter_H.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t253_trigger_hide.py b/tests/t253_trigger_hide.py
++index a9230bf..61b8d13 100644
++--- a/tests/t253_trigger_hide.py
+++++ b/tests/t253_trigger_hide.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t254_arg_dwarf5.py b/tests/t254_arg_dwarf5.py
++index 82a8761..98bf50b 100644
++--- a/tests/t254_arg_dwarf5.py
+++++ b/tests/t254_arg_dwarf5.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t255_arg_dwarf6.py b/tests/t255_arg_dwarf6.py
++index e452371..fcc5196 100644
++--- a/tests/t255_arg_dwarf6.py
+++++ b/tests/t255_arg_dwarf6.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t256_arg_dwarf7.py b/tests/t256_arg_dwarf7.py
++index b9027aa..5764c1a 100644
++--- a/tests/t256_arg_dwarf7.py
+++++ b/tests/t256_arg_dwarf7.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t257_arg_struct_replay.py b/tests/t257_arg_struct_replay.py
++index 174cc01..f9dd83e 100644
++--- a/tests/t257_arg_struct_replay.py
+++++ b/tests/t257_arg_struct_replay.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t258_arg_struct_dump.py b/tests/t258_arg_struct_dump.py
++index d00fe62..d1aeb0d 100644
++--- a/tests/t258_arg_struct_dump.py
+++++ b/tests/t258_arg_struct_dump.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t259_arg_struct_script.py b/tests/t259_arg_struct_script.py
++index 9096630..a950748 100644
++--- a/tests/t259_arg_struct_script.py
+++++ b/tests/t259_arg_struct_script.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t260_arg_struct_luajit.py b/tests/t260_arg_struct_luajit.py
++index ca49a69..fbb371e 100644
++--- a/tests/t260_arg_struct_luajit.py
+++++ b/tests/t260_arg_struct_luajit.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t261_info_note.py b/tests/t261_info_note.py
++index 3d83420..fa34349 100644
++--- a/tests/t261_info_note.py
+++++ b/tests/t261_info_note.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t262_replay_with_syms.py b/tests/t262_replay_with_syms.py
++index 85ce208..616019f 100644
++--- a/tests/t262_replay_with_syms.py
+++++ b/tests/t262_replay_with_syms.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t263_patchable_dynamic.py b/tests/t263_patchable_dynamic.py
++index a406a6d..5193359 100644
++--- a/tests/t263_patchable_dynamic.py
+++++ b/tests/t263_patchable_dynamic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t264_patchable_dynamic2.py b/tests/t264_patchable_dynamic2.py
++index 45aa557..c76e9e0 100644
++--- a/tests/t264_patchable_dynamic2.py
+++++ b/tests/t264_patchable_dynamic2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t265_patchable_dynamic3.py b/tests/t265_patchable_dynamic3.py
++index bf84d12..fd6c7ea 100644
++--- a/tests/t265_patchable_dynamic3.py
+++++ b/tests/t265_patchable_dynamic3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t266_patchable_dynamic4.py b/tests/t266_patchable_dynamic4.py
++index bdc5ce4..0988a95 100644
++--- a/tests/t266_patchable_dynamic4.py
+++++ b/tests/t266_patchable_dynamic4.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t267_patchable_dynamic5.py b/tests/t267_patchable_dynamic5.py
++index 76fe52f..8eb7cee 100644
++--- a/tests/t267_patchable_dynamic5.py
+++++ b/tests/t267_patchable_dynamic5.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t268_record_with_syms.py b/tests/t268_record_with_syms.py
++index 97c0113..f3959e1 100644
++--- a/tests/t268_record_with_syms.py
+++++ b/tests/t268_record_with_syms.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t269_arg_no_args_replay.py b/tests/t269_arg_no_args_replay.py
++index deefd25..694f781 100644
++--- a/tests/t269_arg_no_args_replay.py
+++++ b/tests/t269_arg_no_args_replay.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t270_arg_no_args_dump.py b/tests/t270_arg_no_args_dump.py
++index 0e85884..5a0e446 100644
++--- a/tests/t270_arg_no_args_dump.py
+++++ b/tests/t270_arg_no_args_dump.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t271_script_event.py b/tests/t271_script_event.py
++index e4670a4..485bc7d 100644
++--- a/tests/t271_script_event.py
+++++ b/tests/t271_script_event.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import os
++ import subprocess as sp
++diff --git a/tests/t272_dump_mermaid.py b/tests/t272_dump_mermaid.py
++index b19d653..e9397f6 100644
++--- a/tests/t272_dump_mermaid.py
+++++ b/tests/t272_dump_mermaid.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t273_agent_basic.py b/tests/t273_agent_basic.py
++index 33edcac..8a09cca 100644
++--- a/tests/t273_agent_basic.py
+++++ b/tests/t273_agent_basic.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ from time import sleep
++diff --git a/tests/t274_filter_loc1.py b/tests/t274_filter_loc1.py
++index 7c63c30..1ffd4ff 100644
++--- a/tests/t274_filter_loc1.py
+++++ b/tests/t274_filter_loc1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t275_filter_loc2.py b/tests/t275_filter_loc2.py
++index 4d122ec..f59745a 100644
++--- a/tests/t275_filter_loc2.py
+++++ b/tests/t275_filter_loc2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t276_filter_loc3.py b/tests/t276_filter_loc3.py
++index 77697f9..a593c59 100644
++--- a/tests/t276_filter_loc3.py
+++++ b/tests/t276_filter_loc3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t277_time_range3.py b/tests/t277_time_range3.py
++index 4845622..0a0c861 100644
++--- a/tests/t277_time_range3.py
+++++ b/tests/t277_time_range3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t278_size_filter1.py b/tests/t278_size_filter1.py
++index fc38098..4ecef48 100644
++--- a/tests/t278_size_filter1.py
+++++ b/tests/t278_size_filter1.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ import subprocess as sp
++ 
++diff --git a/tests/t279_size_filter2.py b/tests/t279_size_filter2.py
++index e53b80b..8f21fdf 100644
++--- a/tests/t279_size_filter2.py
+++++ b/tests/t279_size_filter2.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++diff --git a/tests/t280_size_filter3.py b/tests/t280_size_filter3.py
++index fd00370..94cb826 100644
++--- a/tests/t280_size_filter3.py
+++++ b/tests/t280_size_filter3.py
++@@ -1,4 +1,4 @@
++-#!/usr/bin/env python
+++#!/usr/bin/env python3
++ 
++ from runtest import TestBase
++ 
++-- 
++2.34.1
++
+diff --git a/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb b/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
+index 4e1edc6ce..7f3cd7b6d 100644
+--- a/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
++++ b/meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
+@@ -11,7 +11,8 @@ DEPENDS:append:libc-musl = " argp-standalone"
+ inherit autotools
+ 
+ SRCREV = "be3f46f7656bd9243b1835337b5350247b030b02"
+-SRC_URI = "git://github.com/namhyung/${BPN};branch=master;protocol=https"
++SRC_URI = "git://github.com/namhyung/${BPN};branch=master;protocol=https\
++           file://0001-replace-usr-bin-env-python-with-python3.patch"
+ S = "${WORKDIR}/git"
+ 
+ LDFLAGS:append:libc-musl = " -largp"
+-- 
+2.34.1
+

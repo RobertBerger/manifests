@@ -4,8 +4,8 @@ echo ${SCRIPTPATH}
 set -x
 
 git checkout meta-oe/recipes-devtools/uftrace/uftrace_0.13.1.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-b85af2c8d0b3182ea5d678211da5a20aa254aa48/0001-replace-usr-bin-env-python-python3.patch; then
-     patch -p1 <${SCRIPTPATH}/against-b85af2c8d0b3182ea5d678211da5a20aa254aa48/0001-replace-usr-bin-env-python-python3.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-aabd1dc4c944c8984397ef8b45add2182f57ee99/0001-uftrace-replace-usr-bin-env-python-with-python3.patch; then
+     patch -p1 <${SCRIPTPATH}/against-aabd1dc4c944c8984397ef8b45add2182f57ee99/0001-uftrace-replace-usr-bin-env-python-with-python3.patch
 fi
 
 git diff --stat
