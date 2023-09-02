@@ -52,10 +52,10 @@ fi
 # <-- check for ip address and subnet
 
 # with jenkins we want non-gui mode, without it we want gui mode
-if [[ $WORKSPACE = *jenkins* ]]; then
-   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
-   USE_GUI="no"
-else
+#if [[ $WORKSPACE = *jenkins* ]]; then
+#   #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
+#   USE_GUI="no"
+#else
    ##CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04-gui"
    #CONTAINER="reliableembeddedsystems/poky-container:ubuntu-18.04-gui-gcc-9"
    #CONTAINER="reslocal/poky-container:ubuntu-18.04"
@@ -68,7 +68,7 @@ else
    # CONTAINER="reliableembeddedsystems/poky-container:2021-12-14-master-local-icecc-ub20-doc"
    # CONTAINER="reliableembeddedsystems/poky-container:2023-04-24-master-local-icecc-ub20-doc"
    CONTAINER="reliableembeddedsystems/poky-container:2023-08-01-master-local-icecc-ub22-doc"
-fi
+#fi
 
 if [[ $USE_GUI = no ]]; then
    ##CONTAINER="reliableembeddedsystems/poky-container:ubuntu-16.04"
