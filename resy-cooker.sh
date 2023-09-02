@@ -1283,7 +1283,7 @@ fi
      #echo "SITE_CONF=${SITE_CONF}"
      # <-- currently only host gcc-9 seems to work here
 
-     export TEMPLATECONF="../meta-resy-master/template-${machine}"
+     export TEMPLATECONF="../meta-resy-master/conf/templates/template-${machine}"
      echo "TEMPLATECONF: ${TEMPLATECONF}"
      pwd
      echo "source ../sources/poky-master/oe-init-build-env ${machine}"
@@ -1292,7 +1292,7 @@ fi
      if [ ! -f conf/site.conf ]; then
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
-        cp ../../sources/meta-resy-master/template-${machine}/site.conf conf/site.conf
+        cp ../../sources/meta-resy-master/conf/templates/template-${machine}/site.conf conf/site.conf
         tree conf
      fi
   fi
