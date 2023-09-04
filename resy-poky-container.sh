@@ -67,7 +67,7 @@ fi
    # CONTAINER="reliableembeddedsystems/poky-container:2021-11-08-master-local-icecc-ub20"
    # CONTAINER="reliableembeddedsystems/poky-container:2021-12-14-master-local-icecc-ub20-doc"
    # CONTAINER="reliableembeddedsystems/poky-container:2023-04-24-master-local-icecc-ub20-doc"
-   CONTAINER="reliableembeddedsystems/poky-container:2023-08-01-master-local-icecc-ub22-doc"
+   CONTAINER="reliableembeddedsystems/poky-container:2023-09-01-master-local-icecc-ub22-doc"
 #fi
 
 if [[ $USE_GUI = no ]]; then
@@ -82,7 +82,7 @@ if [[ $USE_GUI = no ]]; then
    #CONTAINER="reliableembeddedsystems/poky-container:2021-11-08-master-local-icecc-ub20"
    #CONTAINER="reliableembeddedsystems/poky-container:2021-12-14-master-local-icecc-ub20-doc"
    #CONTAINER="reliableembeddedsystems/poky-container:2023-04-24-master-local-icecc-ub20-doc"
-   CONTAINER="reliableembeddedsystems/poky-container:2023-08-01-master-local-icecc-ub22-doc"
+   CONTAINER="reliableembeddedsystems/poky-container:2023-09-01-master-local-icecc-ub22-doc"
 fi
 
 #echo "CONTAINER= $CONTAINER"
