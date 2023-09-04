@@ -3,7 +3,8 @@
 #CONTAINER="reslocal/sdk-container:latest"
 #CONTAINER="reliableembeddedsystems/sdk-container:2021-05-31-master-local-gcc-9-ub18"
 #CONTAINER="reliableembeddedsystems/sdk-container:2021-09-14-master-local-icecc-ub20"
-CONTAINER="reliableembeddedsystems/sdk-container:2023-08-01-master-local-icecc-ub22"
+#CONTAINER="reliableembeddedsystems/sdk-container:2023-08-01-master-local-icecc-ub22"
+CONTAINER="reliableembeddedsystems/sdk-container:2023-09-01-master-local-icecc-ub22"
 GITPOD_CMD="--add-host gitpod:192.168.42.40"
 
 # remove currently running containers
