@@ -1,0 +1,27 @@
+From e5212d9594ec0cedfbc0ecdefcd2a5d631fba8c0 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Fri, 5 Jan 2024 11:05:39 +0000
+Subject: [PATCH] poky-snapshot .66
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ meta-poky/conf/distro/poky.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
+index f4d55a41c1..e2c9008b9d 100644
+--- a/meta-poky/conf/distro/poky.conf
++++ b/meta-poky/conf/distro/poky.conf
+@@ -1,7 +1,7 @@
+ DISTRO = "poky"
+ DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
+-DISTRO_VERSION = "4.3+snapshot-${METADATA_REVISION}"
+-DISTRO_CODENAME = "nanbield"
++DISTRO_VERSION = "4.3.66"
++DISTRO_CODENAME = "master-as-nanbield"
+ SDK_VENDOR = "-pokysdk"
+ SDK_VERSION = "${@d.getVar('DISTRO_VERSION').replace('snapshot-${METADATA_REVISION}', 'snapshot')}"
+ SDK_VERSION[vardepvalue] = "${SDK_VERSION}"
+-- 
+2.34.1
+

@@ -1,0 +1,50 @@
+From a923e2c54f7d6349fb885e343258895fe4220f63 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Sat, 6 Jan 2024 18:32:53 +0000
+Subject: [PATCH] busybox: add SERIAL_CONSOLES_CHECK
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../busybox/busybox-inittab_1.36.1.bb         | 46 ++++++++++++++-----
+ 1 file changed, 34 insertions(+), 12 deletions(-)
+
+diff --git a/meta/recipes-core/busybox/busybox-inittab_1.36.1.bb b/meta/recipes-core/busybox/busybox-inittab_1.36.1.bb
+index 8ee88b6aef..ec66952736 100644
+--- a/meta/recipes-core/busybox/busybox-inittab_1.36.1.bb
++++ b/meta/recipes-core/busybox/busybox-inittab_1.36.1.bb
+@@ -48,6 +48,32 @@ EOF
+ 
+ }
+ 
++pkg_postinst:${PN} () {
++# run this on host and on target
++if [ "${SERIAL_CONSOLES_CHECK}" = "" ]; then
++       exit 0
++fi
++}
++
++pkg_postinst_ontarget:${PN} () {
++# run this on the target
++if [ -e /proc/consoles ]; then
++        tmp="${SERIAL_CONSOLES_CHECK}"
++        for i in $tmp
++        do
++                j=`echo ${i} | sed -e s/^.*\;//g -e s/\:.*//g`
++                k=`echo ${i} | sed s/^.*\://g`
++                if [ -z "`grep ${j} /proc/consoles`" ]; then
++                        if [ -z "${k}" ] || [ -z "`grep ${k} /proc/consoles`" ] || [ ! -e /dev/${j} ]; then
++                                sed -i -e /^.*${j}\ /d -e /^.*${j}$/d /etc/inittab
++                        fi
++                fi
++        done
++        kill -HUP 1
++else
++        exit 1
++fi
++}
+ 
+ # SERIAL_CONSOLES is generally defined by the MACHINE .conf.
+ # Set PACKAGE_ARCH appropriately.
+-- 
+2.34.1
+

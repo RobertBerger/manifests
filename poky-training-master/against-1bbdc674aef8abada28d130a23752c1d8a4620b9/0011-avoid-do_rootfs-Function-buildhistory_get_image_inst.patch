@@ -1,0 +1,27 @@
+From 59d90294e00f57d58b6b29b62769f4327bcbb25f Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Fri, 5 Jan 2024 20:59:20 +0000
+Subject: [PATCH] avoid do_rootfs: Function
+ buildhistory_get_image_installedwrite_image_manifest_to_rootfs doesn't exist
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta/classes/buildhistory.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta/classes/buildhistory.bbclass b/meta/classes/buildhistory.bbclass
+index fd53e92402..924a430746 100644
+--- a/meta/classes/buildhistory.bbclass
++++ b/meta/classes/buildhistory.bbclass
+@@ -692,7 +692,7 @@ python buildhistory_get_extra_sdkinfo() {
+ # By using ROOTFS_POSTUNINSTALL_COMMAND we get in after uninstallation of
+ # unneeded packages but before the removal of packaging files
+ ROOTFS_POSTUNINSTALL_COMMAND += "buildhistory_list_installed_image"
+-ROOTFS_POSTUNINSTALL_COMMAND += "buildhistory_get_image_installed"
++ROOTFS_POSTUNINSTALL_COMMAND += "buildhistory_get_image_installed "
+ ROOTFS_POSTUNINSTALL_COMMAND[vardepvalueexclude] .= "| buildhistory_list_installed_image| buildhistory_get_image_installed"
+ ROOTFS_POSTUNINSTALL_COMMAND[vardepsexclude] += "buildhistory_list_installed_image buildhistory_get_image_installed"
+ 
+-- 
+2.34.1
+

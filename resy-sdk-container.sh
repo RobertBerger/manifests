@@ -16,9 +16,12 @@ docker ps -a
 echo "+ docker stop ${ID_TO_KILL}"
 docker stop ${ID_TO_KILL}
 echo "+ docker rm -f ${ID_TO_KILL}"
+echo "+ docker rm -f sdk-container"
+docker rm -f sdk-container
 docker rm -f ${ID_TO_KILL}
 echo "+ docker ps -a"
 docker ps -a
+
 
 
 set -x
