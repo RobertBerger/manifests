@@ -1,0 +1,26 @@
+From 92f0dca565ab14bf1c8b20853af8315052cf36b2 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Sun, 4 Feb 2024 16:42:08 +0000
+Subject: [PATCH] nanbield support
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 9d0f6f3..88441a9 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -11,7 +11,7 @@ BBFILE_PRIORITY_swupdate-boards = "7"
+ 
+ LAYERDEPENDS_swupdate-boards = "swupdate"
+ 
+-LAYERSERIES_COMPAT_swupdate-boards = "kirkstone"
++LAYERSERIES_COMPAT_swupdate-boards = "kirkstone nanbield"
+ 
+ BBFILES_DYNAMIC += " \
+     atmel:${LAYERDIR}/dynamic-layers/atmel/*/*/*.bb \
+-- 
+2.34.1
+
