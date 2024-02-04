@@ -47,4 +47,8 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-1bbdc674aef8abada28d130
 fi
 
 git diff --stat
+
+git add .
+git commit -m "patch typically only against upstream master"
+
 set +x
