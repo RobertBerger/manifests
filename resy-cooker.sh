@@ -298,6 +298,18 @@ MYMAP[multi-v7-ml-debug-training-libs-master]="core-image-minimal"
 MYMAP[multi-v7-ml-debug-training-pkgs]="core-image-minimal"
 # <-- multi-v7-ml-debug-training-pkgs
 
+
+# --> multi-v7-ml-debug-training-pkgs-master
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh multi-v7-ml-debug-training-pkgs-master core-image-minimal
+# pwd
+# cd ${HERE}
+MYMAP[multi-v7-ml-debug-training-pkgs-master]="core-image-minimal"
+# <-- multi-v7-ml-debug-training-pkgs-master
+
+
 # --> multi-v7-ml-pkgs
 # jenkins:
 # HERE=$(pwd)
