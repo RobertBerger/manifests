@@ -84,8 +84,67 @@ else
   done
 fi
 
-  # experimental: master as langdale
+  # experimental: master as nanbield
   if [ "$manifest" == "experimental" ]; then
+     export BRANCH_GENERIC="nanbield"
+     export META_RESY_BRANCH="${BRANCH_GENERIC}"
+     export META_POKY_BRANCH="2024-03-27-master-as-${BRANCH_GENERIC}-4.3.66"
+     export META_POKY_TRAINING_BRANCH="2024-03-27-master-as-${BRANCH_GENERIC}-4.3.66"
+     export META_MULTI_V7_ML_BSP_BRANCH="${BRANCH_GENERIC}"
+     export META_U_BOOT_WIC_BSP_BRANCH="${BRANCH_GENERIC}"
+     export META_OPENEMBEDDED_BRANCH="2024-03-27-master-as-${BRANCH_GENERIC}"
+
+     # did above for u-boot-wic-bsp, poky-training and friends on master-as-langdale
+     # below nothing is tested - needs to be fixed as needed
+
+     export META_VIRTUALIZATION_BRANCH="2021-05-10-master-as-hardknott-3.3"
+     export META_DESIRE_BRANCH="master"
+     
+     # u-boot-mender only dummy here - needs fixing
+     export META_U_BOOT_MENDER_BSP_BRANCH="master"
+     export META_SCA_BRANCH="2021-05-10-master-as-hardknott"
+     export META_JAVA_BRANCH="2021-05-10-master-as-hardknott"
+     export META_TENSORFLOW_BRANCH="2021-05-10-master-as-hardknott"
+     export MANIFESTS_BRANCH="master"
+
+     ######## --> those need fixing
+     export META_XENOMAI_BRANCH="xeno-3.1-4.19.128-gatesgarth"
+     export META_PRT_BRANCH="gatesgarth"
+
+     # u-boot-karo-wic-bsp only dummy here - needs fixing
+     export META_U_BOOT_KARO_WIC_BSP_BRANCH="master"
+     # meta-karo-bsp only dummy here - needs fixing
+     export META_KARO_BSP_BRANCH="dunfell-5.4.x"
+
+     export META_BFE_BRANCH="gatesgarth"
+
+     # meta-mender only dummy here - needs fixing
+     export META_MENDER_BRANCH="2020-06-05-thud-as-dunfell"
+
+     export META_RASPBERRYPI_BRANCH="dunfell"
+     export META_RASPBERRYPI_ML_BSP_BRANCH="dunfell"
+     export META_FREESCALE_BRANCH="2020-08-28-dunfell"
+     export META_PHYBOARD_POLIS_IMX8MM_BSP_BRANCH="v5.10.x-upstream"
+     export META_SYSTEMD_NFSROOT_BRANCH="master"
+     export META_QT5_BRANCH="2020-09-08-dunfell"
+     export META_QT5_EXAMPLES_BRANCH="dunfell"
+     export META_PKG_BRANCH="master"
+     ####### <-- those need fixing
+
+     export SKOPEO_BRANCH="skopeo-v1.1.0"
+     export TERRIER_BRANCH="2020-07-24"
+
+     export JENKINS_BRANCH="2022-11-26-jenkins-2.361.4"
+     export FOSSOLOGY_BRANCH="2021-01-04-fossology"
+
+     # --> those need to be added below
+     export META_BUILDUTILS_BRANCH="2021-05-10-master-as-hardknott"
+     export META_CLANG_BRANCH="2021-05-10-master-as-hardknott"
+     # <-- those need to be added below
+  fi
+
+# stable: master as langdale
+  if [ "$manifest" == "stable" ]; then
      export BRANCH_GENERIC="langdale"
      export META_RESY_BRANCH="${BRANCH_GENERIC}"
      export META_POKY_BRANCH="2022-12-28-master-as-${BRANCH_GENERIC}"
@@ -144,8 +203,9 @@ fi
   fi
 
 
+
   # stable: master as honister
-  if [ "$manifest" == "stable" ]; then
+  if [ "$manifest" == "honister" ]; then
      export BRANCH_GENERIC="honister"
      export META_RESY_BRANCH="${BRANCH_GENERIC}"
      export META_POKY_BRANCH="2022-01-15-master-as-honister-3.4.66+"
