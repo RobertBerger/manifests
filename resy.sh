@@ -456,7 +456,7 @@ MYMAP[meta-yocto-training-master]="${GITLAB}/meta-layers/meta-yocto-training ${S
 MYMAP[meta-yocto-training-appends]="${GITLAB}/meta-layers/meta-yocto-training-appends ${SOURCES}/meta-yocto-training-appends master"
 # example sources:
 MYMAP[helloworld-cmake-feature]="${GITLAB}/exempli-gratia/helloworld-cmake-feature ${TRAINING_SOURCES}/helloworld-cmake-feature master"
-MYMAP[hellocppcmake]="${GITLAB}/exempli-gratia/hellocppcmake ${TRAINING_SOURCES}/hellocppcmake"
+MYMAP[hellocppcmake]="${GITLAB}/exempli-gratia/hellocppcmake ${TRAINING_SOURCES}/hellocppcmake master"
 # <-- training
 
 
