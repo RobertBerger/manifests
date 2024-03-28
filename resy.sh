@@ -379,7 +379,7 @@ MYMAP[my-mender-layer]="${GITHUB}/RobertBerger/my-mender-layer ${SOURCES}/my-men
 #MYMAP[keys-for-signing]="${GITHUB}/RobertBerger/keys-for-signing ${SOURCES}/keys-for-signing master"
 MYMAP[keys-for-ipk-signing]="${GITLAB}/robert.berger/keys-for-ipk-signing.git ${SOURCES}/keys-for-ipk-signing master"
 
-# hashsrv-docker
+# hashsrv-docker, prserver
 MYMAP[bitbake]="${GITHUB}/RobertBerger/bitbake-containers ${BITBAKE} master"
 
 # deprecated (hopefully)
@@ -439,6 +439,18 @@ MYMAP[meta-xilinx-master]="${GIT_YP}/meta-xilinx ${SOURCES}/meta-xilinx-master m
 MYMAP[meta-xilinx-common-master]="${GITLAB}/meta-layers/meta-xilinx-common.git ${SOURCES}/meta-xilinx-common-master master"
 
 MYMAP[meta-bb-syntax]="${GITLAB}/meta-layers/meta-bb-syntax ${SOURCES}/meta-bb-syntax master"
+
+# --> training
+# example recipes:
+MYMAP[meta-yocto-training-master]="${GITLAB}/meta-layers/meta-yocto-training ${SOURCES}/meta-yocto-training master"
+# example bbappends:
+MYMAP[meta-yocto-training-appends]="${GITLAB}/meta-layers/meta-yocto-training-appends ${SOURCES}/meta-yocto-training-appends master"
+# example sources:
+MYMAP[helloworld-cmake-feature]="${GITLAB}/exempli-gratia/helloworld-cmake-feature ${SOURCES}/meta-yocto-training-sources/helloworld-cmake-feature master"
+MYMAP[hellocppcmake]="${GITLAB}/exempli-gratia/hellocppcmake ${SOURCES}/meta-yocto-training-sources/hellocppcmake"
+# <-- training
+
+
 
 MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang ${META_CLANG_BRANCH}"
 MYMAP[meta-clang-master]="${GITHUB}/kraj/meta-clang ${SOURCES}/meta-clang-master master"
