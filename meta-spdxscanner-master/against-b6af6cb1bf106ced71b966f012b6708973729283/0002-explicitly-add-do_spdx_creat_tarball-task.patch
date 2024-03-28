@@ -1,0 +1,25 @@
+From ec48e0791a6dffdd40e9923bc3590fbdae125798 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Thu, 28 Mar 2024 12:04:48 +0000
+Subject: [PATCH] explicitly add do_spdx_creat_tarball task
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ classes/bom.bbclass | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/classes/bom.bbclass b/classes/bom.bbclass
+index a4c645f..514e4e7 100644
+--- a/classes/bom.bbclass
++++ b/classes/bom.bbclass
+@@ -206,6 +206,7 @@ do_spdx () {
+ }
+ addtask do_spdx_get_src after do_patch
+ addtask do_get_report after do_spdx_get_src
++addtask do_spdx_creat_tarball after do_spdx_get_src
+ addtask do_spdx
+ do_build[recrdeptask] += "do_spdx"
+ do_populate_sdk[recrdeptask] += "do_spdx"
+-- 
+2.34.1
+

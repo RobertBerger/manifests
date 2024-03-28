@@ -1,0 +1,26 @@
+From b7378224140fba4d25a22c9939490278c956e35b Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Thu, 28 Mar 2024 12:08:28 +0000
+Subject: [PATCH] custom SCANCODE_NUMBER_THREADS instead of BB_NUMBER_THREADS
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ classes/scancode-tk.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/classes/scancode-tk.bbclass b/classes/scancode-tk.bbclass
+index 7ec5835..ff611bf 100644
+--- a/classes/scancode-tk.bbclass
++++ b/classes/scancode-tk.bbclass
+@@ -161,7 +161,7 @@ def invoke_scancode(d, OSS_src_dir, spdx_file):
+     import json
+     import codecs
+ 
+-    processes = d.getVar("BB_NUMBER_THREADS") 
++    processes = d.getVar("SCANCODE_NUMBER_THREADS")
+     path = os.getenv('PATH')
+     scancode_cmd = "scancode -lpci --max-in-memory 0 --processes " + processes + " --spdx-tv " + spdx_file + " " + OSS_src_dir
+     bb.note ("scancode_cmd = " + scancode_cmd)
+-- 
+2.34.1
+
