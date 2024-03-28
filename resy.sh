@@ -524,18 +524,19 @@ MYMAP[meta-phy-bsp-stm-resy-meta-st-stm32mp]="${GITHUB}/RobertBerger/meta-st-stm
 # <-- meta-phy-stm-resy-collection
 
 # --> meta-aries-polarfire-resy-collection
+# DEPRECATED 
 # upstream
-MYMAP[meta-riscv]="${GITHUB}/RobertBerger/meta-riscv ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-riscv 2021-06-25-hardknott"
-MYMAP[poky-meta-aries-polarfire-resy-collection]="${GITHUB}/RobertBerger/poky ${ARIES_POLARFIRE_RESY_COLLECTION}/poky 2021-06-25-hardknott"
+# MYMAP[meta-riscv]="${GITHUB}/RobertBerger/meta-riscv ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-riscv 2021-06-25-hardknott"
+# MYMAP[poky-meta-aries-polarfire-resy-collection]="${GITHUB}/RobertBerger/poky ${ARIES_POLARFIRE_RESY_COLLECTION}/poky 2021-06-25-hardknott"
 
 # upstream hacked
 # aries hacked and res hacked on aires-res branch:
-MYMAP[meta-polarfire-soc-yocto-bsp-aries]="${GITHUB}/RobertBerger/meta-polarfire-soc-yocto-bsp-aries ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-aries 2021-06-25-hardknott-aries-res"
+# MYMAP[meta-polarfire-soc-yocto-bsp-aries]="${GITHUB}/RobertBerger/meta-polarfire-soc-yocto-bsp-aries ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-aries 2021-06-25-hardknott-aries-res"
 
 # res
 # in order to work with yocto we need this u-boot version, which is originally in oe-core:
 # we can also add the templateconf here:
-MYMAP[meta-polarfire-soc-yocto-bsp-addon]="${GITLAB}/meta-layers/meta-polarfire-soc-yocto-bsp-addon.git ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-addon master"
+# MYMAP[meta-polarfire-soc-yocto-bsp-addon]="${GITLAB}/meta-layers/meta-polarfire-soc-yocto-bsp-addon.git ${ARIES_POLARFIRE_RESY_COLLECTION}/meta-polarfire-soc-yocto-bsp-addon master"
 # <-- meta-aries-polarfire-resy-collection
 
 MYMAP[meta-swupdate-master]="${GITHUB}/sbabic/meta-swupdate ${SOURCES}/meta-swupdate-master master ${SOURCES}/manifests/meta-swupdate-master/patch.sh"
@@ -548,18 +549,19 @@ MYMAP[meta-yocto-res-bsp-custom-master]="${GITLAB}/meta-layers/meta-yocto-res-bs
 # 3rd party layers:
 # bosc - before override syntax change
 # poky-master - no patches, master, specific commit
-MYMAP[meta-raspberrypi-resy-collection-poky-master-bosc]="${GIT_YP}/poky ${RASPBERRYPI_RESY_COLLECTION_BOSC}/poky-master-bosc master none f735627e7c5aeb421338db55f3905d74751d4b71"
+# DEPRECATED
+# MYMAP[meta-raspberrypi-resy-collection-poky-master-bosc]="${GIT_YP}/poky ${RASPBERRYPI_RESY_COLLECTION_BOSC}/poky-master-bosc master none f735627e7c5aeb421338db55f3905d74751d4b71"
 # meta-raspberrypi-master - no patches, master, specific commit
-MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-master-bosc]="${GIT_YP}/meta-raspberrypi ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-master-bosc master none 8dc3a310883ea87cd9900442f46f20bb08e57583"
+# MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-master-bosc]="${GIT_YP}/meta-raspberrypi ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-master-bosc master none 8dc3a310883ea87cd9900442f46f20bb08e57583"
 # meta-openembedded-master - no patches, master, specific commit
-MYMAP[meta-raspberrypi-resy-collection-meta-openembedded-master-bosc]="${GIT_OE}/meta-openembedded ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-openembedded-master-bosc master none 5a9eef2f531cfb051661c53de34e4c6ba6915138"
+# MYMAP[meta-raspberrypi-resy-collection-meta-openembedded-master-bosc]="${GIT_OE}/meta-openembedded ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-openembedded-master-bosc master none 5a9eef2f531cfb051661c53de34e4c6ba6915138"
 # meta-virtualization-master - patches needed, master, specific commit
-MYMAP[meta-raspberrypi-resy-collection-meta-virtualization-master-bosc]="${GIT_YP}/meta-virtualization ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-virtualization-master-bosc master ${SOURCES}/manifests/meta-raspberrypi-resy-collection-meta-virtualization-master-bosc/patch.sh 5fdf66c1e2ec0c6b08573bf0a6aa9f84d2fc4ae6"
+# MYMAP[meta-raspberrypi-resy-collection-meta-virtualization-master-bosc]="${GIT_YP}/meta-virtualization ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-virtualization-master-bosc master ${SOURCES}/manifests/meta-raspberrypi-resy-collection-meta-virtualization-master-bosc/patch.sh 5fdf66c1e2ec0c6b08573bf0a6aa9f84d2fc4ae6"
 
 # meta-resy-master - master-bosc
-MYMAP[meta-raspberrypi-resy-collection-meta-resy-master-bosc]="${GITLAB}/meta-layers/meta-resy.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-resy-master-bosc master-bosc"
-MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-common-master-bosc]="${GITLAB}/meta-layers/meta-raspberrypi-common.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-common-master-bosc master-bosc"
-MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-addon-master-bosc]="${GITLAB}/meta-layers/meta-raspberrypi-addon.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-addon-master-bosc master-bosc"
+# MYMAP[meta-raspberrypi-resy-collection-meta-resy-master-bosc]="${GITLAB}/meta-layers/meta-resy.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-resy-master-bosc master-bosc"
+# MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-common-master-bosc]="${GITLAB}/meta-layers/meta-raspberrypi-common.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-common-master-bosc master-bosc"
+# MYMAP[meta-raspberrypi-resy-collection-meta-raspberrypi-addon-master-bosc]="${GITLAB}/meta-layers/meta-raspberrypi-addon.git ${RASPBERRYPI_RESY_COLLECTION_BOSC}/meta-raspberrypi-addon-master-bosc master-bosc"
 # <-- meta-raspberrypi-resy-collection
 
 # jenkins
