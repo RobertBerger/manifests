@@ -406,6 +406,7 @@ MYMAP[meta-u-boot-mender-bsp]="${GITLAB}/meta-layers/meta-u-boot-mender-bsp.git 
 MYMAP[meta-sca]="${GITHUB}/RobertBerger/meta-sca ${SOURCES}/meta-sca ${META_SCA_BRANCH}"
 MYMAP[meta-sca-master]="${GITHUB}/priv-kweihmann/meta-sca ${SOURCES}/meta-sca-master master"
 MYMAP[meta-spdxscanner-master]="${GIT_YP}/meta-spdxscanner ${SOURCES}/meta-spdxscanner-master master ${SOURCES}/manifests/meta-spdxscanner-master/patch.sh"
+MYMAP[meta-osselot-master]="${GITHUB}/iris-GmbH/meta-osselot ${SOURCES}/meta-osselot-master master"
 # my resy distro 
 MYMAP[resy]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy ${META_RESY_BRANCH}"
 MYMAP[resy-master]="${GITLAB}/meta-layers/meta-resy.git ${SOURCES}/meta-resy-master master"
