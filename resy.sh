@@ -20,6 +20,8 @@ APP_CONTAINER_ARM_V7="${WORKDIR}/app-container-arm-v7"
 APP_CONTAINER_AARCH64="${WORKDIR}/app-container-aarch64"
 APP_CONTAINER_MULTI_ARCH="${WORKDIR}/app-container-multi-arch"
 CROPS_CONTAINER_X86_64="${WORKDIR}/crops-container-x86-64"
+TRAINING_SOURCES=="${SOURCES}/meta-yocto-training-sources"
+
 GITHUB="https://github.com"
 GITLAB="https://gitlab.com"
 GIT_YP="git://git.yoctoproject.org"
@@ -67,6 +69,13 @@ else
           ;;
   esac
 fi
+
+# create TRAINING_SOURCES top level dir
+
+if [ ! -d ${TRAINING_SOURCES} ]; then
+   mkdir -p ${TRAINING_SOURCES}
+fi
+
 
 # choose manifest
 
@@ -446,10 +455,9 @@ MYMAP[meta-yocto-training-master]="${GITLAB}/meta-layers/meta-yocto-training ${S
 # example bbappends:
 MYMAP[meta-yocto-training-appends]="${GITLAB}/meta-layers/meta-yocto-training-appends ${SOURCES}/meta-yocto-training-appends master"
 # example sources:
-MYMAP[helloworld-cmake-feature]="${GITLAB}/exempli-gratia/helloworld-cmake-feature ${SOURCES}/meta-yocto-training-sources/helloworld-cmake-feature master"
-MYMAP[hellocppcmake]="${GITLAB}/exempli-gratia/hellocppcmake ${SOURCES}/meta-yocto-training-sources/hellocppcmake"
+MYMAP[helloworld-cmake-feature]="${GITLAB}/exempli-gratia/helloworld-cmake-feature ${TRAINING_SOURCES}/helloworld-cmake-feature master"
+MYMAP[hellocppcmake]="${GITLAB}/exempli-gratia/hellocppcmake ${TRAINING_SOURCES}/hellocppcmake"
 # <-- training
-
 
 
 MYMAP[meta-clang]="${GITHUB}/RobertBerger/meta-clang ${SOURCES}/meta-clang ${META_CLANG_BRANCH}"
