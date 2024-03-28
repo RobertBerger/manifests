@@ -20,7 +20,7 @@ APP_CONTAINER_ARM_V7="${WORKDIR}/app-container-arm-v7"
 APP_CONTAINER_AARCH64="${WORKDIR}/app-container-aarch64"
 APP_CONTAINER_MULTI_ARCH="${WORKDIR}/app-container-multi-arch"
 CROPS_CONTAINER_X86_64="${WORKDIR}/crops-container-x86-64"
-TRAINING_SOURCES=="${SOURCES}/meta-yocto-training-sources"
+TRAINING_SOURCES="${SOURCES}/meta-yocto-training-sources"
 
 GITHUB="https://github.com"
 GITLAB="https://gitlab.com"
