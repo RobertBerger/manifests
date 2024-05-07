@@ -89,19 +89,61 @@ fi
 
 #echo "CONTAINER= $CONTAINER"
 
-
 # --> remove currently running container
 echo "+ ID_TO_KILL=\$(docker ps -a -q  --filter ancestor=${CONTAINER})"
 ID_TO_KILL=$(docker ps -a -q  --filter ancestor=${CONTAINER})
 
 echo "+ docker ps -a"
 docker ps -a
-echo "+ docker stop ${ID_TO_KILL}"
-docker stop ${ID_TO_KILL}
-echo "+ docker rm -f ${ID_TO_KILL}"
-docker rm -f ${ID_TO_KILL}
-echo "+ docker rm -f poky_container"
-docker rm -f poky_container
+
+# -->
+
+CONTAINER_ID_TO_STOP=${ID_TO_KILL}
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID_TO_STOP 2> /dev/null)
+
+if [ $? -ne 1 ]; then
+  echo "+ docker stop $CONTAINER_ID_TO_STOP"
+  /usr/bin/docker stop $CONTAINER_ID_TO_STOP
+fi
+
+#echo "+ docker stop ${ID_TO_KILL}"
+#docker stop ${ID_TO_KILL}
+
+# <--
+
+# -->
+
+CONTAINER_ID_TO_RM=${ID_TO_KILL}
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID_TO_RM 2> /dev/null)
+
+if [ $? -ne 1 ]; then
+  echo "+ docker rm --force $CONTAINER_ID_TO_RM"
+  /usr/bin/docker rm --force $CONTAINER_ID_TO_RM
+fi
+
+#echo "+ docker rm -f ${ID_TO_KILL}"
+#docker rm -f ${ID_TO_KILL}
+
+# <--
+
+# -->
+
+CONTAINER_TAG_TO_RM=poky_container
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_TAG_TO_RM 2> /dev/null)
+
+if [ $? -ne 1 ]; then
+  echo "+ docker rm --force $CONTAINER_TAG_TO_RM"
+  /usr/bin/docker rm --force $CONTAINER_TAG_TO_RM
+fi
+
+#echo "+ docker rm -f poky_container"
+#docker rm -f poky_container
+
+# <--
+
 echo "+ docker ps -a"
 docker ps -a
 # <-- remove currently running container
