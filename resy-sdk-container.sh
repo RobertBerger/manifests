@@ -13,16 +13,57 @@ ID_TO_KILL=$(docker ps -a -q  --filter ancestor=${CONTAINER})
 
 echo "+ docker ps -a"
 docker ps -a
-echo "+ docker stop ${ID_TO_KILL}"
-docker stop ${ID_TO_KILL}
-echo "+ docker rm -f ${ID_TO_KILL}"
-echo "+ docker rm -f sdk-container"
-docker rm -f sdk-container
-docker rm -f ${ID_TO_KILL}
+
+# -->
+
+CONTAINER_ID_TO_STOP=${ID_TO_KILL}
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID_TO_STOP 2> /dev/null)
+
+if [ $? -ne 1 ]; then
+  echo "+ docker stop $CONTAINER_ID_TO_STOP"
+  /usr/bin/docker stop $CONTAINER_ID_TO_STOP
+fi
+
+#echo "+ docker stop ${ID_TO_KILL}"
+#docker stop ${ID_TO_KILL}
+
+# <--
+
+# -->
+
+CONTAINER_ID_TO_RM=${ID_TO_KILL}
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_ID_TO_RM 2> /dev/null)
+
+if [ $? -ne 1 ]; then
+  echo "+ docker rm --force $CONTAINER_ID_TO_RM"
+  /usr/bin/docker rm --force $CONTAINER_ID_TO_RM
+fi
+
+#echo "+ docker rm -f ${ID_TO_KILL}"
+#docker rm -f ${ID_TO_KILL}
+
+# <--
+
+# -->
+
+CONTAINER_TAG_TO_RM=sdk-container
+
+RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_TAG_TO_RM 2> /dev/null)
+
+if [ $? -ne 1 ]; then
+  echo "+ docker rm --force $CONTAINER_TAG_TO_RM"
+  /usr/bin/docker rm --force $CONTAINER_TAG_TO_RM
+fi
+
+#echo "+ docker rm -f sdk-container"
+#docker rm -f sdk-container
+
+# <--
+
 echo "+ docker ps -a"
 docker ps -a
-
-
 
 set -x
 docker pull ${CONTAINER}
