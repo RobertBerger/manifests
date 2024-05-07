@@ -579,11 +579,12 @@ MYMAP[terrier-container]="${GITHUB}/RobertBerger/terrier-container ${OCI_CONTAIN
 # --> crops
 # extsdk-container is deprecated and replaced by sdk-container
 MYMAP[extsdk-container]="${GITHUB}/RobertBerger/extsdk-container ${CROPS_CONTAINER_X86_64}/extsdk-container 2020-09-17-master-local"
+# @@@ TODO: update sdk-container
 MYMAP[sdk-container]="${GITHUB}/RobertBerger/sdk-container ${CROPS_CONTAINER_X86_64}/sdk-container 2023-09-01-master-local-icecc-ub22"
 # for training:
 # MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2021-06-09-master-local-gcc-9-gui-icecc-ub18"
 # new:
-MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2023-09-01-master-local-icecc-ub22-doc"
+MYMAP[poky-container]="${GITHUB}/RobertBerger/poky-container ${CROPS_CONTAINER_X86_64}/poky-container 2024-03-11-master-local-icecc-ub22-doc-spdx"
 # for training:
 # MYMAP[yocto-dockerfiles]="${GITHUB}/RobertBerger/yocto-dockerfiles ${CROPS_CONTAINER_X86_64}/yocto-dockerfiles 2020-05-30-master-local-ub18"
 # new:
