@@ -4,51 +4,57 @@ echo ${SCRIPTPATH}
 set -x
 
 git checkout meta/recipes-connectivity/connman/connman/connman
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0001-connman-allow-rootfs-over-nfs.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0001-connman-allow-rootfs-over-nfs.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0001-connman-allow-rootfs-over-nfs.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0001-connman-allow-rootfs-over-nfs.patch
 fi
 
 git checkout meta-poky/conf/distro/poky.conf
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0002-poky-snapshot-.66.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0002-poky-snapshot-.66.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0002-poky-snapshot-.66.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0002-poky-snapshot-.66.patch
 fi
 
 git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.92.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
 fi
 
 # made it upstream
 #git checkout meta/classes-recipe/populate_sdk_base.bbclass
-#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-1bbdc674aef8abada28d130a23752c1d8a4620b9/0009-uninative-tarball.xz-reproducibility-fix.patch; then
-#     patch -p1 <${SCRIPTPATH}/against-1bbdc674aef8abada28d130a23752c1d8a4620b9/0009-uninative-tarball.xz-reproducibility-fix.patch
+#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0009-uninative-tarball.xz-reproducibility-fix.patch; then
+#     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0009-uninative-tarball.xz-reproducibility-fix.patch
 #     cat meta/classes-recipe/populate_sdk_base.bbclass | grep SDKTAROPTS
 #fi
 #cat meta/classes-recipe/populate_sdk_base.bbclass | grep SDKTAROPTS
 
 git checkout scripts/lib/wic/plugins/source/bootimg-pcbios.py
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch
 fi
 
 git checkout meta/classes/buildhistory.bbclass
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch
 fi
 
 git checkout meta/recipes-core/busybox/busybox-inittab_1.36.1.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch
 fi
 
 git checkout meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch
 fi
 
 git checkout meta/classes/go-vendor.bbclass
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch
+fi
+
+git checkout  meta/classes-recipe/cargo.bbclass
+git checkout  meta/classes-recipe/cargo_common.bbclass
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0050-cargo-add-CARGO_NO_FROZEN.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0050-cargo-add-CARGO_NO_FROZEN.patch
 fi
 
 # yocto kernel tooling follows
@@ -56,12 +62,12 @@ fi
 rm -rf scripts/lib/bsp
 rm -rf scripts/yocto-bsp
 rm -rf scripts/yocto-kernel
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0021-added-kernel-tooling-back-in-bsp-tooling-updated.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0021-added-kernel-tooling-back-in-bsp-tooling-updated.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0021-added-kernel-tooling-back-in-bsp-tooling-updated.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0021-added-kernel-tooling-back-in-bsp-tooling-updated.patch
 fi
 
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0022-bsp-initial-nanbield-support.patch; then
-     patch -p1 <${SCRIPTPATH}/against-e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c/0022-bsp-initial-nanbield-support.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0022-bsp-initial-styhead-support.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0022-bsp-initial-styhead-support.patch
 fi
 
 git diff --stat

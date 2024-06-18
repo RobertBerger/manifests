@@ -1,0 +1,52 @@
+From fb6efee6e1b4d324a4b73afdfc89d88288c0c86a Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Tue, 18 Jun 2024 11:39:33 +0000
+Subject: [PATCH] cargo: add CARGO_NO_FROZEN
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta/classes-recipe/cargo.bbclass        | 10 +++++++++-
+ meta/classes-recipe/cargo_common.bbclass |  6 ++++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/meta/classes-recipe/cargo.bbclass b/meta/classes-recipe/cargo.bbclass
+index 0829a58dd9..99614fd05a 100644
+--- a/meta/classes-recipe/cargo.bbclass
++++ b/meta/classes-recipe/cargo.bbclass
+@@ -37,7 +37,15 @@ BUILD_MODE = "${@['--release', ''][d.getVar('DEBUG_BUILD') == '1']}"
+ # and will require an up to date Cargo.lock file.
+ # This force the package being built to already ship a Cargo.lock, in the end
+ # this is what we want, at least, for reproducibility of the build.
+-CARGO_BUILD_FLAGS = "-v --frozen --target ${RUST_HOST_SYS} ${BUILD_MODE} --manifest-path=${CARGO_MANIFEST_PATH}"
++
++# -->
++# to add option CARGO_NO_FROZEN
++# replace:
++# CARGO_BUILD_FLAGS = "-v --frozen --target ${RUST_HOST_SYS} ${BUILD_MODE} --manifest-path=${CARGO_MANIFEST_PATH}"
++# with:
++CARGO_EXTRA_FLAGS =  "${@['--frozen', '--offline'][d.getVar('CARGO_NO_FROZEN') == '1']}"
++CARGO_BUILD_FLAGS = "-v ${CARGO_EXTRA_FLAGS} --target ${RUST_HOST_SYS} ${BUILD_MODE} --manifest-path=${CARGO_MANIFEST_PATH}"
++# <--
+ 
+ # This is based on the content of CARGO_BUILD_FLAGS and generally will need to
+ # change if CARGO_BUILD_FLAGS changes.
+diff --git a/meta/classes-recipe/cargo_common.bbclass b/meta/classes-recipe/cargo_common.bbclass
+index 78440c810b..0f7f26983d 100644
+--- a/meta/classes-recipe/cargo_common.bbclass
++++ b/meta/classes-recipe/cargo_common.bbclass
+@@ -162,6 +162,12 @@ python cargo_common_do_patch_paths() {
+     if not patches:
+         return
+ 
++    # -->
++    # to add option CARGO_NO_FROZEN add:
++    if d.getVar("CARGO_NO_FROZEN") == 1:
++        return
++    # <--
++
+     # Cargo.lock file is needed for to be sure that artifacts
+     # downloaded by the fetch steps are those expected by the
+     # project and that the possible patches are correctly applied.
+-- 
+2.34.1
+
