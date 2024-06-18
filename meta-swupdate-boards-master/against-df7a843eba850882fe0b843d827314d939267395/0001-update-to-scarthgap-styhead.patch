@@ -1,0 +1,26 @@
+From 9649bc73749085696cbc6f95b03cffe0ae3d9d71 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Tue, 18 Jun 2024 13:08:59 +0000
+Subject: [PATCH] update to scarthgap styhead
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 88441a9..e699716 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -11,7 +11,7 @@ BBFILE_PRIORITY_swupdate-boards = "7"
+ 
+ LAYERDEPENDS_swupdate-boards = "swupdate"
+ 
+-LAYERSERIES_COMPAT_swupdate-boards = "kirkstone nanbield"
++LAYERSERIES_COMPAT_swupdate-boards = "kirkstone nanbield scarthgap styhead"
+ 
+ BBFILES_DYNAMIC += " \
+     atmel:${LAYERDIR}/dynamic-layers/atmel/*/*/*.bb \
+-- 
+2.34.1
+

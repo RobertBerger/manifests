@@ -1,0 +1,30 @@
+From d5baf7d2b10ea085e61933206b81c6a592f10b87 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Mon, 12 Sep 2022 09:15:29 +0200
+Subject: [PATCH] soft assignment - so we can override
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-extended/images/update-image.bb | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/recipes-extended/images/update-image.bb b/recipes-extended/images/update-image.bb
+index 1636ba6..9827ddf 100644
+--- a/recipes-extended/images/update-image.bb
++++ b/recipes-extended/images/update-image.bb
+@@ -11,9 +11,9 @@ SRC_URI = "\
+ "
+ 
+ # images to build before building swupdate image
+-IMAGE_DEPENDS = "core-image-full-cmdline"
++IMAGE_DEPENDS ?= "core-image-full-cmdline"
+ 
+ # images and files that will be included in the .swu image
+-SWUPDATE_IMAGES = "core-image-full-cmdline"
++SWUPDATE_IMAGES ?= "core-image-full-cmdline"
+ 
+-SWUPDATE_IMAGES_FSTYPES[core-image-full-cmdline] = ".ext4.gz"
++SWUPDATE_IMAGES_FSTYPES[core-image-full-cmdline] ?= ".ext4.gz"
+-- 
+2.25.1
+
