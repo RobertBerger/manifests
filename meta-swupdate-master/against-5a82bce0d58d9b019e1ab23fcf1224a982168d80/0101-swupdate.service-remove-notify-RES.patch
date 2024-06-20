@@ -1,0 +1,26 @@
+From 20cdd54cbd04ddccc655c7b2c52d6a21e957d55d Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:24:06 +0000
+Subject: [PATCH 1/2] swupdate.service: remove notify - RES
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-support/swupdate/swupdate/swupdate.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-support/swupdate/swupdate/swupdate.service b/recipes-support/swupdate/swupdate/swupdate.service
+index 7f8e966..71b8788 100644
+--- a/recipes-support/swupdate/swupdate/swupdate.service
++++ b/recipes-support/swupdate/swupdate/swupdate.service
+@@ -4,7 +4,7 @@ Documentation=https://github.com/sbabic/swupdate
+ Documentation=https://sbabic.github.io/swupdate
+ 
+ [Service]
+-Type=notify
++#Type=notify
+ ExecStart=@LIBDIR@/swupdate/swupdate.sh
+ KillMode=mixed
+ 
+-- 
+2.34.1
+

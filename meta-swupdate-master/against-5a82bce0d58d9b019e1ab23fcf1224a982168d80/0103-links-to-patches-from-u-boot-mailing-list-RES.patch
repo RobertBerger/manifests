@@ -1,0 +1,26 @@
+From 92197fc7ef3fe913bec9623b7b5e36b64a1675e9 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:29:45 +0000
+Subject: [PATCH] links to patches from u-boot mailing list - RES
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ patches-from-mailing-list/5.1/readme.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 patches-from-mailing-list/5.1/readme.txt
+
+diff --git a/patches-from-mailing-list/5.1/readme.txt b/patches-from-mailing-list/5.1/readme.txt
+new file mode 100644
+index 0000000..25b703c
+--- /dev/null
++++ b/patches-from-mailing-list/5.1/readme.txt
+@@ -0,0 +1,6 @@
++https://groups.google.com/g/swupdate/c/FKs5gBRSd3o/m/U6-zU1ygAQAJ
++
++https://groups.google.com/g/swupdate/c/vmMWtwIhZlA/m/-MuYKZ-HAAAJ
++
++... and I had to hack it also slightly
++
+-- 
+2.34.1
+

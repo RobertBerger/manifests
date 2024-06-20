@@ -1,0 +1,27 @@
+From 548d0b323f2be10c65d05e6f7e70bf78d46c72fd Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:06:24 +0000
+Subject: [PATCH 3/5] swupdate.bbclass: 5.1 - UNPACKDIR
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ classes-recipe/swupdate.bbclass | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/classes-recipe/swupdate.bbclass b/classes-recipe/swupdate.bbclass
+index 3656b1c..ae00085 100644
+--- a/classes-recipe/swupdate.bbclass
++++ b/classes-recipe/swupdate.bbclass
+@@ -36,7 +36,8 @@
+ inherit swupdate-common
+ inherit image-artifact-names
+ 
+-S = "${WORKDIR}/${PN}"
++S = "${WORKDIR}/sources"
++UNPACKDIR = "${S}"
+ 
+ IMAGE_DEPENDS ?= ""
+ 
+-- 
+2.34.1
+

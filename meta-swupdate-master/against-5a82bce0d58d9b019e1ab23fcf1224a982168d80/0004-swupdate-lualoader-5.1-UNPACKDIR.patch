@@ -1,0 +1,35 @@
+From 245d63d78dbdc70584b9e08eacc6a08ac12fa8bb Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:06:43 +0000
+Subject: [PATCH 4/5] swupdate-lualoader: 5.1 - UNPACKDIR
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-lua/swupdate-lualoader/swupdate-lualoader_1.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/recipes-lua/swupdate-lualoader/swupdate-lualoader_1.0.bb b/recipes-lua/swupdate-lualoader/swupdate-lualoader_1.0.bb
+index 044cad2..5da4c64 100644
+--- a/recipes-lua/swupdate-lualoader/swupdate-lualoader_1.0.bb
++++ b/recipes-lua/swupdate-lualoader/swupdate-lualoader_1.0.bb
+@@ -2,7 +2,7 @@ SUMMARY = "Loader for swupdate"
+ LICENSE = "MIT"
+ SECTION = "devel/lua"
+ DEPENDS = "lua"
+-LIC_FILES_CHKSUM = "file://${WORKDIR}/swupdate_handlers.lua;md5=354cf4af377edd962d2e8d78085d3ed7;beginline=1;endline=19"
++LIC_FILES_CHKSUM = "file://${UNPACKDIR}/swupdate_handlers.lua;md5=354cf4af377edd962d2e8d78085d3ed7;beginline=1;endline=19"
+ 
+ SRC_URI = "file://swupdate_handlers.lua"
+ 
+@@ -10,7 +10,7 @@ inherit pkgconfig
+ 
+ do_install() {
+     LUAVER=$(pkg-config --modversion lua | grep -o '^[0-9]\+\.[0-9]\+')
+-    install -D -m 0644 ${WORKDIR}/swupdate_handlers.lua ${D}${libdir}/lua/$LUAVER/swupdate_handlers.lua
++    install -D -m 0644 ${UNPACKDIR}/swupdate_handlers.lua ${D}${libdir}/lua/$LUAVER/swupdate_handlers.lua
+     sed -e 's,@libdir@,${libdir},g' \
+         -i ${D}${libdir}/lua/$LUAVER/swupdate_handlers.lua
+ 
+-- 
+2.34.1
+

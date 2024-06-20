@@ -1,0 +1,58 @@
+From af7b7d3827239c43337613bf87887479540fc846 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:05:20 +0000
+Subject: [PATCH 1/5] swupdate-common.bbclass: 5.1 - UNPACKDIR
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ classes-recipe/swupdate-common.bbclass | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/classes-recipe/swupdate-common.bbclass b/classes-recipe/swupdate-common.bbclass
+index ad3c0a0..66684e8 100644
+--- a/classes-recipe/swupdate-common.bbclass
++++ b/classes-recipe/swupdate-common.bbclass
+@@ -169,7 +169,7 @@ def prepare_sw_description(d):
+     import shutil
+     import subprocess
+ 
+-    s = d.getVar('S', True)
++    s = d.getVar('UNPACKDIR', True)
+     swupdate_expand_bitbake_variables(d, s)
+ 
+     swupdate_write_sha256(s)
+@@ -228,7 +228,7 @@ def prepare_sw_description(d):
+ def swupdate_add_src_uri(d, list_for_cpio):
+     import shutil
+ 
+-    s = d.getVar('S', True)
++    s = d.getVar('UNPACKDIR', True)
+     exclude = (d.getVar("SWUPDATE_SRC_URI_EXCLUDE") or "").split()
+ 
+     fetch = bb.fetch2.Fetch([], d)
+@@ -277,7 +277,7 @@ def swupdate_add_artifacts(d, list_for_cpio):
+     images = (d.getVar('SWUPDATE_IMAGES', True) or "").split()
+     deploydir = d.getVar('DEPLOY_DIR_IMAGE', True)
+     imgdeploydir = d.getVar('SWUDEPLOYDIR', True)
+-    s = d.getVar('S', True)
++    s = d.getVar('UNPACKDIR', True)
+     for image in images:
+         fstypes = (d.getVarFlag("SWUPDATE_IMAGES_FSTYPES", image, True) or "").split()
+         encrypted = (d.getVarFlag("SWUPDATE_IMAGES_ENCRYPTED", image, True) or "")
+@@ -319,10 +319,11 @@ python do_swuimage () {
+     import shutil
+ 
+     list_for_cpio = ["sw-description"]
+-    workdir = d.getVar('WORKDIR', True)
++    unpackdir = d.getVar('UNPACKDIR', True)
+     s = d.getVar('S', True)
+     imgdeploydir = d.getVar('SWUDEPLOYDIR', True)
+-    shutil.copyfile(os.path.join(workdir, "sw-description"), os.path.join(s, "sw-description"))
++    # same file?
++    #shutil.copyfile(os.path.join(unpackdir, "sw-description"), os.path.join(s, "sw-description"))
+ 
+     if d.getVar('SWUPDATE_SIGNING', True):
+         list_for_cpio.append('sw-description.sig')
+-- 
+2.34.1
+

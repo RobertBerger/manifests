@@ -1,0 +1,30 @@
+From 8146462e223c36199b95e3d6fdb06fc8db0022ff Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:25:07 +0000
+Subject: [PATCH 2/2] swupdate.socket.tmpl: hardcode ListenStream - RES
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-support/swupdate/swupdate/swupdate.socket.tmpl | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/recipes-support/swupdate/swupdate/swupdate.socket.tmpl b/recipes-support/swupdate/swupdate/swupdate.socket.tmpl
+index 5dbcbbd..d6636f9 100644
+--- a/recipes-support/swupdate/swupdate/swupdate.socket.tmpl
++++ b/recipes-support/swupdate/swupdate/swupdate.socket.tmpl
+@@ -4,8 +4,10 @@ Documentation=https://github.com/sbabic/swupdate
+ Documentation=https://sbabic.github.io/swupdate
+ 
+ [Socket]
+-ListenStream=@@SWUPDATE_SOCKET_CTRL_PATH@@
+-ListenStream=@@SWUPDATE_SOCKET_PROGRESS_PATH@@
++ListenStream=/tmp/sockinstctrl
++ListenStream=/tmp/swupdateprog
++#ListenStream=@@SWUPDATE_SOCKET_CTRL_PATH@@
++#ListenStream=@@SWUPDATE_SOCKET_PROGRESS_PATH@@
+ 
+ [Install]
+ WantedBy=sockets.target
+-- 
+2.34.1
+

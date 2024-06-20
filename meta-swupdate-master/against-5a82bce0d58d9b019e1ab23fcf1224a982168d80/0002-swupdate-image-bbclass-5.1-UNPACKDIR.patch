@@ -1,0 +1,27 @@
+From 1de5ba1dd5b322204fe1cb42862f5eee32900077 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 10:06:11 +0000
+Subject: [PATCH 2/5] swupdate-image.bbclass: 5.1 - UNPACKDIR
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ classes-recipe/swupdate-image.bbclass | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/classes-recipe/swupdate-image.bbclass b/classes-recipe/swupdate-image.bbclass
+index e9c67a6..22df580 100644
+--- a/classes-recipe/swupdate-image.bbclass
++++ b/classes-recipe/swupdate-image.bbclass
+@@ -13,7 +13,8 @@
+ inherit swupdate-common
+ inherit image-artifact-names
+ 
+-S = "${WORKDIR}/${PN}"
++S = "${WORKDIR}/sources"
++UNPACKDIR = "${S}"
+ 
+ SRC_URI += "file://sw-description"
+ SWUPDATE_IMAGES += "${IMAGE_LINK_NAME}"
+-- 
+2.34.1
+
