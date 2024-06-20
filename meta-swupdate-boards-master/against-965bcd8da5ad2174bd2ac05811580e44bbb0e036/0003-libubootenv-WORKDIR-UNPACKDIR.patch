@@ -1,0 +1,26 @@
+From 5b2478e47861d4c395d6e89a629296c8438ea32d Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 13:44:15 +0000
+Subject: [PATCH 1/2] libubootenv: WORKDIR -> UNPACKDIR
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-bsp/libubootenv/libubootenv_%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-bsp/libubootenv/libubootenv_%.bbappend b/recipes-bsp/libubootenv/libubootenv_%.bbappend
+index 17d8ad5..59ba255 100644
+--- a/recipes-bsp/libubootenv/libubootenv_%.bbappend
++++ b/recipes-bsp/libubootenv/libubootenv_%.bbappend
+@@ -4,7 +4,7 @@ SRC_URI:append:class-target = " file://fw_env.config"
+ 
+ do_install:append:class-target() {
+ 	install -d ${D}${sysconfdir}
+-	install -m 644 ${WORKDIR}/fw_env.config ${D}${sysconfdir}
++	install -m 644 ${UNPACKDIR}/fw_env.config ${D}${sysconfdir}
+ }
+ 
+ FILES:${PN}:append:class-target = " ${sysconfdir}"
+-- 
+2.34.1
+
