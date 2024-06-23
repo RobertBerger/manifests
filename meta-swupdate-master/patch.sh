@@ -28,6 +28,17 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23
      patch -p1 <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0005-swupdate-inc-5.1-UNPACKDIR.patch
 fi
 
+git checkout recipes-lua/luafilesystem/luafilesystem_git.bb
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0006-luafilesystem-SRC_URI-changed.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0006-luafilesystem-SRC_URI-changed.patch
+fi
+
+
+git checkout recipes-lua/luafilesystem/files/0001-Fix-for-OE.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0007-luafilesystem-Upstream-Status.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0007-luafilesystem-Upstream-Status.patch
+fi
+
 # --> RES specific stuff
 
 git checkout recipes-support/swupdate/swupdate/swupdate.service
@@ -40,11 +51,16 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23
      patch -p1 <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0102-swupdate.socket.tmpl-hardcode-ListenStream-RES.patch
 fi
 
+# -->
 rm -rf patches-from-mailing-list
 if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0103-links-to-patches-from-u-boot-mailing-list-RES.patch; then
      patch -p1 <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0103-links-to-patches-from-u-boot-mailing-list-RES.patch
 fi
 
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0104-lua-runtime-errors.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5a82bce0d58d9b019e1ab23fcf1224a982168d80/0104-lua-runtime-errors.patch
+fi
+# <--
 # <-- RES specific stuff
 
 

@@ -1,0 +1,27 @@
+From 06635435acb8f7a341a5e28e7a4aba6fd56cfc7d Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Fri, 21 Jun 2024 12:47:47 +0000
+Subject: [PATCH 1/3] luafilesystem: SRC_URI changed
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-lua/luafilesystem/luafilesystem_git.bb | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/recipes-lua/luafilesystem/luafilesystem_git.bb b/recipes-lua/luafilesystem/luafilesystem_git.bb
+index 10e6db8..25f19ff 100644
+--- a/recipes-lua/luafilesystem/luafilesystem_git.bb
++++ b/recipes-lua/luafilesystem/luafilesystem_git.bb
+@@ -3,8 +3,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d9b7e441d51a96b17511ee3be5a75857"
+ 
+ DEPENDS = "lua"
+ 
+-
+-SRC_URI = "git://github.com/keplerproject/luafilesystem;protocol=https;branch=master \
++SRC_URI = "git://github.com/lunarmodules/luafilesystem;protocol=https;branch=master \
+ 	file://0001-Fix-for-OE.patch"
+ 
+ # Modify these as desired
+-- 
+2.34.1
+

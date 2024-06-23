@@ -1,0 +1,26 @@
+From 7f03b9dad9899bf76a134a5c2f60283be03406cf Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Fri, 21 Jun 2024 12:48:23 +0000
+Subject: [PATCH 2/3] Upstream-Status
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-lua/luafilesystem/files/0001-Fix-for-OE.patch | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-lua/luafilesystem/files/0001-Fix-for-OE.patch b/recipes-lua/luafilesystem/files/0001-Fix-for-OE.patch
+index 80971d2..42cd757 100644
+--- a/recipes-lua/luafilesystem/files/0001-Fix-for-OE.patch
++++ b/recipes-lua/luafilesystem/files/0001-Fix-for-OE.patch
+@@ -2,7 +2,7 @@ From 55709c14d9ae4becd2d716117604b5d399465b63 Mon Sep 17 00:00:00 2001
+ From: Kas User <kas@example.com>
+ Date: Wed, 22 Jun 2022 14:05:03 +0200
+ Subject: [PATCH] Fix for OE
+-
++Upstream-Status: Inappropriate [oe specific]
+ ---
+  Makefile |  2 +-
+  config   | 16 ++++++++--------
+-- 
+2.34.1
+

@@ -1,0 +1,54 @@
+From 7a969cf1763a7a67b339a4070e155f766a78045c Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Fri, 21 Jun 2024 12:48:49 +0000
+Subject: [PATCH 3/3] lua runtime errors
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ patches-from-mailing-list/lua-errors.txt | 34 ++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 patches-from-mailing-list/lua-errors.txt
+
+diff --git a/patches-from-mailing-list/lua-errors.txt b/patches-from-mailing-list/lua-errors.txt
+new file mode 100644
+index 0000000..72f588b
+--- /dev/null
++++ b/patches-from-mailing-list/lua-errors.txt
+@@ -0,0 +1,34 @@
++Jun 20 15:37:54 consrv-plus-7 user.info swupdate: RUN [server_start] : Sleeping for 10s until retrying... 
++Jun 20 15:38:01 consrv-plus-7 user.info swupdate: RUN [lua_handlers_init] : External Lua handler(s) not found. 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] : Lua exception: 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] : [string "require ("swupdate_handlers")"]:1: module 'swupdate_handlers' not found: 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no field package.preload['swupdate_handlers] 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file '/usr/share/lua/5.4/swupdate_handlers.lua' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file '/usr/share/lua/5.4/swupdate_handlers/init.lua' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file '/usr/lib/lua/5.4/swupdate_handlers.lua' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file '/usr/lib/lua/5.4/swupdate_handlers/init.lua' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file './swupdate_handlers.lua' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file './swupdate_handlers/init.lua' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file '/usr/lib/lua/5.4/swupdate_handlers.so' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file '/usr/lib/lua/5.4/loadall.so' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [lua_report_exception] :         no file './swupdate_handlers.so' 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [start_lua_script] : postinstall: Calling Lua /tmp/scripts/emmcsetup.lua with postinst 
++Jun 20 15:38:01 consrv-plus-7 user.debug swupdate: RUN [run_lua_script] : Loading Lua /tmp/scripts/emmcsetup.lua script 
++Jun 20 15:38:03 consrv-plus-7 user.debug swupdate: RUN [run_lua_script] : LUA Exit: is boolean 1 
++Jun 20 15:38:03 consrv-plus-7 user.debug swupdate: RUN [run_lua_script] : Script output: Post install script called script end 
++Jun 20 15:38:03 consrv-plus-7 user.info swupdate: SUCCESS SWUPDATE successful ! 
++Jun 20 15:38:03 consrv-plus-7 user.debug swupdate: RUN [postupdate] : Running Post-update command 
++Jun 20 15:38:03 consrv-plus-7 user.debug swupdate: RUN [network_initializer] : Main thread sleep again ! 
++Jun 20 15:38:03 consrv-plus-7 user.info swupdate: IDLE Waiting for requests... 
++Jun 20 15:38:04 consrv-plus-7 user.debug swupdate: RUN [server_handle_initial_state] : Got state=2 from command line. 
++Jun 20 15:38:04 consrv-plus-7 user.debug swupdate: RUN [server_get_device_info] : Getting information for device 'bbb' 
++Jun 20 15:38:04 consrv-plus-7 user.debug swupdate: RUN [channel_set_options] : cURL's low download speed timeout is disabled, this is most probably not what you want. Adapted it to 300s instead. 
++
++
++is this in the image?
++
++/workdir/sources/meta-swupdate-master/recipes-lua/swupdate-lualoader/swupdate-lualoader_1.0.bb
++
++
++
++
+-- 
+2.34.1
+
