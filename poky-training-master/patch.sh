@@ -18,6 +18,11 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c147589
      patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
 fi
 
+git checkout meta/classes-recipe/devicetree.bbclass
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0004-devicetreeclass-S-WORKDIR-replaced-with-UNPACKDIR-S-WORKDIR-sources.patch; then
+     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0004-devicetreeclass-S-WORKDIR-replaced-with-UNPACKDIR-S-WORKDIR-sources.patch
+fi
+
 # made it upstream
 #git checkout meta/classes-recipe/populate_sdk_base.bbclass
 #if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0009-uninative-tarball.xz-reproducibility-fix.patch; then
