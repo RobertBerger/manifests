@@ -1,9 +1,9 @@
 From b91bfde5b6413648ca4d3a4461ad223be5ded0ed Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Thu, 20 Jun 2024 09:00:09 +0000
 Subject: [PATCH] S=WORKDIR replaced with UNPACKDIR=S=WORKDIR/sources
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/classes-recipe/devicetree.bbclass | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)

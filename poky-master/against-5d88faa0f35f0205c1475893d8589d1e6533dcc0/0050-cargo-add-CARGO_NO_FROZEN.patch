@@ -1,9 +1,9 @@
 From fb6efee6e1b4d324a4b73afdfc89d88288c0c86a Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Tue, 18 Jun 2024 11:39:33 +0000
 Subject: [PATCH] cargo: add CARGO_NO_FROZEN
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/classes-recipe/cargo.bbclass        | 10 +++++++++-
  meta/classes-recipe/cargo_common.bbclass |  6 ++++++

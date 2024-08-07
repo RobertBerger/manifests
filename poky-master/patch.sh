@@ -41,15 +41,17 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c147589
      patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch
 fi
 
-git checkout meta/recipes-core/busybox/busybox-inittab_1.36.1.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch; then
-     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch
-fi
-
-git checkout meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch; then
-     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch
-fi
+# --> check if it works also without that and only console defined
+#git checkout meta/recipes-core/busybox/busybox-inittab_1.36.1.bb
+#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch; then
+#     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0031-busybox-add-SERIAL_CONSOLES_CHECK.patch
+#fi
+#
+#git checkout meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
+#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch; then
+#     patch -p1 <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0032-sysvinit-inittab-add-SERIAL_CONSOLES_CHECK.patch
+#fi
+# <--  check if it works also without that and only console defined
 
 git checkout meta/classes/go-vendor.bbclass
 if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-5d88faa0f35f0205c1475893d8589d1e6533dcc0/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch; then

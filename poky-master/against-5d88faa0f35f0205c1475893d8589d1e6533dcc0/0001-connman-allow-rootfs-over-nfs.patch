@@ -3,7 +3,7 @@ From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Fri, 5 Jan 2024 10:59:36 +0000
 Subject: [PATCH] connman: allow rootfs over nfs
 
-Signed-off-by: student <Robert.Berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  .../connman/connman/connman                   | 39 ++++++++++++++++++-
  1 file changed, 38 insertions(+), 1 deletion(-)
