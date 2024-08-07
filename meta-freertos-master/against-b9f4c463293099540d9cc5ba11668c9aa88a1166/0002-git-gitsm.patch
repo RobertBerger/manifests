@@ -1,0 +1,26 @@
+From a141f1edc8038752abe81d7c3edf21bb3dfbcbd2 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Wed, 7 Aug 2024 08:37:53 +0000
+Subject: [PATCH 2/2] git -> gitsm
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ recipes-freertos/freertos-demo/freertos-demo_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-freertos/freertos-demo/freertos-demo_git.bb b/recipes-freertos/freertos-demo/freertos-demo_git.bb
+index 19a775e..175597b 100644
+--- a/recipes-freertos/freertos-demo/freertos-demo_git.bb
++++ b/recipes-freertos/freertos-demo/freertos-demo_git.bb
+@@ -13,7 +13,7 @@ S="${WORKDIR}/app"
+ 
+ # App can be replaced by using a different repo
+ SRC_URI += " \
+-    git://github.com/ahcbb6/FreeRTOS-GCC-ARM926ejs.git;name=app;destsuffix=app;branch=meta-freertos;protocol=https \
++    gitsm://github.com/ahcbb6/FreeRTOS-GCC-ARM926ejs.git;name=app;destsuffix=app;branch=meta-freertos;protocol=https \
+     file://use-newlib-as-libc.patch \
+ "
+ 
+-- 
+2.34.1
+

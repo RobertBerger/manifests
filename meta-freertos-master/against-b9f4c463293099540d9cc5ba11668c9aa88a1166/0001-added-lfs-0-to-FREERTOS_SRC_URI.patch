@@ -1,0 +1,26 @@
+From e7e4178fc7a3313bef3e6c663e912ca95f334ff1 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Wed, 7 Aug 2024 08:37:21 +0000
+Subject: [PATCH 1/2] added lfs=0 to FREERTOS_SRC_URI
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ classes/freertos-image.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/classes/freertos-image.bbclass b/classes/freertos-image.bbclass
+index d00cb27..c599930 100644
+--- a/classes/freertos-image.bbclass
++++ b/classes/freertos-image.bbclass
+@@ -21,7 +21,7 @@ LIC_FILES_CHKSUM ?= "file://${FREERTOS_SRC_DIR}/LICENSE;md5=7ae2be7fb16371418403
+ FREERTOS_VERSION ?= "FreeRTOSv10.5.1"
+ 
+ SRCBRANCH ?= "main"
+-FREERTOS_SRC_URI ?= "gitsm://github.com/FreeRTOS/FreeRTOS.git;name=freertos;destsuffix=freertos;branch=${SRCBRANCH};protocol=https"
++FREERTOS_SRC_URI ?= "gitsm://github.com/FreeRTOS/FreeRTOS.git;name=freertos;destsuffix=freertos;branch=${SRCBRANCH};protocol=https;lfs=0"
+ 
+ SRCREV_FORMAT ?= "freertos_app"
+ SRCREV_freertos ?= "391c79958f635ee5476dcf2774dab59e2b151eff"
+-- 
+2.34.1
+
