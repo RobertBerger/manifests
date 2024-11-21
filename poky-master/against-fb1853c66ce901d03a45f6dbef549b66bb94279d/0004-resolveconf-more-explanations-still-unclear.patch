@@ -1,9 +1,9 @@
 From ac6c411488a42b68e58fa1364997f72817596a5e Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Thu, 29 Dec 2022 14:06:25 +0000
 Subject: [PATCH] resolveconf: more explanations, still unclear
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  .../resolvconf/resolvconf_1.91.bb              | 18 ++++++++++++++++--
  1 file changed, 16 insertions(+), 2 deletions(-)

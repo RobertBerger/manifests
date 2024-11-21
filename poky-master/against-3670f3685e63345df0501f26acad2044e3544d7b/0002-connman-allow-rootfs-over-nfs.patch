@@ -1,9 +1,9 @@
 From b582908c636aad4600b56b87be03d92a162c99c1 Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Thu, 13 Oct 2022 17:46:16 +0200
 Subject: [PATCH 1/2] connman: allow rootfs over nfs
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  .../connman/connman/connman                   | 45 +++++++++++++++++--
  1 file changed, 41 insertions(+), 4 deletions(-)

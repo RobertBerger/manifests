@@ -1,9 +1,9 @@
 From ddea8eed03d7baecb8f17b759abb1f23a3253954 Mon Sep 17 00:00:00 2001
-From: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Sat, 28 Aug 2021 11:48:13 +0200
 Subject: [PATCH] bootchart2 man does not build
 
-Signed-off-by: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/recipes-devtools/bootchart2/bootchart2_0.14.9.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

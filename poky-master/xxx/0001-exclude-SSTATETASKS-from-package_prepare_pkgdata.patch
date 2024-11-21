@@ -1,9 +1,9 @@
 From 295cb97e5630fe7db88d31b7c8d0a7099bf1acb7 Mon Sep 17 00:00:00 2001
-From: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Sun, 27 Jun 2021 21:33:29 +0200
 Subject: [PATCH] exclude SSTATETASKS from package_prepare_pkgdata
 
-Signed-off-by: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/classes/package_pkgdata.bbclass | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

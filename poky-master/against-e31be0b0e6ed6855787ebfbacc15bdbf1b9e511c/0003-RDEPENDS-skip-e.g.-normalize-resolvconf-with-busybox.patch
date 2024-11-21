@@ -1,10 +1,10 @@
 From 0d481ec32762018e141587c19ad1ec399f374e7a Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Fri, 5 Jan 2024 11:24:22 +0000
 Subject: [PATCH] RDEPENDS skip e.g. normalize-resolvconf with busybox +
  comments
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  .../resolvconf/resolvconf_1.92.bb             | 21 +++++++++++++++++++
  1 file changed, 21 insertions(+)

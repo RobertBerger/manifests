@@ -1,7 +1,7 @@
-From 6fcae9a5c13d0c4df9aa9fdff6c5a1b63495f67c Mon Sep 17 00:00:00 2001
+From 5396fa7462cf795e4dbce68fdbf36be49fc2b0aa Mon Sep 17 00:00:00 2001
 From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
-Date: Sun, 2 Jul 2023 11:55:26 +0000
-Subject: [PATCH] poky-snapshot .66
+Date: Wed, 2 Oct 2024 20:27:35 +0000
+Subject: [PATCH] poky snapshot .66
 
 Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
@@ -9,16 +9,16 @@ Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
-index d137527624..8f426270ff 100644
+index b17bee5db5..6f15d988cb 100644
 --- a/meta-poky/conf/distro/poky.conf
 +++ b/meta-poky/conf/distro/poky.conf
 @@ -1,7 +1,7 @@
  DISTRO = "poky"
  DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
--DISTRO_VERSION = "4.2"
--DISTRO_CODENAME = "mickledore"
-+DISTRO_VERSION = "4.2.66"
-+DISTRO_CODENAME = "master-as-mickledore"
+-DISTRO_VERSION = "5.1"
+-DISTRO_CODENAME = "styhead"
++DISTRO_VERSION = "5.1.66"
++DISTRO_CODENAME = "master-as-styhead"
  SDK_VENDOR = "-pokysdk"
  SDK_VERSION = "${@d.getVar('DISTRO_VERSION').replace('snapshot-${METADATA_REVISION}', 'snapshot')}"
  SDK_VERSION[vardepvalue] = "${SDK_VERSION}"

@@ -1,9 +1,9 @@
 From c91537f78b8f9cc692fa15e347747a6b875eb435 Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Mon, 12 Sep 2022 09:33:52 +0200
 Subject: [PATCH] added: normalize-resolvconf
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb | 5 +++++
  1 file changed, 5 insertions(+)

@@ -1,9 +1,9 @@
 From 6fcae9a5c13d0c4df9aa9fdff6c5a1b63495f67c Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Sun, 2 Jul 2023 11:55:26 +0000
 Subject: [PATCH] poky-snapshot .66
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta-poky/conf/distro/poky.conf | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

@@ -1,9 +1,9 @@
 From f38da1c6538414900635e6fee83b7386200cc641 Mon Sep 17 00:00:00 2001
-From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Wed, 28 Dec 2022 13:43:41 +0100
 Subject: [PATCH] added kernel tooling back in bsp, tooling updated
 
-Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  scripts/lib/bsp/__init__.py                   |   22 +
  scripts/lib/bsp/engine.py                     | 1931 +++++++++++++++++

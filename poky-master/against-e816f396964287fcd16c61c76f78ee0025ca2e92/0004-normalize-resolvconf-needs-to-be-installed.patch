@@ -3,7 +3,7 @@ From: Robert Berger <robert.bergerstudent@ReliableEmbeddedSystems.com>
 Date: Wed, 22 Jun 2022 16:30:31 +0300
 Subject: [PATCH] normalize-resolvconf needs to be installed
 
-Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/recipes-connectivity/resolvconf/resolvconf_1.91.bb | 5 +++++
  1 file changed, 5 insertions(+)

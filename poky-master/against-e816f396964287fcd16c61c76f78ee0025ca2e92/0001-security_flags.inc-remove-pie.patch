@@ -1,9 +1,9 @@
 From 5195046e161552910314da15fc9662cae38bef41 Mon Sep 17 00:00:00 2001
-From: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Sat, 28 Aug 2021 11:46:08 +0200
 Subject: [PATCH] security_flags.inc: remove pie
 
-Signed-off-by: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/conf/distro/include/security_flags.inc | 7 +++++++
  1 file changed, 7 insertions(+)

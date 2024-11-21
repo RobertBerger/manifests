@@ -1,9 +1,9 @@
 From 5454024e857c58a5156d4c7bdaafc3a2d3555295 Mon Sep 17 00:00:00 2001
-From: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Sat, 28 Aug 2021 11:58:09 +0200
 Subject: [PATCH] linux-yocto.inc: remove vfat.scc for now
 
-Signed-off-by: "Robert Berger" <robert.berger@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta/recipes-kernel/linux/linux-yocto.inc | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
