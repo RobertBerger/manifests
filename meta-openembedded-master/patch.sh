@@ -9,7 +9,7 @@ set -x
 #     patch -p1 <${SCRIPTPATH}/against-5afc38b504bc891d228ae246d72d29d3a7d3be52/0001-agent-proxy-ignore-buildpaths-QA-warning.patch
 #fi
 
-git checkout meta-oe/recipes-support/monit/monit_5.34.0.bb
+git checkout meta-oe/recipes-support/monit/monit_5.34.2.bb
 if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-01dd622533957d20fa860e34ff098161a103bfbf/0002-on-target-add-etc-monit.d-to-avoid-dir-file-not-foun.patch; then
      patch -p1 <${SCRIPTPATH}/against-01dd622533957d20fa860e34ff098161a103bfbf/0002-on-target-add-etc-monit.d-to-avoid-dir-file-not-foun.patch
 fi
