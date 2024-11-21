@@ -368,7 +368,7 @@ MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRI
 #MYMAP[poky]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky ${META_POKY_BRANCH}"
 
 # -->
-MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master ${SOURCES}/manifests/poky-master/patch.sh"
+#MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master ${SOURCES}/manifests/poky-master/patch.sh"
 # prep for freeze:
 #MYMAP[poky-master]="${GIT_YP}/poky ${SOURCES}/poky-master master ${SOURCES}/manifests/poky-master/patch.sh e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c"
 # <-- 
