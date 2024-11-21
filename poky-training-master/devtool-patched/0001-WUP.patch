@@ -1,0 +1,72 @@
+From de2c1ba489dc0e545315c5b07335ec68760e8d1e Mon Sep 17 00:00:00 2001
+From: Konrad Weihmann <kweihmann@outlook.com>
+Date: Tue, 3 Sep 2024 10:26:43 +0000
+Subject: [PATCH] WUP
+
+Signed-off-by: Konrad Weihmann <kweihmann@outlook.com>
+---
+ meta/lib/oeqa/selftest/cases/devtool.py | 48 +++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/meta/lib/oeqa/selftest/cases/devtool.py b/meta/lib/oeqa/selftest/cases/devtool.py
+index 7d61773980..3687f1fd25 100644
+--- a/meta/lib/oeqa/selftest/cases/devtool.py
++++ b/meta/lib/oeqa/selftest/cases/devtool.py
+@@ -2493,6 +2493,54 @@ class DevtoolUpgradeTests(DevtoolBase):
+         #Step 4.5
+         runCmd("grep %s %s" % (modconfopt, codeconfigfile))
+ 
++    def test_devtool_finish_example(self):
++        recipe = 'nettoe'
++        upstream = 'https://github.com/RobertBerger/nettoe.git'
++        result = runCmd('bitbake-getvar -q --value COREBASE')
++        self.assertTrue(result.output.strip(), msg='COREBASE was found')
++        layer_path = result.output.strip() + '/meta' 
++        
++        result = runCmd(f'devtool add {recipe} {upstream}')
++        self.assertEqual(result.status, 0, msg=result.output.strip())
++        if result.output.strip():
++            for m in re.finditer(r'^WARNING:.*', result.output.strip(), re.MULTILINE):
++                self.logger.warning(f'devtool add warning: {m.group(0)}')
++        
++        result = runCmd(f'devtool build {recipe}')
++        self.assertEqual(result.status, 0, msg=result.output.strip())
++        if result.output.strip():
++            for m in re.finditer(r'^WARNING:.*', result.output.strip(), re.MULTILINE):
++                self.logger.warning(f'devtool build warning: {m.group(0)}')
++
++        result = runCmd(f'devtool finish -f {recipe} {layer_path}')
++        self.assertEqual(result.status, 0, msg=result.output.strip())
++        if result.output.strip():
++            for m in re.finditer(r'^WARNING:.*', result.output.strip(), re.MULTILINE):
++                self.logger.warning(f'devtool fnish warning: {m.group(0)}')
++
++    def test_devtool_finish_example_layer_name(self):
++        recipe = 'nettoe'
++        upstream = 'https://github.com/RobertBerger/nettoe.git'
++        layer_path = 'core'
++        
++        result = runCmd(f'devtool add {recipe} {upstream}')
++        self.assertEqual(result.status, 0, msg=result.output.strip())
++        if result.output.strip():
++            for m in re.finditer(r'^WARNING:.*', result.output.strip(), re.MULTILINE):
++                self.logger.warning(f'devtool add warning: {m.group(0)}')
++        
++        result = runCmd(f'devtool build {recipe}')
++        self.assertEqual(result.status, 0, msg=result.output.strip())
++        if result.output.strip():
++            for m in re.finditer(r'^WARNING:.*', result.output.strip(), re.MULTILINE):
++                self.logger.warning(f'devtool build warning: {m.group(0)}')
++
++        result = runCmd(f'devtool finish -f {recipe} {layer_path}')
++        self.assertEqual(result.status, 0, msg=result.output.strip())
++        if result.output.strip():
++            for m in re.finditer(r'^WARNING:.*', result.output.strip(), re.MULTILINE):
++                self.logger.warning(f'devtool fnish warning: {m.group(0)}')
++
+ 
+ class DevtoolIdeSdkTests(DevtoolBase):
+     def _write_bb_config(self, recipe_names):
+-- 
+2.34.1
+

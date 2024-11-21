@@ -1,0 +1,27 @@
+From d3c45fb2a0573f8ed425e8006a270462d14dadc5 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Tue, 18 Jun 2024 11:16:24 +0000
+Subject: [PATCH] poky-snapshot .66
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta-poky/conf/distro/poky.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
+index 5285753c31..97664a4db9 100644
+--- a/meta-poky/conf/distro/poky.conf
++++ b/meta-poky/conf/distro/poky.conf
+@@ -1,7 +1,7 @@
+ DISTRO = "poky"
+ DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
+-DISTRO_VERSION = "5.0+snapshot-${METADATA_REVISION}"
+-DISTRO_CODENAME = "styhead"
++DISTRO_VERSION = "5.0.66"
++DISTRO_CODENAME = "master-as-styhead"
+ SDK_VENDOR = "-pokysdk"
+ SDK_VERSION = "${@d.getVar('DISTRO_VERSION').replace('snapshot-${METADATA_REVISION}', 'snapshot')}"
+ SDK_VERSION[vardepvalue] = "${SDK_VERSION}"
+-- 
+2.34.1
+

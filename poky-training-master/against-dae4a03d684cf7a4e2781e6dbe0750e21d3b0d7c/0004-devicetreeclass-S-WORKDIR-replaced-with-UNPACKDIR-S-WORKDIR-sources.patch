@@ -1,0 +1,28 @@
+From b91bfde5b6413648ca4d3a4461ad223be5ded0ed Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Thu, 20 Jun 2024 09:00:09 +0000
+Subject: [PATCH] S=WORKDIR replaced with UNPACKDIR=S=WORKDIR/sources
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta/classes-recipe/devicetree.bbclass | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/meta/classes-recipe/devicetree.bbclass b/meta/classes-recipe/devicetree.bbclass
+index bd50d7fa1d..9771e72336 100644
+--- a/meta/classes-recipe/devicetree.bbclass
++++ b/meta/classes-recipe/devicetree.bbclass
+@@ -40,7 +40,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ SYSROOT_DIRS += "/boot/devicetree"
+ FILES:${PN} = "/boot/devicetree/*.dtb /boot/devicetree/*.dtbo"
+ 
+-S = "${WORKDIR}"
++#S = "${WORKDIR}"
++S = "${WORKDIR}/sources"
++UNPACKDIR = "${S}"
+ B = "${WORKDIR}/build"
+ 
+ # Default kernel includes, these represent what are normally used for in-kernel
+-- 
+2.34.1
+

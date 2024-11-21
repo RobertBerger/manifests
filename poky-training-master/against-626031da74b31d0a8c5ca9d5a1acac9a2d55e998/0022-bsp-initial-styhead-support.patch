@@ -1,0 +1,23 @@
+From 00af401b1dc217d5bbecd2925c2186431ebf80ea Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Wed, 28 Dec 2022 13:45:59 +0100
+Subject: [PATCH] bsp initial styhead support
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf b/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
+index 299a0f74bb..c203771e12 100644
+--- a/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
++++ b/scripts/lib/bsp/substrate/target/arch/common/conf/layer.conf
+@@ -9,4 +9,4 @@ BBFILE_COLLECTIONS += "{{=machine}}"
+ BBFILE_PATTERN_{{=machine}} = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_{{=machine}} = "6"
+ 
+-LAYERSERIES_COMPAT_{{=machine}} = "sumo thud warrior zeus dunfell gatesgarth"
++LAYERSERIES_COMPAT_{{=machine}} = "langdale mickledore nanbield scarthgap styhead walnascar"
+-- 
+2.17.1
+
