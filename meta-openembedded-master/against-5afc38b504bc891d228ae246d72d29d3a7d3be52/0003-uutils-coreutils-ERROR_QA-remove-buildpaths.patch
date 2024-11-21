@@ -1,0 +1,23 @@
+From b17b409d4604cc965fddc9e221cd778c8c3bb27e Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Wed, 2 Oct 2024 12:28:44 +0000
+Subject: [PATCH] uutils-coreutils: ERROR_QA:remove = "buildpaths"
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ .../recipes-core/uutils-coreutils/uutils-coreutils_0.0.27.bb    | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/meta-oe/recipes-core/uutils-coreutils/uutils-coreutils_0.0.27.bb b/meta-oe/recipes-core/uutils-coreutils/uutils-coreutils_0.0.27.bb
+index ea0eb061f..876c66e29 100644
+--- a/meta-oe/recipes-core/uutils-coreutils/uutils-coreutils_0.0.27.bb
++++ b/meta-oe/recipes-core/uutils-coreutils/uutils-coreutils_0.0.27.bb
+@@ -71,3 +71,5 @@ python __anonymous() {
+     for prog in d.getVar('sbindir_progs').split():
+         d.setVarFlag('ALTERNATIVE_LINK_NAME', prog, '%s/%s' % (d.getVar('sbindir'), prog))
+ }
++
++ERROR_QA:remove = "buildpaths"
+-- 
+2.34.1
+

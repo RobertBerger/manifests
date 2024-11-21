@@ -1,0 +1,27 @@
+From af4506b263d6934b4e8a5066ea4dd79ae32b808f Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Fri, 6 Sep 2024 17:52:28 +0000
+Subject: [PATCH] on target: add /etc/monit.d to avoid dir/file not found
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ meta-oe/recipes-support/monit/monit_5.34.2.bb | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/meta-oe/recipes-support/monit/monit_5.34.2.bb b/meta-oe/recipes-support/monit/monit_5.34.2.bb
+index 7c3869789..9be6c05d8 100644
+--- a/meta-oe/recipes-support/monit/monit_5.34.2.bb
++++ b/meta-oe/recipes-support/monit/monit_5.34.2.bb
+@@ -47,6 +47,9 @@ do_install:append() {
+     # Configuration file
+     install -Dm 0600 ${UNPACKDIR}/monitrc ${D}${sysconfdir}/monitrc
+ 
++    # Additional configs
++    install -d -m 0755 ${D}${sysconfdir}/monit.d
++
+     # SystemD
+     install -Dm 0644 ${S}/system/startup/monit.service.in ${D}${systemd_system_unitdir}/monit.service
+     sed -i -e 's,@prefix@,${exec_prefix},g' ${D}${systemd_unitdir}/system/monit.service
+-- 
+2.34.1
+

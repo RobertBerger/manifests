@@ -1,0 +1,23 @@
+From 76382a991f06d9979d187994f946a3833c76fe85 Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Fri, 6 Sep 2024 17:51:07 +0000
+Subject: [PATCH 1/2] agent-proxy ignore buildpaths QA warning
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta-oe/recipes-kernel/agent-proxy/agent-proxy_1.97.bb | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/meta-oe/recipes-kernel/agent-proxy/agent-proxy_1.97.bb b/meta-oe/recipes-kernel/agent-proxy/agent-proxy_1.97.bb
+index 0e17800c4..1f9d20f57 100644
+--- a/meta-oe/recipes-kernel/agent-proxy/agent-proxy_1.97.bb
++++ b/meta-oe/recipes-kernel/agent-proxy/agent-proxy_1.97.bb
+@@ -22,3 +22,5 @@ do_install () {
+     install -d ${D}${bindir}
+     install -m 0755 agent-proxy ${D}${bindir}
+ }
++
++ERROR_QA:remove = "buildpaths"
+-- 
+2.34.1
+
