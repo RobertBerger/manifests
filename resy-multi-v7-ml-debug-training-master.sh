@@ -376,9 +376,9 @@ MYMAP[convenience-scripts]="${GITLAB}/meta-layers/convenience-scripts.git ${SCRI
 #MYMAP[poky-training]="${GITHUB}/RobertBerger/poky ${SOURCES}/poky-training ${META_POKY_TRAINING_BRANCH}"
 
 # --> 
-MYMAP[poky-training-master]="${GIT_YP}/poky ${SOURCES}/poky-training-master master ${SOURCES}/manifests/poky-training-master/patch.sh"
+#MYMAP[poky-training-master]="${GIT_YP}/poky ${SOURCES}/poky-training-master master ${SOURCES}/manifests/poky-training-master/patch.sh"
 # prep for freeze:
-#MYMAP[poky-training-master]="${GIT_YP}/poky ${SOURCES}/poky-training-master master ${SOURCES}/manifests/poky-training-master/patch.sh e31be0b0e6ed6855787ebfbacc15bdbf1b9e511c"
+MYMAP[poky-training-master]="${GIT_YP}/poky ${SOURCES}/poky-training-master master ${SOURCES}/manifests/poky-training-master/patch.sh 626031da74b31d0a8c5ca9d5a1acac9a2d55e998"
 # <--
 
 #MYMAP[meta-zephyr-master]="${GIT_YP}/meta-zephyr ${SOURCES}/meta-zephyr-master master"
