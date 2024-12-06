@@ -37,10 +37,10 @@ if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d
      patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch
 fi
 
-git checkout meta/classes/buildhistory.bbclass
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch; then
-     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch
-fi
+#git checkout meta/classes/buildhistory.bbclass
+#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch; then
+#     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0011-avoid-do_rootfs-Function-buildhistory_get_image_inst.patch
+#fi
 
 # --> check if it works also without that and only console defined
 #git checkout meta/recipes-core/busybox/busybox-inittab_1.36.1.bb

@@ -1,7 +1,7 @@
 From 59d90294e00f57d58b6b29b62769f4327bcbb25f Mon Sep 17 00:00:00 2001
 From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Fri, 5 Jan 2024 20:59:20 +0000
-Subject: [PATCH] avoid do_rootfs: Function
+Subject: [PATCH] buildhistory.bbclass: avoid do_rootfs: Function
  buildhistory_get_image_installedwrite_image_manifest_to_rootfs doesn't exist
 
 Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
