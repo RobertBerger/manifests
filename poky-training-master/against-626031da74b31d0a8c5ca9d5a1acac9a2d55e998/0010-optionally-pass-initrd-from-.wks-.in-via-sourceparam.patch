@@ -1,7 +1,9 @@
 From b223f2a73db05f589aa9a649be633845743b75dd Mon Sep 17 00:00:00 2001
 From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Fri, 5 Jan 2024 11:32:20 +0000
-Subject: [PATCH] optionally pass 'initrd' from .wks(.in) via sourceparams
+Subject: [PATCH v2] wic: bootimg-pcbios.py: optionally pass 'initrd' from .wks(.in) via sourceparams
+
+optionally allow to pass 'initrd' from .wks(.in) via sourceparams
 
 Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
