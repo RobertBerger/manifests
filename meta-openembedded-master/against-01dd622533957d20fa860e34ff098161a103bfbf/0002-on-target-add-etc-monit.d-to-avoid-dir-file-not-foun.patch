@@ -3,6 +3,8 @@ From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Fri, 6 Sep 2024 17:52:28 +0000
 Subject: [PATCH] on target: add /etc/monit.d to avoid dir/file not found
 
+Without this patch you'll get "dir/file not found" when monit starts on the target.
+
 Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta-oe/recipes-support/monit/monit_5.34.2.bb | 3 +++
