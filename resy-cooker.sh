@@ -3400,10 +3400,12 @@ if [ "$#" -eq "1" ]; then
         if [[ $WORKSPACE = *jenkins* ]]; then
            #echo "+ (1) bitbake $var ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
            echo "+ (1) bitbake $var"
-           bitbake $var ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $var ERRORS found (1)\e[0m\n" && exit 1
+           #bitbake $var ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $var ERRORS found (1)\e[0m\n" && exit 1
+           if bitbake $var ; then  printf "\e[32m+ jenkins no bitbake $var ERRORS found (1): $?\e[0m\n"; else printf "\e[31m+ jenkins bitbake $var ERRORS found (1): $?\e[0m\n" && exit 1; fi
         else
            echo "+ (1) bitbake $var"
-           bitbake $var
+           #bitbake $var
+           if bitbake $var ; then  printf "\e[32m+ no jenkins no bitbake $var ERRORS found (1): $?\e[0m\n"; else printf "\e[31m+ no jenkins bitbake $var ERRORS found (1): $?\e[0m\n"; fi
         fi
        done
   else # BUILD_ALL != yes
@@ -3425,16 +3427,18 @@ if [ "$#" -eq "2" ]; then
       #echo "+ (2) bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
       echo "+ (2) bitbake $2"
       #bitbake $2 ;[ $? -ne 0 ] && echo "ERRORS found" && exit 1
-      bitbake $2 ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $2 ERRORS found (2)\e[0m\n" && exit 1
+      #bitbake $2 ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $2 ERRORS found (2)\e[0m\n" && exit 1
+      if bitbake $2 ; then  printf "\e[32m+ jenkins no bitbake $2 ERRORS found (2): $?\e[0m\n"; else printf "\e[31m+ jenkins bitbake $2 ERRORS found (2): $?\e[0m\n" && exit 1; fi
    else
       echo "+ (2) bitbake $2"
-      bitbake $2
+      #bitbake $2
+      if bitbake $2 ; then  printf "\e[32m+ no jenkins no bitbake $2 ERRORS found (2): $?\e[0m\n"; else printf "\e[31m+ no jenkins bitbake $2 ERRORS found (2): $? WORKSPACE: $WORKSPACE\e[0m\n" && exit 1; fi
       # WORKSPACE can be empty although we run from jenkins here
-      if [ $? -ne 0 ]; then
-         #echo "WORKSPACE: $WORKSPACE"
-         printf "\e[31m+ bitbake $2 ERRORS found (2) WORKSPACE: $WORKSPACE - empty\e[0m\n"
-         exit 1
-      fi
+      #if [ $? -ne 0 ]; then
+      #   #echo "WORKSPACE: $WORKSPACE"
+      #   printf "\e[31m+ bitbake $2 ERRORS found (2) WORKSPACE: $WORKSPACE - empty\e[0m\n"
+      #   exit 1
+      #fi
    fi
 fi
 
@@ -3450,9 +3454,11 @@ if [ "$#" -gt "2" ]; then
      #echo "+ (3) bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1"
      echo "+ (3) bitbake $@"
      #bitbake $@ ;[ $? -ne 0 ] && echo "ERRORS foound" && exit 1
-     bitbake $@ ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $@ ERRORS found (3)\e[0m\n" && exit 1
+     #bitbake $@ ;[ $? -ne 0 ] && printf "\e[31m+ bitbake $@ ERRORS found (3)\e[0m\n" && exit 1
+     if bitbake $@ ; then  printf "\e[32m+ jenkins no bitbake $@ ERRORS found (3): $?\e[0m\n"; else printf "\e[31m+ jenkins bitbake $@ ERRORS found (3): $?\e[0m\n" && exit 1; fi
   else
      echo "+ (3) bitbake $@"
-     bitbake $@
+     #bitbake $@
+     if bitbake $@ ; then  printf "\e[32m+ no jenkins no bitbake $@ ERRORS found (3): $?\e[0m\n"; else printf "\e[31m+ no jenkins bitbake $@ ERRORS found (3): $?\e[0m\n"; fi
   fi
 fi

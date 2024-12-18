@@ -1,7 +1,9 @@
 From 9c057fe0620d47d98fb6daf083540f43c3c1d0b7 Mon Sep 17 00:00:00 2001
 From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Wed, 27 Mar 2024 18:04:02 +0000
-Subject: [PATCH] avoid errors with absolute paths from go-vendor.bbclass
+Subject: [PATCH] go-vendor.bbclass: avoid QA errors with absolute paths
+
+avoid QA errors with absolute paths from go-vendor.bbclass
 
 Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
