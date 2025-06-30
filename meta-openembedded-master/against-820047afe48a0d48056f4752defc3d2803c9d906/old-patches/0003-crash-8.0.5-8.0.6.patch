@@ -1,0 +1,56 @@
+From bf2fabe871c9699d126e85045e7bbe702a8f277d Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Mon, 24 Mar 2025 09:36:31 +0000
+Subject: [PATCH 1/2] crash: 8.0.5 -> 8.0.6
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ ...ross-canadian_8.0.5.bb => crash-cross-canadian_8.0.6.bb} | 6 +++---
+ meta-oe/recipes-kernel/crash/crash.inc                      | 3 +--
+ .../recipes-kernel/crash/{crash_8.0.5.bb => crash_8.0.6.bb} | 0
+ 3 files changed, 4 insertions(+), 5 deletions(-)
+ rename meta-oe/recipes-kernel/crash/{crash-cross-canadian_8.0.5.bb => crash-cross-canadian_8.0.6.bb} (92%)
+ rename meta-oe/recipes-kernel/crash/{crash_8.0.5.bb => crash_8.0.6.bb} (100%)
+
+diff --git a/meta-oe/recipes-kernel/crash/crash-cross-canadian_8.0.5.bb b/meta-oe/recipes-kernel/crash/crash-cross-canadian_8.0.6.bb
+similarity index 92%
+rename from meta-oe/recipes-kernel/crash/crash-cross-canadian_8.0.5.bb
+rename to meta-oe/recipes-kernel/crash/crash-cross-canadian_8.0.6.bb
+index bafe56d2c4..54883cef38 100644
+--- a/meta-oe/recipes-kernel/crash/crash-cross-canadian_8.0.5.bb
++++ b/meta-oe/recipes-kernel/crash/crash-cross-canadian_8.0.6.bb
+@@ -15,9 +15,9 @@ DEPENDS = "\
+     nativesdk-mpfr \
+     nativesdk-readline \
+     nativesdk-zlib \
+-    virtual/nativesdk-cross-cc \
+-    virtual/nativesdk-cross-binutils \
+-    virtual/nativesdk-compilerlibs \
++    virtual/${HOST_PREFIX}gcc \
++    virtual/${HOST_PREFIX}binutils \
++    virtual/nativesdk-${HOST_PREFIX}compilerlibs \
+     virtual/nativesdk-libc"
+ 
+ RDEPENDS:${PN} = "nativesdk-liblzma"
+diff --git a/meta-oe/recipes-kernel/crash/crash.inc b/meta-oe/recipes-kernel/crash/crash.inc
+index cab4e178b9..d350c2fb31 100644
+--- a/meta-oe/recipes-kernel/crash/crash.inc
++++ b/meta-oe/recipes-kernel/crash/crash.inc
+@@ -22,9 +22,8 @@ SRC_URI = "git://github.com/crash-utility/${BPN}.git;branch=master;protocol=http
+            file://0001-cross_add_configure_option.patch \
+            file://donnot-extract-gdb-during-do-compile.patch \
+            file://gdb_build_jobs_and_not_write_crash_target.patch \
+-           file://0001-symbol-fix-S-cannot-work-with-kaslr-detection.patch \
+            "
+-SRCREV = "ceacceef7d13134d327719a624cfafed99e90f8a"
++SRCREV = "f13853cef53f5c5463a51021edbc81977e2b1405"
+ 
+ SRC_URI[gdb.sha256sum] = "b33ad58d687487a821ec8d878daab0f716be60d0936f2e3ac5cf08419ce70350"
+ 
+diff --git a/meta-oe/recipes-kernel/crash/crash_8.0.5.bb b/meta-oe/recipes-kernel/crash/crash_8.0.6.bb
+similarity index 100%
+rename from meta-oe/recipes-kernel/crash/crash_8.0.5.bb
+rename to meta-oe/recipes-kernel/crash/crash_8.0.6.bb
+-- 
+2.34.1
+

@@ -1,0 +1,29 @@
+From 36b5d0e74b5381cdaf099078ecfa7c03a17f9c6c Mon Sep 17 00:00:00 2001
+From: student <student@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 15:53:41 +0000
+Subject: [PATCH] on target: add /etc/monit.d to avoid dir/file not found
+
+Without this patch you'll get "dir/file not found" when monit starts on the target.
+
+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+---
+ meta-oe/recipes-support/monit/monit_5.35.2.bb | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/meta-oe/recipes-support/monit/monit_5.35.2.bb b/meta-oe/recipes-support/monit/monit_5.35.2.bb
+index 97020d1953..ae7c947173 100644
+--- a/meta-oe/recipes-support/monit/monit_5.35.2.bb
++++ b/meta-oe/recipes-support/monit/monit_5.35.2.bb
+@@ -47,6 +47,9 @@ do_install:append() {
+     # Configuration file
+     install -Dm 0600 ${UNPACKDIR}/monitrc ${D}${sysconfdir}/monitrc
+ 
++    # Additional configs
++    install -d -m 0755 ${D}${sysconfdir}/monit.d
++
+     # SystemD
+     install -Dm 0644 ${S}/system/startup/monit.service.in ${D}${systemd_system_unitdir}/monit.service
+     sed -i -e 's,@prefix@,${exec_prefix},g' ${D}${systemd_unitdir}/system/monit.service
+-- 
+2.34.1
+
