@@ -1,0 +1,30 @@
+From d9ab0068d60821c01603ab96a72222288cd61d3b Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Wed, 2 Oct 2024 12:15:00 +0000
+Subject: [PATCH] SERIAL_CONSOLES: switched from many to console
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../bsp/substrate/target/arch/arm/conf/machine/machine.conf | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf b/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf
+index b461625d59..0398d508fd 100644
+--- a/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf
++++ b/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf
+@@ -90,8 +90,10 @@ IMAGE_FSTYPES += "tar.bz2"
+ # i.mx6 wand: ttymxc0
+ # cyclone-v:  ttyS0
+ 
+-SERIAL_CONSOLES = "115200;ttyPS0 115200;ttyO0 115200;ttymxc1 115200;ttyS0 115200;ttymxc0"
+-SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
++#SERIAL_CONSOLES = "115200;ttyPS0 115200;ttyO0 115200;ttymxc1 115200;ttyS0 115200;ttymxc0"
++#SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
++
++SERIAL_CONSOLES = "115200;console"
+ 
+ {{ if kernel_choice == "custom": preferred_kernel = "linux-yocto-custom" }}
+ {{ if kernel_choice == "linux-yocto-dev": preferred_kernel = "linux-yocto-dev" }}
+-- 
+2.34.1
+

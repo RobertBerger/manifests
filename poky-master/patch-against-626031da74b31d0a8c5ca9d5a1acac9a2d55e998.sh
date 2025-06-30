@@ -4,18 +4,18 @@ echo ${SCRIPTPATH}
 set -x
 
 git checkout meta/recipes-connectivity/connman/connman/connman
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0001-connman-allow-rootfs-over-nfs.patch; then
-     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0001-connman-allow-rootfs-over-nfs.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0001-connman-allow-rootfs-over-nfs.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0001-connman-allow-rootfs-over-nfs.patch
 fi
 
 git checkout meta-poky/conf/distro/poky.conf
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0002-poky-snapshot-.66.patch; then
-     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0002-poky-snapshot-.66.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0002-poky-snapshot-.66.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0002-poky-snapshot-.66.patch
 fi
 
 git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.92.bb
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
-     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0003-RDEPENDS-skip-e.g.-normalize-resolvconf-with-busybox.patch
 fi
 
 # made it upstream?
@@ -33,8 +33,8 @@ fi
 #cat meta/classes-recipe/populate_sdk_base.bbclass | grep SDKTAROPTS
 
 git checkout scripts/lib/wic/plugins/source/bootimg-pcbios.py
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch; then
-     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch
 fi
 
 #git checkout meta/classes/buildhistory.bbclass
@@ -54,22 +54,20 @@ fi
 #fi
 # <--  check if it works also without that and only console defined
 
-# probably made it upstream:
-#git checkout meta/classes/go-vendor.bbclass
-#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch; then
-#     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch
-#fi
+git checkout meta/classes/go-vendor.bbclass
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0040-avoid-errors-with-absolute-paths-from-go-vendor.bbcl.patch
+fi
 
-# probably made it upstream:
 # this is also against the go-vendor.bbclass
-#if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0041-go-vendor-WORKDIR-UNPACKDIR.patch; then
-#     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0041-go-vendor-WORKDIR-UNPACKDIR.patch
-#fi
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0041-go-vendor-WORKDIR-UNPACKDIR.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0041-go-vendor-WORKDIR-UNPACKDIR.patch
+fi
 
 git checkout  meta/classes-recipe/cargo.bbclass
 git checkout  meta/classes-recipe/cargo_common.bbclass
-if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0050-cargo-add-CARGO_NO_FROZEN.patch; then
-     patch -p1 <${SCRIPTPATH}/against-769a4479e123a5c2951eab8915cbd2b29d82c7f9/0050-cargo-add-CARGO_NO_FROZEN.patch
+if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0050-cargo-add-CARGO_NO_FROZEN.patch; then
+     patch -p1 <${SCRIPTPATH}/against-626031da74b31d0a8c5ca9d5a1acac9a2d55e998/0050-cargo-add-CARGO_NO_FROZEN.patch
 fi
 
 # yocto kernel tooling follows
