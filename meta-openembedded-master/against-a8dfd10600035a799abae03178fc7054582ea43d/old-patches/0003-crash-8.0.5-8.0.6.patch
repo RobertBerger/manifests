@@ -1,9 +1,9 @@
 From bf2fabe871c9699d126e85045e7bbe702a8f277d Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Mon, 24 Mar 2025 09:36:31 +0000
 Subject: [PATCH 1/2] crash: 8.0.5 -> 8.0.6
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  ...ross-canadian_8.0.5.bb => crash-cross-canadian_8.0.6.bb} | 6 +++---
  meta-oe/recipes-kernel/crash/crash.inc                      | 3 +--

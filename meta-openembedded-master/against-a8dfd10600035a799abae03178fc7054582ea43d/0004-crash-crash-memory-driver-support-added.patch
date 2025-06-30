@@ -1,5 +1,5 @@
 From cc9769671e6a66cf48dabcab53d49db217a2fb0e Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Mon, 30 Jun 2025 16:09:45 +0000
 Subject: [PATCH] crash: crash-memory-driver support added
 
@@ -30,7 +30,7 @@ installed like so:
 Once installed, the /dev/crash driver will be used by default for
 live system crash sessions.
 
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  .../crash-memory-driver_8.0.6.bb              | 42 ++++++++++++++
  ...01-hacked-Makefilefor-module.bbclass.patch | 57 +++++++++++++++++++
@@ -95,13 +95,13 @@ index 0000000000..7067a64ba0
 +++ b/meta-oe/recipes-kernel/crash-memory-driver/files/0001-hacked-Makefilefor-module.bbclass.patch
 @@ -0,0 +1,57 @@
 +From 35a0611d6686c17d3d5841ab551a802cf747b28e Mon Sep 17 00:00:00 2001
-+From: student <student@ReliableEmbeddedSystems.com>
++From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 +Date: Wed, 5 Mar 2025 06:28:02 +0000
 +Subject: [PATCH] hacked Makefilefor module.bbclass
 +
 +Upstream-Status: Inappropriate [res specific]
 +
-+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
++Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 +---
 + Makefile | 34 ++++++++++++++++------------------
 + 1 file changed, 16 insertions(+), 18 deletions(-)
@@ -158,13 +158,13 @@ index 0000000000..194a3a76e3
 +++ b/meta-oe/recipes-kernel/crash-memory-driver/files/0002-add-sparse-support.patch
 @@ -0,0 +1,30 @@
 +From 9ed4940f796fabd86ace513c67ea3208815c553b Mon Sep 17 00:00:00 2001
-+From: student <student@ReliableEmbeddedSystems.com>
++From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 +Date: Wed, 5 Mar 2025 12:02:38 +0000
 +Subject: [PATCH] add sparse support
 +
 +Upstream-Status: Inappropriate [res specific]
 +
-+Signed-off-by: student <student@ReliableEmbeddedSystems.com>
++Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 +---
 + Makefile | 4 ++--
 + 1 file changed, 2 insertions(+), 2 deletions(-)

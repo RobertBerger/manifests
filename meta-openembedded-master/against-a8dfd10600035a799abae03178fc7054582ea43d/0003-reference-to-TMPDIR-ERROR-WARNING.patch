@@ -1,5 +1,5 @@
 From b5b6a295e97d42ed9658ad37a85e5b43de422688 Mon Sep 17 00:00:00 2001
-From: student <student@ReliableEmbeddedSystems.com>
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 Date: Mon, 30 Jun 2025 16:04:27 +0000
 Subject: [PATCH] reference to TMPDIR ERROR -> WARNING
 
@@ -8,7 +8,7 @@ ERROR: crash-8.0.6-r0 do_package_qa: QA Issue: File /usr/src/debug/crash/8.0.6/b
 ERROR: crash-8.0.6-r0 do_package_qa: Fatal QA errors were found, failing task.
 ERROR: Logfile of failure stored in: /workdir/build/imx6q-phytec-mira-rdk-nand-wic-master/tmp/work/armv7ahf-neon-resy-linux-gnueabi/crash/8.0.6/temp/log.do_package_qa.110123
 ERROR: Task (/workdir/sources/poky-master/../meta-openembedded-master/meta-oe/recipes-kernel/crash/crash_8.0.6.bb:do_package_qa) failed with exit code '1'
-Signed-off-by: student <student@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
 ---
  meta-oe/recipes-kernel/crash/crash.inc | 4 ++++
  1 file changed, 4 insertions(+)
