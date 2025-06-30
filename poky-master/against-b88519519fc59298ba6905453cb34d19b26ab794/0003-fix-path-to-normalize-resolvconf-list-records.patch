@@ -1,0 +1,164 @@
+From e4f432ef674dd9f13e9a9f49da6078c01ca8b891 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 14:00:13 +0000
+Subject: [PATCH] fix path to normalize-resolvconf, list-records
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ ...001-fix-path-to-normalize-resolvconf.patch | 28 ++++++++++++++
+ .../0002-fix-path-to-list-records.patch       | 37 +++++++++++++++++++
+ .../0003-fix-path-to-list-records.patch       | 37 +++++++++++++++++++
+ .../resolvconf/resolvconf_1.93.bb             |  5 +++
+ 4 files changed, 107 insertions(+)
+ create mode 100644 meta/recipes-connectivity/resolvconf/resolvconf/0001-fix-path-to-normalize-resolvconf.patch
+ create mode 100644 meta/recipes-connectivity/resolvconf/resolvconf/0002-fix-path-to-list-records.patch
+ create mode 100644 meta/recipes-connectivity/resolvconf/resolvconf/0003-fix-path-to-list-records.patch
+
+diff --git a/meta/recipes-connectivity/resolvconf/resolvconf/0001-fix-path-to-normalize-resolvconf.patch b/meta/recipes-connectivity/resolvconf/resolvconf/0001-fix-path-to-normalize-resolvconf.patch
+new file mode 100644
+index 0000000000..3324044f03
+--- /dev/null
++++ b/meta/recipes-connectivity/resolvconf/resolvconf/0001-fix-path-to-normalize-resolvconf.patch
+@@ -0,0 +1,28 @@
++From 02ad64ab182a7e68b778fe86d47f8b95b4f9ec7f Mon Sep 17 00:00:00 2001
++From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++Date: Tue, 24 Jun 2025 17:18:11 +0000
++Subject: [PATCH] fix path to normalize-resolvconf
++
++Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++
++Upstream-Status: Inappropriate [Adjust path to normalize-resolvconf]
++---
++ bin/resolvconf | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/bin/resolvconf b/bin/resolvconf
++index 54af75b..304d086 100755
++--- a/bin/resolvconf
+++++ b/bin/resolvconf
++@@ -170,7 +170,7 @@ case "$CMD" in
++   -a)
++ 	OLD_CONTENT=""
++ 	[ -f "$IFACE" ] && OLD_CONTENT="$(cat "$IFACE")"
++-	NEW_CONTENT="$(/usr/lib/resolvconf/normalize-resolvconf)"
+++	NEW_CONTENT="$(@@noarch_base_libdir@@/resolvconf/normalize-resolvconf)"
++ 	# Proceed only if content has changed. The test here can't
++ 	# eliminate 100% of redundant invocations of update scripts
++ 	# because we don't do any locking; however it certainly does
++-- 
++2.34.1
++
+diff --git a/meta/recipes-connectivity/resolvconf/resolvconf/0002-fix-path-to-list-records.patch b/meta/recipes-connectivity/resolvconf/resolvconf/0002-fix-path-to-list-records.patch
+new file mode 100644
+index 0000000000..14414c6406
+--- /dev/null
++++ b/meta/recipes-connectivity/resolvconf/resolvconf/0002-fix-path-to-list-records.patch
+@@ -0,0 +1,37 @@
++From fefde9b6659a61cf5daf3a4eb7a017b1e0aeaf45 Mon Sep 17 00:00:00 2001
++From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++Date: Tue, 24 Jun 2025 18:49:44 +0000
++Subject: [PATCH] fix path to list-records
++
++Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++
++Upstream-Status: Inappropriate [Adjust path to list-records]
++---
++ bin/resolvconf | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/bin/resolvconf b/bin/resolvconf
++index 304d086..5676b81 100755
++--- a/bin/resolvconf
+++++ b/bin/resolvconf
++@@ -83,7 +83,7 @@ case "$CMD" in
++  --list|-l)
++ 	;;
++   -i)
++-	echo $(/usr/lib/resolvconf/list-records)
+++	echo $(@@noarch_base_libdir@@/resolvconf/list-records)
++ 	exit 0
++ 	;;
++   *)
++@@ -130,7 +130,7 @@ case "$CMD" in
++ 	fi
++ 	;;
++   --list|-l)
++-	for f in $(/usr/lib/resolvconf/list-records)
+++	for f in $(@@noarch_base_libdir@@/resolvconf/list-records)
++ 	do
++ 		echo "# resolv.conf from $f"
++ 		cat $f
++-- 
++2.34.1
++
+diff --git a/meta/recipes-connectivity/resolvconf/resolvconf/0003-fix-path-to-list-records.patch b/meta/recipes-connectivity/resolvconf/resolvconf/0003-fix-path-to-list-records.patch
+new file mode 100644
+index 0000000000..93446bfb48
+--- /dev/null
++++ b/meta/recipes-connectivity/resolvconf/resolvconf/0003-fix-path-to-list-records.patch
+@@ -0,0 +1,37 @@
++From 80e20f2497b96848fb1719003d6a8c0f19f74dd4 Mon Sep 17 00:00:00 2001
++From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++Date: Tue, 24 Jun 2025 18:37:18 +0000
++Subject: [PATCH] fix path to list-records
++
++Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++
++Upstream-Status: Inappropriate [Adjust path to list-records]
++---
++ etc/resolvconf/update.d/libc | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/etc/resolvconf/update.d/libc b/etc/resolvconf/update.d/libc
++index e500167..951012a 100755
++--- a/etc/resolvconf/update.d/libc
+++++ b/etc/resolvconf/update.d/libc
++@@ -18,7 +18,7 @@
++ set -e
++ PATH=/sbin:/bin:/usr/sbin:/usr/bin
++ 
++-[ -x /usr/lib/resolvconf/list-records ] || exit 1
+++[ -x @@noarch_base_libdir@@/resolvconf/list-records ] || exit 1
++ 
++ # Default override
++ [ -r /etc/default/resolvconf ] && . /etc/default/resolvconf
++@@ -107,7 +107,7 @@ uniquify_nameserver_list()
++ 	done
++ }
++ 
++-RSLVCNFFILES="$(/usr/lib/resolvconf/list-records)"
+++RSLVCNFFILES="$(@@noarch_base_libdir@@/resolvconf/list-records)"
++ 
++ [ -f "$BASEFILE" ] && RSLVCNFFILES="$RSLVCNFFILES
++ $BASEFILE"
++-- 
++2.34.1
++
+diff --git a/meta/recipes-connectivity/resolvconf/resolvconf_1.93.bb b/meta/recipes-connectivity/resolvconf/resolvconf_1.93.bb
+index c10c57267a..a7118daf9a 100644
+--- a/meta/recipes-connectivity/resolvconf/resolvconf_1.93.bb
++++ b/meta/recipes-connectivity/resolvconf/resolvconf_1.93.bb
+@@ -13,6 +13,9 @@ RDEPENDS:${PN} = "bash sed util-linux-flock"
+ SRC_URI = "git://salsa.debian.org/debian/resolvconf.git;protocol=https;branch=unstable \
+            file://99_resolvconf \
+            file://0001-avoid-using-m-option-for-readlink.patch \
++           file://0001-fix-path-to-normalize-resolvconf.patch \
++           file://0002-fix-path-to-list-records.patch \
++           file://0003-fix-path-to-list-records.patch \
+            "
+ 
+ SRCREV = "ab766fa31f7939f6d879123236b4275320b7ff64"
+@@ -39,8 +42,10 @@ do_install () {
+ 	ln -snf ${localstatedir}/run/${BPN} ${D}${sysconfdir}/${BPN}/run
+ 	install -d ${D}${sysconfdir} ${D}${base_sbindir}
+ 	install -d ${D}${mandir}/man8 ${D}${docdir}/${P}
++	sed -i 's,@@noarch_base_libdir@@,${nonarch_base_libdir},' etc/resolvconf/update.d/libc
+ 	cp -pPR etc/resolvconf ${D}${sysconfdir}/
+ 	chown -R root:root ${D}${sysconfdir}/
++	sed -i 's,@@noarch_base_libdir@@,${nonarch_base_libdir},' bin/resolvconf
+ 	install -m 0755 bin/resolvconf ${D}${base_sbindir}/
+ 	install -m 0755 bin/normalize-resolvconf ${D}${nonarch_base_libdir}/${BPN}
+ 	install -m 0755 bin/list-records ${D}${base_libdir}/${BPN}
+-- 
+2.34.1
+
