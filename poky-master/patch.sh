@@ -17,13 +17,12 @@ git checkout meta/recipes-connectivity/resolvconf/resolvconf_1.93.bb
 rm -f meta/recipes-connectivity/resolvconf/resolvconf/0001-fix-path-to-normalize-resolvconf.patch
 rm -f meta/recipes-connectivity/resolvconf/resolvconf/0002-fix-path-to-list-records.patch
 rm -f meta/recipes-connectivity/resolvconf/resolvconf/0003-fix-path-to-list-records.patch
-rm -f meta/recipes-connectivity/resolvconf
 if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-b88519519fc59298ba6905453cb34d19b26ab794/0003-fix-path-to-normalize-resolvconf-list-records.patch; then
      patch -p1 <${SCRIPTPATH}/against-b88519519fc59298ba6905453cb34d19b26ab794/0003-fix-path-to-normalize-resolvconf-list-records.patch
 fi
 
 # @@@TODO: needs fixing:
-git checkout scripts/lib/wic/plugins/source/bootimg-pcbios.py
+git checkout scripts/lib/wic/plugins/source/bootimg_pcbios.py
 if ! patch -R -p1 -s -f --dry-run <${SCRIPTPATH}/against-b88519519fc59298ba6905453cb34d19b26ab794/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch; then
      patch -p1 <${SCRIPTPATH}/against-b88519519fc59298ba6905453cb34d19b26ab794/0010-optionally-pass-initrd-from-.wks-.in-via-sourceparam.patch
 fi
