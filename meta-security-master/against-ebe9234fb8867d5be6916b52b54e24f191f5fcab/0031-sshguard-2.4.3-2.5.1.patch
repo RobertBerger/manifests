@@ -1,0 +1,50 @@
+From eed46f7408cb5ed1d8dfdf5083088e16ead8b3d0 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 21:00:52 +0000
+Subject: [PATCH 31/31] sshguard 2.4.3 -> 2.5.1
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-security/sshguard/sshguard_2.4.3.bb | 11 -----------
+ recipes-security/sshguard/sshguard_2.5.1.bb | 11 +++++++++++
+ 2 files changed, 11 insertions(+), 11 deletions(-)
+ delete mode 100644 recipes-security/sshguard/sshguard_2.4.3.bb
+ create mode 100644 recipes-security/sshguard/sshguard_2.5.1.bb
+
+diff --git a/recipes-security/sshguard/sshguard_2.4.3.bb b/recipes-security/sshguard/sshguard_2.4.3.bb
+deleted file mode 100644
+index 37b414e..0000000
+--- a/recipes-security/sshguard/sshguard_2.4.3.bb
++++ /dev/null
+@@ -1,11 +0,0 @@
+-SUMARRY=" Intelligently block brute-force attacks by aggregating system logs "
+-HOMEPAGE = "https://www.sshguard.net/"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=47a33fc98cd20713882c4d822a57bf4d"
+-LICENSE = "BSD-1-Clause"
+-
+-
+-SRC_URI="https://sourceforge.net/projects/sshguard/files/sshguard/${PV}/sshguard-${PV}.tar.gz"
+-
+-SRC_URI[sha256sum] = "64029deff6de90fdeefb1f497d414f0e4045076693a91da1a70eb7595e97efeb"
+-
+-inherit autotools-brokensep
+diff --git a/recipes-security/sshguard/sshguard_2.5.1.bb b/recipes-security/sshguard/sshguard_2.5.1.bb
+new file mode 100644
+index 0000000..de5a4d4
+--- /dev/null
++++ b/recipes-security/sshguard/sshguard_2.5.1.bb
+@@ -0,0 +1,11 @@
++SUMARRY = " Intelligently block brute-force attacks by aggregating system logs "
++HOMEPAGE = "https://www.sshguard.net/"
++LIC_FILES_CHKSUM = "file://COPYING;md5=47a33fc98cd20713882c4d822a57bf4d"
++LICENSE = "BSD-1-Clause"
++
++
++SRC_URI = "https://sourceforge.net/projects/sshguard/files/sshguard/${PV}/sshguard-${PV}.tar.gz"
++
++SRC_URI[sha256sum] = "997a1e0ec2b2165b4757c42f8948162eb534183946af52efc406885d97cb89fc"
++
++inherit autotools-brokensep
+-- 
+2.34.1
+

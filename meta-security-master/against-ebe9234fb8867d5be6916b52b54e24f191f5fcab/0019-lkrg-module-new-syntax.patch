@@ -1,0 +1,24 @@
+From fd5edae9c1edd70fe62f51e1f8b3dd552b690cac Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:55:47 +0000
+Subject: [PATCH 19/31] lkrg-module: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-kernel/lkrg/lkrg-module_0.9.7.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-kernel/lkrg/lkrg-module_0.9.7.bb b/recipes-kernel/lkrg/lkrg-module_0.9.7.bb
+index 751c045..20982a8 100644
+--- a/recipes-kernel/lkrg/lkrg-module_0.9.7.bb
++++ b/recipes-kernel/lkrg/lkrg-module_0.9.7.bb
+@@ -1,5 +1,5 @@
+ SUMMARY = "Linux Kernel Runtime Guard"
+-DESCRIPTION="LKRG performs runtime integrity checking of the Linux \
++DESCRIPTION = "LKRG performs runtime integrity checking of the Linux \
+ kernel and detection of security vulnerability exploits against the kernel."
+ SECTION = "security"
+ HOMEPAGE = "https://www.openwall.com/lkrg/"
+-- 
+2.34.1
+

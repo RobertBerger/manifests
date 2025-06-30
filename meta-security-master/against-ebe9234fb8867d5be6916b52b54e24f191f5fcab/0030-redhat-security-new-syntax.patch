@@ -1,0 +1,27 @@
+From 3551a4b8f5ba76dd65e4d840f30c5a372cee5a93 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 21:00:30 +0000
+Subject: [PATCH 30/31] redhat-security: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-security/redhat-security/redhat-security_1.0.bb | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/recipes-security/redhat-security/redhat-security_1.0.bb b/recipes-security/redhat-security/redhat-security_1.0.bb
+index 1f0ba6c..edd34f7 100644
+--- a/recipes-security/redhat-security/redhat-security_1.0.bb
++++ b/recipes-security/redhat-security/redhat-security_1.0.bb
+@@ -18,8 +18,7 @@ SRC_URI = "file://find-chroot-py.sh \
+            file://selinux-check-devices.sh \
+            file://selinux-ls-unconfined.sh"
+ 
+-S = "${WORKDIR}/sources"
+-UNPACKDIR = "${S}"
++S = "${UNPACKDIR}"
+ 
+ do_install() {
+ 	install -d ${D}${bindir}
+-- 
+2.34.1
+

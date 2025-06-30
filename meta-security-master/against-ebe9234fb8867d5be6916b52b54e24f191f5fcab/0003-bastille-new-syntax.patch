@@ -1,0 +1,26 @@
+From bf649341bffdec7ccbe603dc5e4044612b2acc16 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:49:02 +0000
+Subject: [PATCH 03/31] bastille: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../meta-perl/recipes-security/bastille/bastille_3.2.1.bb       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb b/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb
+index 7074f68..b95ec2d 100644
+--- a/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb
++++ b/dynamic-layers/meta-perl/recipes-security/bastille/bastille_3.2.1.bb
+@@ -35,7 +35,7 @@ SRC_URI = "http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3
+ SRC_URI[md5sum] = "df803f7e38085aa5da79f85d0539f91b"
+ SRC_URI[sha256sum] = "0ea25191b1dc1c8f91e1b6f8cb5436a3aa1e57418809ef902293448efed5021a"
+ 
+-S = "${WORKDIR}/Bastille"
++S = "${UNPACKDIR}/Bastille"
+ 
+ do_install () {
+ 	install -d ${D}${sbindir}
+-- 
+2.34.1
+

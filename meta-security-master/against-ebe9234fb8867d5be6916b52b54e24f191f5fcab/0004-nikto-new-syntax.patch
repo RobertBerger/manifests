@@ -1,0 +1,26 @@
+From 2e96ba7d78ac7d1d71cbbcaecec86eaec6d68aae Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:49:24 +0000
+Subject: [PATCH 04/31] nikto: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ dynamic-layers/meta-perl/recipes-security/nikto/nikto_2.1.6.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dynamic-layers/meta-perl/recipes-security/nikto/nikto_2.1.6.bb b/dynamic-layers/meta-perl/recipes-security/nikto/nikto_2.1.6.bb
+index 8c21b30..f417a00 100644
+--- a/dynamic-layers/meta-perl/recipes-security/nikto/nikto_2.1.6.bb
++++ b/dynamic-layers/meta-perl/recipes-security/nikto/nikto_2.1.6.bb
+@@ -10,7 +10,7 @@ SRCREV = "f1bbd1a8756c076c8fd4f4dd0bc34a8ef215ae79"
+ SRC_URI = "git://github.com/sullo/nikto.git;branch=master;protocol=https \
+            file://location.patch"
+ 
+-S = "${WORKDIR}/git/program"
++S = "${UNPACKDIR}/${PN}-${PV}/program"
+ 
+ do_install() {
+     install -d ${D}${bindir}
+-- 
+2.34.1
+

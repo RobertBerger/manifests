@@ -1,0 +1,26 @@
+From 0c9ede52b866fd2f85dc223abe7618d25ac238a2 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:53:55 +0000
+Subject: [PATCH 15/31] aide: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-ids/aide/aide_0.18.8.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-ids/aide/aide_0.18.8.bb b/recipes-ids/aide/aide_0.18.8.bb
+index e2014a1..2912cb2 100644
+--- a/recipes-ids/aide/aide_0.18.8.bb
++++ b/recipes-ids/aide/aide_0.18.8.bb
+@@ -16,7 +16,7 @@ UPSTREAM_CHECK_URI = "https://github.com/${BPN}/${BPN}/releases"
+ 
+ inherit autotools pkgconfig aide-base
+ 
+-PACKAGECONFIG ??=" gcrypt zlib e2fsattrs posix capabilities curl pthread \
++PACKAGECONFIG ??= " gcrypt zlib e2fsattrs posix capabilities curl pthread \
+                  ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux audit', '', d)} \
+                  ${@bb.utils.contains('DISTRO_FEATURES', 'xattr', 'xattr', '', d)} \
+                  "
+-- 
+2.34.1
+

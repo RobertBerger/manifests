@@ -1,0 +1,45 @@
+From 52b1daa4619f113bf6ca303a675cfb8b6ef4bc45 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:52:54 +0000
+Subject: [PATCH 13/31] scap-security-guide: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../scap-security-guide/scap-security-guide_0.1.76.bb    | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.76.bb b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.76.bb
+index 73bd576..b9f7a70 100644
+--- a/recipes-compliance/scap-security-guide/scap-security-guide_0.1.76.bb
++++ b/recipes-compliance/scap-security-guide/scap-security-guide_0.1.76.bb
+@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=9bfa86579213cb4c6adaffface6b2820"
+ LICENSE = "BSD-3-Clause"
+ 
+ SRCREV = "616d4363527acb61c6494a97f3ceb47ec90f65fd"
+-SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=stable;protocol=https \
++SRC_URI = "git://github.com/ComplianceAsCode/content.git;nobranch=1;protocol=https \
+            file://run_eval.sh \
+            file://run-ptest \
+            "
+@@ -15,15 +15,14 @@ SRC_URI = "git://github.com/ComplianceAsCode/content.git;branch=stable;protocol=
+ 
+ DEPENDS = "openscap-native python3-pyyaml-native python3-jinja2-native libxml2-native expat-native coreutils-native"
+ 
+-S = "${UNPACKDIR}/git"
+ B = "${S}/build"
+ 
+ inherit cmake pkgconfig python3native python3targetconfig ptest
+ 
+ STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
+-export OSCAP_CPE_PATH="${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe"
+-export OSCAP_SCHEMA_PATH="${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas"
+-export OSCAP_XSLT_PATH="${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl"
++export OSCAP_CPE_PATH = "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe"
++export OSCAP_SCHEMA_PATH = "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas"
++export OSCAP_XSLT_PATH = "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl"
+ 
+ OECMAKE_GENERATOR = "Unix Makefiles"
+ 
+-- 
+2.34.1
+

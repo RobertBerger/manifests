@@ -1,0 +1,29 @@
+From 0ec38819ea26772585ef0c5319a3c64770f4bd84 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:54:12 +0000
+Subject: [PATCH 16/31] ossec-hids: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-ids/ossec/ossec-hids_3.7.0.bb | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/recipes-ids/ossec/ossec-hids_3.7.0.bb b/recipes-ids/ossec/ossec-hids_3.7.0.bb
+index fbd1294..f8ee993 100644
+--- a/recipes-ids/ossec/ossec-hids_3.7.0.bb
++++ b/recipes-ids/ossec/ossec-hids_3.7.0.bb
+@@ -15,10 +15,7 @@ UPSTREAM_CHECK_COMMITS = "1"
+ 
+ inherit autotools-brokensep  useradd
+ 
+-S = "${UNPACKDIR}/git"
+-
+-
+-OSSEC_DIR="/var/ossec"
++OSSEC_DIR = "/var/ossec"
+ OSSEC_UID ?= "ossec"
+ OSSEC_RUID ?= "ossecr"
+ OSSEC_GID ?= "ossec"
+-- 
+2.34.1
+

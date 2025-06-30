@@ -1,0 +1,25 @@
+From c8d0b157339e3a08b8e98e1c3889e0527ec9bbc3 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:51:26 +0000
+Subject: [PATCH 09/31] systemd-boot_%.bbappend: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ meta-tpm/recipes-core/systemd/systemd-boot_%.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-tpm/recipes-core/systemd/systemd-boot_%.bbappend b/meta-tpm/recipes-core/systemd/systemd-boot_%.bbappend
+index 712a764..55323aa 100644
+--- a/meta-tpm/recipes-core/systemd/systemd-boot_%.bbappend
++++ b/meta-tpm/recipes-core/systemd/systemd-boot_%.bbappend
+@@ -2,6 +2,6 @@ DEPENDS += "\
+     ${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', 'tpm2-tss libtss2 libtss2-tcti-device', '', d)} \
+ "
+ 
+-EXTRA_OEMESON:append= "\
++EXTRA_OEMESON:append = "\
+     ${@bb.utils.contains('DISTRO_FEATURES', 'tpm2', '-Dtpm2=true', '', d)} \
+ "
+-- 
+2.34.1
+

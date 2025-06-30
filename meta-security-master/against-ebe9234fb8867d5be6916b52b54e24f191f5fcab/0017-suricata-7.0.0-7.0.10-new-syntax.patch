@@ -1,0 +1,220 @@
+From ff26dbcfe05461a01ed991ccf64aa07906f9fb5c Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:54:58 +0000
+Subject: [PATCH 17/31] suricata 7.0.0 -> 7.0.10, new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-ids/suricata/files/fixup.patch        | 46 ++++++++------
+ recipes-ids/suricata/libhtp_0.5.50.bb         |  4 --
+ .../{suricata_7.0.0.bb => suricata_7.0.10.bb} | 62 +++++++++++++++----
+ 3 files changed, 77 insertions(+), 35 deletions(-)
+ rename recipes-ids/suricata/{suricata_7.0.0.bb => suricata_7.0.10.bb} (76%)
+
+diff --git a/recipes-ids/suricata/files/fixup.patch b/recipes-ids/suricata/files/fixup.patch
+index 0b2ae7c..0111be9 100644
+--- a/recipes-ids/suricata/files/fixup.patch
++++ b/recipes-ids/suricata/files/fixup.patch
+@@ -1,32 +1,42 @@
+-Skip pkg Makefile from using its own rust steps
++From 7d163d9534919013994807dcb1493415aed936ae Mon Sep 17 00:00:00 2001
++From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++Date: Mon, 30 Jun 2025 16:53:29 +0000
++Subject: [PATCH] Skip pkg Makefile from using its own rust steps
+ 
+ Upstream-Status: Inappropriate [OE Specific]
+ 
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
++Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
++---
++ Makefile.am | 2 +-
++ Makefile.in | 2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
+ 
+-Index: suricata-7.0.0/Makefile.in
+-===================================================================
+---- suricata-7.0.0.orig/Makefile.in
+-+++ suricata-7.0.0/Makefile.in
+-@@ -424,7 +424,7 @@ EXTRA_DIST = ChangeLog COPYING LICENSE s
+- 	     acsite.m4 \
+- 	     scripts/generate-images.sh
+- 
++diff --git a/Makefile.am b/Makefile.am
++index d0d3d09..a572912 100644
++--- a/Makefile.am
+++++ b/Makefile.am
++@@ -10,7 +10,7 @@ EXTRA_DIST = ChangeLog COPYING LICENSE suricata.yaml.in \
++ 	     scripts/generate-images.sh \
++ 	     scripts/docs-almalinux9-minimal-build.sh \
++ 	     scripts/docs-ubuntu-debian-minimal-build.sh
+ -SUBDIRS = $(HTP_DIR) rust src qa rules doc contrib etc python ebpf \
+ +SUBDIRS = $(HTP_DIR) src qa rules doc contrib etc python ebpf \
+            $(SURICATA_UPDATE_DIR)
+  
+  CLEANFILES = stamp-h[0-9]*
+-Index: suricata-7.0.0/Makefile.am
+-===================================================================
+---- suricata-7.0.0.orig/Makefile.am
+-+++ suricata-7.0.0/Makefile.am
+-@@ -8,7 +8,7 @@ EXTRA_DIST = ChangeLog COPYING LICENSE s
+- 	     lua \
+- 	     acsite.m4 \
+- 	     scripts/generate-images.sh
++diff --git a/Makefile.in b/Makefile.in
++index 120330a..c9d187f 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -427,7 +427,7 @@ EXTRA_DIST = ChangeLog COPYING LICENSE suricata.yaml.in \
++ 	     scripts/docs-almalinux9-minimal-build.sh \
++ 	     scripts/docs-ubuntu-debian-minimal-build.sh
++ 
+ -SUBDIRS = $(HTP_DIR) rust src qa rules doc contrib etc python ebpf \
+ +SUBDIRS = $(HTP_DIR) src qa rules doc contrib etc python ebpf \
+            $(SURICATA_UPDATE_DIR)
+  
+  CLEANFILES = stamp-h[0-9]*
++-- 
++2.34.1
++
+diff --git a/recipes-ids/suricata/libhtp_0.5.50.bb b/recipes-ids/suricata/libhtp_0.5.50.bb
+index 3a795ae..7695539 100644
+--- a/recipes-ids/suricata/libhtp_0.5.50.bb
++++ b/recipes-ids/suricata/libhtp_0.5.50.bb
+@@ -13,10 +13,6 @@ inherit autotools-brokensep pkgconfig
+ 
+ CFLAGS += "-D_DEFAULT_SOURCE"
+ 
+-#S = "${UNPACKDIR}/suricata-${VER}/${BPN}"
+-
+-S = "${UNPACKDIR}/git"
+-
+ do_configure () {
+     cd ${S}
+     ./autogen.sh
+diff --git a/recipes-ids/suricata/suricata_7.0.0.bb b/recipes-ids/suricata/suricata_7.0.10.bb
+similarity index 76%
+rename from recipes-ids/suricata/suricata_7.0.0.bb
+rename to recipes-ids/suricata/suricata_7.0.10.bb
+index 910e21e..d750c21 100644
+--- a/recipes-ids/suricata/suricata_7.0.0.bb
++++ b/recipes-ids/suricata/suricata_7.0.10.bb
+@@ -5,7 +5,9 @@ require suricata.inc
+ LIC_FILES_CHKSUM = "file://LICENSE;beginline=1;endline=2;md5=c70d8d3310941dcdfcd1e02800a1f548"
+ 
+ SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${PV}.tar.gz"
+-SRC_URI[sha256sum] = "7bcd1313118366451465dc3f8385a3f6aadd084ffe44dd257dda8105863bb769"
++SRC_URI[sha256sum] = "197f925ea701bdcb4a15aca024b06546b002674cd958b58958f29a5bb214d759"
++
++#SRC_URI = "git://github.com/OISF/suricata.git;protocol=https;branch=master;tag=${BPN}-${PV}"
+ 
+ DEPENDS = "lz4 libhtp"
+ 
+@@ -16,13 +18,37 @@ SRC_URI += " \
+     file://suricata.service \
+     file://run-ptest \
+     file://fixup.patch \
+-    file://CVE-2024-37151.patch \
+-    file://CVE-2024-38534.patch \
+-    file://CVE-2024-38535_pre.patch \
+-    file://CVE-2024-38535.patch \
+-    file://CVE-2024-38536.patch \
+     "
+ 
++#   file://CVE-2024-37151.patch
++#   file://CVE-2024-38534.patch
++#   file://CVE-2024-38535_pre.patch
++#   file://CVE-2024-38535.patch
++#   file://CVE-2024-38536.patch
++
++# From Changelog
++#
++#
++# 7.0.6 -- 2024-06-26
++#
++# Security #7042: defrag: id reuse can lead to invalid reassembly (7.0.x backport)(CRITICAL - CVE 2024-37151)
++#
++#
++# 7.0.6 -- 2024-06-26
++# 
++# Security #6988: modbus: txs without responses are never freed (7.0.x backport)(HIGH - CVE 2024-38534)
++#
++# 
++# 7.0.6 -- 2024-06-26
++#
++# Security #7105: http2: oom from duplicate headers (7.0.x backport)(CRITICAL - CVE 2024-38535)
++#
++#
++# 7.0.6 -- 2024-06-26
++#
++# Security #7033: http/range: segv when http.memcap is reached (7.0.x backport)(HIGH - CVE 2024-38536)
++
++
+ inherit autotools pkgconfig python3native systemd ptest cargo cargo-update-recipe-crates
+ 
+ require  ${BPN}-crates.inc
+@@ -36,8 +62,11 @@ EXTRA_OECONF += " --disable-debug \
+ 
+ CARGO_SRC_DIR = "rust"
+ 
+-CARGO_BUILD_FLAGS:remove = "--frozen"
+-CARGO_BUILD_FLAGS:append = " --offline"
++#CARGO_BUILD_FLAGS:remove = "--frozen"
++#CARGO_BUILD_FLAGS:append = " --offline"
++#CARGO_BUILD_FLAGS:remove = "--offline"
++
++CARGO_NO_FROZEN = "1"
+ 
+ B = "${S}"
+ 
+@@ -68,11 +97,15 @@ do_configure:prepend () {
+     # use host for RUST_SURICATA_LIB_XC_DIR
+     sed -i -e 's,\${host_alias},${RUST_HOST_SYS},' ${S}/configure.ac
+     sed -i -e 's,libsuricata_rust.a,libsuricata.a,' ${S}/configure.ac
++    # Address build configuration written to src/build-info.h
++    sed -i -e 's,\(| sed -e '\''s/^/"/'\''\)\( |\),\1 -e '\''s#${WORKDIR}#\\.#g'\''\2,' ${S}/configure.ac
+     autotools_do_configure
+ }
+ 
+ CFLAGS += "-Wno-error=incompatible-pointer-types"
+ 
++# CARGO_BUILD_FLAGS="-v --offline --target armv7-resy-linux-gnueabihf --release --manifest-path=/workdir/build/imx6q-phytec-mira-rdk-nand-wic-master/tmp/work/armv7at2hf-neon-resy-linux-gnueabi/suricata/7.0.10/sources/suricata-7.0.10/rust/Cargo.toml"
++
+ # Commit 7a2b9acef2 cargo: pass PACKAGECONFIG_CONFARGS to cargo build
+ # breaks building this recipe. Providing a copy of the original function
+ # Armin 2025/04/01
+@@ -81,8 +114,16 @@ oe_cargo_build () {
+     export RUSTFLAGS="${RUSTFLAGS}"
+     bbnote "Using rust targets from ${RUST_TARGET_PATH}"
+     bbnote "cargo = $(which ${CARGO})"
++    cd rust
++    bbnote "${CARGO} vendor"
++    ${CARGO} vendor
++    # comment out the line which starts with 
++    # registry = 'https://github.com/rust-lang/crates.io-index'
++    # in .cargo/config.toml
++    sed -i '/^registry/s//#&/' .cargo/config.toml
+     bbnote "${CARGO} build ${CARGO_BUILD_FLAGS}$@"
+     "${CARGO}" build ${CARGO_BUILD_FLAGS}"$@"
++    cd ..
+ }
+ 
+ do_compile () {
+@@ -126,10 +167,6 @@ do_install () {
+     sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${bindir}/suricatasc
+     sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${bindir}/suricatactl
+     sed -i -e "s:#!.*$:#!${USRBINPATH}/env python3:g" ${D}${libdir}/suricata/python/suricata/sc/suricatasc.py
+-    # The build process dumps config logs into the binary, remove them.
+-    sed -i -e 's#${RECIPE_SYSROOT}##g' ${D}${bindir}/suricata
+-    sed -i -e 's#${RECIPE_SYSROOT_NATIVE}##g' ${D}${bindir}/suricata
+-    sed -i -e 's#CFLAGS.*##g' ${D}${bindir}/suricata
+ }
+ 
+ pkg_postinst_ontarget:${PN} () {
+@@ -147,4 +184,3 @@ FILES:${PN} += "${systemd_unitdir} ${sysconfdir}/tmpfiles.d"
+ FILES:${PN}-python = "${bindir}/suricatasc ${PYTHON_SITEPACKAGES_DIR}"
+ 
+ CONFFILES:${PN} = "${sysconfdir}/suricata/suricata.yaml"
+-INSANE_SKIP:${PN} = "already-stripped"
+-- 
+2.34.1
+

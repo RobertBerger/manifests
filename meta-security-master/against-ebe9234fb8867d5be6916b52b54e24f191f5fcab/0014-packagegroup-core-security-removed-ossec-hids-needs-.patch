@@ -1,0 +1,32 @@
+From 3af7e08b8a2835ee12ab116027af42935f0c6ee8 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:53:27 +0000
+Subject: [PATCH 14/31] packagegroup-core-security: removed ossec-hids - needs
+ debconf????
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-core/packagegroup/packagegroup-core-security.bb | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/recipes-core/packagegroup/packagegroup-core-security.bb b/recipes-core/packagegroup/packagegroup-core-security.bb
+index 764ec02..8dfbf0e 100644
+--- a/recipes-core/packagegroup/packagegroup-core-security.bb
++++ b/recipes-core/packagegroup/packagegroup-core-security.bb
+@@ -71,10 +71,12 @@ SUMMARY:packagegroup-security-ids = "Security Intrusion Detection systems"
+ RDEPENDS:packagegroup-security-ids = " \
+     samhain-standalone \
+     suricata \
+-    ossec-hids \
+     aide \
+     "
+ 
++# removed since it needs debconf????
++# ossec-hids
++
+ RDEPENDS:packagegroup-security-ids:remove:powerpc = "suricata"
+ RDEPENDS:packagegroup-security-ids:remove:powerpc64le = "suricata"
+ RDEPENDS:packagegroup-security-ids:remove:powerpc64 = "suricata"
+-- 
+2.34.1
+

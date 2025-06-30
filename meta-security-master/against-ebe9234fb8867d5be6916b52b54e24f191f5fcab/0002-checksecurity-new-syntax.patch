@@ -1,0 +1,31 @@
+From 197159ce45fdf729adcd5bdd3d63013eb635c775 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:48:42 +0000
+Subject: [PATCH 02/31] checksecurity: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../recipes-scanners/checksecurity/checksecurity_2.0.16.bb    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/dynamic-layers/meta-perl/recipes-scanners/checksecurity/checksecurity_2.0.16.bb b/dynamic-layers/meta-perl/recipes-scanners/checksecurity/checksecurity_2.0.16.bb
+index 8006c9f..b105c18 100644
+--- a/dynamic-layers/meta-perl/recipes-scanners/checksecurity/checksecurity_2.0.16.bb
++++ b/dynamic-layers/meta-perl/recipes-scanners/checksecurity/checksecurity_2.0.16.bb
+@@ -10,11 +10,11 @@ SRC_URI = "http://ftp.de.debian.org/debian/pool/main/c/checksecurity/checksecuri
+ 
+ SRC_URI[sha256sum] = "9803b3760e9ec48e06ebaf48cec081db48c6fe72254a476224e4c5c55ed97fb0"
+ 
+-S = "${WORKDIR}/checksecurity-${PV}+nmu1"
++S = "${UNPACKDIR}/checksecurity-${PV}+nmu1"
+ 
+ 
+ # allow for anylocal, no need to patch
+-LOGDIR="/etc/checksecurity"
++LOGDIR = "/etc/checksecurity"
+ 
+ do_compile() {
+     sed -i -e "s;LOGDIR=/var/log/setuid;LOGDIR=${LOGDIR};g" ${B}/etc/check-setuid.conf
+-- 
+2.34.1
+

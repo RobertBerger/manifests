@@ -1,0 +1,23 @@
+From 2cd5da32b63a4d270c31c6e8b612080c0b96a3e1 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:50:40 +0000
+Subject: [PATCH 07/31] python3-yamlpath: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../recipes-devtools/python/python3-yamlpath_3.8.2.bb           | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.2.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.2.bb
+index e2d95ae..d496e67 100644
+--- a/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.2.bb
++++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-yamlpath_3.8.2.bb
+@@ -1,4 +1,4 @@
+-DESCRIPTION="YAML Path and Command-Line Tools"
++DESCRIPTION = "YAML Path and Command-Line Tools"
+ LICENSE = "ISC"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=5abda174c5040dd12ed2b225e3a096f0"
+ 
+-- 
+2.34.1
+

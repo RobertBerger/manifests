@@ -1,0 +1,26 @@
+From 8f8a902bd043f6a1f29ea8f7be066d6086f03475 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 21:00:03 +0000
+Subject: [PATCH 29/31] isic: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-security/isic/isic_0.07.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-security/isic/isic_0.07.bb b/recipes-security/isic/isic_0.07.bb
+index d39184e..8e0f5ce 100644
+--- a/recipes-security/isic/isic_0.07.bb
++++ b/recipes-security/isic/isic_0.07.bb
+@@ -17,7 +17,7 @@ SRC_URI = "http://prdownloads.sourceforge.net/isic/${BPN}-${PV}.tgz \
+ SRC_URI[md5sum] = "29f70c9bde9aa9128b8f7e66a315f9a4"
+ SRC_URI[sha256sum] = "e033c53e03e26a4c72b723e2a5a1c433ee70eb4d23a1ba0d7d7e14ee1a80429d"
+ 
+-S="${UNPACKDIR}/${BPN}-${PV}"
++S = "${UNPACKDIR}/${BPN}-${PV}"
+ 
+ inherit autotools-brokensep
+ 
+-- 
+2.34.1
+

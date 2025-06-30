@@ -1,0 +1,26 @@
+From 3511cae27bc162c65746e17663105b71828fa354 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:52:32 +0000
+Subject: [PATCH 12/31] openscap: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-compliance/openscap/openscap_1.4.1.bb | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/recipes-compliance/openscap/openscap_1.4.1.bb b/recipes-compliance/openscap/openscap_1.4.1.bb
+index 47034ad..3e5f00a 100644
+--- a/recipes-compliance/openscap/openscap_1.4.1.bb
++++ b/recipes-compliance/openscap/openscap_1.4.1.bb
+@@ -15,8 +15,6 @@ SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=main;protocol=https \
+ 
+ SRCREV = "23a8ea3de3c4fd6017db4067675a81287177166e"
+ 
+-S = "${UNPACKDIR}/git"
+-
+ inherit cmake pkgconfig python3native python3targetconfig perlnative systemd
+ 
+ PACKAGECONFIG ?= "python3 rpm perl gcrypt ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
+-- 
+2.34.1
+

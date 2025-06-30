@@ -1,0 +1,35 @@
+From 9b0311100e430563444ff88db60fd49edba4ef33 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:56:37 +0000
+Subject: [PATCH 21/31] smack: use CVE_STATUS
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-mac/smack/smack_1.3.1.bb | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
+index 6c52392..ab76382 100644
+--- a/recipes-mac/smack/smack_1.3.1.bb
++++ b/recipes-mac/smack/smack_1.3.1.bb
+@@ -13,10 +13,13 @@ SRC_URI = " \
+ 
+ PV = "1.3.1"
+ 
+-# CVE-2014-0363, CVE-2014-0364, CVE-2016-10027 is valnerble for other product.
+-CVE_CHECK_IGNORE += "CVE-2014-0363"
+-CVE_CHECK_IGNORE += "CVE-2014-0364"
+-CVE_CHECK_IGNORE += "CVE-2016-10027"
++# CVE-2014-0363, CVE-2014-0364, CVE-2016-10027 is vulnerble for other product.
++# CVE_CHECK_IGNORE += "CVE-2014-0363"
++# CVE_CHECK_IGNORE += "CVE-2014-0364"
++# CVE_CHECK_IGNORE += "CVE-2016-10027"
++CVE_STATUS[CVE-2014-0363] = "Ignored"
++CVE_STATUS[CVE-2014-0364] = "Ignored"
++CVE_STATUS[CVE-2016-10027] = "Ignored"
+ 
+ inherit autotools update-rc.d pkgconfig ptest
+ inherit ${@bb.utils.contains('VIRTUAL-RUNTIME_init_manager','systemd','systemd','', d)}
+-- 
+2.34.1
+

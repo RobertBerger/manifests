@@ -1,0 +1,23 @@
+From ee27dc9bdf750f4e10e86cb27f7b5ae53090230e Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:49:47 +0000
+Subject: [PATCH 05/31] python3-json2html: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../recipes-devtools/python/python3-json2html_1.3.0.bb          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-json2html_1.3.0.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-json2html_1.3.0.bb
+index 3d7e897..baf3156 100644
+--- a/dynamic-layers/meta-python/recipes-devtools/python/python3-json2html_1.3.0.bb
++++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-json2html_1.3.0.bb
+@@ -1,4 +1,4 @@
+-DESCRIPTION="Python wrapper to convert JSON into a human readable HTML Table representation."
++DESCRIPTION = "Python wrapper to convert JSON into a human readable HTML Table representation."
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=8065590663ea0c10aa131841ea806767"
+ 
+-- 
+2.34.1
+

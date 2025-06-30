@@ -1,0 +1,26 @@
+From 1105c2866c41e91cfdbc9fa7236dbf03130cd6db Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:48:06 +0000
+Subject: [PATCH 01/31] layer.conf: whinlatter
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 84d40a1..f0926b8 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,7 +9,7 @@ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "8"
+ 
+-LAYERSERIES_COMPAT_security = "styhead walnascar"
++LAYERSERIES_COMPAT_security = "styhead walnascar whinlatter"
+ 
+ LAYERDEPENDS_security = "core openembedded-layer"
+ 
+-- 
+2.34.1
+

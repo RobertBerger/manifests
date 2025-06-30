@@ -1,0 +1,26 @@
+From 8ed2ec26b6816f70e016fa7661a56b70faf47d4d Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:52:11 +0000
+Subject: [PATCH 11/31] tpm2-abrmd: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_3.0.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_3.0.0.bb b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_3.0.0.bb
+index 24fd5b5..1b8eff1 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_3.0.0.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/tpm2-abrmd_3.0.0.bb
+@@ -35,7 +35,7 @@ USERADD_PACKAGES = "${PN}"
+ GROUPADD_PARAM:${PN} = "tss"
+ USERADD_PARAM:${PN} = "--system -M -d /var/lib/tpm -s /bin/false -g tss tss"
+ 
+-PACKAGECONFIG ?="${@bb.utils.contains('DISTRO_FEATURES','systemd','systemd', '', d)}"
++PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES','systemd','systemd', '', d)}"
+ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_system_unitdir}, --with-systemdsystemunitdir=no"
+ 
+ do_install:append() {
+-- 
+2.34.1
+

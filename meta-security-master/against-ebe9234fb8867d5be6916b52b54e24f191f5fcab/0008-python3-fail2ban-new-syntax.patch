@@ -1,0 +1,26 @@
+From 0cf99a9a6b1164b56a8a9771f693b2f09019a33e Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:51:04 +0000
+Subject: [PATCH 08/31] python3-fail2ban: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../recipes-security/fail2ban/python3-fail2ban_git.bb           | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb
+index 52d35f8..7312bf8 100644
+--- a/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb
++++ b/dynamic-layers/meta-python/recipes-security/fail2ban/python3-fail2ban_git.bb
+@@ -26,8 +26,6 @@ inherit systemd
+ 
+ SYSTEMD_SERVICE:${PN} = "fail2ban.service"
+ 
+-S = "${UNPACKDIR}/git"
+-
+ do_install:append () {
+     rm  -f ${D}/${bindir}/fail2ban-python
+     install -d ${D}/${sysconfdir}/fail2ban
+-- 
+2.34.1
+

@@ -1,0 +1,28 @@
+From 7dee45d328ccdc42322ea4ecc1a10cba1ea075c5 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:51:48 +0000
+Subject: [PATCH 10/31] swtpm: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ meta-tpm/recipes-tpm/swtpm/swtpm_0.10.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.10.0.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.10.0.bb
+index 3e58c33..c7159e0 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.10.0.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.10.0.bb
+@@ -15,8 +15,8 @@ S = "${WORKDIR}/git"
+ PARALLEL_MAKE = ""
+ inherit autotools pkgconfig perlnative
+ 
+-TSS_USER="tss"
+-TSS_GROUP="tss"
++TSS_USER = "tss"
++TSS_GROUP = "tss"
+ 
+ PACKAGECONFIG ?= "openssl gnutls"
+ PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
+-- 
+2.34.1
+

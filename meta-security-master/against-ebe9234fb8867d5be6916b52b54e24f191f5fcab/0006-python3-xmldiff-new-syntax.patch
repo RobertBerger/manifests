@@ -1,0 +1,23 @@
+From 7373ad632866701cd6c05514d89c792a6984f33e Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:50:12 +0000
+Subject: [PATCH 06/31] python3-xmldiff: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ .../recipes-devtools/python/python3-xmldiff_2.7.0.bb            | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.7.0.bb b/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.7.0.bb
+index 9d38065..a81c252 100644
+--- a/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.7.0.bb
++++ b/dynamic-layers/meta-python/recipes-devtools/python/python3-xmldiff_2.7.0.bb
+@@ -1,4 +1,4 @@
+-DESCRIPTION="Creates diffs of XML files"
++DESCRIPTION = "Creates diffs of XML files"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=0d0e9e3949e163c3edd1e097b8b0ed62"
+ 
+-- 
+2.34.1
+

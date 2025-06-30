@@ -1,0 +1,26 @@
+From b9228fc9a351044b10b2f16be829631578a63c3e Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:55:26 +0000
+Subject: [PATCH 18/31] tripwire: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-ids/tripwire/tripwire_2.4.3.7.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-ids/tripwire/tripwire_2.4.3.7.bb b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
+index e67d3c7..3c85027 100644
+--- a/recipes-ids/tripwire/tripwire_2.4.3.7.bb
++++ b/recipes-ids/tripwire/tripwire_2.4.3.7.bb
+@@ -1,7 +1,7 @@
+ SUMMARY = "Tripwire: A system integrity assessment tool (IDS)"
+ DESCRIPTION = "Open Source Tripwire® software is a security and data \
+ integrity tool useful for monitoring and alerting on specific file change(s) on a range of systems"
+-HOMEPAGE="http://sourceforge.net/projects/tripwire"
++HOMEPAGE = "http://sourceforge.net/projects/tripwire"
+ SECTION = "security Monitor/Admin"
+ LICENSE = "GPL-2.0-only"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=1c069be8dbbe48e89b580ab4ed86c127"
+-- 
+2.34.1
+

@@ -1,0 +1,26 @@
+From 746b148ab65e3f2046d449bf2f03439f0447f812 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:56:55 +0000
+Subject: [PATCH 22/31] libwhisker2-perl: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-perl/perl/libwhisker2-perl_2.5.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-perl/perl/libwhisker2-perl_2.5.bb b/recipes-perl/perl/libwhisker2-perl_2.5.bb
+index 2c32bfc..e16e5f2 100644
+--- a/recipes-perl/perl/libwhisker2-perl_2.5.bb
++++ b/recipes-perl/perl/libwhisker2-perl_2.5.bb
+@@ -15,7 +15,7 @@ S = "${UNPACKDIR}/libwhisker2-2.5"
+ 
+ inherit cpan-base
+ 
+-PACKAGEGROUP ??=""
++PACKAGEGROUP ??= ""
+ PACKAGEGROUP[ssl] = ", , libnet-ssleay-perl, libnet-ssleay-perl"
+ 
+ do_install() {
+-- 
+2.34.1
+

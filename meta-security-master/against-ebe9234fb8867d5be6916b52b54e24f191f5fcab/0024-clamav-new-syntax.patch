@@ -1,0 +1,25 @@
+From 6543e7d9aa60baba19206ce4e2dd511cabf5ca77 Mon Sep 17 00:00:00 2001
+From: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+Date: Mon, 30 Jun 2025 20:57:35 +0000
+Subject: [PATCH 24/31] clamav: new syntax
+
+Signed-off-by: Robert Berger <Robert.Berger@ReliableEmbeddedSystems.com>
+---
+ recipes-scanners/clamav/clamav_0.104.4.bb | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/recipes-scanners/clamav/clamav_0.104.4.bb b/recipes-scanners/clamav/clamav_0.104.4.bb
+index 48cc75c..7b81fd0 100644
+--- a/recipes-scanners/clamav/clamav_0.104.4.bb
++++ b/recipes-scanners/clamav/clamav_0.104.4.bb
+@@ -21,7 +21,6 @@ SRC_URI = "git://github.com/Cisco-Talos/clamav;branch=rel/0.104;protocol=https \
+     file://headers_fixup.patch \
+     file://oe_cmake_fixup.patch \
+ "
+-S = "${UNPACKDIR}/git"
+ 
+ LEAD_SONAME = "libclamav.so"
+ SO_VER = "9.6.0"
+-- 
+2.34.1
+
