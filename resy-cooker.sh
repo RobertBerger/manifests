@@ -392,6 +392,16 @@ MYMAP[imx6q-phytec-mira-rdk-nand-wic]="core-image-minimal"
 MYMAP[imx6q-phytec-mira-rdk-nand-wic-master]="core-image-minimal"
 # <-- imx6q-phytec-mira-rdk-nand-wic-master
 
+# --> imx6q-phytec-mira-rdk-nand-resy-security-master-next
+# jenkins:
+# HERE=$(pwd)
+# cd /workdir
+# ./resy-poky-container.sh imx6q-phytec-mira-rdk-nand-resy-security-master-next secure-core-image-minimal-development
+# pwd
+# cd ${HERE}
+MYMAP[imx6q-phytec-mira-rdk-nand-resy-security-master-next]="secure-core-image-minimal-development"
+# <-- imx6q-phytec-mira-rdk-nand-resy-security-master-next
+
 # --> imx6q-phytec-mira-rdk-nand-npm-wic-master
 # jenkins:
 # HERE=$(pwd)
@@ -2422,6 +2432,26 @@ fi
         #cp ${SITE_CONF} conf/site.conf
         # custom site.conf
         cp ../../sources/meta-u-boot-wic-bsp-master/conf/templates/template-imx6q-phytec-mira-rdk-nand-master/site.conf conf/site.conf
+        tree conf
+     fi
+  fi
+
+  # rootfs,
+  # std-sec kernel from multi-v7-ml,
+  # fdt,
+  # sd card image e.g. secure-core-image-minimal-development
+  # for imx6q-phytec-mira-rdk-nand
+
+  if [ "$machine" == "imx6q-phytec-mira-rdk-nand-resy-security-master-next" ]; then
+     export TEMPLATECONF="../meta-u-boot-wic-bsp-master-next/conf/templates/template-imx6q-phytec-mira-rdk-nand-resy-security-master-next"
+     echo "TEMPLATECONF: ${TEMPLATECONF}"
+     echo "source ../sources/poky-master/oe-init-build-env ${machine}"
+     source ../sources/poky-master/oe-init-build-env ${machine}
+     # only copy site.conf if it's not already there
+     if [ ! -f conf/site.conf ]; then
+        #cp ${SITE_CONF} conf/site.conf
+        # custom site.conf
+        cp ../../sources/meta-u-boot-wic-bsp-master-next/conf/templates/template-imx6q-phytec-mira-rdk-nand-resy-security-master-next/site.conf conf/site.conf
         tree conf
      fi
   fi
