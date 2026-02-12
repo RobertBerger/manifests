@@ -8,6 +8,6 @@ for pid in $(ps -ef | awk '/\/bitbake\/bin\/bitbake/ {print $2}'); do
         kill -9 $pid;
 done
 ps -ef | grep bitbake
-echo "rm -f ${BUILDDIR}/hashserve.sock"
-rm -f ${BUILDDIR}/hashserve.sock
+#echo "rm -f ${BUILDDIR}/hashserve.sock"
+#rm -f ${BUILDDIR}/hashserve.sock
 #set +x
