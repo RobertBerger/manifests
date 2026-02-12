@@ -166,6 +166,10 @@ MYMAP[multi-v7-ml]="core-image-minimal core-image-sato-sdk"
 MYMAP[multi-v7-ml-master]="core-image-minimal core-image-sato-sdk"
 # <-- multi-v7-ml-master
 
+# --> yocto-ampliphy-master-2025-11-29-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
+MYMAP[yocto-ampliphy-master-2025-11-29-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3]="core-image-minimal core-image-sato-sdk"
+# <-- yocto-ampliphy-master-2025-11-29-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
+
 # --> multi-v7-ml-gdbserver-master
 # jenkins:
 # HERE=$(pwd)
@@ -1191,8 +1195,10 @@ fi
   # check if hostname specific site.conf exists and pick it up
   if [ -f ../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME} ]; then 
      SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample.${HOSTNAME}"
-  else
+  elif [ -f ../sources/meta-resy/template-common/site.conf.sample.site.conf.sample ]; then
      SITE_CONF="../../sources/meta-resy/template-common/site.conf.sample"
+  else
+     echo "no site.conf.sample found"
   fi
  
   echo "initial SITE_CONF=${SITE_CONF}"
@@ -1627,6 +1633,15 @@ fi
         cp ${SITE_CONF} conf/site.conf
         tree conf
      fi
+  fi
+
+  # bitbake-setup:
+
+  if [ "$machine" == "yocto-ampliphy-master-2025-11-29-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3" ]; then
+     #source /workdir/build/yocto-ampliphy-master-2025-11-29-01-pinned/bitbake-builds/yocto-ampliphy-pinned/build/init-build-env
+     cd /workdir/build/yocto-ampliphy-master-2025-11-29-01-pinned/bitbake-builds/yocto-ampliphy-pinned/build
+     export BUILDDIR=$(pwd)
+     source init-build-env
   fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
@@ -3383,8 +3398,10 @@ fi
 
 echo "--> \$#: $#"
 
-# needed for killall_bitbake.sh
-export BUILDDIR="${WORKDIR}/build/${machine}"
+# needed for killall_bitbake.sh - not bitbake-setup?
+if [ -z $BUILDDIR ]; then
+   export BUILDDIR="${WORKDIR}/build/${machine}"
+fi
 
 # --> interactive mode
 if [ "$#" -eq "1" ]; then
