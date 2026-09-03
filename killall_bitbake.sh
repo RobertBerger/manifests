@@ -7,6 +7,12 @@ for pid in $(ps -ef | awk '/\/bitbake\/bin\/bitbake/ {print $2}'); do
         echo "do kill -9 ${pid}";
         kill -9 $pid;
 done
+if [ -f /workdir/ifttt-bitbake-wrapper.sh ]; then
+   for pid in $(ps -ef | awk '/\/workdir\/ifttt-bitbake-wrapper\.sh/ {print $2}'); do
+    	echo "do kill -9 ${pid}";
+	kill -9 $pid;
+   done
+fi
 ps -ef | grep bitbake
 #echo "rm -f ${BUILDDIR}/hashserve.sock"
 #rm -f ${BUILDDIR}/hashserve.sock
