@@ -1,3 +1,4 @@
 #./resy-poky-container.sh yocto-ampliphy-master-2025-11-29-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
 #./resy-poky-container.sh yocto-ampliphy-master-2026-05-14-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
-./resy-poky-container.sh yocto-ampliphy-master-2026-08-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
+#./resy-poky-container.sh yocto-ampliphy-master-2026-08-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
+./resy-poky-container.sh yocto-ampliphy-master-2026-08-18-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3

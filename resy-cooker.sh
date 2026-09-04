@@ -182,6 +182,11 @@ MYMAP[yocto-ampliphy-master-2026-05-14-01-pinned-yocto-ampliphy-pinned-distro_am
 MYMAP[yocto-ampliphy-master-2026-08-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3]="core-image-minimal core-image-sato-sdk"
 # <-- yocto-ampliphy-master-2026-08-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
 
+# --> yocto-ampliphy-master-2026-08-18-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
+MYMAP[yocto-ampliphy-master-2026-08-18-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3]="core-image-minimal core-image-sato-sdk"
+# <-- yocto-ampliphy-master-2026-08-18-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
+
+
 # --> multi-v7-ml-gdbserver-master
 # jenkins:
 # HERE=$(pwd)
@@ -1677,6 +1682,15 @@ fi
 
   if [ "$machine" == "yocto-ampliphy-master-2026-08-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3" ]; then
      cd /workdir/build/yocto-ampliphy-master-2026-08-11-01-pinned/bitbake-builds/yocto-ampliphy-pinned/build
+     export BUILDDIR=$(pwd)
+     source init-build-env
+  fi
+
+
+  # bitbake-setup:
+
+  if [ "$machine" == "yocto-ampliphy-master-2026-08-18-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3" ]; then
+     cd /workdir/build/yocto-ampliphy-master-2026-08-18-01-pinned/bitbake-builds/yocto-ampliphy-pinned/build
      export BUILDDIR=$(pwd)
      source init-build-env
   fi
