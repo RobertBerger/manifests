@@ -194,6 +194,10 @@ MYMAP[yocto-ampliphy-master-2026-10-14-01-pinned-yocto-ampliphy-pinned-distro_am
 MYMAP[yocto-ampliphy-master-2026-11-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3]="core-image-minimal core-image-sato-sdk"
 # <-- yocto-ampliphy-master-2026-11-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_phyboard-pollux-imx8mp-3
 
+# --> yocto-ampliphy-master-2026-11-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_beaglebone-1
+MYMAP[yocto-ampliphy-master-2026-11-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_beaglebone-1]="core-image-minimal core-image-sato-sdk"
+# <-- yocto-ampliphy-master-2026-11-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_beaglebone-1
+
 
 # --> multi-v7-ml-gdbserver-master
 # jenkins:
@@ -1720,6 +1724,13 @@ fi
      source init-build-env
   fi
 
+  # bitbake-setup:
+
+  if [ "$machine" == "yocto-ampliphy-master-2026-11-11-01-pinned-yocto-ampliphy-pinned-distro_ampliphy-resy-systemd-machine_beaglebone-1" ]; then
+     cd /workdir/build/yocto-ampliphy-master-2026-11-11-01-beaglebone-pinned/bitbake-builds/yocto-ampliphy-pinned/build
+     export BUILDDIR=$(pwd)
+     source init-build-env
+  fi
 
   # rootfs + kernel + ftd(s) - no u-boot, no sd card image
   # used for development
